@@ -3,9 +3,9 @@ import Head from "next/head";
 import Image from "next/image";
 import { makeStyles } from "@material-ui/styles";
 import { Container, Typography, TextField, Button } from "@material-ui/core";
-import NavBar from "../components/NavBar";
-import Footer from "../components/Footer";
-import mapImg from "../public/Rectangle7.png";
+import NavBar from "components/NavBar";
+import Footer from "components/Footer";
+import mapImg from "public/Rectangle7.png";
 
 const useStyles = makeStyles((theme) => ({
   mainContainer: {
@@ -60,7 +60,7 @@ const useStyles = makeStyles((theme) => ({
     display: "grid",
     gridTemplateColumns: "1fr 1fr",
   },
-  
+
 }));
 
 const textFields = [

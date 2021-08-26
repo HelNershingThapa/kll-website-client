@@ -3,8 +3,8 @@ import Head from "next/head";
 import Image from "next/image";
 import { makeStyles } from "@material-ui/styles";
 import { Container, Typography } from "@material-ui/core";
-import NavBar from "../components/NavBar";
-// import Footer from "../components/Footer";
+import NavBar from "components/NavBar";
+// import Footer from "components/Footer";
 
 const useStyles = makeStyles((theme) => ({
   mainContainer: {

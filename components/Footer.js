@@ -1,7 +1,7 @@
 import { uid } from "react-uid";
 import Link from "next/link";
 import Image from "next/image";
-import kllLogoWhite from "../public/kll-logo-white.png";
+import kllLogoWhite from "public/kll-logo-white.png";
 
 const groups = [
   {

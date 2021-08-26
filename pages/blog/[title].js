@@ -2,13 +2,15 @@ import { makeStyles } from "@material-ui/core/styles";
 import clsx from "clsx";
 import Image from "next/image";
 import { Typography, Divider, Avatar } from "@material-ui/core";
-import NavBar from "../../components/NavBar";
-import topImage from "../../public/portrait-pretty-young-hipster-woman-having-fun-city-with-camera1.png";
-import author from "../../public/author.png";
-import groupPhoto from "../../public/image2.png";
-import fullWidthPhoto from "../../public/image3.png";
-import blogImage1 from "../../public/Rectangle3.png";
-import blogImage2 from "../../public/Rectangle4.png";
+import NavBar from "components/NavBar";
+
+import topImage from "public/portrait-pretty-young-hipster-woman-having-fun-city-with-camera1.png";
+import author from "public/author.png";
+import groupPhoto from "public/image2.png";
+import fullWidthPhoto from "public/image3.png";
+import blogImage1 from "public/Rectangle3.png";
+import blogImage2 from "public/Rectangle4.png";
+
 import styles from "../../styles/BlogDetail.module.css";
 
 const useStyles = makeStyles((theme) => ({
