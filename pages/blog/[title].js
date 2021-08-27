@@ -1,5 +1,6 @@
 import { makeStyles } from "@material-ui/core/styles";
 import clsx from "clsx";
+import fetch from "isomorphic-unfetch";
 import Image from "next/image";
 import { Typography, Divider, Avatar } from "@material-ui/core";
 import NavBar from "components/NavBar";
@@ -125,8 +126,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function BlogDetail() {
+function BlogDetail({ blog }) {
   const classes = useStyles();
+  const { API_URL } = process.env;
   return (
     <>
       <NavBar />
@@ -136,21 +138,19 @@ export default function BlogDetail() {
           <Typography variant="subtitle2">May 06 2021</Typography>
           <Typography variant="subtitle2">15 min read</Typography>
         </div>
-        <Typography variant="h4">
-          GeoNight 2021: Contributing to the pandemic-stricken tourism of Nepal
-        </Typography>
+        <Typography variant="h4">{blog.title}</Typography>
         <div className={classes.author}>
           <Avatar>
-            <Image src={author} layout="fill" alt="DP" />
+            <img src={API_URL + blog.authors[0].avatar.url} layout="fill" alt="DP" />
           </Avatar>
           <div className={classes.authorDetails}>
             <Typography variant="subtitle1" className={classes.authorName}>
               {" "}
-              Aishworya Shrestha
+              {blog.authors[0].name}
             </Typography>
             <Typography variant="subtitle2" className={classes.authorTitle}>
               {" "}
-              Research Assistant
+              {blog.authors[0].title}
             </Typography>
           </div>
         </div>
@@ -377,3 +377,17 @@ export default function BlogDetail() {
     </>
   );
 }
+
+export async function getServerSideProps() {
+  const { API_URL } = process.env;
+  const res = await fetch(`${API_URL}/blogs/1`);
+  const data = await res.json();
+  console.log("data", data);
+  return {
+    props: {
+      blog: data,
+    },
+  };
+}
+
+export default BlogDetail;
