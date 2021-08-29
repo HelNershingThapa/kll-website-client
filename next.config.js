@@ -7,7 +7,10 @@ module.exports = {
     API_URL: process.env.API_URL,
   },
   images: {
-    domains: ["http://localhost:1337"],
+    domains: [
+      "http://localhost:1337",
+      "https://salty-bastion-86199.herokuapp.com",
+    ],
   },
   webpack: (config) => {
     config.resolve.alias["components"] = path.join(__dirname, "components");

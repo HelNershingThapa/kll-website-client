@@ -129,6 +129,7 @@ const useStyles = makeStyles((theme) => ({
 function BlogDetail({ blog }) {
   const classes = useStyles();
   const { API_URL } = process.env;
+  console.log("blog", blog)
   return (
     <>
       <NavBar />
@@ -380,7 +381,8 @@ function BlogDetail({ blog }) {
 
 export async function getServerSideProps() {
   const { API_URL } = process.env;
-  const res = await fetch(`${API_URL}/blogs/1`);
+  const res = await fetch(`${API_URL}blogs/1`);
+  console.log("res", res);
   const data = await res.json();
   console.log("data", data);
   return {

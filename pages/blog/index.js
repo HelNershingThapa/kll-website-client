@@ -1,4 +1,5 @@
 import { makeStyles } from "@material-ui/core/styles";
+import { uid } from "react-uid";
 import clsx from "clsx";
 import Image from "next/image";
 import fetch from "isomorphic-unfetch";
@@ -9,10 +10,14 @@ import {
   Avatar,
   Chip,
   IconButton,
+  TextField
 } from "@material-ui/core";
 import rightArrowIcon from "public/icons/ArrowRight.svg";
 import headerImg from "public/Rectangle124.png";
 import NavBar from "components/NavBar";
+import BlogListCard from "components/BlogListCard";
+import BlogTabs from "components/BlogTabs";
+import searchIcon from "public/search.svg";
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -87,10 +92,24 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
   },
   iconButton: {
-    background: "#3E64FF !important",
+    background: "#3E64FF !important", //overriding default transparent background color
     height: 60,
     width: 60,
+    marginRight: theme.spacing(2),
+    marginBottom: theme.spacing(2),
   },
+  blogListContainer: {
+    display: "flex",
+    justifyContent: "space-between",
+    flexWrap: "wrap",
+    marginTop: theme.spacing(8),
+  },
+  search: {
+    '& input:valid + fieldset': {
+      borderColor: '#CAD5E0',
+      borderWidth: 1,
+    },
+  }
 }));
 const BlogList = (props) => {
   const classes = useStyles();
@@ -101,9 +120,12 @@ const BlogList = (props) => {
         <Typography variant="h4" className={classes.pageTitle}>
           Our Blog
         </Typography>
-        <Typography variant="body1" className={classes.pageDescription}>
-          See what we’re up to at Kathmandu Living Labs
-        </Typography>
+        <div style={{ display: "flex", justifyContent: "space-between" }}>
+          <Typography variant="body1" className={classes.pageDescription}>
+            See what we’re up to at Kathmandu Living Labs
+          </Typography>
+          <TextField classes={{root: classes.search}} placeholder="Outlined" variant="outlined" />
+        </div>
         <div className={classes.headerImage}>
           <Image src={headerImg} alt="KLL Blog" />
           <div className={classes.headerBlogOverlay}>
@@ -130,9 +152,7 @@ const BlogList = (props) => {
                 the open...
               </Typography>
             </div>
-            <div
-              style={{ display: "block", marginTop: "auto" }}
-            >
+            <div style={{ display: "block", marginTop: "auto" }}>
               <IconButton
                 aria-label="delete"
                 disabled
@@ -149,7 +169,14 @@ const BlogList = (props) => {
             </div>
           </div>
         </div>
-        Tabs here
+
+        <BlogTabs />
+
+        <div className={classes.blogListContainer}>
+          {["", "", "", "", "", "", "", "", "", ""].map((blog) => (
+            <BlogListCard key={uid(blog)} />
+          ))}
+        </div>
       </Container>
     </>
   );
