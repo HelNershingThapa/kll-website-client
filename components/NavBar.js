@@ -60,7 +60,7 @@ const useStyles = makeStyles((theme) => ({
     marginRight: theme.spacing(2),
   },
   title: {
-    flexGrow: 1,
+    // flexGrow: 1,
   },
   nested: {
     paddingLeft: theme.spacing(4),
@@ -155,15 +155,17 @@ function NavBar({}) {
             height: "80px",
           }}
         >
-          <Toolbar style={{ height: "100%", paddingLeft: 0, paddingRight: 0 }}>
+          <Toolbar style={{ height: "100%", paddingLeft: 0, paddingRight: 0, display: 'flex', justifyContent: 'space-between' }}>
             <div className={classes.title}>
               <Link href="/">
-                <Image
-                  src={logo}
-                  height={46}
-                  width={42}
-                  alt="Picture of the author"
-                />
+                <div style={{ cursor: "pointer" }}>
+                  <Image
+                    src={logo}
+                    height={46}
+                    width={42}
+                    alt="Picture of the author"
+                  />
+                </div>
               </Link>
             </div>
 

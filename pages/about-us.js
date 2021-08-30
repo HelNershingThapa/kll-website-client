@@ -55,6 +55,7 @@ const useStyles = makeStyles((theme) => ({
   },
   statsOverlay: {
     display: "flex",
+    justifyContent: "space-between",
     gap: theme.spacing(25),
     background: "white",
     position: "absolute",
@@ -71,6 +72,7 @@ const useStyles = makeStyles((theme) => ({
     lineHeight: "28px",
   },
   statValue: {
+    marginTop: theme.spacing(1),
     fontFamily: "Manrope",
     fontSize: "24px",
     fontWeight: "700",
@@ -80,7 +82,7 @@ const useStyles = makeStyles((theme) => ({
     width: "972px",
     marginLeft: "auto",
     marginRight: "auto",
-    marginTop: theme.spacing(30),
+    marginTop: theme.spacing(25),
   },
   paragraphs: {
     display: "flex",
