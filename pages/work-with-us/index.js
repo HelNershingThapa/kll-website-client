@@ -3,12 +3,48 @@ import clsx from "clsx";
 import Image from "next/image";
 import NavBar from "components/NavBar";
 import { makeStyles } from "@material-ui/styles";
-import { Button, Container, Typography, Grid, Avatar } from "@material-ui/core";
+import {
+  Button,
+  Container,
+  Typography,
+  Grid,
+  Avatar,
+  TableContainer,
+  Table,
+  TableBody,
+  TableRow,
+  TableCell,
+} from "@material-ui/core";
 import { spacing } from "@material-ui/system";
 import Box from "@material-ui/core/Box";
+import Testimonials from "./Testimonials";
+import Benefits from "./Benefits";
+import JobListings from "./JobListings";
 
 import abousUsImg from "public/about-us-header.png";
 
+const jobListings = [
+  {
+    title: "Full Stack Developer",
+    level: "Mid Level",
+    deadline: "Sep 15 2021",
+  },
+  {
+    title: "UIUX Designer",
+    level: "Mid Level",
+    deadline: "Sep 15 2021",
+  },
+  {
+    title: "Business Development",
+    level: "Senior Level",
+    deadline: "Sep 15 2021",
+  },
+  {
+    title: "Python Engineer",
+    level: "Mid Level",
+    deadline: "Sep 15 2021",
+  },
+];
 const stats = [
   {
     title: "Vacancies",
@@ -21,25 +57,6 @@ const stats = [
   {
     title: "Alumini",
     value: "56",
-  },
-];
-
-const workWithUsLabels = [
-  {
-    title: "Heavily Biased towards Action",
-    icon: "work1.svg",
-  },
-  {
-    title: "Excude Creative Confidence",
-    icon: "work2.svg",
-  },
-  {
-    title: "Co-Operativive & Collaborative",
-    icon: "work3.svg",
-  },
-  {
-    title: "Work Local, Talk Global",
-    icon: "work4.svg",
   },
 ];
 
@@ -66,6 +83,25 @@ const benefits = [
   },
 ];
 
+const workWithUsLabels = [
+  {
+    title: "Heavily Biased towards Action",
+    icon: "work1.svg",
+  },
+  {
+    title: "Excude Creative Confidence",
+    icon: "work2.svg",
+  },
+  {
+    title: "Co-Operativive & Collaborative",
+    icon: "work3.svg",
+  },
+  {
+    title: "Work Local, Talk Global",
+    icon: "work4.svg",
+  },
+];
+
 const valuesAndMission = [
   {
     title: "Our Values",
@@ -80,7 +116,6 @@ const valuesAndMission = [
 const useStyles = makeStyles((theme) => ({
   container: {
     marginTop: theme.spacing(12),
-    marginBottom: theme.spacing(30),
   },
   pageTitleCtr: {
     marginBottom: theme.spacing(3),
@@ -307,6 +342,100 @@ const useStyles = makeStyles((theme) => ({
     lineHeight: "28px",
     color: "#304254",
   },
+  arrowNavigation: {
+    display: "flex",
+    justifyContent: "flex-end",
+    gap: theme.spacing(7.5),
+    marginTop: theme.spacing(10),
+  },
+  jobListingsContainer: {
+    paddingTop: theme.spacing(15),
+    paddingBottom: theme.spacing(20),
+  },
+  jobListingsHeader: {
+    fontFamily: "Manrope",
+    fontSize: "32px",
+    fontWeight: 700,
+    lineHeight: "40px",
+    color: "#0D1829",
+    marginBottom: theme.spacing(4),
+  },
+  jobList: {
+    display: "flex",
+    justifyContent: "space-between",
+    padding: theme.spacing(4, 0),
+    borderBottom: "1px solid #CAD5E0",
+  },
+  position: {
+    fontSize: "20px",
+    fontWeight: 600,
+    lineHeight: "20px",
+    color: "#304254",
+  },
+  level: {
+    marginTop: theme.spacing(1),
+    fontSize: "16px",
+    fontWeight: 400,
+    lineHeight: "16px",
+    color: "#445668",
+  },
+  deadline: {
+    marginTop: theme.spacing(1),
+    fontSize: "18px",
+    fontWeight: 600,
+    lineHeight: "18px",
+    color: "#304254",
+  },
+  tableCell: {
+    padding: 0,
+    paddingTop: theme.spacing(4),
+    paddingBottom: theme.spacing(4),
+    borderBottom: "1px solid #CAD5E0",
+  },
+  seeDetailsBtn: {
+    padding: "10px 20px",
+    borderColor: "#CAD5E0",
+  },
+  label: {
+    fontSize: "14px",
+    fontWeight: 500,
+    lineHeight: "20px",
+    color: "#304254",
+  },
+  icon: {
+    marginLeft: "6.67px",
+  },
+  meetTheTeamContainer: {
+    background: "#E1E8F0",
+    paddingBottom: theme.spacing(20),
+    paddingTop: theme.spacing(20),
+  },
+  teamCount: {
+    display: "flex",
+    justifyContent: "center",
+    background: "#E1E8F0",
+    gap: "67px",
+    alignItems: "center",
+  },
+  teamNumber: {
+    fontFamily: "Manrope",
+    fontSize: "200px",
+    fontWeight: 800,
+    lineHeight: "200px",
+  },
+  learnTeam: {
+    width: "338px",
+    marginTop: theme.spacing(3),
+    marginBottom: theme.spacing(4),
+  },
+  meetBtn: {
+    textTransform: "none",
+    padding: theme.spacing(4, 14.625),
+  },
+  meetBtnLabel: {
+    fontSize: "16px",
+    lineHeight: "16px",
+  },
 }));
 
 function WorkWithUs() {
@@ -520,7 +649,7 @@ function WorkWithUs() {
           <div className={classes.testimonials}>
             <Container maxWidth="lg">
               <div className={classes.testimonialsCtr}>
-                <div style={{ width: "361px" }}>
+                <div style={{ width: "361px", marginTop: "auto" }}>
                   <Typography
                     variant="h5"
                     className={classes.hearFromPeopleTitle}
@@ -534,6 +663,42 @@ function WorkWithUs() {
                     Listen to what the people at Kathmandu Living Labs have to
                     say about us.
                   </Typography>
+                  <div className={classes.arrowNavigation}>
+                    <div
+                      style={{
+                        width: "60px",
+                        height: "60px",
+                        background: "inherit",
+                        borderRadius: "50%",
+                        display: "grid",
+                        placeContent: "center",
+                      }}
+                    >
+                      <Image
+                        src="/icons/ArrowLeft.svg"
+                        height={16}
+                        width={16}
+                        alt="remix arrow right"
+                      />
+                    </div>
+                    <div
+                      style={{
+                        width: "60px",
+                        height: "60px",
+                        background: "#185ADB",
+                        borderRadius: "50%",
+                        display: "grid",
+                        placeContent: "center",
+                      }}
+                    >
+                      <Image
+                        src="/icons/ArrowRight.svg"
+                        height={16}
+                        width={16}
+                        alt="remix arrow right"
+                      />
+                    </div>
+                  </div>
                 </div>
                 <div
                   style={{
@@ -585,8 +750,105 @@ function WorkWithUs() {
               </div>
             </Container>
           </div>
+          <div className={classes.jobListingsContainer}>
+            <Typography variant="h6" className={classes.jobListingsHeader}>
+              Job Listings
+            </Typography>
+            <TableContainer>
+              <Table className={classes.table} aria-label="simple table">
+                <TableBody>
+                  {jobListings.map((job) => (
+                    <TableRow key={uid(job)}>
+                      <TableCell
+                        component="th"
+                        scope="row"
+                        className={classes.tableCell}
+                      >
+                        <Typography variant="h6" className={classes.position}>
+                          {job.title}
+                        </Typography>
+                        <Typography variant="h6" className={classes.level}>
+                          {job.level}
+                        </Typography>
+                      </TableCell>
+                      <TableCell align="left" className={classes.tableCell}>
+                        {" "}
+                        <Typography variant="h6" className={classes.level}>
+                          Apply Before
+                        </Typography>
+                        <Typography variant="h6" className={classes.deadline}>
+                          {job.deadline}
+                        </Typography>
+                      </TableCell>
+                      <TableCell align="right" className={classes.tableCell}>
+                        <Button
+                          variant="outlined"
+                          classes={{
+                            root: classes.seeDetailsBtn,
+                            label: classes.label,
+                            endIcon: classes.icon,
+                          }}
+                          endIcon={
+                            <Image
+                              src="/icons/buttonRightIcon.svg"
+                              width={11}
+                              height={11}
+                              alt="btnicon"
+                            />
+                          }
+                        >
+                          See Details
+                        </Button>
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </TableContainer>
+          </div>
         </div>
       </Container>
+
+      {/* Meet The Team */}
+      <Box className={classes.meetTheTeamContainer}>
+        <div className={classes.teamCount}>
+          <div
+            styles={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+            }}
+          >
+            <Typography variant="h1" className={classes.teamNumber}>
+              16
+            </Typography>
+            <Typography variant="body1" style={{ color: "#304254" }}>
+              awesome people at KLL
+            </Typography>
+          </div>
+          <div>
+            <Typography className={classes.header} style={{ color: "#304254" }}>
+              Our Team
+            </Typography>
+            <Typography
+              variant="body1"
+              style={{ color: "#1C2A3A" }}
+              className={classes.learnTeam}
+            >
+              Learn about our awesome team of people at Kathmandu Living Labs
+            </Typography>
+            <Button
+              disableElevation
+              variant="contained"
+              color="primary"
+              classes={{ root: classes.meetBtn, label: classes.meetBtnLabel }}
+            >
+              Meet the Team
+            </Button>
+          </div>
+        </div>
+      </Box>
+      {/* Meet The Team Ends Here*/}
     </>
   );
 }
