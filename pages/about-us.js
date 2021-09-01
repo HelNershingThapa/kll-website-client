@@ -165,7 +165,6 @@ function AboutUs() {
   const classes = useStyles();
   return (
     <>
-      <NavBar />
       <Container maxWidth="lg" className={classes.container}>
         <Typography variant="h4" className={classes.pageTitle}>
           About Us

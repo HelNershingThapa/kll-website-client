@@ -83,7 +83,6 @@ export default function Home() {
   const classes = useStyles();
   return (
     <div>
-      <NavBar />
       <Container maxWidth="lg">
         <div className={classes.mainContainer}>
           <div className={classes.hearFromUs}>

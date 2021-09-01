@@ -65,6 +65,11 @@ const theme = createTheme({
     borderWidth: borderWidth,
   },
   overrides: {
+    MuiButton: {
+      root: {
+        textTransform: "none",
+      },
+    },
     MuiExpansionPanel: {
       root: {
         position: "static",
@@ -167,7 +172,7 @@ const theme = createTheme({
       fontWeight: "400",
       // lineHeight: "1.56rem",
       lineHeight: "1.56rem",
-      color: '#0D1829',
+      color: "#0D1829",
     },
     // small - 14px
     subtitle2: {

@@ -155,7 +155,15 @@ function NavBar({}) {
             height: "80px",
           }}
         >
-          <Toolbar style={{ height: "100%", paddingLeft: 0, paddingRight: 0, display: 'flex', justifyContent: 'space-between' }}>
+          <Toolbar
+            style={{
+              height: "100%",
+              paddingLeft: 0,
+              paddingRight: 0,
+              display: "flex",
+              justifyContent: "space-between",
+            }}
+          >
             <div className={classes.title}>
               <Link href="/">
                 <div style={{ cursor: "pointer" }}>
@@ -191,7 +199,6 @@ function NavBar({}) {
                   disableElevation
                   variant="contained"
                   color="primary"
-                  style={{ textTransform: "none" }}
                 >
                   Contact Us
                 </Button>

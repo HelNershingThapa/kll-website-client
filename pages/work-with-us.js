@@ -3,7 +3,7 @@ import clsx from "clsx";
 import Image from "next/image";
 import NavBar from "components/NavBar";
 import { makeStyles } from "@material-ui/styles";
-import { Button, Container, Typography, Grid } from "@material-ui/core";
+import { Button, Container, Typography, Grid, Avatar } from "@material-ui/core";
 import { spacing } from "@material-ui/system";
 import Box from "@material-ui/core/Box";
 
@@ -103,7 +103,7 @@ const useStyles = makeStyles((theme) => ({
     color: "#445668",
   },
   imageFullWidth: {
-    position: 'relative',
+    position: "relative",
     marginTop: theme.spacing(10),
     width: "100vw",
     marginLeft: "calc(-50vw + 50%)",
@@ -198,7 +198,114 @@ const useStyles = makeStyles((theme) => ({
   },
   imageOverlay: {
     position: "absolute",
-    top: "-84px"
+    top: "-84px",
+    display: "grid",
+    gridTemplateColumns: "1fr 1fr",
+    gridGap: theme.spacing(10),
+    width: "864px",
+  },
+  volunteer: {
+    margin: "auto",
+  },
+  volunteeringTitle: {
+    fontFamily: "Manrope",
+    fontSize: "40px",
+    fontWeight: 800,
+    lineHeight: "48px",
+    color: "#E1E8F0",
+  },
+  volunteeringDescription: {
+    fontSize: "16px",
+    fontWeight: 400,
+    lineHeight: "24px",
+    color: "#CAD5E0",
+    marginTop: theme.spacing(3),
+    marginBottom: theme.spacing(5),
+    gridColumnGap: theme.spacing(10),
+  },
+  volunteeringBtn: {
+    padding: theme.spacing(2.5, 5),
+    border: "1px solid #CAD5E0",
+    background: "inherit",
+  },
+  volunteeringBtnLabel: {
+    fontSize: "14px",
+    fontWeight: 500,
+    lineHeight: "20px",
+    color: "#CAD5E0",
+  },
+  otherFeatures: {
+    display: "flex",
+    gap: theme.spacing(5),
+    marginTop: theme.spacing(41),
+  },
+  otherFeaturesTitle: {
+    paddingTop: theme.spacing(8),
+    fontFamily: "Manrope",
+    fontSize: "24px",
+    fontWeight: 800,
+    lineHeight: "24px",
+    color: "#304254",
+  },
+  otherFeaturesDescription: {
+    marginTop: theme.spacing(3),
+    fontSize: "16px",
+    fontWeight: 400,
+    lineHeight: "24px",
+    color: "#445668",
+  },
+  testimonials: {
+    width: "100vw",
+    position: "relative",
+    left: "calc(-50vw + 50%)",
+    marginTop: theme.spacing(20),
+    background: "#F0F5F9",
+    paddingBottom: "80px",
+  },
+  testimonialsCtr: {
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+  quote: {
+    fontSize: "40px",
+    fontWeight: 300,
+    lineHeight: "60px",
+    color: "#304254",
+  },
+  author: {
+    display: "flex",
+    gap: theme.spacing(3),
+    marginTop: theme.spacing(10),
+    alignItems: "center",
+  },
+  authorDetails: {
+    display: "flex",
+    flexDirection: "column",
+  },
+  authorName: {
+    fontWeight: 500,
+    color: "#304254",
+    lineHeight: "1rem",
+    marginBottom: theme.spacing(1),
+  },
+  authorTitle: {
+    fontWeight: 400,
+    color: "#445668",
+  },
+  hearFromPeopleTitle: {
+    fontFamily: "Manrope",
+    fontSize: "32px",
+    fontWeight: 700,
+    lineHeight: "40px",
+    color: "#1C2A3A",
+  },
+  hearFromPeopleDescription: {
+    marginTop: theme.spacing(4),
+    fontSize: "18px",
+    fontWeight: 400,
+    lineHeight: "28px",
+    color: "#304254",
   },
 }));
 
@@ -206,7 +313,6 @@ function WorkWithUs() {
   const classes = useStyles();
   return (
     <>
-      <NavBar />
       <Container maxWidth="lg" className={classes.container}>
         <div className={classes.pageTitleCtr}>
           <Typography
@@ -334,19 +440,150 @@ function WorkWithUs() {
               ))}
             </div>
           </div>
-        </div>
-
-        <div className={classes.fullWidth}>
-          <div style={{ width: "860px", margin: "auto" }}>
-            <span style={{ color: "white" }}>sdasdas</span>
-            <div className={classes.imageOverlay}>
-              <Image
-                src="/volunteering.png"
-                width={400}
-                height={600}
-                alt="volunteering"
-              />
+          <div className={classes.fullWidth}>
+            <div style={{ width: "860px", margin: "auto" }}>
+              <div className={classes.imageOverlay}>
+                <Image
+                  src="/volunteering.png"
+                  width={400}
+                  height={600}
+                  alt="volunteering"
+                />
+                <div className={classes.volunteer}>
+                  <Typography
+                    className={classes.volunteeringTitle}
+                    variant="h4"
+                    style={{ color: "white" }}
+                  >
+                    Volunteering
+                  </Typography>
+                  <Typography
+                    className={classes.volunteeringDescription}
+                    variant="body1"
+                  >
+                    Discover the power of giving back to society with Kathmandu
+                    Living Labs.
+                  </Typography>
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    classes={{
+                      root: classes.volunteeringBtn,
+                      label: classes.volunteeringBtnLabel,
+                    }}
+                  >
+                    Send us an Email
+                  </Button>
+                </div>
+              </div>
             </div>
+          </div>
+          <div className={classes.otherFeatures} style={{ width: "inherit" }}>
+            <div>
+              <Image
+                src="/fellowships.png"
+                width={420}
+                height={500}
+                alt="mentorships at KLL"
+              />
+              <Typography variant="h6" className={classes.otherFeaturesTitle}>
+                Fellowships
+              </Typography>
+              <Typography
+                variant="body1"
+                className={classes.otherFeaturesDescription}
+              >
+                Discover the power of giving back to society with Kathmandu
+                Living Labs.{" "}
+              </Typography>
+            </div>
+            <div>
+              <Image
+                src="/mentorships.png"
+                width={420}
+                height={500}
+                alt="mentorships at KLL"
+              />
+              <Typography variant="h6" className={classes.otherFeaturesTitle}>
+                Mentorships
+              </Typography>
+              <Typography
+                variant="body1"
+                className={classes.otherFeaturesDescription}
+              >
+                Discover the power of giving back to society with Kathmandu
+                Living Labs.{" "}
+              </Typography>
+            </div>
+          </div>
+
+          <div className={classes.testimonials}>
+            <Container maxWidth="lg">
+              <div className={classes.testimonialsCtr}>
+                <div style={{ width: "361px" }}>
+                  <Typography
+                    variant="h5"
+                    className={classes.hearFromPeopleTitle}
+                  >
+                    Hear from people at Kathmandu Living Labs
+                  </Typography>
+                  <Typography
+                    variant="body1"
+                    className={classes.hearFromPeopleDescription}
+                  >
+                    Listen to what the people at Kathmandu Living Labs have to
+                    say about us.
+                  </Typography>
+                </div>
+                <div
+                  style={{
+                    width: "740px",
+                    position: "relative",
+                    marginTop: "130px",
+                  }}
+                >
+                  <div
+                    style={{
+                      position: "absolute",
+                      top: "-32px",
+                      left: "-35px",
+                    }}
+                  >
+                    <Image
+                      src="/icons/quote.svg"
+                      width={29.7}
+                      height={22.8}
+                      alt="quote icon"
+                    />
+                  </div>
+                  <Typography className={classes.quote}>
+                    Ever since I first joined here, I’ve made countless friends
+                    and worked on impactful projects that I’m proud of.
+                  </Typography>
+                  <div className={classes.author}>
+                    <Avatar>
+                      <Image src="/author.png" layout="fill" alt="DP" />
+                    </Avatar>
+                    <div className={classes.authorDetails}>
+                      <Typography
+                        variant="subtitle1"
+                        className={classes.authorName}
+                      >
+                        {" "}
+                        Aishworya Shrestha
+                      </Typography>
+                      <Typography
+                        variant="subtitle2"
+                        className={classes.authorTitle}
+                      >
+                        {" "}
+                        Research Assistant
+                      </Typography>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </Container>
           </div>
         </div>
       </Container>

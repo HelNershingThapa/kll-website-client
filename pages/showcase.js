@@ -26,7 +26,6 @@ export default function Home() {
   const classes = useStyles();
   return (
     <div>
-      <NavBar />
       <Container maxWidth="lg">
         <div className={classes.mainContainer}>
           <Typography className={classes.title} variant="h4">
