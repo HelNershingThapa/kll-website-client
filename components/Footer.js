@@ -2,7 +2,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import { uid } from "react-uid";
 import Link from "next/link";
 import Image from "next/image";
-import { Container, Typography } from "@material-ui/core";
+import { Container, Typography, Button } from "@material-ui/core";
+import Divider from "@material-ui/core/Divider";
 
 const groups = [
   {
@@ -88,6 +89,23 @@ const useStyles = makeStyles((theme) => ({
     background: "#0D1829",
     padding: theme.spacing(20, 0),
   },
+  scheduleTitle: {
+    fontFamily: "Manrope",
+    fontSize: "16px",
+    fontWeight: 700,
+    lineHeight: "16px",
+    color: "#F8FAFC",
+  },
+  scheduleDescription: {
+    marginTop: theme.spacing(4),
+    marginBottom: theme.spacing(11),
+    width: "646px",
+    fontFamily: "Manrope",
+    fontSize: "40px",
+    fontWeight: 700,
+    lineHeight: "48px",
+    color: "#F8FAFC",
+  },
   groups: {
     display: "flex",
     justifyContent: "space-between",
@@ -130,6 +148,19 @@ const useStyles = makeStyles((theme) => ({
     height: "0.5px",
     background: "#61758A",
   },
+  sendEmailBtn: {
+    marginLeft: theme.spacing(5),
+    color: "#CAD5E0",
+  },
+  divider: {
+    marginTop: theme.spacing(20),
+    marginBottom: theme.spacing(20),
+    background: "#445668",
+    height: "1px",
+  },
+  endIcon: {
+    marginLeft: "10.67px",
+  },
 }));
 
 function Footer() {
@@ -138,6 +169,33 @@ function Footer() {
   return (
     <div className={classes.container}>
       <Container maxWidth="lg">
+        <div className={classes.scheduleCtr}>
+          <Typography className={classes.scheduleTitle}>
+            Want to talk?
+          </Typography>
+          <Typography className={classes.scheduleDescription}>
+            Schedule a meeting with our team of experts
+          </Typography>
+          <Button
+            classes={{ endIcon: classes.endIcon }}
+            variant="contained"
+            color="primary"
+            endIcon={
+              <Image
+                src="/icons/ArrowRight.svg"
+                width={10.37}
+                height={10.67}
+                alt="asdasd"
+              />
+            }
+          >
+            Schedule a Meeting
+          </Button>
+          <Button variant="outlined" className={classes.sendEmailBtn}>
+            Send Us an Email
+          </Button>
+        </div>
+        <Divider className={classes.divider} />
         <div className={classes.groups}>
           {groups.map((group) => (
             <div key={uid(group)}>

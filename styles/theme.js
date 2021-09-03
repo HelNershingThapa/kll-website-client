@@ -68,9 +68,15 @@ const theme = createTheme({
     MuiButton: {
       root: {
         textTransform: "none",
+        padding: "16px 32px",
       },
       outlined: {
         borderColor: "#CAD5E0",
+        padding: "16px 32px",
+      },
+      label: {
+        fontSize: "16px",
+        lineHeight: "16px",
       },
     },
     MuiExpansionPanel: {
