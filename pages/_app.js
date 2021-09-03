@@ -3,8 +3,9 @@ import PropTypes from "prop-types";
 import Head from "next/head";
 import { ThemeProvider } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
-import NavBar from "components/NavBar";
 import theme from "styles/theme";
+import NavBar from "components/NavBar";
+import Footer from "components/Footer";
 import "styles/globals.css";
 
 export default function MyApp(props) {
@@ -32,6 +33,7 @@ export default function MyApp(props) {
         <CssBaseline />
         <NavBar />
         <Component {...pageProps} />
+        <Footer />
       </ThemeProvider>
     </React.Fragment>
   );

@@ -1,7 +1,6 @@
 import { uid } from "react-uid";
 import clsx from "clsx";
 import Image from "next/image";
-import NavBar from "components/NavBar";
 import { makeStyles } from "@material-ui/styles";
 import {
   Button,
@@ -14,14 +13,8 @@ import {
   TableBody,
   TableRow,
   TableCell,
+  Box,
 } from "@material-ui/core";
-import { spacing } from "@material-ui/system";
-import Box from "@material-ui/core/Box";
-import Testimonials from "./Testimonials";
-import Benefits from "./Benefits";
-import JobListings from "./JobListings";
-
-import abousUsImg from "public/about-us-header.png";
 
 const jobListings = [
   {
@@ -83,7 +76,26 @@ const benefits = [
   },
 ];
 
-const workWithUsLabels = [
+// const workWithUsLabels = [
+//   {
+//     title: "Heavily Biased towards Action",
+//     icon: "work1.svg",
+//   },
+//   {
+//     title: "Excude Creative Confidence",
+//     icon: "work2.svg",
+//   },
+//   {
+//     title: "Co-Operativive & Collaborative",
+//     icon: "work3.svg",
+//   },
+//   {
+//     title: "Work Local, Talk Global",
+//     icon: "work4.svg",
+//   },
+// ];
+
+const values = [
   {
     title: "Heavily Biased towards Action",
     icon: "work1.svg",
@@ -410,6 +422,12 @@ const useStyles = makeStyles((theme) => ({
     paddingBottom: theme.spacing(20),
     paddingTop: theme.spacing(20),
   },
+  header: {
+    fontFamily: "Manrope",
+    fontSize: "32px",
+    fontWeight: 700,
+    lineHeight: "40px",
+  },
   teamCount: {
     display: "flex",
     justifyContent: "center",
@@ -435,6 +453,21 @@ const useStyles = makeStyles((theme) => ({
   meetBtnLabel: {
     fontSize: "16px",
     lineHeight: "16px",
+  },
+  traits: {
+    display: "flex",
+    alignItems: "center",
+    flexDirection: "column",
+    justifyContent: "center",
+    gap: theme.spacing(5),
+    background: "#F0F5F9",
+    padding: "32px 15px",
+  },
+  valueTitle: {
+    fontFamily: "Manrope",
+    fontSize: "18px",
+    fontWeight: 700,
+    lineHeight: "28px",
   },
 }));
 
@@ -485,35 +518,43 @@ function WorkWithUs() {
           </div>
         </div>
         <div className={classes.content}>
-          <Box display="flex" justifyContent="space-between" mb={10}>
-            {workWithUsLabels.map((data) => (
+
+          {/* Values  Starts */}
+          <div
+            className={classes.values}
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              marginBottom: "40px",
+            }}
+          >
+            {values.map((value) => (
               <div
-                key={uid(data)}
+                key={uid(value)}
                 style={{
+                  background: "grey",
                   display: "flex",
-                  alignItems: "center",
                   flexDirection: "column",
-                  justifyContent: "center",
+                  gap: "16px",
+                  padding: "32px 14px",
+                  alignItems: "center",
                   background: "#F0F5F9",
-                  padding: "32px 15px",
+                  width: "200px",
                 }}
               >
                 <Image
-                  src={`/icons/${data.icon}`}
-                  width={94}
+                  src={`/icons/${value.icon}`}
                   height={100}
-                  alt="KLL traits logo"
+                  width={100}
+                  alt="KLL values"
                 />
-                <Typography
-                  variant="body1"
-                  className={classes.traitsTitle}
-                  align="center"
-                >
-                  {data.title}
+                <Typography align="center" className={classes.valueTitle}>
+                  {value.title}
                 </Typography>
               </div>
             ))}
-          </Box>
+          </div>
+          {/* Values  Ends */}
 
           <div className={classes.paragraphs}>
             <Typography variant="body1" className={classes.para}>
@@ -607,6 +648,8 @@ function WorkWithUs() {
               </div>
             </div>
           </div>
+
+          {/* Mentoships */}
           <div className={classes.otherFeatures} style={{ width: "inherit" }}>
             <div>
               <Image
@@ -645,6 +688,8 @@ function WorkWithUs() {
               </Typography>
             </div>
           </div>
+
+          {/* Testimonials Starts Here */}
 
           <div className={classes.testimonials}>
             <Container maxWidth="lg">
@@ -750,6 +795,8 @@ function WorkWithUs() {
               </div>
             </Container>
           </div>
+
+          {/* Job Listings Starts Here */}
           <div className={classes.jobListingsContainer}>
             <Typography variant="h6" className={classes.jobListingsHeader}>
               Job Listings
@@ -810,44 +857,49 @@ function WorkWithUs() {
       </Container>
 
       {/* Meet The Team */}
-      <Box className={classes.meetTheTeamContainer}>
-        <div className={classes.teamCount}>
-          <div
-            styles={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-            }}
-          >
-            <Typography variant="h1" className={classes.teamNumber}>
-              16
-            </Typography>
-            <Typography variant="body1" style={{ color: "#304254" }}>
-              awesome people at KLL
-            </Typography>
-          </div>
-          <div>
-            <Typography className={classes.header} style={{ color: "#304254" }}>
-              Our Team
-            </Typography>
-            <Typography
-              variant="body1"
-              style={{ color: "#1C2A3A" }}
-              className={classes.learnTeam}
+      {
+        <div className={classes.meetTheTeamContainer}>
+          <div className={classes.teamCount}>
+            <div
+              styles={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
             >
-              Learn about our awesome team of people at Kathmandu Living Labs
-            </Typography>
-            <Button
-              disableElevation
-              variant="contained"
-              color="primary"
-              classes={{ root: classes.meetBtn, label: classes.meetBtnLabel }}
-            >
-              Meet the Team
-            </Button>
+              <Typography variant="h1" className={classes.teamNumber}>
+                16
+              </Typography>
+              <Typography variant="body1" style={{ color: "#304254" }}>
+                awesome people at KLL
+              </Typography>
+            </div>
+            <div>
+              <Typography
+                className={classes.header}
+                style={{ color: "#304254" }}
+              >
+                Our Team
+              </Typography>
+              <Typography
+                variant="body1"
+                style={{ color: "#1C2A3A" }}
+                className={classes.learnTeam}
+              >
+                Learn about our awesome team of people at Kathmandu Living Labs
+              </Typography>
+              <Button
+                disableElevation
+                variant="contained"
+                color="primary"
+                classes={{ root: classes.meetBtn, label: classes.meetBtnLabel }}
+              >
+                Meet the Team
+              </Button>
+            </div>
           </div>
         </div>
-      </Box>
+      }
       {/* Meet The Team Ends Here*/}
     </>
   );
