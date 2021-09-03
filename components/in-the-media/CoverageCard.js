@@ -4,8 +4,20 @@ import { makeStyles } from "@material-ui/core/styles";
 import { Typography } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
+  imgContainer: {
+    position: "relative",
+  },
+  overlay: {
+    background: "rgba(13, 24, 41, 0.4)",
+    position: "absolute",
+    background: "rgba(13, 24, 41, 0.6)",
+    top: "0",
+    bottom: "0",
+    right: "0",
+    left: "0",
+    padding: theme.spacing(6),
+    display: "flex",
+    alignItems: "flex-end",
   },
   coverageTitle: {
     marginTop: theme.spacing(5),
@@ -35,8 +47,13 @@ export default function CenteredGrid() {
   const classes = useStyles();
 
   return (
-    <div>
-      <Image src="/coverage-image.png" width={470} height={320} alt="kll" />
+    <div className={classes.root}>
+      <div className={classes.imgContainer}>
+        <Image src="/coverage-image.png" width={470} height={320} alt="kll" />
+        <div className={classes.overlay}>
+          <Image src="/bbc.png" width={58} height={40} alt="asdasd" />
+        </div>
+      </div>
       <Typography className={classes.coverageTitle}>
         How ‘crisis mapping’ is helping relief efforts in Nepal Team
       </Typography>
@@ -48,7 +65,6 @@ export default function CenteredGrid() {
           Read Full Article
         </Typography>
       </Typography>
-      
     </div>
   );
 }
