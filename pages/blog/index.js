@@ -10,7 +10,7 @@ import {
   Avatar,
   Chip,
   IconButton,
-  TextField
+  TextField,
 } from "@material-ui/core";
 import rightArrowIcon from "public/icons/ArrowRight.svg";
 import headerImg from "public/Rectangle124.png";
@@ -105,80 +105,81 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(8),
   },
   search: {
-    '& input:valid + fieldset': {
-      borderColor: '#CAD5E0',
+    "& input:valid + fieldset": {
+      borderColor: "#CAD5E0",
       borderWidth: 1,
     },
-  }
+  },
 }));
 const BlogList = (props) => {
   const classes = useStyles();
   return (
-    <>
-      <NavBar />
-      <Container maxWidth="lg" className={classes.container}>
-        <Typography variant="h4" className={classes.pageTitle}>
-          Our Blog
+    <Container maxWidth="lg" className={classes.container}>
+      <Typography variant="h4" className={classes.pageTitle}>
+        Our Blog
+      </Typography>
+      <div style={{ display: "flex", justifyContent: "space-between" }}>
+        <Typography variant="body1" className={classes.pageDescription}>
+          See what we’re up to at Kathmandu Living Labs
         </Typography>
-        <div style={{ display: "flex", justifyContent: "space-between" }}>
-          <Typography variant="body1" className={classes.pageDescription}>
-            See what we’re up to at Kathmandu Living Labs
-          </Typography>
-          <TextField classes={{root: classes.search}} placeholder="Outlined" variant="outlined" />
-        </div>
-        <div className={classes.headerImage}>
-          <Image src={headerImg} alt="KLL Blog" />
-          <div className={classes.headerBlogOverlay}>
-            <div className={classes.mainBlogDescription}>
-              <div className={classes.descriptionHead}>
-                <Chip
-                  label="Featured"
-                  color="primary"
-                  classes={{ root: classes.chipRoot, label: classes.chipLabel }}
-                />
-                <Typography variant="subtitle1" className={classes.timeToRead}>
-                  12 min read
-                </Typography>
-              </div>
-              <Typography variant="h5" className={classes.headerTitle}>
-                Girls Mapping their Community
-              </Typography>
-              <Typography
-                variant="subtitle2"
-                className={classes.headerDescription}
-              >
-                We need more girl mappers and their contribution in open
-                geographic data. As, we believe that when a girl maps or uses
-                the open...
-              </Typography>
-            </div>
-            <div style={{ display: "block", marginTop: "auto" }}>
-              <IconButton
-                aria-label="delete"
-                disabled
+        <TextField
+          classes={{ root: classes.search }}
+          placeholder="Outlined"
+          variant="outlined"
+        />
+      </div>
+      <div className={classes.headerImage}>
+        <Image src={headerImg} alt="KLL Blog" />
+        <div className={classes.headerBlogOverlay}>
+          <div className={classes.mainBlogDescription}>
+            <div className={classes.descriptionHead}>
+              <Chip
+                label="Featured"
                 color="primary"
-                className={classes.iconButton}
-              >
-                <Image
-                  src={rightArrowIcon}
-                  height={16}
-                  width={16}
-                  alt="right arrow icon"
-                />
-              </IconButton>
+                classes={{ root: classes.chipRoot, label: classes.chipLabel }}
+              />
+              <Typography variant="subtitle1" className={classes.timeToRead}>
+                12 min read
+              </Typography>
             </div>
+            <Typography variant="h5" className={classes.headerTitle}>
+              Girls Mapping their Community
+            </Typography>
+            <Typography
+              variant="subtitle2"
+              className={classes.headerDescription}
+            >
+              We need more girl mappers and their contribution in open
+              geographic data. As, we believe that when a girl maps or uses the
+              open...
+            </Typography>
+          </div>
+          <div style={{ display: "block", marginTop: "auto" }}>
+            <IconButton
+              aria-label="delete"
+              disabled
+              color="primary"
+              className={classes.iconButton}
+            >
+              <Image
+                src={rightArrowIcon}
+                height={16}
+                width={16}
+                alt="right arrow icon"
+              />
+            </IconButton>
           </div>
         </div>
+      </div>
 
-        <BlogTabs />
+      <BlogTabs />
 
-        <div className={classes.blogListContainer}>
-          {["", "", "", "", "", "", "", "", "", ""].map((blog) => (
-            <BlogListCard key={uid(blog)} />
-          ))}
-        </div>
-      </Container>
-    </>
+      <div className={classes.blogListContainer}>
+        {["", "", "", "", "", "", "", "", "", ""].map((blog) => (
+          <BlogListCard key={uid(blog)} />
+        ))}
+      </div>
+    </Container>
   );
 };
 

@@ -69,6 +69,9 @@ const theme = createTheme({
       root: {
         textTransform: "none",
       },
+      outlined: {
+        borderColor: "#CAD5E0",
+      },
     },
     MuiExpansionPanel: {
       root: {
@@ -129,6 +132,9 @@ const theme = createTheme({
     fontFamily: "Inter",
     useNextVariants: true,
     fontSize: 18,
+    button: {
+      fontSize: "0.89rem",
+    },
     h1: {
       // color: 'rgba(255,255,255)',
       fontSize: "3.75rem",

@@ -454,20 +454,27 @@ const useStyles = makeStyles((theme) => ({
     fontSize: "16px",
     lineHeight: "16px",
   },
-  traits: {
+  values: {
     display: "flex",
-    alignItems: "center",
+    justifyContent: "space-between",
+    marginBottom: "40px",
+  },
+  value: {
+    background: "grey",
+    display: "flex",
     flexDirection: "column",
-    justifyContent: "center",
-    gap: theme.spacing(5),
+    gap: "16px",
+    padding: "32px 14px",
+    alignItems: "center",
     background: "#F0F5F9",
-    padding: "32px 15px",
+    width: "200px",
   },
   valueTitle: {
     fontFamily: "Manrope",
     fontSize: "18px",
     fontWeight: 700,
     lineHeight: "28px",
+    color: "#304254",
   },
 }));
 
@@ -518,7 +525,6 @@ function WorkWithUs() {
           </div>
         </div>
         <div className={classes.content}>
-
           {/* Values  Starts */}
           <div
             className={classes.values}
@@ -529,19 +535,7 @@ function WorkWithUs() {
             }}
           >
             {values.map((value) => (
-              <div
-                key={uid(value)}
-                style={{
-                  background: "grey",
-                  display: "flex",
-                  flexDirection: "column",
-                  gap: "16px",
-                  padding: "32px 14px",
-                  alignItems: "center",
-                  background: "#F0F5F9",
-                  width: "200px",
-                }}
-              >
+              <div key={uid(value)} className={classes.value}>
                 <Image
                   src={`/icons/${value.icon}`}
                   height={100}
