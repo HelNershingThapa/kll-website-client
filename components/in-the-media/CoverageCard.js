@@ -49,7 +49,16 @@ export default function CenteredGrid() {
   return (
     <div className={classes.root}>
       <div className={classes.imgContainer}>
-        <Image src="/coverage-image.png" width={470} height={320} alt="kll" />
+        <div
+          className={classes.imgFill}
+          style={{ width: "470px", height: "320px" }}
+        >
+          <Image
+            src="/coverage-image.png"
+            layout="fill"
+            alt="kll"
+          />
+        </div>
         <div className={classes.overlay}>
           <Image src="/bbc.png" width={58} height={40} alt="asdasd" />
         </div>

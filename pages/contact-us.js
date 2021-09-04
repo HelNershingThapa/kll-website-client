@@ -12,6 +12,7 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     justifyContent: "space-between",
     marginTop: theme.spacing(25),
+    marginBottom: theme.spacing(30),
   },
   hearFromUs: {
     maxWidth: "500px",
@@ -52,7 +53,7 @@ const useStyles = makeStyles((theme) => ({
     fontSize: "0.89rem",
     lineHeight: "0.89rem",
   },
-  mapInfo:{
+  mapInfo: {
     marginTop: theme.spacing(10),
   },
   contactInfo: {
@@ -60,7 +61,6 @@ const useStyles = makeStyles((theme) => ({
     display: "grid",
     gridTemplateColumns: "1fr 1fr",
   },
-
 }));
 
 const textFields = [

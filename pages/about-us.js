@@ -99,11 +99,19 @@ const useStyles = makeStyles((theme) => ({
   },
   img1: {
     marginTop: theme.spacing(10),
+    marginBottom: theme.spacing(10),
+    position: "relative",
+    width: 972,
+    height: 500,
   },
-  img2: {
-    marginTop: theme.spacing(10),
+  imgsCtr: {
     display: "flex",
     gap: theme.spacing(5),
+  },
+  img2: {
+    position: "relative",
+    width: 476,
+    height: 583,
   },
   history: {
     marginTop: theme.spacing(12),
@@ -139,6 +147,9 @@ const useStyles = makeStyles((theme) => ({
     background: "#E1E8F0",
     gap: "1rem",
     alignItems: "center",
+    paddingTop: theme.spacing(20),
+    paddingBottom: theme.spacing(20),
+    marginTop: theme.spacing(25),
   },
   teamNumber: {
     fontFamily: "Manrope",
@@ -159,6 +170,11 @@ const useStyles = makeStyles((theme) => ({
     fontSize: "16px",
     lineHeight: "16px",
   },
+  imgFill: {
+    position: "relative",
+    width: "100%",
+    height: "521px",
+  },
 }));
 
 function AboutUs() {
@@ -170,12 +186,14 @@ function AboutUs() {
           About Us
         </Typography>
         <div className={classes.imageFullWidth}>
-          <Image
-            src="/about-us-header.png"
-            width={1920}
-            height={521}
-            alt="People working at KLL"
-          />
+          <div className={classes.imgFill}>
+            <Image
+              src="/about-us-header.png"
+              layout="fill"
+              objectFit="cover"
+              alt="People working at KLL"
+            />
+          </div>
           <div className={classes.statsOverlay}>
             {stats.map((stat) => (
               <div key={uid(stat)}>
@@ -220,24 +238,28 @@ function AboutUs() {
             <div className={classes.img1}>
               <Image
                 src="/Rectangle31.png"
-                width={972}
-                height={500}
                 alt="asdasd"
+                layout="fill"
+                objectFit="cover"
               />
             </div>
-            <div className={classes.img2}>
-              <Image
-                src="/Rectangle32dup.png"
-                width={476}
-                height={583}
-                alt="asdasd"
-              />
-              <Image
-                src="/Rectangle33.png"
-                width={476}
-                height={583}
-                alt="asdasd"
-              />
+            <div className={classes.imgsCtr}>
+              <div className={classes.img2}>
+                <Image
+                  src="/Rectangle32dup.png"
+                  alt="asdasd"
+                  layout="fill"
+                  objectFit="cover"
+                />
+              </div>
+              <div className={classes.img2}>
+                <Image
+                  src="/Rectangle33.png"
+                  layout="fill"
+                  objectFit="cover"
+                  alt="asdasd"
+                />
+              </div>
             </div>
           </div>
 
@@ -278,46 +300,44 @@ function AboutUs() {
         </div>
       </Container>
 
-      <Box bgcolor="#E1E8F0" pb={20} pt={20} mt={20}>
-        <div className={classes.teamCount}>
-          <div>
-            <div
-              styles={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-              }}
-            >
-              <Typography variant="h1" className={classes.teamNumber}>
-                16
-              </Typography>
-              <Typography variant="body1" style={{ color: "#304254" }}>
-                awesome people at KLL
-              </Typography>
-            </div>
-          </div>
-          <div>
-            <Typography className={classes.header} style={{ color: "#304254" }}>
-              Our Team
+      <div className={classes.teamCount}>
+        <div>
+          <div
+            styles={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+            }}
+          >
+            <Typography variant="h1" className={classes.teamNumber}>
+              16
             </Typography>
-            <Typography
-              variant="body1"
-              style={{ color: "#1C2A3A" }}
-              className={classes.learnTeam}
-            >
-              Learn about our awesome team of people at Kathmandu Living Labs
+            <Typography variant="body1" style={{ color: "#304254" }}>
+              awesome people at KLL
             </Typography>
-            <Button
-              disableElevation
-              variant="contained"
-              color="primary"
-              classes={{ root: classes.meetBtn, label: classes.meetBtnLabel }}
-            >
-              Meet the Team
-            </Button>
           </div>
         </div>
-      </Box>
+        <div>
+          <Typography className={classes.header} style={{ color: "#304254" }}>
+            Our Team
+          </Typography>
+          <Typography
+            variant="body1"
+            style={{ color: "#1C2A3A" }}
+            className={classes.learnTeam}
+          >
+            Learn about our awesome team of people at Kathmandu Living Labs
+          </Typography>
+          <Button
+            disableElevation
+            variant="contained"
+            color="primary"
+            classes={{ root: classes.meetBtn, label: classes.meetBtnLabel }}
+          >
+            Meet the Team
+          </Button>
+        </div>
+      </div>
     </>
   );
 }

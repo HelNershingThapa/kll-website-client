@@ -131,13 +131,16 @@ function InTheMedia() {
         </Typography>
         <div className={classes.headerCoveragesCtr}>
           <div className={classes.headerImgCtr}>
-            <img
-              className={classes.headerImg}
-              src="/in-the-media-header.png"
-              width={750}
-              height={560}
-              alt="KLL in media"
-            />
+            <div
+              style={{ position: "relative", width: "750px", height: "560px" }}
+            >
+              <Image
+                src="/in-the-media-header.png"
+                layout="fill"
+                style={{ objectFit: "cover" }}
+                alt="KLL in media"
+              />
+            </div>
             <div className={classes.blob} />
             <div className={classes.headerImgOverlay}>
               <div>
@@ -222,10 +225,7 @@ function InTheMedia() {
               marginTop: "44px",
             }}
           >
-            <CircularProgress
-              color="secondary"
-              style={{ color: "#61758A" }}
-            />
+            <CircularProgress color="secondary" style={{ color: "#61758A" }} />
           </div>
         </Container>
       </div>

@@ -124,6 +124,12 @@ const useStyles = makeStyles((theme) => ({
     lineHeight: "0.89rem",
     fontSize: "0.89rem",
   },
+  imgFill: {
+    cursor: "pointer",
+    position: "relative",
+    height: 46,
+    width: 42,
+  },
 }));
 
 function NavBar({}) {
@@ -166,11 +172,11 @@ function NavBar({}) {
           >
             <div className={classes.title}>
               <Link href="/">
-                <div style={{ cursor: "pointer" }}>
+                <div className={classes.imgFill}>
                   <Image
                     src={logo}
-                    height={46}
-                    width={42}
+                    layout="fill"
+                    objectFit="cover"
                     alt="Picture of the author"
                   />
                 </div>

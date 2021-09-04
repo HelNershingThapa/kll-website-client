@@ -126,11 +126,9 @@ const valuesAndMission = [
 ];
 
 const useStyles = makeStyles((theme) => ({
-  container: {
+  pageHeader: {
     marginTop: theme.spacing(12),
-  },
-  pageTitleCtr: {
-    marginBottom: theme.spacing(3),
+    marginBottom: theme.spacing(10),
   },
   pageTitle: {
     fontFamily: "Manrope",
@@ -143,17 +141,12 @@ const useStyles = makeStyles((theme) => ({
     color: "#467efb",
   },
   pageDesc: {
+    marginTop: theme.spacing(3),
     maxWidth: "800px",
     fontSize: "18px",
     fontWeight: 400,
     lineHeight: "28px",
     color: "#445668",
-  },
-  imageFullWidth: {
-    position: "relative",
-    marginTop: theme.spacing(10),
-    width: "100vw",
-    marginLeft: "calc(-50vw + 50%)",
   },
   statsOverlay: {
     position: "absolute",
@@ -476,14 +469,24 @@ const useStyles = makeStyles((theme) => ({
     lineHeight: "28px",
     color: "#304254",
   },
+  apprenticeImgFill: {
+    position: "relative",
+    width: 420,
+    height: 500,
+  },
+  headerImgFill: {
+    position: "relative",
+    width: "100%",
+    height: 638,
+  },
 }));
 
 function WorkWithUs() {
   const classes = useStyles();
   return (
     <>
-      <Container maxWidth="lg" className={classes.container}>
-        <div className={classes.pageTitleCtr}>
+      <div className={classes.pageHeader}>
+        <Container maxWidth="lg">
           <Typography
             display="inline"
             variant="h4"
@@ -498,357 +501,365 @@ function WorkWithUs() {
           >
             Kathmandu Living Labs
           </Typography>
-        </div>
-        <Typography variant="body1" className={classes.pageDesc}>
-          Kathmandu Living Labs has the most unique working environment and
-          culture. On top of all, we offer competitive salaries, monthly outings
-          and a flexible schedule
-        </Typography>
-        <div className={classes.imageFullWidth}>
+          <Typography variant="body1" className={classes.pageDesc}>
+            Kathmandu Living Labs has the most unique working environment and
+            culture. On top of all, we offer competitive salaries, monthly
+            outings and a flexible schedule
+          </Typography>
+        </Container>
+      </div>
+
+      <div className={classes.imageFullWidth}>
+        <div className={classes.headerImgFill}>
           <Image
             src="/work-with-us-header.png"
-            width={1920}
-            height={638}
+            layout="fill"
+            objectFit="cover"
             alt="People working at KLL"
           />
-          <div className={classes.statsOverlay}>
-            {stats.map((stat) => (
-              <div key={uid(stat)}>
-                <Typography variant="body1" className={classes.statTitle}>
-                  {stat.title}
+        </div>
+        <div className={classes.statsOverlay}>
+          {stats.map((stat) => (
+            <div key={uid(stat)}>
+              <Typography variant="body1" className={classes.statTitle}>
+                {stat.title}
+              </Typography>
+              <Typography variant="h6" className={classes.statValue}>
+                {stat.value}
+              </Typography>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className={classes.content}>
+        {/* Values  Starts */}
+        <div
+          className={classes.values}
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            marginBottom: "40px",
+          }}
+        >
+          {values.map((value) => (
+            <div key={uid(value)} className={classes.value}>
+              <Image
+                src={`/icons/${value.icon}`}
+                height={100}
+                width={100}
+                alt="KLL values"
+              />
+              <Typography align="center" className={classes.valueTitle}>
+                {value.title}
+              </Typography>
+            </div>
+          ))}
+        </div>
+        {/* Values  Ends */}
+
+        <div className={classes.paragraphs}>
+          <Typography variant="body1" className={classes.para}>
+            We are community builders who believe that small actions done by
+            many can bring large-scale impact. We are tech savvy people deeply
+            passionate about improving the society we live in. We tackle tasks
+            that seem impossible, and even have fun while doing it.
+          </Typography>
+          <Typography variant="body1" className={classes.para}>
+            There is no magic criterion that will make you a KLL family. Our
+            team&apos;s strength is our personal and professional diversity.
+          </Typography>
+        </div>
+
+        <div className={classes.benefitsContainer}>
+          <Typography variant="h5" className={classes.benefitsTitle}>
+            Benefits of working with us
+          </Typography>
+          <div className={classes.benefits}>
+            {benefits.map((benefit) => (
+              <div
+                key={uid(benefit)}
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "12px",
+                }}
+              >
+                <div
+                  style={{
+                    width: "48px",
+                    height: "48px",
+                    display: "grid",
+                    placeContent: "center",
+                    padding: "12px",
+                    background: "#ECF0FF",
+                  }}
+                >
+                  <Image
+                    src={`${benefit.icon}`}
+                    height={26}
+                    width={26}
+                    alt="KLL benefits"
+                  />
+                </div>
+                <Typography className={classes.benefitTitle}>
+                  {benefit.title}
                 </Typography>
-                <Typography variant="h6" className={classes.statValue}>
-                  {stat.value}
+                <Typography className={classes.benefitDescription}>
+                  {benefit.desc}
                 </Typography>
               </div>
             ))}
           </div>
         </div>
-        <div className={classes.content}>
-          {/* Values  Starts */}
-          <div
-            className={classes.values}
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              marginBottom: "40px",
-            }}
-          >
-            {values.map((value) => (
-              <div key={uid(value)} className={classes.value}>
-                <Image
-                  src={`/icons/${value.icon}`}
-                  height={100}
-                  width={100}
-                  alt="KLL values"
-                />
-                <Typography align="center" className={classes.valueTitle}>
-                  {value.title}
+        <div className={classes.fullWidth}>
+          <div style={{ width: "860px", margin: "auto" }}>
+            <div className={classes.imageOverlay}>
+              <Image
+                src="/volunteering.png"
+                width={400}
+                height={600}
+                alt="volunteering"
+              />
+              <div className={classes.volunteer}>
+                <Typography
+                  className={classes.volunteeringTitle}
+                  variant="h4"
+                  style={{ color: "white" }}
+                >
+                  Volunteering
                 </Typography>
-              </div>
-            ))}
-          </div>
-          {/* Values  Ends */}
-
-          <div className={classes.paragraphs}>
-            <Typography variant="body1" className={classes.para}>
-              We are community builders who believe that small actions done by
-              many can bring large-scale impact. We are tech savvy people deeply
-              passionate about improving the society we live in. We tackle tasks
-              that seem impossible, and even have fun while doing it.
-            </Typography>
-            <Typography variant="body1" className={classes.para}>
-              There is no magic criterion that will make you a KLL family. Our
-              team&apos;s strength is our personal and professional diversity.
-            </Typography>
-          </div>
-
-          <div className={classes.benefitsContainer}>
-            <Typography variant="h5" className={classes.benefitsTitle}>
-              Benefits of working with us
-            </Typography>
-            <div className={classes.benefits}>
-              {benefits.map((benefit) => (
-                <div
-                  key={uid(benefit)}
-                  style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    gap: "12px",
+                <Typography
+                  className={classes.volunteeringDescription}
+                  variant="body1"
+                >
+                  Discover the power of giving back to society with Kathmandu
+                  Living Labs.
+                </Typography>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  classes={{
+                    root: classes.volunteeringBtn,
+                    label: classes.volunteeringBtnLabel,
                   }}
                 >
-                  <div
-                    style={{
-                      width: "48px",
-                      height: "48px",
-                      display: "grid",
-                      placeContent: "center",
-                      padding: "12px",
-                      background: "#ECF0FF",
-                    }}
-                  >
-                    <Image
-                      src={`${benefit.icon}`}
-                      height={26}
-                      width={26}
-                      alt="KLL benefits"
-                    />
-                  </div>
-                  <Typography className={classes.benefitTitle}>
-                    {benefit.title}
-                  </Typography>
-                  <Typography className={classes.benefitDescription}>
-                    {benefit.desc}
-                  </Typography>
-                </div>
-              ))}
-            </div>
-          </div>
-          <div className={classes.fullWidth}>
-            <div style={{ width: "860px", margin: "auto" }}>
-              <div className={classes.imageOverlay}>
-                <Image
-                  src="/volunteering.png"
-                  width={400}
-                  height={600}
-                  alt="volunteering"
-                />
-                <div className={classes.volunteer}>
-                  <Typography
-                    className={classes.volunteeringTitle}
-                    variant="h4"
-                    style={{ color: "white" }}
-                  >
-                    Volunteering
-                  </Typography>
-                  <Typography
-                    className={classes.volunteeringDescription}
-                    variant="body1"
-                  >
-                    Discover the power of giving back to society with Kathmandu
-                    Living Labs.
-                  </Typography>
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    classes={{
-                      root: classes.volunteeringBtn,
-                      label: classes.volunteeringBtnLabel,
-                    }}
-                  >
-                    Send us an Email
-                  </Button>
-                </div>
+                  Send us an Email
+                </Button>
               </div>
             </div>
           </div>
+        </div>
 
-          {/* Mentoships */}
-          <div className={classes.otherFeatures} style={{ width: "inherit" }}>
-            <div>
+        {/* Mentoships */}
+        <div className={classes.otherFeatures} style={{ width: "inherit" }}>
+          <div>
+            <div className={classes.apprenticeImgFill}>
               <Image
                 src="/fellowships.png"
-                width={420}
-                height={500}
-                alt="mentorships at KLL"
+                layout="fill"
+                objectFit="cover"
+                alt="fellowships at KLL"
               />
-              <Typography variant="h6" className={classes.otherFeaturesTitle}>
-                Fellowships
-              </Typography>
-              <Typography
-                variant="body1"
-                className={classes.otherFeaturesDescription}
-              >
-                Discover the power of giving back to society with Kathmandu
-                Living Labs.{" "}
-              </Typography>
             </div>
-            <div>
+            <Typography variant="h6" className={classes.otherFeaturesTitle}>
+              Fellowships
+            </Typography>
+            <Typography
+              variant="body1"
+              className={classes.otherFeaturesDescription}
+            >
+              Discover the power of giving back to society with Kathmandu Living
+              Labs.{" "}
+            </Typography>
+          </div>
+          <div>
+            <div className={classes.apprenticeImgFill}>
               <Image
                 src="/mentorships.png"
-                width={420}
-                height={500}
+                layout="fill"
+                objectFit="cover"
                 alt="mentorships at KLL"
               />
-              <Typography variant="h6" className={classes.otherFeaturesTitle}>
-                Mentorships
-              </Typography>
-              <Typography
-                variant="body1"
-                className={classes.otherFeaturesDescription}
-              >
-                Discover the power of giving back to society with Kathmandu
-                Living Labs.{" "}
-              </Typography>
             </div>
+            <Typography variant="h6" className={classes.otherFeaturesTitle}>
+              Mentorships
+            </Typography>
+            <Typography
+              variant="body1"
+              className={classes.otherFeaturesDescription}
+            >
+              Discover the power of giving back to society with Kathmandu Living
+              Labs.{" "}
+            </Typography>
           </div>
+        </div>
 
-          {/* Testimonials Starts Here */}
+        {/* Testimonials Starts Here */}
 
-          <div className={classes.testimonials}>
-            <Container maxWidth="lg">
-              <div className={classes.testimonialsCtr}>
-                <div style={{ width: "361px", marginTop: "auto" }}>
-                  <Typography
-                    variant="h5"
-                    className={classes.hearFromPeopleTitle}
-                  >
-                    Hear from people at Kathmandu Living Labs
-                  </Typography>
-                  <Typography
-                    variant="body1"
-                    className={classes.hearFromPeopleDescription}
-                  >
-                    Listen to what the people at Kathmandu Living Labs have to
-                    say about us.
-                  </Typography>
-                  <div className={classes.arrowNavigation}>
-                    <div
-                      style={{
-                        width: "60px",
-                        height: "60px",
-                        background: "inherit",
-                        borderRadius: "50%",
-                        display: "grid",
-                        placeContent: "center",
-                      }}
-                    >
-                      <Image
-                        src="/icons/ArrowLeft.svg"
-                        height={16}
-                        width={16}
-                        alt="remix arrow right"
-                      />
-                    </div>
-                    <div
-                      style={{
-                        width: "60px",
-                        height: "60px",
-                        background: "#185ADB",
-                        borderRadius: "50%",
-                        display: "grid",
-                        placeContent: "center",
-                      }}
-                    >
-                      <Image
-                        src="/icons/ArrowRight.svg"
-                        height={16}
-                        width={16}
-                        alt="remix arrow right"
-                      />
-                    </div>
-                  </div>
-                </div>
-                <div
-                  style={{
-                    width: "740px",
-                    position: "relative",
-                    marginTop: "130px",
-                  }}
+        <div className={classes.testimonials}>
+          <Container maxWidth="lg">
+            <div className={classes.testimonialsCtr}>
+              <div style={{ width: "361px", marginTop: "auto" }}>
+                <Typography
+                  variant="h5"
+                  className={classes.hearFromPeopleTitle}
                 >
+                  Hear from people at Kathmandu Living Labs
+                </Typography>
+                <Typography
+                  variant="body1"
+                  className={classes.hearFromPeopleDescription}
+                >
+                  Listen to what the people at Kathmandu Living Labs have to say
+                  about us.
+                </Typography>
+                <div className={classes.arrowNavigation}>
                   <div
                     style={{
-                      position: "absolute",
-                      top: "-32px",
-                      left: "-35px",
+                      width: "60px",
+                      height: "60px",
+                      background: "inherit",
+                      borderRadius: "50%",
+                      display: "grid",
+                      placeContent: "center",
                     }}
                   >
                     <Image
-                      src="/icons/quote.svg"
-                      width={29.7}
-                      height={22.8}
-                      alt="quote icon"
+                      src="/icons/ArrowLeft.svg"
+                      height={16}
+                      width={16}
+                      alt="remix arrow right"
                     />
                   </div>
-                  <Typography className={classes.quote}>
-                    Ever since I first joined here, I’ve made countless friends
-                    and worked on impactful projects that I’m proud of.
-                  </Typography>
-                  <div className={classes.author}>
-                    <Avatar>
-                      <Image src="/author.png" layout="fill" alt="DP" />
-                    </Avatar>
-                    <div className={classes.authorDetails}>
-                      <Typography
-                        variant="subtitle1"
-                        className={classes.authorName}
-                      >
-                        {" "}
-                        Aishworya Shrestha
-                      </Typography>
-                      <Typography
-                        variant="subtitle2"
-                        className={classes.authorTitle}
-                      >
-                        {" "}
-                        Research Assistant
-                      </Typography>
-                    </div>
+                  <div
+                    style={{
+                      width: "60px",
+                      height: "60px",
+                      background: "#185ADB",
+                      borderRadius: "50%",
+                      display: "grid",
+                      placeContent: "center",
+                    }}
+                  >
+                    <Image
+                      src="/icons/ArrowRight.svg"
+                      height={16}
+                      width={16}
+                      alt="remix arrow right"
+                    />
                   </div>
                 </div>
               </div>
-            </Container>
-          </div>
-
-          {/* Job Listings Starts Here */}
-          <div className={classes.jobListingsContainer}>
-            <Typography variant="h6" className={classes.jobListingsHeader}>
-              Job Listings
-            </Typography>
-            <TableContainer>
-              <Table className={classes.table} aria-label="simple table">
-                <TableBody>
-                  {jobListings.map((job) => (
-                    <TableRow key={uid(job)}>
-                      <TableCell
-                        component="th"
-                        scope="row"
-                        className={classes.tableCell}
-                      >
-                        <Typography variant="h6" className={classes.position}>
-                          {job.title}
-                        </Typography>
-                        <Typography variant="h6" className={classes.level}>
-                          {job.level}
-                        </Typography>
-                      </TableCell>
-                      <TableCell align="left" className={classes.tableCell}>
-                        {" "}
-                        <Typography variant="h6" className={classes.level}>
-                          Apply Before
-                        </Typography>
-                        <Typography variant="h6" className={classes.deadline}>
-                          {job.deadline}
-                        </Typography>
-                      </TableCell>
-                      <TableCell align="right" className={classes.tableCell}>
-                        <Button
-                          variant="outlined"
-                          classes={{
-                            root: classes.seeDetailsBtn,
-                            label: classes.label,
-                            endIcon: classes.icon,
-                          }}
-                          endIcon={
-                            <Image
-                              src="/icons/buttonRightIcon.svg"
-                              width={11}
-                              height={11}
-                              alt="btnicon"
-                            />
-                          }
-                        >
-                          See Details
-                        </Button>
-                      </TableCell>
-                    </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
-            </TableContainer>
-          </div>
+              <div
+                style={{
+                  width: "740px",
+                  position: "relative",
+                  marginTop: "130px",
+                }}
+              >
+                <div
+                  style={{
+                    position: "absolute",
+                    top: "-32px",
+                    left: "-35px",
+                  }}
+                >
+                  <Image
+                    src="/icons/quote.svg"
+                    width={29.7}
+                    height={22.8}
+                    alt="quote icon"
+                  />
+                </div>
+                <Typography className={classes.quote}>
+                  Ever since I first joined here, I’ve made countless friends
+                  and worked on impactful projects that I’m proud of.
+                </Typography>
+                <div className={classes.author}>
+                  <Avatar>
+                    <Image src="/author.png" layout="fill" alt="DP" />
+                  </Avatar>
+                  <div className={classes.authorDetails}>
+                    <Typography
+                      variant="subtitle1"
+                      className={classes.authorName}
+                    >
+                      {" "}
+                      Aishworya Shrestha
+                    </Typography>
+                    <Typography
+                      variant="subtitle2"
+                      className={classes.authorTitle}
+                    >
+                      {" "}
+                      Research Assistant
+                    </Typography>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </Container>
         </div>
-      </Container>
+
+        {/* Job Listings Starts Here */}
+        <div className={classes.jobListingsContainer}>
+          <Typography variant="h6" className={classes.jobListingsHeader}>
+            Job Listings
+          </Typography>
+          <TableContainer>
+            <Table className={classes.table} aria-label="simple table">
+              <TableBody>
+                {jobListings.map((job) => (
+                  <TableRow key={uid(job)}>
+                    <TableCell
+                      component="th"
+                      scope="row"
+                      className={classes.tableCell}
+                    >
+                      <Typography variant="h6" className={classes.position}>
+                        {job.title}
+                      </Typography>
+                      <Typography variant="h6" className={classes.level}>
+                        {job.level}
+                      </Typography>
+                    </TableCell>
+                    <TableCell align="left" className={classes.tableCell}>
+                      {" "}
+                      <Typography variant="h6" className={classes.level}>
+                        Apply Before
+                      </Typography>
+                      <Typography variant="h6" className={classes.deadline}>
+                        {job.deadline}
+                      </Typography>
+                    </TableCell>
+                    <TableCell align="right" className={classes.tableCell}>
+                      <Button
+                        variant="outlined"
+                        classes={{
+                          root: classes.seeDetailsBtn,
+                          label: classes.label,
+                          endIcon: classes.icon,
+                        }}
+                        endIcon={
+                          <Image
+                            src="/icons/buttonRightIcon.svg"
+                            width={11}
+                            height={11}
+                            alt="btnicon"
+                          />
+                        }
+                      >
+                        See Details
+                      </Button>
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
+        </div>
+      </div>
 
       {/* Meet The Team */}
       {

@@ -30,9 +30,11 @@ export default function Home() {
         <div className={classes.mainContainer}>
           <Typography className={classes.title} variant="h4">
             Showcase
-          </Typography> <Typography className={classes.subTitle} variant="body1">
-          Take a look at our best videos, products, visualizations and photos all in one place.
-            </Typography>
+          </Typography>{" "}
+          <Typography className={classes.subTitle} variant="body1">
+            Take a look at our best videos, products, visualizations and photos
+            all in one place.
+          </Typography>
         </div>
       </Container>
     </div>
