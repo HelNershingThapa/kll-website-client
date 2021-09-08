@@ -105,7 +105,7 @@ function AboutUs() {
     <>
       <Container maxWidth="lg" style={{ marginBottom: "10rem" }}>
         <Typography variant="h4" className={classes.pageTitle}>
-          About Us
+          The Kathmandu Living Labs Team
         </Typography>
         <div className={classes.imageFullWidth}>
           <div className={classes.imgFill}>

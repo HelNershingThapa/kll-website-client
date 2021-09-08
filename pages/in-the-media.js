@@ -16,7 +16,6 @@ import CoverageCard from "components/in-the-media/CoverageCard";
 const useStyles = makeStyles((theme) => ({
   pageCtr: {
     marginTop: theme.spacing(12),
-    marginBottom: theme.spacing(40),
   },
   pageTitle: {
     width: "358px",
@@ -123,9 +122,10 @@ const useStyles = makeStyles((theme) => ({
 
 function InTheMedia() {
   const classes = useStyles();
+
   return (
     <>
-      <Container maxWidht="lg" className={classes.pageCtr}>
+      <Container maxWidth="lg" className={classes.pageCtr}>
         <Typography variant="h5" className={classes.pageTitle}>
           Kathmandu Living Labs in the media
         </Typography>
@@ -137,14 +137,13 @@ function InTheMedia() {
               <Image
                 src="/in-the-media-header.png"
                 layout="fill"
-                style={{ objectFit: "cover" }}
                 alt="KLL in media"
               />
             </div>
             <div className={classes.blob} />
             <div className={classes.headerImgOverlay}>
               <div>
-                <Image src="/guardian-logo-white.png" width={116} height={48} />
+                <Image src="/guardian-logo-white.png" width={116} height={48} alt="asdasd"/>
               </div>
               <div className={classes.controls}>
                 <Image

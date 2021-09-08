@@ -17,11 +17,12 @@ export default function Home() {
 
         <main className={styles.main}>
           <h1 className={styles.title}>
-            Welcome to <a href="https://nextjs.org">Kathmandu Living Labs!</a>
+            Welcome to{" "}
+            <span style={{ color: "#185ADB" }}>Kathmandu Living Labs!</span>
           </h1>
 
           <p className={styles.description}>
-            Get started by browing the following pages
+            Get started by browsing the following pages
           </p>
 
           <div className={styles.grid}>
@@ -73,6 +74,12 @@ export default function Home() {
               <a className={styles.card}>
                 <h2>Our Team &rarr;</h2>
                 <p>Get to know the people you might be working with</p>
+              </a>
+            </Link>
+            <Link href="/our-team/john-doe">
+              <a className={styles.card}>
+                <h2>Team Details &rarr;</h2>
+                <p>Detailed info about a team member</p>
               </a>
             </Link>
           </div>

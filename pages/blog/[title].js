@@ -19,6 +19,18 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "1.78rem",
     maxWidth: "800px",
   },
+  headerImageContainer: {
+    position: "relative",
+  },
+  headerImageOverlay: {
+    position: "absolute",
+    background: "linear-gradient(180deg, #0D1829 0%, rgba(13, 24, 41, 0) 100%)",
+    transform: 'matrix(1, 0, 0, -1, 0, 0)',
+    bottom: 0,
+    padding: theme.spacing(10),
+    width: "100%",
+    height: "40%",
+  },
   timestamp: {
     display: "flex",
     gap: "1.78rem",
@@ -145,14 +157,18 @@ function BlogDetail({ blog }) {
   console.log("blog", blog);
   return (
     <>
-      <Image
-        src="/blog-detail-header.png"
-        layout="responsive"
-        width={1920}
-        height={722}
-        objectFit="cover"
-        alt="Picture of the author"
-      />
+      <div className={classes.headerImageContainer}>
+        <Image
+          className={classes.headerImage}
+          src="/blog-detail-header.png"
+          layout="responsive"
+          width={1920}
+          height={722}
+          objectFit="cover"
+          alt="Picture of the author"
+        />
+        <div className={classes.headerImageOverlay} />
+      </div>
       <div className={classes.blog}>
         <div className={classes.timestamp}>
           <Typography variant="subtitle2">May 06 2021</Typography>
