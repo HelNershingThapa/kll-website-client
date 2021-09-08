@@ -67,7 +67,7 @@ export default function CenteredGrid() {
         How ‘crisis mapping’ is helping relief efforts in Nepal Team
       </Typography>
       <Typography className={classes.coverageDescription}>
-        "Thousands of people in remote parts of Nepal are still in need of
+        &quot;Thousands of people in remote parts of Nepal are still in need of
         medical help and basic supplies. But with roads damaged and buildings
         collapsed, knowing what aid is needed and where, is a challenge.{" "}
         <Typography display="inline" className={classes.readFull}>

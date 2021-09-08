@@ -177,8 +177,8 @@ function InTheMedia() {
               className={classes.headerCoverageDescription}
             >
               The British Newspaper giant, The Guardian, covers Kathmandu Living
-              Lab's key role in the days following the massive earthquake in the
-              April of last year. The article highlights KLL's instrumental role
+              Lab&apos;s key role in the days following the massive earthquake in the
+              April of last year. The article highlights KLL&apos;s instrumental role
               in mobilizing thousands of online volunteers in creating rapid
               digital and paper maps of earthquake affected areas immediately
               after the earthquake
