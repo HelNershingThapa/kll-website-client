@@ -44,6 +44,18 @@ const theme = createTheme({
     background: {
       default: background,
     },
+    grey: {
+      50: "#F8FAFC",
+      100: "#F0F5F9",
+      200: "#E1E8F0",
+      300: "#CAD5E0",
+      400: "#91A4B7",
+      500: "#61758A",
+      600: "#445668",
+      700: "#304254",
+      800: "#1C2A3A",
+      900: "#0D1829",
+    },
   },
   spacing,
   breakpoints: {

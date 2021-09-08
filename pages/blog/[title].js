@@ -5,12 +5,12 @@ import Image from "next/image";
 import { Typography, Divider, Avatar } from "@material-ui/core";
 import NavBar from "components/NavBar";
 
-import topImage from "public/portrait-pretty-young-hipster-woman-having-fun-city-with-camera1.png";
 import author from "public/author.png";
 import groupPhoto from "public/image2.png";
 import fullWidthPhoto from "public/image3.png";
 import blogImage1 from "public/Rectangle3.png";
 import blogImage2 from "public/Rectangle4.png";
+import grey from "@material-ui/core/colors/grey";
 
 import styles from "../../styles/BlogDetail.module.css";
 
@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     gap: "1.78rem",
     marginBottom: "0.67rem",
-    color: "#304254",
+    color: theme.palette.grey[700],
   },
   author: {
     display: "flex",
@@ -63,14 +63,13 @@ const useStyles = makeStyles((theme) => ({
   },
   image: {
     marginTop: theme.spacing(10),
-    marginBottom: theme.spacing(10),
+    display: 'block'
   },
   imageFullWidth: {
     width: "100vw",
     marginLeft: "calc(-50vw + 49%)",
     overflowX: "hidden",
     marginTop: theme.spacing(12.5),
-    marginBottom: theme.spacing(10),
   },
   divider: {
     marginTop: theme.spacing(12.5),
@@ -124,16 +123,25 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     gap: "1.11rem",
   },
+  headerImgFill: {
+    position: "relative",
+  },
 }));
 
 function BlogDetail({ blog }) {
   const classes = useStyles();
   const { API_URL } = process.env;
-  console.log("blog", blog)
+  console.log("blog", blog);
   return (
     <>
-      <NavBar />
-      <Image src={topImage} alt="Picture of the author" />
+      <Image
+        src="/blog-detail-header.png"
+        layout="responsive"
+        width={1920}
+        height={722}
+        objectFit="cover"
+        alt="Picture of the author"
+      />
       <div className={classes.blog}>
         <div className={classes.timestamp}>
           <Typography variant="subtitle2">May 06 2021</Typography>
@@ -142,7 +150,11 @@ function BlogDetail({ blog }) {
         <Typography variant="h4">{blog.title}</Typography>
         <div className={classes.author}>
           <Avatar>
-            <img src={API_URL + blog.authors[0].avatar.url} layout="fill" alt="DP" />
+            <img
+              src={API_URL + blog.authors[0].avatar.url}
+              layout="fill"
+              alt="DP"
+            />
           </Avatar>
           <div className={classes.authorDetails}>
             <Typography variant="subtitle1" className={classes.authorName}>

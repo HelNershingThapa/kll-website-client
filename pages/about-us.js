@@ -6,7 +6,7 @@ import { makeStyles } from "@material-ui/styles";
 import { Button, Container, Typography, Grid } from "@material-ui/core";
 import { spacing } from "@material-ui/system";
 import Box from "@material-ui/core/Box";
-
+import styles from "../styles/AboutUs.module.css";
 import abousUsImg from "public/about-us-header.png";
 
 const stats = [
@@ -28,21 +28,34 @@ const stats = [
   },
 ];
 
-const valuesAndMission = [
+const values = [
   {
-    title: "Our Values",
-    desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+    title: "Heavily Biased towards Action",
+    icon: "work1.svg",
   },
   {
-    title: "Our Mission",
-    desc: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+    title: "Excude Creative Confidence",
+    icon: "work2.svg",
+  },
+  {
+    title: "Co-Operativive & Collaborative",
+    icon: "work3.svg",
+  },
+  {
+    title: "Work Local, Talk Global",
+    icon: "work4.svg",
   },
 ];
+
+const mission = {
+  title: "Our Mission",
+  desc: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+};
 
 const useStyles = makeStyles((theme) => ({
   pageTitle: {
     marginTop: theme.spacing(12),
-    marginBottom: theme.spacing(3),
+    marginBottom: theme.spacing(5),
     fontFamily: "Manrope",
     fontWeight: "600",
     fontSize: "32px",
@@ -113,30 +126,67 @@ const useStyles = makeStyles((theme) => ({
     width: 476,
     height: 583,
   },
-  history: {
+  historyContainer: {
     marginTop: theme.spacing(12),
+  },
+  historyDescription: {
+    fontSize: "24px",
+    fontWeight: 400,
+    lineHeight: "40px",
+    color: theme.palette.grey[800],
+    marginTop: theme.spacing(5),
   },
   header: {
     fontFamily: "Manrope",
     fontSize: "32px",
     fontWeight: 700,
     lineHeight: "40px",
+    color: theme.palette.grey[800],
   },
-  valuesAndMission: {
+  mission: {
     marginTop: theme.spacing(20),
     display: "flex",
     flexDirection: "column",
     gap: theme.spacing(15),
   },
-  values: {
+  valuesContainer: {
+    display: "flex",
+    justifyContent: "space-between",
+    marginTop: theme.spacing(20),
+  },
+  value: {
+    background: "grey",
+    display: "flex",
+    gap: "16px",
+    padding: theme.spacing(5),
+    alignItems: "center",
+    background: "#F0F5F9",
+  },
+  valueTitle: {
+    fontFamily: "Manrope",
+    fontSize: "20px",
+    fontWeight: 700,
+    lineHeight: "32px",
+    color: theme.palette.grey[700],
+  },
+  valueDescription: {
+    marginTop: theme.spacing(3),
+    fontSize: "16px",
+    fontWeight: 400,
+    lineHeight: "24px",
+    color: theme.palette.grey[700],
+  },
+  missionContainer: {
+    marginTop: theme.spacing(20),
     display: "flex",
     justifyContent: "space-between",
   },
-  desc: {
+  missionDescription: {
     width: "768px",
     fontSize: "24px",
     fontWeight: 400,
     lineHeight: "40px",
+    color: theme.palette.grey[800],
   },
   tableCaption: {
     display: "table-caption",
@@ -263,11 +313,11 @@ function AboutUs() {
             </div>
           </div>
 
-          <div className={classes.history}>
+          <div className={classes.historyContainer}>
             <Typography variant="h6" className={classes.header}>
               Our History
             </Typography>
-            <Typography className={classes.para}>
+            <Typography className={classes.historyDescription}>
               The foundations for KLL were laid in a project that predates KLL.
               In 2012/2013, we created an open database of schools and hospitals
               in Kathmandu valley. The data would be used by the World Bank for
@@ -280,23 +330,61 @@ function AboutUs() {
             </Typography>
           </div>
 
-          <div className={classes.valuesAndMission}>
-            {valuesAndMission.map((data) => (
-              <div key={uid(data)} className={classes.values}>
-                <div>
-                  <Typography
-                    variant="h6"
-                    className={clsx(classes.header, classes.tableCaption)}
-                  >
-                    {data.title}
-                  </Typography>
+          <div className={classes.valuesContainer}>
+            <div>
+              <Typography
+                variant="h6"
+                className={clsx(classes.header, classes.tableCaption)}
+              >
+                Our Values
+              </Typography>
+            </div>
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "1fr 1fr",
+                gap: "8px",
+                width: "768px",
+              }}
+            >
+              {values.map((value) => (
+                <div key={uid(value)} className={classes.value}>
+                  <Image
+                    src={`/icons/${value.icon}`}
+                    height={100}
+                    width={100}
+                    alt="KLL values"
+                  />
+                  <div style={{ width: "220px" }}>
+                    <Typography className={classes.valueTitle}>
+                      {value.title}
+                    </Typography>
+                    <Typography className={classes.valueDescription}>
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                      sed do eiusmod
+                    </Typography>
+                  </div>
                 </div>
-                <Typography className={classes.desc} variant="body1">
-                  {data.desc}
-                </Typography>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
+          {/* Values Ends */}
+
+          {/* Mission Starts*/}
+          <div className={classes.missionContainer}>
+            <div>
+              <Typography
+                variant="h6"
+                className={clsx(classes.header, classes.tableCaption)}
+              >
+                {mission.title}
+              </Typography>
+            </div>
+            <Typography className={classes.missionDescription} variant="body1">
+              {mission.desc}
+            </Typography>
+          </div>
+          {/* Mission Ends */}
         </div>
       </Container>
 
@@ -309,7 +397,10 @@ function AboutUs() {
               alignItems: "center",
             }}
           >
-            <Typography variant="h1" className={classes.teamNumber}>
+            <Typography
+              variant="h1"
+              className={clsx(classes.teamNumber, styles.teamCount)}
+            >
               16
             </Typography>
             <Typography variant="body1" style={{ color: "#304254" }}>

@@ -1,0 +1,8 @@
+.teamCount {
+  background-image: url(/team-count-bg.png);
+  background-repeat: repeat;
+  background-size: cover;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: #3E64FF80;
+  -webkit-font-smoothing: antialiased;
+}
