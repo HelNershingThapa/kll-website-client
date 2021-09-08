@@ -11,6 +11,7 @@ import {
   Chip,
   IconButton,
   TextField,
+  CircularProgress,
 } from "@material-ui/core";
 import rightArrowIcon from "public/icons/ArrowRight.svg";
 import headerImg from "public/Rectangle124.png";
@@ -22,6 +23,7 @@ import searchIcon from "public/icons/search.svg";
 const useStyles = makeStyles((theme) => ({
   container: {
     marginTop: theme.spacing(20),
+    marginBottom: theme.spacing(20),
   },
   pageTitle: {
     lineHeight: "40px",
@@ -70,7 +72,6 @@ const useStyles = makeStyles((theme) => ({
   },
   chipRoot: {
     padding: "6px 12px",
-    background: "#3E64FF",
     borderRadius: "8px",
   },
   chipLabel: {
@@ -92,16 +93,17 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
   },
   iconButton: {
-    background: "#3E64FF !important", //overriding default transparent background color
+    background: "#185ADB !important", //overriding default transparent background color
     height: 60,
     width: 60,
     marginRight: theme.spacing(2),
     marginBottom: theme.spacing(2),
   },
   blogListContainer: {
-    display: "flex",
-    justifyContent: "space-between",
-    flexWrap: "wrap",
+    display: "grid",
+    gridTemplateColumns: "1fr 1fr 1fr",
+    columnGap: "15px",
+    rowGap: theme.spacing(12),
     marginTop: theme.spacing(8),
   },
   search: {
@@ -111,6 +113,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 }));
+
 const BlogList = (props) => {
   const classes = useStyles();
   return (
@@ -175,9 +178,22 @@ const BlogList = (props) => {
       <BlogTabs />
 
       <div className={classes.blogListContainer}>
-        {["", "", "", "", "", "", "", "", "", ""].map((blog) => (
+        {["", "", "", "", "", ""].map((blog) => (
           <BlogListCard key={uid(blog)} />
         ))}
+      </div>
+      <div
+        style={{
+          display: "grid",
+          placeContent: "center",
+          marginTop: "44px",
+        }}
+      >
+        <CircularProgress
+          color="secondary"
+          style={{ color: "#61758A" }}
+          size={24}
+        />
       </div>
     </Container>
   );

@@ -17,8 +17,8 @@ const useStyles = makeStyles((theme) => ({
     width: 470,
     border: "none",
     boxShadow: "none",
-    marginBottom: theme.spacing(12),
     borderRadius: 0,
+    background: 'inherit'
   },
   media: {
     width: "inherit",
@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
   timestamp: {
     display: "flex",
     gap: "1.78rem",
-    color: "#304254",
+    color: theme.palette.grey[600],
   },
   content: {
     marginTop: theme.spacing(5),
@@ -54,13 +54,12 @@ const useStyles = makeStyles((theme) => ({
     top: 12,
     left: 12,
     padding: "6px 12px",
-    background: "#3E64FF",
     borderRadius: "8px",
   },
   chipLabel: {
     fontSize: "14px",
     fontWeight: 500,
-    lineHeight: "14px",
+    // lineHeight: "14px", letter 'g' gets hidden, solve this!!
     padding: 0,
     color: "#F8FAFC",
   },

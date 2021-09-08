@@ -199,6 +199,7 @@ function InTheMedia() {
           <div className={classes.feautredInLogos}>
             {["", "", "", ""].map((logo) => (
               <Image
+                key={uid(logo)}
                 src="/guardian-black.png"
                 width={182}
                 height={60}
@@ -225,7 +226,11 @@ function InTheMedia() {
               marginTop: "44px",
             }}
           >
-            <CircularProgress color="secondary" style={{ color: "#61758A" }} />
+            <CircularProgress
+              color="secondary"
+              style={{ color: "#61758A" }}
+              size={24}
+            />
           </div>
         </Container>
       </div>

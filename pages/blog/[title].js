@@ -1,17 +1,16 @@
-import { makeStyles } from "@material-ui/core/styles";
+import { uid } from "react-uid";
 import clsx from "clsx";
 import fetch from "isomorphic-unfetch";
+import { makeStyles } from "@material-ui/core/styles";
 import Image from "next/image";
-import { Typography, Divider, Avatar } from "@material-ui/core";
+import { Typography, Divider, Avatar, Container } from "@material-ui/core";
 import NavBar from "components/NavBar";
-
 import author from "public/author.png";
 import groupPhoto from "public/image2.png";
 import fullWidthPhoto from "public/image3.png";
 import blogImage1 from "public/Rectangle3.png";
 import blogImage2 from "public/Rectangle4.png";
-import grey from "@material-ui/core/colors/grey";
-
+import BlogListCard from "components/BlogListCard";
 import styles from "../../styles/BlogDetail.module.css";
 
 const useStyles = makeStyles((theme) => ({
@@ -63,7 +62,7 @@ const useStyles = makeStyles((theme) => ({
   },
   image: {
     marginTop: theme.spacing(10),
-    display: 'block'
+    display: "block",
   },
   imageFullWidth: {
     width: "100vw",
@@ -98,10 +97,10 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 500,
   },
   relatedPostsBgCtr: {
-    background: "#0D1829",
-    marginTop: theme.spacing(12),
-    height: "200px",
-    marginBottom: "150px",
+    background: theme.palette.grey[100],
+    paddingTop: theme.spacing(20),
+    paddingBottom: theme.spacing(20),
+    marginTop: theme.spacing(15),
   },
   relatedPostsBg: {
     margin: "auto",
@@ -125,6 +124,18 @@ const useStyles = makeStyles((theme) => ({
   },
   headerImgFill: {
     position: "relative",
+  },
+  readMoreBlogsTitle: {
+    fontSize: "32px",
+    fontWeight: 600,
+    lineHeight: "32px",
+    color: theme.palette.grey[800],
+  },
+  blogListContainer: {
+    display: "grid",
+    gridTemplateColumns: "1fr 1fr 1fr",
+    columnGap: "15px",
+    marginTop: theme.spacing(8),
   },
 }));
 
@@ -150,11 +161,7 @@ function BlogDetail({ blog }) {
         <Typography variant="h4">{blog.title}</Typography>
         <div className={classes.author}>
           <Avatar>
-            <img
-              src={API_URL + blog.authors[0].avatar.url}
-              layout="fill"
-              alt="DP"
-            />
+            <Image src="/author.png" layout="fill" alt="DP" />
           </Avatar>
           <div className={classes.authorDetails}>
             <Typography variant="subtitle1" className={classes.authorName}>
@@ -306,86 +313,18 @@ function BlogDetail({ blog }) {
           </div>
         </div>
       </div>
-      <div className={classes.relatedPostsBgCtr}>
-        <div className={classes.relatedPostsBg}>
-          <Typography
-            style={{
-              fontWeight: 600,
-              fontSize: "32px",
-              color: "#F8FAFC",
-              paddingTop: "40px",
-              paddingBottom: "24px",
-            }}
-          >
-            Related Blog Posts
-          </Typography>
-          {
-            //   <div className={classes.imgContainer}>
-            //   <Image src={blogImage1} alt="Picture of the author" />
-            //   <p className={classes.positioned}>Positionaing</p>
-            // </div>
-          }
 
-          {
-            //   <div style="position: relative; z-index: 1;">
-            //   <img src="image.png" style="position: absolute; z-index: 2;" />
-            //   <span
-            //     id="overlay_text"
-            //     style="position: relative; top: -10px; z-index: 3;"
-            //   >
-            //     OVERLAY
-            //   </span>
-            // </div>
-          }
-          <div className={classes.relatedBlogs}>
-            <div className={styles["relatedImage"]}>
-              <div className={styles["overlay"]}>
-                <div className={styles["related-blog-timestamp"]}>
-                  <Typography variant="subtitle2" style={{ fontWeight: "500" }}>
-                    15 min read
-                  </Typography>
-                  <Typography variant="subtitle2" style={{ fontWeight: "500" }}>
-                    Aug 2020
-                  </Typography>
-                </div>
-                <Typography
-                  variant="body1"
-                  style={{
-                    fontWeight: "600",
-                    color: "#F0F5F9",
-                    fontSize: "16px",
-                    lineHeight: "24px",
-                  }}
-                >
-                  Girls Mapping their Community
-                </Typography>
-              </div>
-            </div>
-            <div className={styles["relatedImage"]}>
-              <div className={styles["overlay"]}>
-                <div className={styles["related-blog-timestamp"]}>
-                  <Typography variant="subtitle2" style={{ fontWeight: "500" }}>
-                    8 min read
-                  </Typography>
-                  <Typography variant="subtitle2" style={{ fontWeight: "500" }}>
-                    Dec 2020
-                  </Typography>
-                </div>
-                <Typography
-                  variant="body1"
-                  style={{
-                    fontWeight: "600",
-                    color: "#F0F5F9",
-                    fontSize: "16px",
-                    lineHeight: "24px",
-                  }}
-                >
-                  UN Data Forum: My experience with data and daydreaming
-                </Typography>
-              </div>
-            </div>
+      <div className={classes.relatedPostsBgCtr}>
+        <Container maxWidth="lg">
+          <Typography className={classes.readMoreBlogsTitle}>
+            Read More from our Blog
+          </Typography>
+          <div className={classes.blogListContainer}>
+            {["", "", ""].map((blog) => (
+              <BlogListCard key={uid(blog)} />
+            ))}
           </div>
-        </div>
+        </Container>
       </div>
     </>
   );
