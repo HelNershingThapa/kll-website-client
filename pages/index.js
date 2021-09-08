@@ -69,6 +69,12 @@ export default function Home() {
                 <p>Information in conversational style</p>
               </a>
             </Link>
+            <Link href="/our-team">
+              <a className={styles.card}>
+                <h2>Our Team &rarr;</h2>
+                <p>Get to know the people you might be working with</p>
+              </a>
+            </Link>
           </div>
         </main>
       </div>

@@ -7,6 +7,27 @@ import { Button, Container, Typography, Grid } from "@material-ui/core";
 import { spacing } from "@material-ui/system";
 import Box from "@material-ui/core/Box";
 import abousUsImg from "public/about-us-header.png";
+import TeamMemberCard from "components/our-team/TeamMemberCard";
+import YouCard from "components/our-team/YouCard";
+
+const stats = [
+  {
+    title: "People",
+    value: "16",
+  },
+  {
+    title: "Alumini",
+    value: "56",
+  },
+  {
+    title: "Youngest",
+    value: "19yrs",
+  },
+  {
+    title: "Oldest",
+    value: "36yrs",
+  },
+];
 
 const useStyles = makeStyles((theme) => ({
   pageTitle: {
@@ -53,22 +74,46 @@ const useStyles = makeStyles((theme) => ({
     marginRight: "auto",
     marginTop: theme.spacing(25),
   },
+  imgFill: {
+    // position: "relative",
+    // width: "100%",
+    // height: "521px",
+  },
+  membersContainer: {
+    marginTop: theme.spacing(25),
+    display: "grid",
+    gridTemplateColumns: "1fr 1fr 1fr",
+    rowGap: "60px",
+    columnGap: "30px",
+  },
+  workingContainer: {
+    height: 600,
+    background: "#F0F5F9",
+    padding: theme.spacing(15)
+  },
+  workingTitle: {
+    fontSize: "16px",
+    fontWeight: 500,
+    lineHeight: "24px",
+    color: theme.palette.grey[800],
+  },
 }));
 
 function AboutUs() {
   const classes = useStyles();
   return (
     <>
-      <Container maxWidth="lg" className={classes.container}>
+      <Container maxWidth="lg" style={{ marginBottom: "10rem" }}>
         <Typography variant="h4" className={classes.pageTitle}>
           About Us
         </Typography>
         <div className={classes.imageFullWidth}>
           <div className={classes.imgFill}>
             <Image
-              src="/about-us-header.png"
-              layout="fill"
-              objectFit="cover"
+              src="/our-team-header.png"
+              layout="responsive"
+              width={1920}
+              height={600}
               alt="People working at KLL"
             />
           </div>
@@ -85,7 +130,21 @@ function AboutUs() {
             ))}
           </div>
         </div>
+        <div className={classes.membersContainer}>
+          {["", "", "", ""].map((member) => (
+            <TeamMemberCard key={uid(member)} />
+          ))}
+          <YouCard />
+        </div>
       </Container>
+      <div className={classes.workingContainer}>
+        <Typography className={classes.workingTitle} align="center">
+          Working at Kathmandu Living Labs
+        </Typography>
+        <Typography style={{marginTop: '6rem'}} align="center">
+          [ INSERT IMAGES HERE ]
+        </Typography>
+      </div>
     </>
   );
 }
