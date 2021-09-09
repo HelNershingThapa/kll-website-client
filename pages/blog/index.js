@@ -10,8 +10,9 @@ import {
   Avatar,
   Chip,
   IconButton,
-  TextField,
+  OutlinedInput,
   CircularProgress,
+  InputAdornment,
 } from "@material-ui/core";
 import rightArrowIcon from "public/icons/ArrowRight.svg";
 import headerImg from "public/Rectangle124.png";
@@ -107,10 +108,26 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(8),
   },
   search: {
-    "& input:valid + fieldset": {
-      borderColor: "#CAD5E0",
-      borderWidth: 1,
+    // "& input:valid + fieldset": {
+    //   borderColor: "#CAD5E0",
+    //   borderWidth: 1,
+    //   padding: "10px 20px",
+    // },
+  },
+  input: {
+    padding: "10px 0",
+    marginLeft: theme.spacing(1),
+    color: theme.palette.grey[700],
+    "&::placeholder": {
+      textOverflow: "ellipsis !important",
+      fontSize: "14px",
+      fontWeight: 500,
+      lineHeight: "20px",
+      color: theme.palette.grey[700],
     },
+  },
+  adornedStart: {
+    paddingLeft: theme.spacing(5),
   },
 }));
 
@@ -121,14 +138,23 @@ const BlogList = (props) => {
       <Typography variant="h4" className={classes.pageTitle}>
         Our Blog
       </Typography>
-      <div style={{ display: "flex", justifyContent: "space-between" }}>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: 'flex-end' }}>
         <Typography variant="body1" className={classes.pageDescription}>
           See what we’re up to at Kathmandu Living Labs
         </Typography>
-        <TextField
-          classes={{ root: classes.search }}
-          placeholder="Outlined"
+        <OutlinedInput
+          classes={{
+            root: classes.search,
+            input: classes.input,
+            adornedStart: classes.adornedStart,
+          }}
+          placeholder="Search for Blog Posts"
           variant="outlined"
+          startAdornment={
+            <InputAdornment position="start">
+              <Image src="/icons/search.svg" width={16} height={16} />
+            </InputAdornment>
+          }
         />
       </div>
       <div className={classes.headerImage}>
