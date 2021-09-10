@@ -44,11 +44,11 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: "calc(-50vw + 49.5%)",
   },
   statsOverlay: {
+    position: "absolute",
     display: "flex",
     justifyContent: "space-between",
     gap: theme.spacing(25),
     background: "white",
-    position: "absolute",
     padding: theme.spacing(8, 15),
     left: 0,
     right: 0,
@@ -99,7 +99,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function AboutUs() {
+function OurTeam() {
   const classes = useStyles();
   return (
     <>
@@ -149,4 +149,4 @@ function AboutUs() {
   );
 }
 
-export default AboutUs;
+export default OurTeam;

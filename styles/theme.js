@@ -194,9 +194,7 @@ const theme = createTheme({
     body1: {
       fontSize: "1rem",
       fontWeight: "400",
-      // lineHeight: "1.56rem",
       lineHeight: "1.56rem",
-      color: "#0D1829",
     },
     // small - 14px
     subtitle2: {

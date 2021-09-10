@@ -82,7 +82,7 @@ export default function Home() {
       <div className={classes.bioCtr}>
         <Link href="/our-team">
           <a className={classes.goBackCtr}>
-            <Image src="/icons/ArrowLeft.svg" width={11.67} height={12} />
+            <Image src="/icons/ArrowLeft.svg" width={11.67} height={12} objectFit="cover" alt="asdasd"/>
             <Typography variant="body1" className={classes.gobackTitle}>
               Go Back to All Team Members
             </Typography>
