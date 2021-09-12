@@ -1,4 +1,4 @@
-import Head from 'next/head'
+import Head from "next/head";
 import { uid } from "react-uid";
 import clsx from "clsx";
 import Image from "next/image";
@@ -16,6 +16,7 @@ import {
   TableCell,
   Box,
 } from "@material-ui/core";
+import JobDescriptionDialog from "components/work-with-us/JobDescriptionDialog";
 
 const jobListings = [
   {
@@ -58,22 +59,26 @@ const benefits = [
   {
     title: "Paid Leaves",
     icon: "/icons/benefit1.svg",
-    desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
+    desc:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
   },
   {
     title: "Monthly Outings",
     icon: "/icons/benefit2.svg",
-    desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
+    desc:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
   },
   {
     title: "Paid Leaves",
     icon: "/icons/benefit1.svg",
-    desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
+    desc:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
   },
   {
     title: "Monthly Outings",
     icon: "/icons/benefit2.svg",
-    desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
+    desc:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
   },
 ];
 
@@ -118,11 +123,13 @@ const values = [
 const valuesAndMission = [
   {
     title: "Our Values",
-    desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+    desc:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
   },
   {
     title: "Our Mission",
-    desc: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+    desc:
+      "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
   },
 ];
 
@@ -486,9 +493,9 @@ function WorkWithUs() {
   const classes = useStyles();
   return (
     <>
-    <Head>
-      <title>Work With Us | Kathmandu Living Labs</title>
-    </Head>
+      <Head>
+        <title>Work With Us | Kathmandu Living Labs</title>
+      </Head>
       <div className={classes.pageHeader}>
         <Container maxWidth="lg">
           <Typography
@@ -838,24 +845,7 @@ function WorkWithUs() {
                       </Typography>
                     </TableCell>
                     <TableCell align="right" className={classes.tableCell}>
-                      <Button
-                        variant="outlined"
-                        classes={{
-                          root: classes.seeDetailsBtn,
-                          label: classes.label,
-                          endIcon: classes.icon,
-                        }}
-                        endIcon={
-                          <Image
-                            src="/icons/buttonRightIcon.svg"
-                            width={11}
-                            height={11}
-                            alt="btnicon"
-                          />
-                        }
-                      >
-                        See Details
-                      </Button>
+                      <JobDescriptionDialog />
                     </TableCell>
                   </TableRow>
                 ))}

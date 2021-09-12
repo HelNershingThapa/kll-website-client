@@ -11,7 +11,7 @@ const warningMain = "rgba(253, 200, 69, .5)";
 const warningDark = "rgba(253, 200, 69, .7)";
 
 // border
-const borderWidth = 2;
+const borderWidth = 1;
 const borderColor = "rgba(0, 0, 0, 0.13)";
 
 // breakpoints
@@ -78,6 +78,7 @@ const theme = createTheme({
   },
   overrides: {
     MuiButton: {
+      disableElevation: true,
       root: {
         textTransform: "none",
         padding: "16px 32px",
@@ -144,6 +145,16 @@ const theme = createTheme({
         },
       },
     },
+    MuiBackdrop: {
+      root: {
+        backgroundColor: '#0D18294D'
+      }
+    }
+  },
+  props: {
+    MuiButton: {
+      disableElevation: true,
+    },
   },
   typography: {
     // htmlFontSize: 18,
@@ -179,7 +190,7 @@ const theme = createTheme({
     h5: {
       fontSize: "1.33rem",
       fontWeight: "700",
-      lineHeight: "2.22rem",
+      lineHeight: 1.33,
     },
     h6: {
       fontSize: "1.1rem",
