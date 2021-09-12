@@ -1,5 +1,5 @@
+import Head from 'next/head'
 import { uid } from "react-uid";
-import Head from "next/head";
 import Image from "next/image";
 import { makeStyles } from "@material-ui/styles";
 import { Container, Typography, TextField, Button } from "@material-ui/core";
@@ -83,6 +83,9 @@ export default function Home() {
   const classes = useStyles();
   return (
     <div>
+    <Head>
+      <title>Contact Us | Kathmandu Living Labs</title>
+    </Head>
       <Container maxWidth="lg">
         <div className={classes.mainContainer}>
           <div className={classes.hearFromUs}>

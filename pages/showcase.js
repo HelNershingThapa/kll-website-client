@@ -25,7 +25,10 @@ const useStyles = makeStyles((theme) => ({
 export default function Home() {
   const classes = useStyles();
   return (
-    <div>
+    <>
+    <Head>
+      <title>Showcase | Kathmandu Living Labs</title>
+    </Head>
       <Container maxWidth="lg">
         <div className={classes.mainContainer}>
           <Typography className={classes.title} variant="h4">
@@ -37,6 +40,6 @@ export default function Home() {
           </Typography>
         </div>
       </Container>
-    </div>
+    </>
   );
 }

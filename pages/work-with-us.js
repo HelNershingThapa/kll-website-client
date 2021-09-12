@@ -1,3 +1,4 @@
+import Head from 'next/head'
 import { uid } from "react-uid";
 import clsx from "clsx";
 import Image from "next/image";
@@ -485,6 +486,9 @@ function WorkWithUs() {
   const classes = useStyles();
   return (
     <>
+    <Head>
+      <title>Work With Us | Kathmandu Living Labs</title>
+    </Head>
       <div className={classes.pageHeader}>
         <Container maxWidth="lg">
           <Typography

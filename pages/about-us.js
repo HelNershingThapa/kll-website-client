@@ -1,3 +1,4 @@
+import Head from "next/head";
 import { uid } from "react-uid";
 import clsx from "clsx";
 import Image from "next/image";
@@ -49,7 +50,8 @@ const values = [
 
 const mission = {
   title: "Our Mission",
-  desc: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+  desc:
+    "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
 };
 
 const useStyles = makeStyles((theme) => ({
@@ -231,6 +233,9 @@ function AboutUs() {
   const classes = useStyles();
   return (
     <>
+      <Head>
+        <title>About Us | Kathmandu Living Labs</title>
+      </Head>
       <Container maxWidth="lg" className={classes.container}>
         <Typography variant="h4" className={classes.pageTitle}>
           About Us

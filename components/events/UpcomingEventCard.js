@@ -1,6 +1,7 @@
 import { uid } from "react-uid";
 import clsx from "clsx";
 import Image from "next/image";
+import Link from "next/link";
 import NavBar from "components/NavBar";
 import { makeStyles } from "@material-ui/styles";
 import { Button, Container, Typography, Grid } from "@material-ui/core";
@@ -17,12 +18,11 @@ const useStyles = makeStyles((theme) => ({
     position: "absolute",
     background: "white",
     width: "614px",
-    padding: theme.spacing(8),
-    left: 0,
-    right: 0,
-    marginLeft: "auto",
-    marginRight: "auto",
-    bottom: -100,
+    padding: theme.spacing(6),
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, 50%)",
+    paddingBottom: 0,
   },
   title: {
     fontFamily: "Manrope",
@@ -41,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
   moreInfo: {
     display: "flex",
     justifyContent: "space-between",
-    alignItems: 'center',
+    alignItems: "center",
     marginTop: theme.spacing(4),
   },
   rendezvou: {
@@ -71,7 +71,7 @@ function Events() {
   return (
     <>
       <div className={classes.container}>
-        <Image src="/events.png" layout="fill" />
+        <Image src="/events.png" layout="fill" objectFit="cover" />
         <div className={classes.layover}>
           {" "}
           <Typography className={classes.title}>
@@ -103,13 +103,15 @@ function Events() {
                 </Typography>
               </div>
             </div>
-            <Button
-              variant="outlined"
-              color="primary"
-              classes={{ root: classes.root, label: classes.btnLabel }}
-            >
-              Learn More
-            </Button>
+            <Link href="/events/sample-event">
+              <Button
+                variant="outlined"
+                color="primary"
+                classes={{ root: classes.root, label: classes.btnLabel }}
+              >
+                Learn More
+              </Button>
+            </Link>
           </div>
         </div>
       </div>

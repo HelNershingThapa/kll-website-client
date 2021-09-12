@@ -1,3 +1,4 @@
+import Head from "next/head";
 import { useState } from "react";
 import { uid } from "react-uid";
 import clsx from "clsx";
@@ -30,6 +31,7 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.grey[600],
     marginTop: theme.spacing(3),
     marginBottom: theme.spacing(12),
+    width: 800,
   },
   wholeContainer: {
     display: "flex",
@@ -53,6 +55,7 @@ const useStyles = makeStyles((theme) => ({
     background: "#F3F6FD",
     width: 440,
     height: "100%",
+    borderRadius: 8,
   },
   recurringTitle: {
     marginTop: theme.spacing(4),
@@ -131,6 +134,12 @@ function Events() {
   const [value, setValue] = useState("Upcoming Events");
   return (
     <>
+      <Head>
+        <title>Events | Kathmandu Living Labs</title>
+        {
+          // <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        }
+      </Head>
       <Container maxWidth="lg" className={classes.pageCtr}>
         <Typography variant="h5" className={classes.pageTitle}>
           Events at

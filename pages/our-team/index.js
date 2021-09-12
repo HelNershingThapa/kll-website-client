@@ -1,3 +1,5 @@
+import Head from "next/head";
+
 import { uid } from "react-uid";
 import clsx from "clsx";
 import Image from "next/image";
@@ -103,6 +105,9 @@ function OurTeam() {
   const classes = useStyles();
   return (
     <>
+    <Head>
+      <title>Our Team | Kathmandu Living Labs</title>
+    </Head>
       <Container maxWidth="lg" style={{ marginBottom: "10rem" }}>
         <Typography variant="h4" className={classes.pageTitle}>
           The Kathmandu Living Labs Team

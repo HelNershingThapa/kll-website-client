@@ -1,3 +1,5 @@
+import Head from "next/head";
+
 import { uid } from "react-uid";
 import clsx from "clsx";
 import Image from "next/image";
@@ -125,6 +127,9 @@ function InTheMedia() {
 
   return (
     <>
+      <Head>
+        <title>In the Media | Kathmandu Living Labs</title>
+      </Head>
       <Container maxWidth="lg" className={classes.pageCtr}>
         <Typography variant="h5" className={classes.pageTitle}>
           Kathmandu Living Labs in the media
@@ -143,7 +148,12 @@ function InTheMedia() {
             <div className={classes.blob} />
             <div className={classes.headerImgOverlay}>
               <div>
-                <Image src="/guardian-logo-white.png" width={116} height={48} alt="asdasd"/>
+                <Image
+                  src="/guardian-logo-white.png"
+                  width={116}
+                  height={48}
+                  alt="asdasd"
+                />
               </div>
               <div className={classes.controls}>
                 <Image
@@ -177,11 +187,11 @@ function InTheMedia() {
               className={classes.headerCoverageDescription}
             >
               The British Newspaper giant, The Guardian, covers Kathmandu Living
-              Lab&apos;s key role in the days following the massive earthquake in the
-              April of last year. The article highlights KLL&apos;s instrumental role
-              in mobilizing thousands of online volunteers in creating rapid
-              digital and paper maps of earthquake affected areas immediately
-              after the earthquake
+              Lab&apos;s key role in the days following the massive earthquake
+              in the April of last year. The article highlights KLL&apos;s
+              instrumental role in mobilizing thousands of online volunteers in
+              creating rapid digital and paper maps of earthquake affected areas
+              immediately after the earthquake
             </Typography>
             <Button variant="outlined">Read the Coverage</Button>
           </div>

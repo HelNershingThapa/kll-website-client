@@ -1,3 +1,4 @@
+import Head from "next/head";
 import { makeStyles } from "@material-ui/core/styles";
 import { uid } from "react-uid";
 import clsx from "clsx";
@@ -134,6 +135,10 @@ const useStyles = makeStyles((theme) => ({
 const BlogList = (props) => {
   const classes = useStyles();
   return (
+    <>
+    <Head>
+      <title>Blog | Kathmandu Living Labs</title>
+    </Head>
     <Container maxWidth="lg" className={classes.container}>
       <Typography variant="h4" className={classes.pageTitle}>
         Our Blog
@@ -222,6 +227,7 @@ const BlogList = (props) => {
         />
       </div>
     </Container>
+    </>
   );
 };
 
