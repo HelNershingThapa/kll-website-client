@@ -1,3 +1,4 @@
+import Head from "next/head";
 import { useState } from "react";
 import { uid } from "react-uid";
 import clsx from "clsx";
@@ -75,6 +76,11 @@ function Events() {
   const classes = useStyles();
   return (
     <>
+      <Head>
+        <title>
+          Earthquake Data Portal - Launch Event | Events | Kathmandu Living Labs
+        </title>
+      </Head>
       <div className={classes.imageFullWidth}>
         <div className={classes.headerImgFill}>
           <Image

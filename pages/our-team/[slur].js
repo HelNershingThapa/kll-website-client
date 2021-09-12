@@ -66,7 +66,7 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.grey[900],
   },
   socialLinks: {
-    marginTop: '52.92px',
+    marginTop: "52.92px",
     display: "flex",
     gap: "29.12px",
   },
@@ -75,59 +75,76 @@ const useStyles = makeStyles((theme) => ({
 export default function Home() {
   const classes = useStyles();
   return (
-    <div className={classes.container}>
-      <div className={classes.imageContainer}>
-        <Image src="/member-detail.png" layout="fill" alt="KLL detail" />
-      </div>
-      <div className={classes.bioCtr}>
-        <Link href="/our-team">
-          <a className={classes.goBackCtr}>
-            <Image src="/icons/ArrowLeft.svg" width={11.67} height={12} objectFit="cover" alt="asdasd"/>
-            <Typography variant="body1" className={classes.gobackTitle}>
-              Go Back to All Team Members
+    <>
+      <Head>
+        <title>Arogya Koirala | Our Team | Kathmandu Living Labs</title>
+      </Head>
+      <div className={classes.container}>
+        <div className={classes.imageContainer}>
+          <Image
+            src="/member-detail.png"
+            layout="fill"
+            objectFit="cover"
+            alt="KLL detail"
+          />
+        </div>
+        <div className={classes.bioCtr}>
+          <Link href="/our-team">
+            <a className={classes.goBackCtr}>
+              <Image
+                src="/icons/ArrowLeft.svg"
+                width={11.67}
+                height={12}
+                objectFit="cover"
+                alt="asdasd"
+              />
+              <Typography variant="body1" className={classes.gobackTitle}>
+                Go Back to All Team Members
+              </Typography>
+            </a>
+          </Link>
+          <Typography variant="body1" className={classes.name}>
+            {member.name}
+          </Typography>
+          <Typography variant="body1" className={classes.position}>
+            {member.position}
+          </Typography>
+          <div className={classes.bio}>
+            <Typography variant="body1" className={classes.para}>
+              Arogya is the Tech and Innovation lead at Kathmandu Living Labs.
+              He has been directly involved in the conceptualization, design and
+              development of several open data and civic-tech projects. Some of
+              these projects, such as the Open Local Government Digital System
+              for Neelakantha Municipality
+              (https://neelakanthamunicipality.klldev.org), and the 2015 Nepal
+              Earthquake data portal (https://opendata.klldev.org) are
+              considered as exemplary civic-tech projects to come from the
+              global south.
             </Typography>
-          </a>
-        </Link>
-        <Typography variant="body1" className={classes.name}>
-          {member.name}
-        </Typography>
-        <Typography variant="body1" className={classes.position}>
-          {member.position}
-        </Typography>
-        <div className={classes.bio}>
-          <Typography variant="body1" className={classes.para}>
-            Arogya is the Tech and Innovation lead at Kathmandu Living Labs. He
-            has been directly involved in the conceptualization, design and
-            development of several open data and civic-tech projects. Some of
-            these projects, such as the Open Local Government Digital System for
-            Neelakantha Municipality
-            (https://neelakanthamunicipality.klldev.org), and the 2015 Nepal
-            Earthquake data portal (https://opendata.klldev.org) are considered
-            as exemplary civic-tech projects to come from the global south.
-          </Typography>
-          <Typography variant="body1" className={classes.para}>
-            In addition to overseeing technical implementation and ensuring
-            effective communication between project stakeholders, he is heavily
-            involved in supporting the professional growth of young team members
-            by helping them identify, select and tackle learning opportunities
-            within KLL’s scope of work.
-          </Typography>
-          <Typography variant="body1" className={classes.para}>
-            Prior to joining KLL, Arogya spent more than two years working as a
-            data scientist out of Bangalore, India. An engineer by degree, he
-            combined his interests in statistical programming (R, Python, SQL),
-            data visualization (d3js, c3js, Leaflet, Mapbox GL) and web
-            development (Javascript, HTML, CSS) to build robust and scalable
-            analytical solutions for several Fortune 500 companies in the
-            retail, banking and technology sectors.
-          </Typography>
-        </div>
-        <div className={classes.socialLinks}>
-          <Image src="/icons/twitter-logo.svg" width={27.18} height={22.1} />
-          <Image src="/icons/ig-logo.svg" width={27.18} height={22.1} />
-          <Image src="/icons/linkedin-logo.svg" width={27.18} height={22.1} />
+            <Typography variant="body1" className={classes.para}>
+              In addition to overseeing technical implementation and ensuring
+              effective communication between project stakeholders, he is
+              heavily involved in supporting the professional growth of young
+              team members by helping them identify, select and tackle learning
+              opportunities within KLL’s scope of work.
+            </Typography>
+            <Typography variant="body1" className={classes.para}>
+              Prior to joining KLL, Arogya spent more than two years working as
+              a data scientist out of Bangalore, India. An engineer by degree,
+              he combined his interests in statistical programming (R, Python,
+              SQL), data visualization (d3js, c3js, Leaflet, Mapbox GL) and web
+              development (Javascript, HTML, CSS) to build robust and scalable
+              analytical solutions for several Fortune 500 companies in the
+              retail, banking and technology sectors.
+            </Typography>
+          </div>
+          <div className={classes.socialLinks}>
+            <Image src="/icons/twitter-logo.svg" width={27.18} height={22.1} />
+            <Image src="/icons/ig-logo.svg" width={27.18} height={22.1} />
+            <Image src="/icons/linkedin-logo.svg" width={27.18} height={22.1} />
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }

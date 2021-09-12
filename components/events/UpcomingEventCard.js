@@ -4,14 +4,14 @@ import Image from "next/image";
 import Link from "next/link";
 import NavBar from "components/NavBar";
 import { makeStyles } from "@material-ui/styles";
-import { Button, Container, Typography, Grid } from "@material-ui/core";
+import { Button, Container, Typography, Grid, Chip } from "@material-ui/core";
 import EventTabs from "components/events/EventTabs";
 import UpcomingEventCard from "components/events/UpcomingEventCard";
 
 const useStyles = makeStyles((theme) => ({
   container: {
     position: "relative",
-    width: "960px",
+    width: 960,
     height: 420,
   },
   layover: {
@@ -23,6 +23,18 @@ const useStyles = makeStyles((theme) => ({
     left: "50%",
     transform: "translate(-50%, 50%)",
     paddingBottom: 0,
+  },
+  chipRoot: {
+    position: "absolute",
+    padding: "6px 12px",
+    borderRadius: "8px",
+    margin: theme.spacing(4),
+  },
+  chipLabel: {
+    fontSize: "14px",
+    fontWeight: 500,
+    padding: 0,
+    color: theme.palette.grey[50],
   },
   title: {
     fontFamily: "Manrope",
@@ -72,6 +84,11 @@ function Events() {
     <>
       <div className={classes.container}>
         <Image src="/events.png" layout="fill" objectFit="cover" />
+        <Chip
+          label="21st Aug 2021"
+          color="primary"
+          classes={{ root: classes.chipRoot, label: classes.chipLabel }}
+        />
         <div className={classes.layover}>
           {" "}
           <Typography className={classes.title}>

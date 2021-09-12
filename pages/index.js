@@ -82,6 +82,18 @@ export default function Home() {
                 <p>Detailed info about a team member</p>
               </a>
             </Link>
+            <Link href="/events">
+              <a className={styles.card}>
+                <h2>Events &rarr;</h2>
+                <p>Noteworthy happenings</p>
+              </a>
+            </Link>
+            <Link href="/events/sample-event">
+              <a className={styles.card}>
+                <h2>Event Details &rarr;</h2>
+                <p>Schedule: date and time</p>
+              </a>
+            </Link>
           </div>
         </main>
       </div>
