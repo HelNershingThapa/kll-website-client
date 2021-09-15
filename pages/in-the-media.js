@@ -1,3 +1,4 @@
+import { useRef } from "react";
 import Head from "next/head";
 
 import { uid } from "react-uid";
@@ -13,7 +14,11 @@ import {
   IconButton,
   CircularProgress,
 } from "@material-ui/core";
+import Slider from "react-slick";
+
 import CoverageCard from "components/in-the-media/CoverageCard";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 const useStyles = makeStyles((theme) => ({
   pageCtr: {
@@ -122,8 +127,17 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const settings = {
+  dots: false,
+  infinite: false,
+  speed: 500,
+  slidesToShow: 1,
+  slidesToScroll: 1,
+};
+
 function InTheMedia() {
   const classes = useStyles();
+  const slider = useRef(null);
 
   return (
     <>
@@ -134,67 +148,147 @@ function InTheMedia() {
         <Typography variant="h5" className={classes.pageTitle}>
           Kathmandu Living Labs in the media
         </Typography>
-        <div className={classes.headerCoveragesCtr}>
-          <div className={classes.headerImgCtr}>
-            <div
-              style={{ position: "relative", width: "750px", height: "560px" }}
-            >
-              <Image
-                src="/in-the-media-header.png"
-                layout="fill"
-                alt="KLL in media"
-              />
-            </div>
-            <div className={classes.blob} />
-            <div className={classes.headerImgOverlay}>
-              <div>
-                <Image
-                  src="/guardian-logo-white.png"
-                  width={116}
-                  height={48}
-                  alt="asdasd"
-                />
+
+        <div style={{ position: "relative" }}>
+          <Slider ref={slider} {...settings}>
+            <div>
+              <div className={classes.headerCoveragesCtr}>
+                <div className={classes.headerImgCtr}>
+                  <div
+                    style={{
+                      position: "relative",
+                      width: "750px",
+                      height: "560px",
+                    }}
+                  >
+                    <Image
+                      src="/in-the-media-header.png"
+                      layout="fill"
+                      alt="KLL in media"
+                    />
+                  </div>
+                  <div className={classes.headerImgOverlay}>
+                    <div>
+                      <Image
+                        src="/guardian-logo-white.png"
+                        width={116}
+                        height={48}
+                        alt="asdasd"
+                      />
+                    </div>
+                    <div className={classes.controls}>
+                      <Image
+                        src="/icons/ArrowLeftWhite.svg"
+                        height={16}
+                        width={16}
+                        alt="right arrow icon"
+                      />
+                      <IconButton
+                        aria-label="delete"
+                        color="primary"
+                        className={classes.iconButton}
+                        onClick={() => slider?.current?.slickNext()}
+                      >
+                        <Image
+                          src="/icons/ArrowRight.svg"
+                          height={16}
+                          width={16}
+                          alt="right arrow icon"
+                        />
+                      </IconButton>
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <Typography
+                    variant="h5"
+                    className={classes.headerCoverageTitle}
+                  >
+                    The Guardian covers KLL’s post-earthquake works Team
+                  </Typography>
+                  <Typography
+                    variant="h5"
+                    className={classes.headerCoverageDescription}
+                  >
+                    The British Newspaper giant, The Guardian, covers Kathmandu
+                    Living Lab&apos;s key role in the days following the massive
+                    earthquake in the April of last year. The article highlights
+                    KLL&apos;s instrumental role in mobilizing thousands of
+                    online volunteers in creating rapid digital and paper maps
+                    of earthquake affected areas immediately after the
+                    earthquake
+                  </Typography>
+                  <Button variant="outlined">Read the Coverage</Button>
+                </div>
               </div>
-              <div className={classes.controls}>
-                <Image
-                  src="/icons/ArrowLeftWhite.svg"
-                  height={16}
-                  width={16}
-                  alt="right arrow icon"
-                />
-                <IconButton
-                  aria-label="delete"
-                  disabled
-                  color="primary"
-                  className={classes.iconButton}
-                >
-                  <Image
-                    src="/icons/ArrowRight.svg"
-                    height={16}
-                    width={16}
-                    alt="right arrow icon"
-                  />
-                </IconButton>
+            </div>
+            <div>
+              <div className={classes.headerCoveragesCtr}>
+                <div className={classes.headerImgCtr}>
+                  <div
+                    style={{
+                      position: "relative",
+                      width: "750px",
+                      height: "560px",
+                    }}
+                  >
+                    <Image
+                      src="/Rectangle31.png"
+                      layout="fill"
+                      alt="KLL in media"
+                    />
+                  </div>
+                  <div className={classes.headerImgOverlay}>
+                    <div>
+                      <img src="/bbc.png" />
+                    </div>
+                    <div className={classes.controls}>
+                      <IconButton
+                        color="primary"
+                        className={classes.iconButton}
+                        onClick={() => slider?.current?.slickPrev()}
+                      >
+                        <Image
+                          src="/icons/ArrowLeftWhite.svg"
+                          height={16}
+                          width={16}
+                          alt="right arrow icon"
+                        />
+                      </IconButton>
+
+                      <Image
+                        src="/icons/ArrowRight.svg"
+                        height={16}
+                        width={16}
+                        alt="right arrow icon"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <Typography
+                    variant="h5"
+                    className={classes.headerCoverageTitle}
+                  >
+                    How 'crisis mapping' is helping relief efforts in Nepal
+                  </Typography>
+                  <Typography
+                    variant="h5"
+                    className={classes.headerCoverageDescription}
+                  >
+                    "Thousands of people in remote parts of Nepal are still in
+                    need of medical help and basic supplies. But with roads
+                    damaged and buildings collapsed, knowing what aid is needed
+                    and where, is a challenge. One group of Nepalis, backed by a
+                    global community, is trying to change that by 'crisis
+                    mapping' Nepal", write BBC News.
+                  </Typography>
+                  <Button variant="outlined">Read the Coverage</Button>
+                </div>
               </div>
             </div>
-          </div>
-          <div>
-            <Typography variant="h5" className={classes.headerCoverageTitle}>
-              The Guardian covers KLL’s post-earthquake works Team
-            </Typography>
-            <Typography
-              variant="h5"
-              className={classes.headerCoverageDescription}
-            >
-              The British Newspaper giant, The Guardian, covers Kathmandu Living
-              Lab&apos;s key role in the days following the massive earthquake
-              in the April of last year. The article highlights KLL&apos;s
-              instrumental role in mobilizing thousands of online volunteers in
-              creating rapid digital and paper maps of earthquake affected areas
-              immediately after the earthquake
-            </Typography>
-            <Button variant="outlined">Read the Coverage</Button>
-          </div>
+          </Slider>
+          <div className={classes.blob} />
         </div>
 
         <div className={classes.featuredInCtr}>

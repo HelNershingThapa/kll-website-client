@@ -85,7 +85,6 @@ const useStyles = makeStyles((theme) => ({
     "& div": {
       display: "flex",
       justifyContent: "space-between",
-      alignItems: "center",
       "& p": {
         fontWeight: 500,
       },
@@ -126,6 +125,11 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 500,
     lineHeight: "16px",
     color: theme.palette.grey[700],
+  },
+  arrowRightIcon: {
+    width: 11.67,
+    height: 12,
+    color: theme.palette.primary.main,
   },
 }));
 
@@ -228,10 +232,11 @@ function Events() {
                 <Typography variant="body1" color="primary">
                   KLL Monthly News Event
                 </Typography>{" "}
-                <Image
-                  src="/icons/arrow-right-blue.svg"
-                  width={11.67}
-                  height={12}
+                <i
+                  className={clsx(
+                    "ri-arrow-right-line",
+                    classes.arrowRightIcon
+                  )}
                 />
               </div>
             </div>

@@ -6,6 +6,7 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import theme from "styles/theme";
 import NavBar from "components/NavBar";
 import Footer from "components/Footer";
+import 'remixicon/fonts/remixicon.css'
 import "styles/globals.css";
 
 export default function MyApp(props) {
