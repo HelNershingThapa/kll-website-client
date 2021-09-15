@@ -2,7 +2,11 @@ import { makeStyles } from "@material-ui/core/styles";
 import { uid } from "react-uid";
 import Link from "next/link";
 import Image from "next/image";
-import { Container, Typography, Button } from "@material-ui/core";
+import { Container, Typography, Button, FilledInput } from "@material-ui/core";
+import Input from "@material-ui/core/Input";
+import InputLabel from "@material-ui/core/InputLabel";
+import InputAdornment from "@material-ui/core/InputAdornment";
+import FormControl from "@material-ui/core/FormControl";
 import Divider from "@material-ui/core/Divider";
 
 const groups = [
@@ -161,6 +165,44 @@ const useStyles = makeStyles((theme) => ({
   endIcon: {
     marginLeft: "10.67px",
   },
+  newsletterHeader: {
+    fontSize: "16px",
+    fontWeight: 500,
+    lineHeight: "16px",
+    color: theme.palette.grey[300],
+    marginBottom: theme.spacing(2),
+  },
+  newsletterInput: {
+    background: theme.palette.grey[800],
+  },
+  placeholder: {
+    padding: "15px 16px",
+    "&::placeholder": {
+      textOverflow: "ellipsis !important",
+      fontSize: "18px",
+      fontWeight: 400,
+      lineHeight: "18px",
+      color: theme.palette.grey[300],
+    },
+  },
+  contactDetails: {
+    marginTop: theme.spacing(8),
+
+    "& h6": {
+      fontSize: "16px",
+      fontWeight: 500,
+      lineHeight: "16px",
+      color: theme.palette.grey[300],
+      marginBottom: theme.spacing(1),
+    },
+    "& p": {
+      fontSize: "16px",
+      fontWeight: 600,
+      lineHeight: "24px",
+      color: theme.palette.grey[50],
+      marginTop: theme.spacing(1),
+    },
+  },
 }));
 
 function Footer() {
@@ -209,6 +251,38 @@ function Footer() {
               </div>
             </div>
           ))}
+          <div className={classes.newsLetter}>
+            <Typography className={classes.newsletterHeader}>
+              Subscribe to our Newsletter
+            </Typography>
+            <FilledInput
+              classes={{
+                root: classes.newsletterInput,
+                input: classes.placeholder,
+              }}
+              id="filled-basic"
+              placeholder="Enter your email"
+              variant="filled"
+              endAdornment={
+                <i
+                  className="ri-send-plane-line"
+                  style={{ color: "#CAD5E0" }}
+                ></i>
+              }
+            />
+            <div className={classes.contactDetails}>
+              <Typography component="h6">Contact Details</Typography>
+              <Typography className={classes.contactDetails} component="p">
+                1474 Lamtangin Marg, Chundevi{" "}
+              </Typography>
+              <Typography className={classes.contactDetails} component="p">
+                +977 01472 0137{" "}
+              </Typography>
+              <Typography className={classes.contactDetails} component="p">
+                contact@kathmandulivinglabs.com{" "}
+              </Typography>
+            </div>
+          </div>
         </div>
         <div className={classes.logoCtr}>
           <span className={classes.logoLine}></span>
