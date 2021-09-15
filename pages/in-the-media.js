@@ -270,18 +270,18 @@ function InTheMedia() {
                     variant="h5"
                     className={classes.headerCoverageTitle}
                   >
-                    How 'crisis mapping' is helping relief efforts in Nepal
+                    {`How 'crisis mapping' is helping relief efforts in Nepal`}
                   </Typography>
                   <Typography
                     variant="h5"
                     className={classes.headerCoverageDescription}
                   >
-                    "Thousands of people in remote parts of Nepal are still in
+                    {`"Thousands of people in remote parts of Nepal are still in
                     need of medical help and basic supplies. But with roads
                     damaged and buildings collapsed, knowing what aid is needed
                     and where, is a challenge. One group of Nepalis, backed by a
                     global community, is trying to change that by 'crisis
-                    mapping' Nepal", write BBC News.
+                    mapping' Nepal", write BBC News.`}
                   </Typography>
                   <Button variant="outlined">Read the Coverage</Button>
                 </div>

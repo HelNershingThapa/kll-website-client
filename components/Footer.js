@@ -99,7 +99,7 @@ const useStyles = makeStyles((theme) => ({
   scheduleDescription: {
     marginTop: theme.spacing(4),
     marginBottom: theme.spacing(11),
-    width: "646px",
+    width: "459px",
     fontFamily: "Manrope",
     fontSize: "40px",
     fontWeight: 700,
@@ -171,10 +171,10 @@ function Footer() {
       <Container maxWidth="lg">
         <div className={classes.scheduleCtr}>
           <Typography className={classes.scheduleTitle}>
-            Want to talk?
+            Want to chat?
           </Typography>
           <Typography className={classes.scheduleDescription}>
-            Schedule a meeting with our team of experts
+            Schedule a virtual meeting with us
           </Typography>
           <Button
             classes={{ endIcon: classes.endIcon }}
