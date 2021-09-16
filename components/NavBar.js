@@ -196,7 +196,7 @@ function NavBar({}) {
             <Hidden smDown>
               <div className={classes.menuItemsContainer}>
                 {menuItems.map((menuItem) => (
-                  <Link key={uid(menuItem)} href={menuItem.link}>
+                  <Link key={uid(menuItem)} href="#">
                     <a className={classes.menuLink}>{menuItem.name}</a>
                   </Link>
                 ))}
