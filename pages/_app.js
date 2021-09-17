@@ -4,8 +4,8 @@ import Head from "next/head";
 import { ThemeProvider } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import theme from "styles/theme";
-import NavBar from "components/NavBar";
-import Footer from "components/Footer";
+import NavBar from "components/common/NavBar";
+import Footer from "components/common/Footer";
 import 'remixicon/fonts/remixicon.css'
 import "styles/globals.css";
 

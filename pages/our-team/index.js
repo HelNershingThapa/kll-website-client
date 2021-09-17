@@ -1,9 +1,7 @@
 import Head from "next/head";
-
 import { uid } from "react-uid";
 import clsx from "clsx";
 import Image from "next/image";
-import NavBar from "components/NavBar";
 import { makeStyles } from "@material-ui/styles";
 import { Button, Container, Typography, Grid } from "@material-ui/core";
 import { spacing } from "@material-ui/system";
@@ -11,6 +9,7 @@ import Box from "@material-ui/core/Box";
 import abousUsImg from "public/about-us-header.png";
 import TeamMemberCard from "components/our-team/TeamMemberCard";
 import YouCard from "components/our-team/YouCard";
+import WorkingAtKll from "components/our-team/WorkingAtKll";
 
 const stats = [
   {
@@ -32,6 +31,9 @@ const stats = [
 ];
 
 const useStyles = makeStyles((theme) => ({
+  container: {
+    marginBottom: theme.spacing(25),
+  },
   pageTitle: {
     marginTop: theme.spacing(12),
     marginBottom: theme.spacing(5),
@@ -88,27 +90,16 @@ const useStyles = makeStyles((theme) => ({
     rowGap: "60px",
     columnGap: "30px",
   },
-  workingContainer: {
-    height: 600,
-    background: "#F0F5F9",
-    padding: theme.spacing(15)
-  },
-  workingTitle: {
-    fontSize: "16px",
-    fontWeight: 500,
-    lineHeight: "24px",
-    color: theme.palette.grey[800],
-  },
 }));
 
 function OurTeam() {
   const classes = useStyles();
   return (
     <>
-    <Head>
-      <title>Our Team | Kathmandu Living Labs</title>
-    </Head>
-      <Container maxWidth="lg" style={{ marginBottom: "10rem" }}>
+      <Head>
+        <title>Our Team | Kathmandu Living Labs</title>
+      </Head>
+      <Container maxWidth="lg" className={classes.container}>
         <Typography variant="h4" className={classes.pageTitle}>
           The Kathmandu Living Labs Team
         </Typography>
@@ -142,14 +133,7 @@ function OurTeam() {
           <YouCard />
         </div>
       </Container>
-      <div className={classes.workingContainer}>
-        <Typography className={classes.workingTitle} align="center">
-          Working at Kathmandu Living Labs
-        </Typography>
-        <Typography style={{marginTop: '6rem'}} align="center">
-          [ INSERT IMAGES HERE ]
-        </Typography>
-      </div>
+      <WorkingAtKll />
     </>
   );
 }

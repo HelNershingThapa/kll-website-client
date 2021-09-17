@@ -5,7 +5,6 @@ import clsx from "clsx";
 import { uid } from "react-uid";
 import Link from "next/link";
 import Image from "next/image";
-
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import List from "@material-ui/core/List";
@@ -21,7 +20,7 @@ import { Drawer } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
 import CloseIcon from "@material-ui/icons/Close";
 import LiveHelpIcon from "@material-ui/icons/LiveHelp";
-import { primary } from "../styles/theme";
+import { primary } from "../../styles/theme";
 import logo from "public/kll-logo.svg";
 // import { FormattedMessage } from 'react-intl';
 // import messages from './messages';
