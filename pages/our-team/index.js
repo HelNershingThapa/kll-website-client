@@ -111,6 +111,7 @@ function OurTeam() {
               width={1920}
               height={600}
               alt="People working at KLL"
+              priority
             />
           </div>
           <div className={classes.statsOverlay}>

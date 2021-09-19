@@ -246,6 +246,7 @@ function AboutUs() {
               layout="fill"
               objectFit="cover"
               alt="People working at KLL"
+              priority
             />
           </div>
           <div className={classes.statsOverlay}>

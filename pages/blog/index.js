@@ -162,7 +162,7 @@ const BlogList = (props) => {
         />
       </div>
       <div className={classes.headerImage}>
-        <Image src={headerImg} alt="KLL Blog" />
+        <Image src={headerImg} alt="KLL Blog" priority/>
         <div className={classes.headerBlogOverlay}>
           <div className={classes.mainBlogDescription}>
             <div className={classes.descriptionHead}>

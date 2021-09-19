@@ -163,6 +163,7 @@ function InTheMedia() {
                       src="/in-the-media-header.png"
                       layout="fill"
                       alt="KLL in media"
+                      priority
                     />
                   </div>
                   <div className={classes.headerImgOverlay}>

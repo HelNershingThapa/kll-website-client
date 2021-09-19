@@ -165,6 +165,7 @@ function BlogDetail({ blog }) {
           height={722}
           objectFit="cover"
           alt="Picture of the author"
+          priority
         />
         <div className={classes.headerImageOverlay} />
       </div>

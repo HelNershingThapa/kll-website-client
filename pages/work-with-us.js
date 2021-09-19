@@ -142,13 +142,13 @@ const useStyles = makeStyles((theme) => ({
   },
   pageTitle: {
     fontFamily: "Manrope",
-    fontWeight: "600",
+    fontWeight: "700",
     fontSize: "32px",
     color: "#0D1829",
     lineHeight: "40px",
   },
   titleColoured: {
-    color: "#467efb",
+    color: theme.palette.primary.main,
   },
   pageDesc: {
     marginTop: theme.spacing(3),
@@ -529,6 +529,7 @@ function WorkWithUs() {
             layout="fill"
             objectFit="cover"
             alt="People working at KLL"
+            priority
           />
         </div>
         <div className={classes.statsOverlay}>
