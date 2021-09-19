@@ -3,8 +3,6 @@ import { uid } from "react-uid";
 import Image from "next/image";
 import { makeStyles } from "@material-ui/styles";
 import { Container, Typography, TextField, Button } from "@material-ui/core";
-import NavBar from "components/NavBar";
-import Footer from "components/Footer";
 import mapImg from "public/Rectangle7.png";
 
 const useStyles = makeStyles((theme) => ({

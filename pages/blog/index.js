@@ -17,7 +17,6 @@ import {
 } from "@material-ui/core";
 import rightArrowIcon from "public/icons/ArrowRight.svg";
 import headerImg from "public/Rectangle124.png";
-import NavBar from "components/NavBar";
 import BlogListCard from "components/BlogListCard";
 import BlogTabs from "components/BlogTabs";
 import searchIcon from "public/icons/search.svg";

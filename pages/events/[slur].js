@@ -3,7 +3,6 @@ import { useState } from "react";
 import { uid } from "react-uid";
 import clsx from "clsx";
 import Image from "next/image";
-import NavBar from "components/NavBar";
 import { makeStyles } from "@material-ui/styles";
 import {
   Button,

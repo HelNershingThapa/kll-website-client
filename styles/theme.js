@@ -78,7 +78,6 @@ const theme = createTheme({
   },
   overrides: {
     MuiButton: {
-      disableElevation: true,
       root: {
         textTransform: "none",
         padding: "16px 32px",
@@ -91,6 +90,21 @@ const theme = createTheme({
         fontSize: "16px",
         lineHeight: "16px",
       },
+    },
+    MuiChip: {
+      root: {
+        paddingLeft:0,
+        paddingRight: 0,
+        padding: "6px 12px",
+        borderRadius: "8px",
+      },
+      label: {
+        fontSize: "14px",
+        fontWeight: 500,
+        color: '#F8FAFC',
+        padding: 0,
+        margin: 0,
+      }
     },
     MuiExpansionPanel: {
       root: {
@@ -183,11 +197,13 @@ const theme = createTheme({
       lineHeight: "4rem",
     },
     h4: {
+      fontFamily: 'Manrope',
       fontSize: "1.78rem",
       fontWeight: "700",
-      lineHeight: "2.22rem",
+      lineHeight: 1.25,
     },
     h5: {
+      fontFamily: 'Manrope',
       fontSize: "1.33rem",
       fontWeight: "700",
       lineHeight: 1.33,

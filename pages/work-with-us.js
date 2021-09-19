@@ -17,6 +17,8 @@ import {
   Box,
 } from "@material-ui/core";
 import JobDescriptionDialog from "components/work-with-us/JobDescriptionDialog";
+import styles from "../styles/AboutUs.module.css";
+
 
 const jobListings = [
   {
@@ -858,7 +860,8 @@ function WorkWithUs() {
       {/* Meet The Team */}
       {
         <div className={classes.meetTheTeamContainer}>
-          <div className={classes.teamCount}>
+        <div className={classes.teamCount}>
+          <div>
             <div
               styles={{
                 display: "flex",
@@ -866,37 +869,38 @@ function WorkWithUs() {
                 alignItems: "center",
               }}
             >
-              <Typography variant="h1" className={classes.teamNumber}>
+              <Typography
+                variant="h1"
+                className={clsx(classes.teamNumber, styles.teamCount)}
+              >
                 16
               </Typography>
               <Typography variant="body1" style={{ color: "#304254" }}>
                 awesome people at KLL
               </Typography>
             </div>
-            <div>
-              <Typography
-                className={classes.header}
-                style={{ color: "#304254" }}
-              >
-                Our Team
-              </Typography>
-              <Typography
-                variant="body1"
-                style={{ color: "#1C2A3A" }}
-                className={classes.learnTeam}
-              >
-                Learn about our awesome team of people at Kathmandu Living Labs
-              </Typography>
-              <Button
-                disableElevation
-                variant="contained"
-                color="primary"
-                classes={{ root: classes.meetBtn, label: classes.meetBtnLabel }}
-              >
-                Meet the Team
-              </Button>
-            </div>
           </div>
+          <div>
+            <Typography className={classes.header} style={{ color: "#304254" }}>
+              Our Team
+            </Typography>
+            <Typography
+              variant="body1"
+              style={{ color: "#1C2A3A" }}
+              className={classes.learnTeam}
+            >
+              Learn about our awesome team of people at Kathmandu Living Labs
+            </Typography>
+            <Button
+              disableElevation
+              variant="contained"
+              color="primary"
+              classes={{ root: classes.meetBtn, label: classes.meetBtnLabel }}
+            >
+              Meet the Team
+            </Button>
+          </div>
+        </div>
         </div>
       }
       {/* Meet The Team Ends Here*/}

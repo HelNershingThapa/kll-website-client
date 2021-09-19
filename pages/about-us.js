@@ -1,6 +1,6 @@
 import Head from "next/head";
-import { uid } from "react-uid";
 import clsx from "clsx";
+import { uid } from "react-uid";
 import Image from "next/image";
 import { makeStyles } from "@material-ui/styles";
 import { Button, Container, Typography, Grid } from "@material-ui/core";

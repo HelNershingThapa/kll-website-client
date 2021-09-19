@@ -92,6 +92,12 @@ export default function Home() {
                 <p>Schedule: date and time</p>
               </a>
             </Link>
+            <Link href="/our-projects">
+              <a className={styles.card}>
+                <h2>Projects List &rarr;</h2>
+                <p>{`Discover how we've made an impact with some incredible initiatives`}</p>
+              </a>
+            </Link>
           </div>
         </main>
       </div>

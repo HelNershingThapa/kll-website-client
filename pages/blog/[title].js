@@ -4,7 +4,6 @@ import fetch from "isomorphic-unfetch";
 import { makeStyles } from "@material-ui/core/styles";
 import Image from "next/image";
 import { Typography, Divider, Avatar, Container } from "@material-ui/core";
-import NavBar from "components/NavBar";
 import author from "public/author.png";
 import groupPhoto from "public/image2.png";
 import fullWidthPhoto from "public/image3.png";

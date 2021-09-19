@@ -4,7 +4,6 @@ import Head from "next/head";
 import { uid } from "react-uid";
 import clsx from "clsx";
 import Image from "next/image";
-import NavBar from "components/NavBar";
 import { makeStyles } from "@material-ui/styles";
 import {
   Button,
@@ -15,7 +14,6 @@ import {
   CircularProgress,
 } from "@material-ui/core";
 import Slider from "react-slick";
-
 import CoverageCard from "components/in-the-media/CoverageCard";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
