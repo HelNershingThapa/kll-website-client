@@ -6,7 +6,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     position: "relative",
     // width: 860,
-    height: 620,
+    height: '100%',
     width: '100%',
     // height: '100%',
   },

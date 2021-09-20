@@ -48,12 +48,28 @@ const useStyles = makeStyles((theme) => ({
   projects: {
     display: "grid",
     // gridTemplateColumns: "860px 540px",
-    gridTemplateColumns: "1fr 1fr 1fr",
+    gridTemplateColumns: "540px 320px 540px",
+    gridTemplateRows: "620px 500px 500px",
     gridGap: theme.spacing(10),
     marginTop: theme.spacing(15),
-    gridTemplateAreas: `"project1 project1 project2"
-    "project3 project4 project4"
-    "project3 project5 project5"`,
+  },
+  project1: {
+    gridColumn: "1 / 3",
+  },
+  project2: {
+    gridColumn: "3/4",
+  },
+  project3: {
+    gridColumn: "1/2",
+    gridRow: "2/4",
+  },
+  project4: {
+    gridColumn: "2/4",
+    gridRow: "2/3",
+  },
+  project5: {
+    gridColumn: "2/4",
+    gridRow: "3/4",
   },
 }));
 
