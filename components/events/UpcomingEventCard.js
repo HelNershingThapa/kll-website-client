@@ -2,7 +2,6 @@ import { uid } from "react-uid";
 import clsx from "clsx";
 import Image from "next/image";
 import Link from "next/link";
-import NavBar from "components/NavBar";
 import { makeStyles } from "@material-ui/styles";
 import { Button, Container, Typography, Grid, Chip } from "@material-ui/core";
 import EventTabs from "components/events/EventTabs";
