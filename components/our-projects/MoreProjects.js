@@ -81,7 +81,7 @@ const useStyles = makeStyles((theme) => ({
   },
   name: {
     fontWeight: 600,
-    marginTop: theme.spacing(3)
+    marginTop: theme.spacing(3),
   },
   // chipRoot: {
   //   padding: "6px 12px",
@@ -96,6 +96,12 @@ const useStyles = makeStyles((theme) => ({
   // tableRow: {
   //
   // },
+  table: {
+    overflowX: "scroll",
+    "&::-webkit-scrollbar": {
+      width: 0,
+    },
+  },
   tableCell: {
     padding: 0,
   },
@@ -108,8 +114,8 @@ const useStyles = makeStyles((theme) => ({
     "& tr": {
       "& td:not(:first-child):not(:last-child)": {
         paddingLeft: "15px",
-        borderLeft: '1px solid #CAD5E0',
-        borderRight: '1px solid #CAD5E0',
+        borderLeft: "1px solid #CAD5E0",
+        borderRight: "1px solid #CAD5E0",
       },
     },
     "& tr:first-child": {
@@ -131,7 +137,7 @@ const useStyles = makeStyles((theme) => ({
     "& tr:last-child": {
       "& td": {
         paddingTop: theme.spacing(8),
-        borderBottom: 'none'
+        borderBottom: "none",
       },
     },
   },
@@ -140,44 +146,42 @@ const useStyles = makeStyles((theme) => ({
 const MoreProjects = ({ name, category, src }) => {
   const classes = useStyles();
   return (
-    <>
-      <div className={classes.root}>
-        <Typography variant="h4" className={classes.title}>
-          Some more projects for you to check out
-        </Typography>
-        <TableContainer>
-          <Table
-            className={classes.table}
-            aria-label="simple table"
-            style={{ tableLayout: "fixed" }}
-          >
-            <TableBody className={classes.tableBody}>
-              {result.map((row) => (
-                <TableRow key={uid(row)} className={classes.tableRow}>
-                  {row.map((project) => (
-                    <TableCell key={uid(project)} className={classes.tableCell}>
-                      <div key={uid(project)} className={classes.project}>
-                        <Chip
-                          label={project.category}
-                          color="primary"
-                          classes={{
-                            root: classes.chipRoot,
-                            label: classes.chipLabel,
-                          }}
-                        />
-                        <Typography variant="h5" className={classes.name}>
-                          {project.name}
-                        </Typography>
-                      </div>
-                    </TableCell>
-                  ))}
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
-      </div>
-    </>
+    <div className={classes.root}>
+      <Typography variant="h4" className={classes.title}>
+        Some more projects for you to check out
+      </Typography>
+      <TableContainer className={classes.table}>
+        <Table
+          className={classes.table}
+          aria-label="simple table"
+          style={{ tableLayout: "fixed" }}
+        >
+          <TableBody className={classes.tableBody}>
+            {result.map((row) => (
+              <TableRow key={uid(row)} className={classes.tableRow}>
+                {row.map((project) => (
+                  <TableCell key={uid(project)} className={classes.tableCell}>
+                    <div key={uid(project)} className={classes.project}>
+                      <Chip
+                        label={project.category}
+                        color="primary"
+                        classes={{
+                          root: classes.chipRoot,
+                          label: classes.chipLabel,
+                        }}
+                      />
+                      <Typography variant="h5" className={classes.name}>
+                        {project.name}
+                      </Typography>
+                    </div>
+                  </TableCell>
+                ))}
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+    </div>
   );
 };
 

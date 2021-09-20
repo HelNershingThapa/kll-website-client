@@ -16,7 +16,7 @@ const borderColor = "rgba(0, 0, 0, 0.13)";
 
 // breakpoints
 const xl = 1920;
-const lg = 1460;
+const lg = 1440;
 const md = 960;
 const sm = 600;
 const xs = 0;
