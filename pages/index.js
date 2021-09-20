@@ -1,11 +1,60 @@
 import Head from "next/head";
 import Link from "next/link";
 import Image from "next/image";
+import { makeStyles } from "@material-ui/core/styles";
+import { Typography, Container } from "@material-ui/core";
 import styles from "../styles/Home.module.css";
+import Hero from "components/home/Hero";
+import Partners from "components/home/Partners";
+
+const content = {
+  heroTitle:
+    "A pioneer civic-tech enterprise providing humane data and technology solutions to businessnes, governments, development partners and the civil society",
+};
+
+const useStyles = makeStyles((theme) => ({
+  hero: {
+    position: "relative",
+    height: 708,
+    background: theme.palette.grey[100],
+    paddingTop: "7.78rem",
+    paddingBottom: "7.78rem",
+  },
+  heroTitleContainer: {
+    width: "72%",
+  },
+  heroTitle: {
+    color: theme.palette.grey[900],
+    fontFamily: "Manrope",
+    fontSize: "48px",
+    fontWeight: 300,
+    lineHeight: "72px",
+  },
+  heroTitleHighlight: {
+    fontFamily: "Manrope",
+    fontSize: "48px",
+    fontWeight: 700,
+    lineHeight: "72px",
+  },
+  heroImg: {
+    position: "absolute",
+    top: 0,
+    right: 0,
+  },
+  heroImageFill: {
+    position: "relative",
+    height: 708,
+    width: 620,
+  },
+}));
 
 export default function Home() {
+  const classes = useStyles();
+
   return (
     <div>
+    <Hero />
+    <Partners />
       <div className={styles.container}>
         <Head>
           <title>Kathmandu Living Labs</title>
