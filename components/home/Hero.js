@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import clsx from "clsx";
 import { uid } from "react-uid";
 import Image from "next/image";
@@ -79,6 +80,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Hero = () => {
+  const router = useRouter();
   const classes = useStyles();
   return (
     <div className={classes.hero}>
@@ -87,7 +89,6 @@ const Hero = () => {
           <Typography variant="h2" className={classes.heroTitle}>
             A{" "}
             <Typography
-              variant="h2"
               className={classes.heroTitleHighlight}
               color="primary"
               display="inline"
@@ -112,6 +113,7 @@ const Hero = () => {
                 )}
               />
             }
+            onClick={() => router.push("/our-projects")}
           >
             <div className={classes.buttonTitleCtr}>
               <Typography className={classes.buttonTitle}>
@@ -134,6 +136,7 @@ const Hero = () => {
             layout="fill"
             objectFit="cover"
             alt="KLL"
+            priority
           />
         </div>
       </div>

@@ -18,7 +18,10 @@ const useStyles = makeStyles((theme) => ({
     border: "none",
     boxShadow: "none",
     borderRadius: 0,
-    background: 'inherit'
+    background: 'inherit',
+    '&:hover': {
+        background: 'none',
+    },
   },
   media: {
     width: "inherit",
@@ -63,6 +66,9 @@ const useStyles = makeStyles((theme) => ({
     padding: 0,
     color: "#F8FAFC",
   },
+  focusCard: {
+    background: 'none'
+  }
 }));
 
 export default function MediaCard() {
@@ -71,7 +77,7 @@ export default function MediaCard() {
 
   return (
     <Card className={classes.root} onClick={() => router.push('/blog/asdasd')}>
-      <CardActionArea>
+      <CardActionArea classes={{focusVisible: classes.focusCard, focusHighlight: classes.focusCard}}>
         <CardMedia
           className={classes.media}
           image="/Rectangle32.png"

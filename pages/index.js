@@ -1,12 +1,19 @@
 import Head from "next/head";
 import Link from "next/link";
 import Image from "next/image";
+import { uid } from "react-uid";
 import { makeStyles } from "@material-ui/core/styles";
 import { Typography, Container } from "@material-ui/core";
 import styles from "../styles/Home.module.css";
 import Hero from "components/home/Hero";
 import Partners from "components/home/Partners";
 import WhoAreWe from "components/home/WhoAreWe";
+import OurWork from "components/home/OurWork";
+import SdgCommitment from "components/our-projects/SdgCommitment";
+import OurInsights from "components/home/OurInsights";
+import FeaturedIn from "components/home/FeaturedIn";
+import OurTeam from "components/home/OurTeam";
+
 
 const content = {
   heroTitle:
@@ -63,6 +70,11 @@ export default function Home() {
         <Hero />
         <Partners />
         <WhoAreWe />
+        <OurWork />
+        <SdgCommitment />
+        <OurInsights />
+        <FeaturedIn />
+        <OurTeam />
         <div className={styles.container}>
           <main className={styles.main}>
             <h1 className={styles.title}>

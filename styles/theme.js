@@ -16,7 +16,7 @@ const borderColor = "rgba(0, 0, 0, 0.13)";
 
 // breakpoints
 const xl = 1920;
-const lg = 1440;
+const lg = 1460;
 const md = 960;
 const sm = 600;
 const xs = 0;
@@ -192,6 +192,7 @@ const theme = createTheme({
     },
     h3: {
       // color: 'rgba(255,255,255)',
+      fontFamily: 'Manrope',
       fontSize: "2.22rem",
       fontWeight: "700",
       lineHeight: 1.2,
