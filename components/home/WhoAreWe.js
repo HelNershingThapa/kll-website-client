@@ -66,10 +66,23 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     gap: "6rem",
     alignItems: "center",
+    position: "relative",
+  },
+  imageCtr: {
+    position: "absolute",
+    left: 0,
+    top: 0,
   },
   imgFill: { position: "relative", height: 900, width: 600 },
+  contentCtr: {
+    display: "flex",
+    justifyContent: "flex-end",
+  },
   content: {
     width: 972,
+    height: 900,
+    display: "flex",
+    alignItems: "center",
   },
   title: {
     fontFamily: "Manrope",
@@ -181,66 +194,81 @@ const Partners = () => {
 
   return (
     <div className={classes.container}>
-      <div className={classes.imgFill}>
-        <Image src="/whoarewe.png" layout="fill" objectFit="cover" alt="" />
-      </div>
-      <div className={classes.content}>
-        <Typography variant="h3" className={classes.title}>
-          {" "}
-          {`Who are we?`}
-        </Typography>
-        <div className={classes.paragraphs}>
-          <Typography variant="h6" component="p">
-            Kathmandu Living Labs is a pioneer civic-tech enterprise that
-            provides data and technology solutions to businesses, governments,
-            development partners, and civil society.{" "}
-          </Typography>
-          <Typography variant="h6" component="p">
-            KLL was established to challenge the status quo of the knowledge
-            production paradigm, in which a vast majority of the people in the
-            world are excluded. It aims to bridge that gap and bring the voices
-            and needs of the people on ground and resolve some of the pressing
-            issues using technological innovation and deep immersion in
-            communities.
-          </Typography>
+      <div className={classes.imageCtr}>
+        <div className={classes.imgFill}>
+          <Image src="/whoarewe.png" layout="fill" objectFit="cover" alt="" />
         </div>
-        <div className={classes.kllInNumbers}>
-          <Typography variant="h5">KLL in numbers</Typography>
-          <TableContainer className={classes.tableCtr}>
-            <Table
-              className={classes.table}
-              aria-label="simple table"
-              style={{ tableLayout: "fixed" }}
-            >
-              <TableBody className={classes.tableBody}>
-                {result.map((row) => (
-                  <TableRow key={uid(row)} className={classes.tableRow}>
-                    {row.map((stat) => (
-                      <TableCell key={uid(stat)} className={classes.tableCell}>
-                        <div key={uid(stat)} className={classes.stat}>
-                          <Typography variant="body1" className={classes.name}>
-                            {stat.name}
-                          </Typography>
-                          <Typography variant="h5" className={classes.value}>
-                            {stat.value}
-                          </Typography>
-                        </div>
-                      </TableCell>
+      </div>
+      <Container maxWidth="lg" className={classes.contentCtr}>
+        <div className={classes.content}>
+          <div>
+            <Typography variant="h3" className={classes.title}>
+              {" "}
+              {`Who are we?`}
+            </Typography>
+            <div className={classes.paragraphs}>
+              <Typography variant="h6" component="p">
+                Kathmandu Living Labs is a pioneer civic-tech enterprise that
+                provides data and technology solutions to businesses,
+                governments, development partners, and civil society.{" "}
+              </Typography>
+              <Typography variant="h6" component="p">
+                KLL was established to challenge the status quo of the knowledge
+                production paradigm, in which a vast majority of the people in
+                the world are excluded. It aims to bridge that gap and bring the
+                voices and needs of the people on ground and resolve some of the
+                pressing issues using technological innovation and deep
+                immersion in communities.
+              </Typography>
+            </div>
+            <div className={classes.kllInNumbers}>
+              <Typography variant="h5">KLL in numbers</Typography>
+              <TableContainer className={classes.tableCtr}>
+                <Table
+                  className={classes.table}
+                  aria-label="simple table"
+                  style={{ tableLayout: "fixed" }}
+                >
+                  <TableBody className={classes.tableBody}>
+                    {result.map((row) => (
+                      <TableRow key={uid(row)} className={classes.tableRow}>
+                        {row.map((stat) => (
+                          <TableCell
+                            key={uid(stat)}
+                            className={classes.tableCell}
+                          >
+                            <div key={uid(stat)} className={classes.stat}>
+                              <Typography
+                                variant="body1"
+                                className={classes.name}
+                              >
+                                {stat.name}
+                              </Typography>
+                              <Typography
+                                variant="h5"
+                                className={classes.value}
+                              >
+                                {stat.value}
+                              </Typography>
+                            </div>
+                          </TableCell>
+                        ))}
+                      </TableRow>
                     ))}
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </TableContainer>
+                  </TableBody>
+                </Table>
+              </TableContainer>
+            </div>
+            <Button
+              variant="outlined"
+              classes={{ root: classes.btnRoot, label: classes.btnLabel }}
+              onClick={() => router.push("/about-us")}
+            >
+              Learn More About Us
+            </Button>
+          </div>
         </div>
-        <Button
-          variant="outlined"
-          classes={{ root: classes.btnRoot, label: classes.btnLabel }}
-          onClick={() => router.push("/about-us")}
-        >
-          Learn More About Us
-        </Button>
-      </div>
+      </Container>
     </div>
   );
 };

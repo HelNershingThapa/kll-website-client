@@ -60,6 +60,9 @@ const useStyles = makeStyles((theme) => ({
   },
   project2: {
     gridColumn: "3/4",
+    "& h4": {
+      width: 489,
+    }
   },
   project3: {
     gridColumn: "1/2",
@@ -72,6 +75,9 @@ const useStyles = makeStyles((theme) => ({
   project5: {
     gridColumn: "2/4",
     gridRow: "3/4",
+    "& h4": {
+      width: 423,
+    }
   },
 }));
 
