@@ -188,13 +188,13 @@ const theme = createTheme({
       // color: 'rgba(255,255,255)',
       fontSize: "2.67rem",
       fontWeight: "700",
-      lineHeight: "3rem",
+      lineHeight: 1.125,
     },
     h3: {
       // color: 'rgba(255,255,255)',
       fontSize: "2.22rem",
       fontWeight: "700",
-      lineHeight: "4rem",
+      lineHeight: 1.2,
     },
     h4: {
       fontFamily: 'Manrope',
