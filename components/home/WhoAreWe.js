@@ -102,6 +102,7 @@ const useStyles = makeStyles((theme) => ({
   },
   kllInNumbers: {
     background: theme.palette.grey[100],
+    borderRadius: theme.spacing(2),
     marginBottom: theme.spacing(15),
     padding: theme.spacing(8),
     "& h5": {
@@ -138,6 +139,9 @@ const useStyles = makeStyles((theme) => ({
       "& td:first-child": {
         paddingLeft: 0,
       },
+      "& td:not(:first-child)": {
+        // paddingLeft: '109px',
+      },
     },
     "& tr:first-child": {
       "& td": {
@@ -146,15 +150,15 @@ const useStyles = makeStyles((theme) => ({
     },
     "& tr:not(:first-child)": {
       "& td:not(:first-child)": {
-        paddingLeft: "15px",
+        // paddingLeft: "15px",
       },
     },
     "& tr:not(:first-child):not(:last-child)": {
       "& td": {
         paddingTop: theme.spacing(8),
         paddingBottom: theme.spacing(8),
-        display: "grid",
-        placeContent: "center",
+        // display: "grid",
+        // placeContent: "center",
       },
     },
     "& tr:last-child": {
@@ -163,6 +167,10 @@ const useStyles = makeStyles((theme) => ({
         borderBottom: "none",
       },
     },
+  },
+  stat: {
+    display: 'flex',
+    flexDirection: 'column'
   },
   name: {
     fontSize: "18px",
@@ -241,12 +249,14 @@ const Partners = () => {
                               <Typography
                                 variant="body1"
                                 className={classes.name}
+                                display="inline"
                               >
                                 {stat.name}
                               </Typography>
                               <Typography
                                 variant="h5"
                                 className={classes.value}
+                                display="inline"
                               >
                                 {stat.value}
                               </Typography>

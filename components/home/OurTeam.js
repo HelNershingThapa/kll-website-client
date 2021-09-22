@@ -39,7 +39,6 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.grey[800]
   },
   meetBtn: {
-    textTransform: "none",
     padding: theme.spacing(4, 14.625),
   },
   meetBtnLabel: {

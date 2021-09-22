@@ -49,8 +49,8 @@ const useStyles = makeStyles((theme) => ({
     display: "grid",
     // gridTemplateColumns: "860px 540px",
     // gridTemplateColumns: "540px 320px 540px",
-    gridTemplateColumns: "1.6875fr 1fr 1.6875fr",
-
+    gridTemplateColumns: "1fr 0.57fr 1.0384fr",
+    // gridTemplateColumns: "4.83frfr 2.33fr 4.83fr",
     gridTemplateRows: "620px 500px 500px",
     gridGap: theme.spacing(10),
     marginTop: theme.spacing(15),
