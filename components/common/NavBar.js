@@ -20,19 +20,24 @@ import { Drawer } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
 import CloseIcon from "@material-ui/icons/Close";
 import LiveHelpIcon from "@material-ui/icons/LiveHelp";
+import Tooltip from "@material-ui/core/Tooltip";
 import { primary } from "../../styles/theme";
 import logo from "public/kll-logo.svg";
 // import { FormattedMessage } from 'react-intl';
 // import messages from './messages';
+import RichTooltip from "./RichTooltip";
+import PopoverContent from "./PopoverContent";
 
 const menuItems = [
   {
     name: "Who we are",
     link: "/whoweare",
+    subMenus: true,
+    identifier: "whoweare",
   },
   {
     name: "Impact",
-    link: "/impact",
+    link: "/our-projects",
   },
   {
     name: "Showcase",
@@ -41,10 +46,14 @@ const menuItems = [
   {
     name: "Insights",
     link: "/insights",
+    subMenus: true,
+    identifier: "insights",
   },
   {
     name: "Get Involved",
     link: "/get-involved",
+    subMenus: true,
+    identifier: "get-involved",
   },
 ];
 
@@ -88,12 +97,20 @@ const useStyles = makeStyles((theme) => ({
   blackList: {
     height: "100%",
   },
+  menuItem: {
+    fontWeight: 500,
+    lineHeight: "18px",
+    color: theme.palette.grey[900],
+  },
   menuLink: {
     textDecoration: "none",
     color: "black",
-    "&:hover": {
-      textDecoration: "underline",
-    },
+    display: "flex",
+    gap: "12.23px",
+    alignItems: "center",
+    // "&:hover": {
+    //   textDecoration: "underline",
+    // },
   },
   noDecoration: {
     textDecoration: "none",
@@ -101,7 +118,8 @@ const useStyles = makeStyles((theme) => ({
   menuItemsContainer: {
     display: "flex",
     alignItems: "center",
-    gap: "2.5rem",
+    gap: theme.spacing(15),
+
   },
   menuItemContainerMobile: {
     display: "flex",
@@ -119,6 +137,7 @@ const useStyles = makeStyles((theme) => ({
     // textDecoration: 'underline',
   },
   contactUs: {
+    marginLeft: theme.spacing(5),
     padding: "12px 24px",
     lineHeight: "0.89rem",
     fontSize: "0.89rem",
@@ -129,6 +148,11 @@ const useStyles = makeStyles((theme) => ({
     height: 46,
     width: 42,
   },
+  tooltip: {
+    background: "#fff",
+    borderRadius: "12px",
+    padding: "24px 20px",
+  },
 }));
 
 function NavBar({}) {
@@ -136,6 +160,8 @@ function NavBar({}) {
   const location = useRouter();
 
   const [open, setOpen] = useState(false);
+  const [openedPopoverId, setOpenedPopoverId] = useState(null);
+  const [popoverOpen, setPopoverOpen] = useState(false);
 
   const onClose = () => {
     setOpen(false);
@@ -147,6 +173,10 @@ function NavBar({}) {
     const splitUrl = url.split("/");
     if (splitLocation[1] === splitUrl[1]) return true;
     return false;
+  };
+
+  const handlePopoverOpen = (popoverId) => {
+    setOpenedPopoverId(popoverId);
   };
 
   return (
@@ -194,10 +224,60 @@ function NavBar({}) {
 
             <Hidden smDown>
               <div className={classes.menuItemsContainer}>
-                {menuItems.map((menuItem) => (
-                  <Link key={uid(menuItem)} href="#">
-                    <a className={classes.menuLink}>{menuItem.name}</a>
-                  </Link>
+                {menuItems.map((menuItem, index) => (
+                  <>
+                    {menuItem.subMenus ? (
+                      <RichTooltip
+                        key={uid(menuItem)}
+                        content={
+                          <PopoverContent identifier={menuItem.identifier} />
+                        }
+                        open={openedPopoverId === index}
+                        placement="bottom-start"
+                        onClose={() => setPopoverOpen(false)}
+                        handlePopoverOpen={handlePopoverOpen}
+                        popoverLeave={() => setOpenedPopoverId(null)}
+                        index={index}
+                        setOpenedPopoverId={setOpenedPopoverId}
+                      >
+                        <div
+                          style={{ display: "flex" }}
+                          onMouseEnter={() => handlePopoverOpen(index)}
+                          onMouseLeave={() => setOpenedPopoverId(null)}
+                        >
+                          <Typography
+                            variant="body1"
+                            className={classes.menuItem}
+                            style={{
+                              display: "flex",
+                              gap: "12.23px",
+                              alignItems: "center",
+                            }}
+                          >
+                            {menuItem.name}
+                            {menuItem.subMenus && (
+                              <i className="ri-arrow-down-s-line" />
+                            )}
+                          </Typography>
+                        </div>
+                      </RichTooltip>
+                    ) : (
+                      <Link href={menuItem.link}>
+                        <Typography
+                          variant="body1"
+                          className={classes.menuItem}
+                          style={{
+                            display: "flex",
+                            gap: "12.23px",
+                            alignItems: "center",
+                            cursor: "pointer",
+                          }}
+                        >
+                          {menuItem.name}
+                        </Typography>
+                      </Link>
+                    )}
+                  </>
                 ))}
                 <Button
                   className={classes.contactUs}
