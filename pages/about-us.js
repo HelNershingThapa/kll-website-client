@@ -8,6 +8,8 @@ import { spacing } from "@material-ui/system";
 import Box from "@material-ui/core/Box";
 import styles from "../styles/AboutUs.module.css";
 import abousUsImg from "public/about-us-header.png";
+import HowWeBegan from "components/about-us/HowWeBegan";
+import OurTeam from "components/home/OurTeam";
 
 const stats = [
   {
@@ -46,12 +48,6 @@ const values = [
     icon: "work4.svg",
   },
 ];
-
-const mission = {
-  title: "Our Mission",
-  desc:
-    "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-};
 
 const useStyles = makeStyles((theme) => ({
   pageTitle: {
@@ -127,16 +123,6 @@ const useStyles = makeStyles((theme) => ({
     width: 476,
     height: 583,
   },
-  historyContainer: {
-    marginTop: theme.spacing(12),
-  },
-  historyDescription: {
-    fontSize: "24px",
-    fontWeight: 400,
-    lineHeight: "40px",
-    color: theme.palette.grey[800],
-    marginTop: theme.spacing(5),
-  },
   header: {
     fontFamily: "Manrope",
     fontSize: "32px",
@@ -150,11 +136,6 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
     gap: theme.spacing(15),
   },
-  valuesContainer: {
-    display: "flex",
-    justifyContent: "space-between",
-    marginTop: theme.spacing(20),
-  },
   value: {
     background: "grey",
     display: "flex",
@@ -163,64 +144,9 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
     background: "#F0F5F9",
   },
-  valueTitle: {
-    fontFamily: "Manrope",
-    fontSize: "20px",
-    fontWeight: 700,
-    lineHeight: "32px",
-    color: theme.palette.grey[700],
-  },
-  valueDescription: {
-    marginTop: theme.spacing(3),
-    fontSize: "16px",
-    fontWeight: 400,
-    lineHeight: "24px",
-    color: theme.palette.grey[700],
-  },
-  missionContainer: {
-    marginTop: theme.spacing(20),
-    display: "flex",
-    justifyContent: "space-between",
-  },
-  missionDescription: {
-    width: "768px",
-    fontSize: "24px",
-    fontWeight: 400,
-    lineHeight: "40px",
-    color: theme.palette.grey[800],
-  },
-  tableCaption: {
-    display: "table-caption",
-  },
-  teamCount: {
-    display: "flex",
-    justifyContent: "center",
-    background: "#E1E8F0",
-    gap: "1rem",
-    alignItems: "center",
-    paddingTop: theme.spacing(20),
-    paddingBottom: theme.spacing(20),
-    marginTop: theme.spacing(25),
-  },
-  teamNumber: {
-    fontFamily: "Manrope",
-    fontSize: "200px",
-    fontWeight: 800,
-    lineHeight: "200px",
-  },
-  learnTeam: {
-    width: "338px",
-    marginTop: theme.spacing(3),
-    marginBottom: theme.spacing(4),
-  },
-  meetBtn: {
-    textTransform: "none",
-    padding: theme.spacing(4, 14.625),
-  },
-  meetBtnLabel: {
-    fontSize: "16px",
-    lineHeight: "16px",
-  },
+
+
+
   imgFill: {
     position: "relative",
     width: "100%",
@@ -317,123 +243,10 @@ function AboutUs() {
               </div>
             </div>
           </div>
-
-          <div className={classes.historyContainer}>
-            <Typography variant="h6" className={classes.header}>
-              Our History
-            </Typography>
-            <Typography className={classes.historyDescription}>
-              The foundations for KLL were laid in a project that predates KLL.
-              In 2012/2013, we created an open database of schools and hospitals
-              in Kathmandu valley. The data would be used by the World Bank for
-              assessing earthquake vulnerability of these buildings, but because
-              that data was open, it could potentially be used by any other
-              individuals or institutions for any purpose they deem fit. KLL was
-              later formed by these team members because we believed such ‘work
-              once, and put to multiple creative uses’ should be the new,
-              effective model of development.
-            </Typography>
-          </div>
-
-          <div className={classes.valuesContainer}>
-            <div>
-              <Typography
-                variant="h6"
-                className={clsx(classes.header, classes.tableCaption)}
-              >
-                Our Values
-              </Typography>
-            </div>
-            <div
-              style={{
-                display: "grid",
-                gridTemplateColumns: "1fr 1fr",
-                gap: "8px",
-                width: "768px",
-              }}
-            >
-              {values.map((value) => (
-                <div key={uid(value)} className={classes.value}>
-                  <Image
-                    src={`/icons/${value.icon}`}
-                    height={100}
-                    width={100}
-                    alt="KLL values"
-                  />
-                  <div style={{ width: "220px" }}>
-                    <Typography className={classes.valueTitle}>
-                      {value.title}
-                    </Typography>
-                    <Typography className={classes.valueDescription}>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                      sed do eiusmod
-                    </Typography>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-          {/* Values Ends */}
-
-          {/* Mission Starts*/}
-          <div className={classes.missionContainer}>
-            <div>
-              <Typography
-                variant="h6"
-                className={clsx(classes.header, classes.tableCaption)}
-              >
-                {mission.title}
-              </Typography>
-            </div>
-            <Typography className={classes.missionDescription} variant="body1">
-              {mission.desc}
-            </Typography>
-          </div>
-          {/* Mission Ends */}
         </div>
       </Container>
 
-      <div className={classes.teamCount}>
-        <div>
-          <div
-            styles={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-            }}
-          >
-            <Typography
-              variant="h1"
-              className={clsx(classes.teamNumber, styles.teamCount)}
-            >
-              16
-            </Typography>
-            <Typography variant="body1" style={{ color: "#304254" }}>
-              awesome people at KLL
-            </Typography>
-          </div>
-        </div>
-        <div>
-          <Typography className={classes.header} style={{ color: "#304254" }}>
-            Our Team
-          </Typography>
-          <Typography
-            variant="body1"
-            style={{ color: "#1C2A3A" }}
-            className={classes.learnTeam}
-          >
-            Learn about our awesome team of people at Kathmandu Living Labs
-          </Typography>
-          <Button
-            disableElevation
-            variant="contained"
-            color="primary"
-            classes={{ root: classes.meetBtn, label: classes.meetBtnLabel }}
-          >
-            Meet the Team
-          </Button>
-        </div>
-      </div>
+      <OurTeam />
     </>
   );
 }
