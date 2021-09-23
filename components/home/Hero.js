@@ -69,7 +69,7 @@ const useStyles = makeStyles((theme) => ({
     gap: theme.spacing(2),
   },
   endIcon: {
-    marginLeft: "18.67px",
+    marginLeft: "18px",
   },
   getInTouch: {
     fontSize: "16px",
@@ -106,7 +106,7 @@ const Hero = () => {
             classes={{ root: classes.button, endIcon: classes.endIcon }}
             endIcon={
               <i
-                style={{ fontSize: "26.67px" }}
+                style={{ fontSize: "32px" }}
                 className={clsx(
                   "ri-arrow-right-circle-line",
                   classes.circleIcon

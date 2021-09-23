@@ -163,7 +163,7 @@ const useStyles = makeStyles((theme) => ({
     height: "1px",
   },
   endIcon: {
-    marginLeft: "10.67px",
+    marginLeft: theme.spacing(2),
   },
   newsletterHeader: {
     fontSize: "16px",
@@ -223,12 +223,7 @@ function Footer() {
             variant="contained"
             color="primary"
             endIcon={
-              <Image
-                src="/icons/ArrowRight.svg"
-                width={10.37}
-                height={10.67}
-                alt="asdasd"
-              />
+              <i style={{ fontSize: "16px" }} className="ri-arrow-right-line" />
             }
           >
             Schedule a Meeting

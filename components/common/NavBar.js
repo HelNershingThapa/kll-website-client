@@ -157,7 +157,7 @@ const useStyles = makeStyles((theme) => ({
 
 function NavBar({}) {
   const classes = useStyles();
-  const location = useRouter();
+  const router = useRouter();
 
   const [open, setOpen] = useState(false);
   const [openedPopoverId, setOpenedPopoverId] = useState(null);
@@ -166,10 +166,10 @@ function NavBar({}) {
   const onClose = () => {
     setOpen(false);
   };
-  const isHomePage = location.pathname === "/";
+  const isHomePage = router.pathname === "/";
 
   const isActiveLink = (url) => {
-    const splitLocation = location.pathname.split("/");
+    const splitLocation = router.pathname.split("/");
     const splitUrl = url.split("/");
     if (splitLocation[1] === splitUrl[1]) return true;
     return false;
@@ -284,6 +284,7 @@ function NavBar({}) {
                   disableElevation
                   variant="contained"
                   color="primary"
+                  onClick={() => router.push('/contact-us')}
                 >
                   Contact Us
                 </Button>

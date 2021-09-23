@@ -90,10 +90,11 @@ const theme = createTheme({
         fontSize: "16px",
         lineHeight: "16px",
       },
+      endIcon: { marginRight: 0 },
     },
     MuiChip: {
       root: {
-        paddingLeft:0,
+        paddingLeft: 0,
         paddingRight: 0,
         padding: "6px 12px",
         borderRadius: "8px",
@@ -101,10 +102,10 @@ const theme = createTheme({
       label: {
         fontSize: "14px",
         fontWeight: 500,
-        color: '#F8FAFC',
+        color: "#F8FAFC",
         padding: 0,
         margin: 0,
-      }
+      },
     },
     MuiExpansionPanel: {
       root: {
@@ -161,9 +162,9 @@ const theme = createTheme({
     },
     MuiBackdrop: {
       root: {
-        backgroundColor: '#0D18294D'
-      }
-    }
+        backgroundColor: "#0D18294D",
+      },
+    },
   },
   props: {
     MuiContainer: {
@@ -195,19 +196,19 @@ const theme = createTheme({
     },
     h3: {
       // color: 'rgba(255,255,255)',
-      fontFamily: 'Manrope',
+      fontFamily: "Manrope",
       fontSize: "2.22rem",
       fontWeight: "700",
       lineHeight: 1.2,
     },
     h4: {
-      fontFamily: 'Manrope',
+      fontFamily: "Manrope",
       fontSize: "1.78rem",
       fontWeight: "700",
       lineHeight: 1.25,
     },
     h5: {
-      fontFamily: 'Manrope',
+      fontFamily: "Manrope",
       fontSize: "1.33rem",
       fontWeight: "700",
       lineHeight: 1.33,
