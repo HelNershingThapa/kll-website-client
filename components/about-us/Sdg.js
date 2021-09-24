@@ -7,12 +7,11 @@ const useStyles = makeStyles((theme) => ({
   root: {
     paddingTop: theme.spacing(20),
     paddingBottom: theme.spacing(25),
-    background: theme.palette.grey[100],
     display: "grid",
     placeContent: "center",
   },
   committment: {
-    width: 700,
+    width: 496,
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
@@ -34,18 +33,19 @@ const useStyles = makeStyles((theme) => ({
   },
   iconFill: {
     position: "relative",
-    width: 240,
-    height: 192,
+    width: 200,
+    height: 159,
+    marginBottom: theme.spacing(10),
   },
   sdgIcons: {
     display: "flex",
-    gap: '25px',
-    flexWrap: 'wrap',
-    justifyContent: 'center'
+    gap: theme.spacing(8),
+    flexWrap: "wrap",
+    justifyContent: "center",
   },
 }));
 
-const SdgCommitment = ({ name, category, src }) => {
+const Sdg = ({ name, category, src }) => {
   const classes = useStyles();
   return (
     <div className={classes.root}>
@@ -53,21 +53,26 @@ const SdgCommitment = ({ name, category, src }) => {
         <div className={classes.iconFill}>
           <Image src="/icons/sdg.png" layout="fill" objectFit="cover" />
         </div>
-        <Typography variant="h4" align="center">
-          Our Commitment
-        </Typography>
-        <Typography
-          variant="h5"
-          align="center"
-        >{`From our inception in 2012, Kathmandu Living Labs has been fully committed to the UN’s Sustainable Development Goals. Our work, over the years, has contributed to the following Sustainable Goals.`}</Typography>
         <div className={classes.sdgIcons}>
-          {["01", "02", "03", "07", "08", "12", "13", "14"].map((icon) => (
+          {[
+            "03",
+            "04",
+            "06",
+            "07",
+            "08",
+            "10",
+            "11",
+            "13",
+            "15",
+            "16",
+            "17",
+          ].map((icon) => (
             <div
               key={uid(icon)}
               style={{
                 position: "relative",
-                width: 120,
-                height: 120,
+                width: 100,
+                height: 100,
                 mixBlendMode: "luminosity",
               }}
             >
@@ -75,7 +80,7 @@ const SdgCommitment = ({ name, category, src }) => {
                 src={`/sdg/E-WEB-Goal-${icon}.png`}
                 layout="fill"
                 objectFit="cover"
-                alt="SDG icons"
+                alt="SDG icon"
               />
             </div>
           ))}
@@ -85,4 +90,4 @@ const SdgCommitment = ({ name, category, src }) => {
   );
 };
 
-export default SdgCommitment;
+export default Sdg;

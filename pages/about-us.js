@@ -11,6 +11,7 @@ import abousUsImg from "public/about-us-header.png";
 import HowWeBegan from "components/about-us/HowWeBegan";
 import OurTeam from "components/home/OurTeam";
 import Footprint from "components/about-us/Footprint";
+import Sdg from "components/about-us/Sdg";
 
 const stats = [
   {
@@ -243,6 +244,7 @@ function AboutUs() {
             </div>
           </div>
           <Footprint />
+          <Sdg />
         </div>
       </Container>
 
