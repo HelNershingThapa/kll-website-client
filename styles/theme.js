@@ -15,11 +15,16 @@ const borderWidth = 1;
 const borderColor = "rgba(0, 0, 0, 0.13)";
 
 // breakpoints
+// const xl = 1440;
+// const lg = 1280;
+// const md = 992;
+// const sm = 768;
+// const xs = 478;
 const xl = 1920;
-const lg = 1440;
-const md = 960;
-const sm = 600;
-const xs = 0;
+const lg = 1464;
+const md = 1280;
+const sm = 992;
+const xs = 768;
 
 // spacing
 const spacing = 4;
@@ -65,11 +70,11 @@ const theme = createTheme({
     // theme breakpoint functions `up`, `down`, and `between` to create
     // media queries for these breakpoints
     values: {
-      xl,
-      lg,
-      md,
-      sm,
       xs,
+      sm,
+      md,
+      lg,
+      xl,
     },
   },
   border: {
@@ -168,7 +173,7 @@ const theme = createTheme({
   },
   props: {
     MuiContainer: {
-      disableGutters: true,
+      // disableGutters: true,
     },
     MuiButton: {
       disableElevation: true,

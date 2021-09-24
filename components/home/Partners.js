@@ -37,7 +37,7 @@ const Partners = () => {
   const classes = useStyles();
 
   return (
-    <Container maxWidth="lg">
+    <Container fixed>
       <div className={classes.container}>
         <Typography variant="body1" align="center" className={classes.title}>
           We’ve partnered with

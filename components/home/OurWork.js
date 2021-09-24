@@ -50,7 +50,7 @@ const Partners = () => {
 
   return (
     <div className={classes.container}>
-      <Container maxWidth="lg">
+      <Container fixed>
         <Typography variant="h3" className={classes.title}>
           Our Work
         </Typography>

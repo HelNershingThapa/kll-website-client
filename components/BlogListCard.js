@@ -14,7 +14,7 @@ import blogImg from "public/Rectangle32.png";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    width: 470,
+    width: '100%',
     border: "none",
     boxShadow: "none",
     borderRadius: 0,

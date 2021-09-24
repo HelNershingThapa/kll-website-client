@@ -8,7 +8,7 @@ import BlogListCard from "components/BlogListCard";
 import BlogBackground from "../../public/blog-bg.png";
 
 const useStyles = makeStyles((theme) => ({
-  container: {
+  root: {
     paddingTop: theme.spacing(15),
     paddingBottom: theme.spacing(15),
     position: "relative",
@@ -43,17 +43,20 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: theme.spacing(12),
   },
   blogListContainer: {
-    display: "flex",
-    justifyContent: "space-between",
+    display: "grid",
+    gridTemplateColumns: "repeat(3, 1fr)",
+    columnGap: "15px",
+  },
+  btnCtr: {
+
   },
   btnRoot: {
     position: "absolute",
-    left: 0,
-    right: 0,
-    marginLeft: 'auto',
-    marginRight: 'auto',
-    transform: "translate(0%, 50%)",
-    padding: '14px 32px'
+    left: '50%',
+    bottom: 0,
+    transform: "translate(-50%, 50%)",
+    padding: "14px 32px",
+    background: '#fff'
   },
 }));
 
@@ -63,8 +66,8 @@ const Partners = () => {
 
   return (
     <>
-      <div className={classes.container}>
-        <Container maxWidth="lg">
+      <div className={classes.root}>
+        <Container fixed>
           <Typography
             align="center"
             variant="subtitle2"
@@ -81,10 +84,15 @@ const Partners = () => {
             ))}
           </div>
         </Container>
-
-        <Button variant="outlined" classes={{ root: classes.btnRoot }} onClick={() => router.push('/blog')}>
-          More at our blog{" "}
-        </Button>
+        <div className={classes.btnCtr}>
+          <Button
+            variant="outlined"
+            classes={{ root: classes.btnRoot }}
+            onClick={() => router.push("/blog")}
+          >
+            More at our blog{" "}
+          </Button>
+        </div>
       </div>
     </>
   );
