@@ -1,4 +1,5 @@
 import React from "react";
+import clsx from "clsx";
 import { uid } from "react-uid";
 import { makeStyles } from "@material-ui/core/styles";
 import Image from "next/image";
@@ -125,6 +126,18 @@ const useStyles = makeStyles((theme) => ({
   requirementsCtr: {
     marginTop: theme.spacing(2),
   },
+  btnIcon: {
+    fontSize: "32px",
+  },
+  closeBtn: {
+    position: "absolute",
+    top: "90px",
+    left: 0,
+    transform: "translate(-50%, 0)",
+    padding: "14px",
+    borderRadius: "50%",
+    boxShadow: "10px 10px 40px rgba(13, 24, 41, 0.2)",
+  },
   // "@global": {
   //   "*::-webkit-scrollbar": {
   //     width: "8px",
@@ -200,6 +213,13 @@ export default function FullScreenDialog() {
               >
                 Apply Now
               </Button>
+              <IconButton
+                aria-label="delete"
+                className={classes.closeBtn}
+                onClick={() => handleClose()}
+              >
+                <i className={clsx("ri-arrow-left-line", classes.btnIcon)} />
+              </IconButton>
             </div>
             <Divider className={classes.divider} />
           </div>
