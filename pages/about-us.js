@@ -10,6 +10,7 @@ import styles from "../styles/AboutUs.module.css";
 import abousUsImg from "public/about-us-header.png";
 import HowWeBegan from "components/about-us/HowWeBegan";
 import OurTeam from "components/home/OurTeam";
+import Footprint from "components/about-us/Footprint";
 
 const stats = [
   {
@@ -145,8 +146,6 @@ const useStyles = makeStyles((theme) => ({
     background: "#F0F5F9",
   },
 
-
-
   imgFill: {
     position: "relative",
     width: "100%",
@@ -243,6 +242,7 @@ function AboutUs() {
               </div>
             </div>
           </div>
+          <Footprint />
         </div>
       </Container>
 

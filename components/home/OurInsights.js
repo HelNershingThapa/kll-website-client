@@ -46,17 +46,18 @@ const useStyles = makeStyles((theme) => ({
     display: "grid",
     gridTemplateColumns: "repeat(3, 1fr)",
     columnGap: "15px",
-  },
-  btnCtr: {
-
+    [theme.breakpoints.only("xs")]: {
+      gridTemplateColumns: "repeat(1, 1fr)",
+      rowGap: theme.spacing(8),
+    },
   },
   btnRoot: {
     position: "absolute",
-    left: '50%',
+    left: "50%",
     bottom: 0,
     transform: "translate(-50%, 50%)",
     padding: "14px 32px",
-    background: '#fff'
+    background: "#fff",
   },
 }));
 
@@ -84,15 +85,13 @@ const Partners = () => {
             ))}
           </div>
         </Container>
-        <div className={classes.btnCtr}>
-          <Button
-            variant="outlined"
-            classes={{ root: classes.btnRoot }}
-            onClick={() => router.push("/blog")}
-          >
-            More at our blog{" "}
-          </Button>
-        </div>
+        <Button
+          variant="outlined"
+          classes={{ root: classes.btnRoot }}
+          onClick={() => router.push("/blog")}
+        >
+          More at our blog{" "}
+        </Button>
       </div>
     </>
   );

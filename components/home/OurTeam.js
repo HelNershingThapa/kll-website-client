@@ -22,7 +22,6 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
     paddingTop: theme.spacing(20),
     paddingBottom: theme.spacing(20),
-    marginTop: theme.spacing(25),
   },
   teamNumber: {
     fontFamily: "Manrope",

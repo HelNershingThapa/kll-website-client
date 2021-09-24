@@ -23,8 +23,8 @@ const borderColor = "rgba(0, 0, 0, 0.13)";
 const xl = 1920;
 const lg = 1464;
 const md = 1280;
-const sm = 992;
-const xs = 768;
+const sm = 768;
+const xs = 0;
 
 // spacing
 const spacing = 4;
@@ -82,6 +82,14 @@ const theme = createTheme({
     borderWidth: borderWidth,
   },
   overrides: {
+    MuiContainer: {
+      root: {
+        [`@media (max-width:  ${sm}px)`]: {
+          paddingLeft: spacing * 4,
+          paddingRight: spacing * 4,
+        },
+      },
+    },
     MuiButton: {
       root: {
         textTransform: "none",

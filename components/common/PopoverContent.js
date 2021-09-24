@@ -51,7 +51,7 @@ const getInvolvedMenus = [
   },
   {
     title: "Join the OSM Movement",
-    link: "/work-with-us",
+    link: "/resources",
     img: "/get-involved-2.png",
     description:
       "We’re always on the lookout for new talents. See what opportunities we have for you.",
