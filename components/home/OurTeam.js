@@ -6,6 +6,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { Typography, Container, Button } from "@material-ui/core";
 import ProjectsGrid from "components/our-projects/ProjectsGrid";
 import styles from "../../styles/AboutUs.module.css";
+
 const useStyles = makeStyles((theme) => ({
   header: {
     fontFamily: "Manrope",
@@ -17,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
   teamCount: {
     display: "flex",
     justifyContent: "center",
-    background: "#E1E8F0",
+    background: theme.palette.grey[100],
     gap: "67px",
     alignItems: "center",
     paddingTop: theme.spacing(20),

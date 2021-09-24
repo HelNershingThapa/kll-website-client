@@ -12,6 +12,7 @@ import HowWeBegan from "components/about-us/HowWeBegan";
 import OurTeam from "components/home/OurTeam";
 import Footprint from "components/about-us/Footprint";
 import Sdg from "components/about-us/Sdg";
+import Values from "components/about-us/Values";
 
 const stats = [
   {
@@ -247,7 +248,8 @@ function AboutUs() {
           <Sdg />
         </div>
       </Container>
-
+      <HowWeBegan />
+      <Values />
       <OurTeam />
     </>
   );
