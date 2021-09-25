@@ -145,8 +145,8 @@ const useStyles = makeStyles((theme) => ({
   imgFill: {
     cursor: "pointer",
     position: "relative",
-    height: 46,
-    width: 42,
+    height: 48,
+    width: 48,
   },
   tooltip: {
     background: "#fff",
@@ -203,7 +203,7 @@ function NavBar({}) {
               <Link href="/">
                 <div className={classes.imgFill}>
                   <Image
-                    src={logo}
+                    src="/kll-logos/kll-logo-default.svg"
                     layout="fill"
                     objectFit="cover"
                     alt="Picture of the author"

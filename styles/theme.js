@@ -33,6 +33,19 @@ const theme = createTheme({
   palette: {
     primary: { main: primary },
     secondary: { main: secondary },
+    blue: {
+      main: "#F3F6FD",
+      50: "#F3F6FD",
+      100: "#E8EFFC",
+      200: "#D1DEF8",
+      300: "#A3BDF1",
+      400: "#749CE9",
+      500: "#467BE2",
+      600: "#185ADB",
+      700: "#1145BC",
+      800: "#0C339D",
+      900: "#07237F",
+    },
     common: {
       black,
       darkBlack,
@@ -42,6 +55,7 @@ const theme = createTheme({
       main: warningMain,
       dark: warningDark,
     },
+
     // Used to shift a color's luminance by approximately
     // two indexes within its tonal palette.
     // E.g., shift from Red 500 to Red 300 or Red 700.

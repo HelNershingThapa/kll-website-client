@@ -54,6 +54,10 @@ const useStyles = makeStyles((theme) => ({
     gridTemplateRows: "620px 500px 500px",
     gridGap: theme.spacing(10),
     marginTop: theme.spacing(15),
+    [theme.breakpoints.down("md")]: {
+      // display: 'flex',
+      // flexDirection:'column'
+    },
   },
   project1: {
     gridColumn: "1 / 3",
@@ -62,7 +66,7 @@ const useStyles = makeStyles((theme) => ({
     gridColumn: "3/4",
     "& h4": {
       width: 489,
-    }
+    },
   },
   project3: {
     gridColumn: "1/2",
@@ -77,7 +81,7 @@ const useStyles = makeStyles((theme) => ({
     gridRow: "3/4",
     "& h4": {
       width: 423,
-    }
+    },
   },
 }));
 
