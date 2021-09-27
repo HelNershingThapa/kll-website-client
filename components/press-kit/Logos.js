@@ -52,6 +52,7 @@ const useStyles = makeStyles((theme) => ({
   logos: {
     display: "flex",
     justifyContent: "space-between",
+    alignItems: 'flex-end',
     marginTop: theme.spacing(6),
     flexWrap: 'wrap'
   },
