@@ -263,7 +263,7 @@ const theme = createTheme({
         },
         // small - 14px
         subtitle2: {
-            fontSize: "0.78rem",
+            fontSize: "0.778rem",
             fontWeight: "400",
             lineHeight: "1.1rem",
         },

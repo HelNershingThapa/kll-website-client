@@ -10,7 +10,6 @@ import UpcomingEventCard from "components/events/UpcomingEventCard";
 const useStyles = makeStyles((theme) => ({
   container: {
     position: "relative",
-    width: 960,
     height: 420,
   },
   layover: {
@@ -101,19 +100,14 @@ function Events() {
           <div className={classes.moreInfo}>
             <div className={classes.rendezvous}>
               <div className={classes.rendezvou}>
-                <Image
-                  src="/icons/time-line.svg"
-                  width={13.33}
-                  height={13.33}
-                />
+                <i className="ri-time-line" style={{ fontSize: "16px" }}></i>
                 <Typography variant="body2">09:30 - 17:00</Typography>
               </div>
               <div className={classes.rendezvou}>
-                <Image
-                  src="/icons/map-pin-user-line.svg"
-                  width={12}
-                  height={14.5}
-                />
+                <i
+                  className="ri-map-pin-user-line"
+                  style={{ fontSize: "16px" }}
+                ></i>
                 <Typography variant="body2">
                   Hotel Manasalu, Lazimpat
                 </Typography>

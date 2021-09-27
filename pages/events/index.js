@@ -13,6 +13,8 @@ import {
 } from "@material-ui/core";
 import EventTabs from "components/events/EventTabs";
 import UpcomingEventCard from "components/events/UpcomingEventCard";
+import RecurringEvents from "components/events/RecurringEvents";
+import StayUpdated from "components/events/StayUpdated";
 
 const useStyles = makeStyles((theme) => ({
   pageCtr: {
@@ -33,8 +35,9 @@ const useStyles = makeStyles((theme) => ({
     width: 800,
   },
   wholeContainer: {
-    display: "flex",
-    justifyContent: "space-between",
+    display: "grid",
+    gridTemplateColumns: "2.18fr 1fr",
+    gap: theme.spacing(10),
     marginTop: theme.spacing(8),
     width: "100%",
   },
@@ -43,51 +46,12 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
     gap: theme.spacing(40),
     width: "100%",
+    marginBottom: theme.spacing(40),
   },
   calendarCrossFill: {
     position: "relative",
     width: 80,
     height: 80,
-  },
-  recurringEventsContainer: {
-    padding: theme.spacing(6),
-    background: "#F3F6FD",
-    width: 440,
-    height: "100%",
-    borderRadius: 8,
-  },
-  recurringTitle: {
-    marginTop: theme.spacing(4),
-    fontFamily: "Manrope",
-    fontSize: "20px",
-    fontWeight: 700,
-    lineHeight: "32px",
-    color: theme.palette.grey[900],
-    width: 224,
-  },
-  recurringDescription: {
-    fontSize: "18px",
-    fontWeight: 400,
-    lineHeight: "28px",
-    color: theme.palette.grey[800],
-    marginTop: theme.spacing(4),
-  },
-  divider: {
-    background: "#A3BDF1",
-    marginTop: theme.spacing(5),
-    marginBottom: theme.spacing(5),
-  },
-  recurringLinks: {
-    display: "flex",
-    flexDirection: "column",
-    gap: theme.spacing(3),
-    "& div": {
-      display: "flex",
-      justifyContent: "space-between",
-      "& p": {
-        fontWeight: 500,
-      },
-    },
   },
   nullEventsTitle: {
     marginTop: theme.spacing(10),
@@ -125,11 +89,6 @@ const useStyles = makeStyles((theme) => ({
     lineHeight: "16px",
     color: theme.palette.grey[700],
   },
-  arrowRightIcon: {
-    width: 11.67,
-    height: 12,
-    color: theme.palette.primary.main,
-  },
 }));
 
 function Events() {
@@ -157,88 +116,53 @@ function Events() {
         </Typography>
         <EventTabs value={value} setValue={setValue} />
         <div className={classes.wholeContainer}>
-          <div className={classes.eventsContainer}>
-            {value !== "Past Events" &&
-              ["", "", ""].map((event) => (
+          {value !== "Past Events" && (
+            <div className={classes.eventsContainer}>
+              {["", "", ""].map((event) => (
                 <UpcomingEventCard key={uid(event)} />
               ))}
-            {value === "Past Events" && (
-              <div className={classes.noUpcomingEventsContainer}>
-                <div className={classes.calendarCrossFill}>
-                  <Image
-                    src="/icons/calendar-cross.svg"
-                    alt="calendar cross"
-                    layout="fill"
-                    objectFit="cover"
-                  />
-                </div>
-                <Typography
-                  className={classes.nullEventsTitle}
-                  variant="subtitle2"
-                >
-                  No Events Found
-                </Typography>
-                <Typography
-                  className={classes.nullEventsDescription}
-                  variant="body1"
-                  align="center"
-                >
-                  Sorry! We do not have any events happening at the moment.
-                  Please try visiting this page at a later time. In the
-                  meantime, feel free to explore our past events.
-                </Typography>
-                <Button
-                  classes={{
-                    root: classes.pastEventsBtn,
-                    label: classes.pastEventsBtnLabel,
-                  }}
-                >
-                  Check Out Past Events
-                </Button>
-              </div>
-            )}
-          </div>
-          <div className={classes.recurringEventsContainer}>
-            <div style={{ width: 80, height: 80, position: "relative" }}>
-              <Image
-                src="/icons/calendar.svg"
-                layout="fill"
-                objectFit="cover"
-                alt="calender"
-              />
             </div>
-            <Typography className={classes.recurringTitle}>
-              Recurring Events at Kathmandu Living Labs
-            </Typography>
-            <Typography className={classes.recurringDescription}>
-              Every month, we organize some recurring events for the Mapping
-              Community. You’re welcome to join us during our monthly events to
-              get in touch with us and contribute to the Open Mapping Community
-            </Typography>
-            <Divider className={classes.divider} />
-            <div className={classes.recurringLinks}>
-              <div>
-                <Typography variant="body1" color="primary">
-                  Monthly Mapping Group
-                </Typography>{" "}
+          )}
+          {value === "Past Events" && (
+            <div className={classes.noUpcomingEventsContainer}>
+              <div className={classes.calendarCrossFill}>
                 <Image
-                  src="/icons/arrow-right-blue.svg"
-                  width={11.67}
-                  height={12}
+                  src="/icons/calendar-cross.svg"
+                  alt="calendar cross"
+                  layout="fill"
+                  objectFit="cover"
                 />
               </div>
-              <div>
-                <Typography variant="body1" color="primary">
-                  KLL Monthly News Event
-                </Typography>{" "}
-                <i
-                  className={clsx(
-                    "ri-arrow-right-line",
-                    classes.arrowRightIcon
-                  )}
-                />
-              </div>
+              <Typography
+                className={classes.nullEventsTitle}
+                variant="subtitle2"
+              >
+                No Events Found
+              </Typography>
+              <Typography
+                className={classes.nullEventsDescription}
+                variant="body1"
+                align="center"
+              >
+                Sorry! We do not have any events happening at the moment. Please
+                try visiting this page at a later time. In the meantime, feel
+                free to explore our past events.
+              </Typography>
+              <Button
+                classes={{
+                  root: classes.pastEventsBtn,
+                  label: classes.pastEventsBtnLabel,
+                }}
+              >
+                Check Out Past Events
+              </Button>
             </div>
+          )}
+          <div>
+          <RecurringEvents />
+          </div>
+          <div>
+            <StayUpdated />
           </div>
         </div>
       </Container>
