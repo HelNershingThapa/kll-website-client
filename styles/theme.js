@@ -215,12 +215,14 @@ const theme = createTheme({
         },
         h1: {
             // color: 'rgba(255,255,255)',
+            fontFamily: "Manrope",
             fontSize: "3.75rem",
             fontWeight: "700",
             lineHeight: "4rem",
         },
         h2: {
             // color: 'rgba(255,255,255)',
+            fontFamily: "Manrope",
             fontSize: "2.67rem",
             fontWeight: "700",
             lineHeight: 1.125,
@@ -245,6 +247,7 @@ const theme = createTheme({
             lineHeight: 1.33,
         },
         h6: {
+            fontFamily: "Manrope",
             fontSize: "1.1rem",
             fontWeight: "700",
             lineHeight: "4rem",
