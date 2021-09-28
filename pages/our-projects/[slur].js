@@ -11,6 +11,7 @@ const project = {
   title: "National Housing Reconstruction Programme",
   background:
     "The 7.8 magnitude earthquake of 2015 devastated large swathe of Nepal. The Government of Nepal (GoN) initiated a survey to have a comprehensive housing assessment data. However, the survey had multifold challenges. Not only was there a need to collect a comprehensive information about each record but there was also a need for real-time validation. Creation and operation of a cloud infrastructure to host a large amount of data was also a challenge. Finally, there was also a need to seamlessly transfer the data to relevant government partners for dissemination and use. ",
+  tags: ["Earthquake", "Reconstruction", "Digital Survey"],
 };
 
 const useStyles = makeStyles((theme) => ({
@@ -124,6 +125,31 @@ const useStyles = makeStyles((theme) => ({
   partnerLogo: {
     maxWidth: 300,
     height: "auto",
+  },
+  tagsCtr: {
+    marginTop: theme.spacing(10),
+    display: "flex",
+    gap: theme.spacing(3),
+    alignItems: "center",
+  },
+  tagsTypo: {
+    fontWeight: 600,
+    lineHeight: 1,
+  },
+  tags: {
+    display: "flex",
+    gap: theme.spacing(2),
+  },
+  tagRoot: {
+    background: theme.palette.grey[100],
+    padding: "6px 12px",
+  },
+  tagLabel: {
+    fontSize: "14px",
+    fontWeight: 500,
+    lineHeight: 1,
+    color: theme.palette.grey[600],
+    padding: 0,
   },
 }));
 
@@ -254,6 +280,20 @@ function ProjectDetails() {
 
         <ProjectPartners />
         <Documents />
+        <div className={classes.tagsCtr}>
+          <Typography variant="subtitle1" className={classes.tagsTypo}>
+            Tags
+          </Typography>
+          <div className={classes.tags}>
+            {project.tags.map((tag) => (
+              <Chip
+                key={uid(tag)}
+                label={tag}
+                classes={{ root: classes.tagRoot, label: classes.tagLabel }}
+              />
+            ))}
+          </div>
+        </div>
       </div>
     </>
   );
