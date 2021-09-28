@@ -28,7 +28,6 @@ const values = [
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    paddingTop: theme.spacing(25),
     maxWidth: 972,
     marginLeft: "auto",
     marginRight: "auto",

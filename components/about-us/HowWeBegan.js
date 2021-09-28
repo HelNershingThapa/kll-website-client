@@ -6,6 +6,7 @@ const useStyles = makeStyles((theme) => ({
   historyContainer: {
     paddingTop: theme.spacing(30),
     paddingBottom: "240px",
+    marginBottom: "340px",
     background: theme.palette.grey[100],
   },
   widthed: {

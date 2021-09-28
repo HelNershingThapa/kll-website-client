@@ -32,6 +32,11 @@ const useStyles = makeStyles((theme) => ({
   },
   ourImpactCtr: {
     position: "absolute",
+    display: "inline",
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
   },
   footprint: {
     fontFamily: "Manrope",
@@ -43,6 +48,11 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(30),
   },
   ourImpact: {
+    display: "inline",
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
     fontSize: "20px",
     fontWeight: 600,
     lineHeight: "32px",
@@ -88,14 +98,10 @@ function Footprint() {
           <Typography variant="h1" className={classes.footprint} align="center">
             Footprint
           </Typography>
+          <Typography variant="h6" className={classes.ourImpact}>
+            Our Impact
+          </Typography>
         </div>
-        {
-          //   <div className={classes.ourImpactCtr}>
-          //   <Typography variant="h6" className={classes.ourImpact}>
-          //     Our Impact
-          //   </Typography>
-          // </div>
-        }
       </div>
       <div className={classes.impacts}>
         {impacts.map((impact) => (
