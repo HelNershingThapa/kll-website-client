@@ -5,6 +5,7 @@ import { Typography } from "@material-ui/core";
 const useStyles = makeStyles((theme) => ({
   historyContainer: {
     paddingTop: theme.spacing(30),
+    paddingBottom: "240px",
     background: theme.palette.grey[100],
   },
   widthed: {
@@ -19,6 +20,7 @@ const useStyles = makeStyles((theme) => ({
     lineHeight: "40px",
     color: theme.palette.grey[800],
     marginTop: theme.spacing(5),
+    marginBottom: theme.spacing(15),
   },
   title: {
     fontFamily: "Manrope",
@@ -29,8 +31,8 @@ const useStyles = makeStyles((theme) => ({
   },
   imgOverlay: {
     position: "absolute",
-    top: "50%",
-    left: "50%",
+    right: 0,
+    left: 0,
   },
   imgFill: {
     position: "relative",
@@ -59,13 +61,15 @@ function HowWeBegan() {
           once, and put to multiple creative uses’ should be the new, effective
           model of development.
         </Typography>
-        <div className={classes.imgFill}>
-          <Image
-            src="/how-we-began.png"
-            layout="fill"
-            objectFit="cover"
-            alt="KLL history"
-          />
+        <div className={classes.imgOverlay}>
+          <div className={classes.imgFill}>
+            <Image
+              src="/how-we-began.png"
+              layout="fill"
+              objectFit="cover"
+              alt="KLL history"
+            />
+          </div>
         </div>
       </div>
     </div>

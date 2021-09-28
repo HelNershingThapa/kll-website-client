@@ -11,6 +11,7 @@ import React, { ReactElement } from "react";
 
 const useStyles = makeStyles((theme) => {
   const color = theme.palette.background.paper; // Feel free to customise this like they do in Tooltip
+  
   return {
     popoverRoot: {
       backgroundColor: color,
@@ -18,7 +19,6 @@ const useStyles = makeStyles((theme) => {
       boxShadow: "0px 10px 45px rgba(13, 24, 41, 0.15)",
       padding: "24px 20px",
       borderRadius: "12px",
-
     },
     content: {
       padding: theme.spacing(2),
@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => {
     // Stolen from https://github.com/mui-org/material-ui/blob/next/packages/material-ui/src/Tooltip/Tooltip.js and https://github.com/mui-org/material-ui/blob/4f2a07e140c954b478a6670c009c23a59ec3e2d4/docs/src/pages/components/popper/ScrollPlayground.js
     popper: {
       zIndex: 2000,
-      marginTop: '1rem',
+      marginTop: "1rem",
       '&[x-placement*="bottom"] $arrow': {
         top: 0,
         left: 0,
