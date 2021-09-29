@@ -1,3 +1,4 @@
+import Head from "next/head";
 import { uid } from "react-uid";
 import clsx from "clsx";
 import fetch from "isomorphic-unfetch";
@@ -156,6 +157,9 @@ function BlogDetail({ blog }) {
   console.log("blog", blog);
   return (
     <>
+    <Head>
+        <title>{`GeoNight 2021 | Blog | Kathmandu Living Labs`}</title>
+      </Head>
       <div className={classes.headerImageContainer}>
         <Image
           className={classes.headerImage}

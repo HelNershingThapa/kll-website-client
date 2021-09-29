@@ -26,6 +26,7 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 400,
     color: theme.palette.grey[300],
     width: 633,
+    marginBottom: theme.spacing(15),
   },
   btnRoot: {
     padding: "14px 32px",

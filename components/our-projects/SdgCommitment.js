@@ -10,6 +10,7 @@ const useStyles = makeStyles((theme) => ({
     background: theme.palette.grey[100],
     display: "grid",
     placeContent: "center",
+    marginBottom: theme.spacing(20)
   },
   committment: {
     width: 700,

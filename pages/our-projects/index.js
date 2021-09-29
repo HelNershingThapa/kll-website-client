@@ -22,6 +22,7 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 300,
     lineHeight: "72px",
     width: 891,
+    marginBottom: theme.spacing(15),
   },
   subtitleHighlight: {
     fontWeight: 700,
@@ -64,6 +65,9 @@ const OurProjects = (props) => {
         <ProjectsGrid />
       </Container>
       <SdgCommitment />
+      <Container fixed>
+        <ProjectsGrid />
+      </Container>
       <Container maxWidth="lg">
         <MoreProjects />
       </Container>

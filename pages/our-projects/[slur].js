@@ -1,3 +1,4 @@
+import Head from "next/head";
 import { uid } from "react-uid";
 import clsx from "clsx";
 import Image from "next/image";
@@ -157,6 +158,9 @@ function ProjectDetails() {
   const classes = useStyles();
   return (
     <>
+      <Head>
+        <title>{`National Housing Reconstruction Programme | Impact | Kathmandu Living Labs`}</title>
+      </Head>
       <div className={classes.imageOverlay}>
         <Image
           src="/project-details-header.png"

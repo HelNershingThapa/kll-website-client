@@ -62,9 +62,10 @@ const useStyles = makeStyles((theme) => ({
   chipLabel: {
     fontSize: "14px",
     fontWeight: 500,
-    // lineHeight: "14px", letter 'g' gets hidden, solve this!!
-    padding: 0,
+    // lineHeight: "14px",
+    // padding: 0,
     color: "#F8FAFC",
+    overflow: 'visible'
   },
   focusCard: {
     background: "none",
@@ -76,7 +77,7 @@ export default function MediaCard() {
   const classes = useStyles();
 
   return (
-    <Card className={classes.root} onClick={() => router.push("/blog/asdasd")}>
+    <Card className={classes.root} onClick={() => router.push("/blog/geonight-2021")}>
       <CardActionArea
         classes={{
           focusVisible: classes.focusCard,

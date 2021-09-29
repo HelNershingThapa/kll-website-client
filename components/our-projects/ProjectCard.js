@@ -1,4 +1,6 @@
+import { useRouter } from "next/router";
 import Image from "next/image";
+import Head from "next/head";
 import { makeStyles } from "@material-ui/core/styles";
 import { Chip, Typography } from "@material-ui/core";
 
@@ -10,6 +12,7 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down("xs")]: {
       height: "auto",
     },
+    cursor: "pointer",
   },
   imageFill: {
     position: "relative",
@@ -70,30 +73,38 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const ProjectCard = ({ name, category, src }) => {
+  const router = useRouter();
   const classes = useStyles();
   return (
-    <div className={classes.root}>
-      <div className={classes.imageFill}>
-        <Image
-          src={src}
-          alt="KLL projects"
-          layout="fill"
-          objectFit="cover"
-          className={classes.image}
-        />
-      </div>
-      <div className={classes.projectInfoOverlay}>
-        {" "}
-        <div>
-          <Chip
-            label={category}
-            color="primary"
-            classes={{ root: classes.chipRoot, label: classes.chipLabel }}
+    <>
+      <div
+        className={classes.root}
+        onClick={() =>
+          router.push("/our-projects/national-housing-reconstruction-programme")
+        }
+      >
+        <div className={classes.imageFill}>
+          <Image
+            src={src}
+            alt="KLL projects"
+            layout="fill"
+            objectFit="cover"
+            className={classes.image}
           />
         </div>
-        <Typography variant="h4">{name}</Typography>
+        <div className={classes.projectInfoOverlay}>
+          {" "}
+          <div>
+            <Chip
+              label={category}
+              color="primary"
+              classes={{ root: classes.chipRoot, label: classes.chipLabel }}
+            />
+          </div>
+          <Typography variant="h4">{name}</Typography>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
