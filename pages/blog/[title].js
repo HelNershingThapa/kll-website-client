@@ -5,13 +5,9 @@ import fetch from "isomorphic-unfetch";
 import { makeStyles } from "@material-ui/core/styles";
 import Image from "next/image";
 import { Typography, Divider, Avatar, Container } from "@material-ui/core";
-import author from "public/author.png";
 import groupPhoto from "public/image2.png";
 import fullWidthPhoto from "public/image3.png";
-import blogImage1 from "public/Rectangle3.png";
-import blogImage2 from "public/Rectangle4.png";
 import BlogListCard from "components/BlogListCard";
-import styles from "../../styles/BlogDetail.module.css";
 
 const useStyles = makeStyles((theme) => ({
   blog: {
@@ -286,7 +282,7 @@ function BlogDetail({ blog }) {
         <Divider classes={{ root: classes.divider }} />
         <div className={clsx(classes.author, classes.footerMargin)}>
           <Avatar>
-            <Image src={author} layout="fill" alt="DP" />
+            <Image src='/author.png' layout="fill" alt="DP" />
           </Avatar>
           <div className={classes.authorDetails}>
             <Typography variant="subtitle1" className={classes.authorName}>
