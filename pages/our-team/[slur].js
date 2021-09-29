@@ -1,9 +1,10 @@
+import clsx from "clsx";
 import { uid } from "react-uid";
 import Head from "next/head";
 import Link from "next/link";
 import Image from "next/image";
 import { makeStyles } from "@material-ui/styles";
-import { Container, Typography, TextField, Button } from "@material-ui/core";
+import { Typography, IconButton } from "@material-ui/core";
 import mapImg from "public/Rectangle7.png";
 
 const member = {
@@ -12,7 +13,7 @@ const member = {
 };
 
 const useStyles = makeStyles((theme) => ({
-  container: {
+  root: {
     height: "calc(100vh - 80px)",
     display: "flex",
     gap: theme.spacing(15),
@@ -21,6 +22,28 @@ const useStyles = makeStyles((theme) => ({
     position: "relative",
     height: "100%",
     width: "50%",
+  },
+  navArrowsCtr: {
+    position: "absolute",
+    bottom: 0,
+    width: "100%",
+    height: "42%",
+    background: "linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000000 100%)",
+    paddingBottom: theme.spacing(10),
+  },
+  arrows: {
+    height: '100%',
+    display: "flex",
+    gap: "30px",
+    alignItems: "flex-end",
+    justifyContent: "center",
+  },
+  navArrorIcon: {
+    fontSize: "24px",
+  },
+  iconBtnRoot: {
+    padding: "18px",
+    background: theme.palette.primary.main,
   },
   goBackCtr: {
     display: "flex",
@@ -77,7 +100,7 @@ export default function Home() {
       <Head>
         <title>Arogya Koirala | Our Team | Kathmandu Living Labs</title>
       </Head>
-      <div className={classes.container}>
+      <div className={classes.root}>
         <div className={classes.imageContainer}>
           <Image
             src="/member-detail.png"
@@ -85,6 +108,29 @@ export default function Home() {
             objectFit="cover"
             alt="KLL detail"
           />
+          <div className={classes.navArrowsCtr}>
+            <div className={classes.arrows}>
+              <IconButton
+                aria-label="delete"
+                classes={{ root: classes.iconBtnRoot }}
+                style={{ background: "transparent" }}
+              >
+                <i
+                  className="ri-arrow-left-line"
+                  style={{ fontSize: "24px", color: "#fff" }}
+                />
+              </IconButton>
+              <IconButton
+                aria-label="delete"
+                classes={{ root: classes.iconBtnRoot }}
+              >
+                <i
+                  className="ri-arrow-right-line"
+                  style={{ fontSize: "24px", color: "#fff" }}
+                />
+              </IconButton>
+            </div>
+          </div>
         </div>
         <div className={classes.bioCtr}>
           <Link href="/our-team">

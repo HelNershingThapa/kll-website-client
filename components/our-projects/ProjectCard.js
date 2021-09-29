@@ -5,28 +5,43 @@ import { Chip, Typography } from "@material-ui/core";
 const useStyles = makeStyles((theme) => ({
   root: {
     position: "relative",
-    // width: 860,
-    height: '100%',
-    width: '100%',
-    // height: '100%',
+    height: "100%",
+    width: "100%",
+    [theme.breakpoints.down("xs")]: {
+      height: "auto",
+    },
   },
   imageFill: {
     position: "relative",
     width: "100%",
     height: "100%",
+    [theme.breakpoints.down("xs")]: {
+      width: "100%",
+      "& div": {
+        position: "unset !important",
+      },
+    },
+  },
+  image: {
+    [theme.breakpoints.down("xs")]: {
+      objectFit: "cover",
+      width: "100% important",
+      position: "relative !important",
+      height: "unset !important",
+    },
   },
   projectInfoOverlay: {
-    position: "absolute",
-    color: "white",
-    bottom: 0,
-    padding: theme.spacing(6),
+    width: "100%",
     height: "44%",
-    background: "linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000000 100%)",
+    position: "absolute",
+    bottom: 0,
     display: "flex",
     flexDirection: "column",
     justifyContent: "flex-end",
     gap: theme.spacing(3),
-    width: "100%",
+    color: "white",
+    padding: theme.spacing(6),
+    background: "linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000000 100%)",
     "& h4": {
       fontFamily: "Manrope",
       fontSize: "32px",
@@ -34,7 +49,23 @@ const useStyles = makeStyles((theme) => ({
       lineHeight: "40px",
       color: theme.palette.grey[100],
       width: 527,
+      [theme.breakpoints.down("xs")]: {
+        fontSize: "16px",
+        lineHeight: 1.5,
+      },
     },
+    [theme.breakpoints.down("xs")]: {
+      gap: theme.spacing(2),
+      padding: theme.spacing(3),
+    },
+  },
+  chipRoot: {
+    [theme.breakpoints.down("xs")]: {
+      gap: theme.spacing(2),
+    },
+  },
+  chipLabel: {
+    padding: 0,
   },
 }));
 
@@ -48,6 +79,7 @@ const ProjectCard = ({ name, category, src }) => {
           alt="KLL projects"
           layout="fill"
           objectFit="cover"
+          className={classes.image}
         />
       </div>
       <div className={classes.projectInfoOverlay}>

@@ -1,4 +1,5 @@
-import Image from 'next/image';
+import Link from "next/link";
+import Image from "next/image";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
@@ -45,13 +46,14 @@ const useStyles = makeStyles((theme) => ({
     fontSize: "16px",
     fontWeight: 600,
     lineHeight: "24px",
+    cursor: 'pointer'
   },
   socialLinks: {
     padding: 0,
     marginTop: theme.spacing(5),
-    display: 'flex',
+    display: "flex",
     gap: theme.spacing(4),
-    alignItems: 'center'
+    alignItems: "center",
   },
 }));
 
@@ -74,20 +76,37 @@ function TeamMemberCard() {
           Aishworya is a research assistant working under the PEER Science
           Project at KLL. She is a social science researcher with a background
           in Social ...{" "}
-          <Typography
-            variant="body2"
-            className={classes.readMore}
-            display="inline"
-            color="primary"
-          >
-            Read More
-          </Typography>
+          <Link href="/our-team/arogya-koirala">
+            <Typography
+              variant="body2"
+              className={classes.readMore}
+              display="inline"
+              color="primary"
+            >
+              Read More
+            </Typography>
+          </Link>
         </Typography>
       </CardContent>
       <CardActions className={classes.socialLinks}>
-      <Image src="/icons/twitter-logo.svg" height={20} width={20} alt="twitter icon"/>
-      <Image src="/icons/ig-logo.svg" height={20} width={20} alt="twitter icon"/>
-        <Image src="/icons/linkedin-logo.svg" height={20} width={20} alt="twitter icon"/>
+        <Image
+          src="/icons/twitter-logo.svg"
+          height={20}
+          width={20}
+          alt="twitter icon"
+        />
+        <Image
+          src="/icons/ig-logo.svg"
+          height={20}
+          width={20}
+          alt="twitter icon"
+        />
+        <Image
+          src="/icons/linkedin-logo.svg"
+          height={20}
+          width={20}
+          alt="twitter icon"
+        />
       </CardActions>
     </Card>
   );

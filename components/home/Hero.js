@@ -8,10 +8,15 @@ import { Typography, Container, Button } from "@material-ui/core";
 const useStyles = makeStyles((theme) => ({
   hero: {
     position: "relative",
-    height: 708,
     background: theme.palette.grey[100],
     paddingTop: "7.78rem",
     paddingBottom: "7.78rem",
+    [theme.breakpoints.down("sm")]: {
+      paddingTop: theme.spacing(15),
+      paddingBottom: theme.spacing(15),
+      display: 'flex',
+      flexDirection: 'column',
+    },
   },
   heroTitleContainer: {
     width: "72%",
@@ -22,17 +27,28 @@ const useStyles = makeStyles((theme) => ({
     fontSize: "48px",
     fontWeight: 300,
     lineHeight: "72px",
+    [theme.breakpoints.down("xs")]: {
+      fontSize: "20px",
+      lineHeight: "32px",
+    },
   },
   heroTitleHighlight: {
     fontFamily: "Manrope",
     fontSize: "48px",
     fontWeight: 700,
     lineHeight: "72px",
+    [theme.breakpoints.down("xs")]: {
+      fontSize: "20px",
+      lineHeight: "32px",
+    },
   },
   heroImg: {
     position: "absolute",
     top: 0,
     right: 0,
+    [theme.breakpoints.down("xs")]: {
+      position: "static",
+    },
   },
   heroImageFill: {
     position: "relative",
@@ -44,10 +60,19 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     gap: "4rem",
     alignItems: "center",
+    [theme.breakpoints.down("xs")]: {
+      flexDirection: "column",
+      alignItems: 'flex-start',
+      gap: theme.spacing(6),
+    },
   },
   button: {
     borderRadius: theme.spacing(3),
     padding: "19px 40px",
+    [theme.breakpoints.down("xs")]: {
+      borderRadius: theme.spacing(2),
+      padding: "11px 35px",
+    },
   },
   circleIcon: {
     fontSize: "26.67px",

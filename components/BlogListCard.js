@@ -1,5 +1,5 @@
 import React from "react";
-import {useRouter} from 'next/router';
+import { useRouter } from "next/router";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
@@ -14,23 +14,26 @@ import blogImg from "public/Rectangle32.png";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    width: '100%',
+    width: "100%",
     border: "none",
     boxShadow: "none",
     borderRadius: 0,
-    background: 'inherit',
-    '&:hover': {
-        background: 'none',
+    background: "inherit",
+    "&:hover": {
+      background: "none",
     },
   },
   media: {
     width: "inherit",
     height: 320,
-    position: 'relative',
+    position: "relative",
+    [theme.breakpoints.down("xs")]: {
+      height: 234,
+    },
   },
   timestamp: {
     display: "flex",
-    gap: "1.78rem",
+    gap: theme.spacing(8),
     color: theme.palette.grey[600],
   },
   content: {
@@ -38,22 +41,19 @@ const useStyles = makeStyles((theme) => ({
     padding: 0,
   },
   title: {
-    fontFamily: "Manrope",
-    fontSize: "24px",
-    fontWeight: 700,
-    lineHeight: "32px",
     color: "#304254",
+    fontWeight: 800,
     marginTop: theme.spacing(1),
   },
   description: {
     marginTop: theme.spacing(4),
-    fontSize: "16px",
-    fontWeight: 400,
-    lineHeight: "24px",
-    color: "#445668",
+    color: theme.palette.grey[600],
+    [theme.breakpoints.down("xs")]: {
+      marginTop: theme.spacing(2),
+    },
   },
   chipRoot: {
-    position: 'absolute',
+    position: "absolute",
     top: 12,
     left: 12,
     padding: "6px 12px",
@@ -67,8 +67,8 @@ const useStyles = makeStyles((theme) => ({
     color: "#F8FAFC",
   },
   focusCard: {
-    background: 'none'
-  }
+    background: "none",
+  },
 }));
 
 export default function MediaCard() {
@@ -76,8 +76,13 @@ export default function MediaCard() {
   const classes = useStyles();
 
   return (
-    <Card className={classes.root} onClick={() => router.push('/blog/asdasd')}>
-      <CardActionArea classes={{focusVisible: classes.focusCard, focusHighlight: classes.focusCard}}>
+    <Card className={classes.root} onClick={() => router.push("/blog/asdasd")}>
+      <CardActionArea
+        classes={{
+          focusVisible: classes.focusCard,
+          focusHighlight: classes.focusCard,
+        }}
+      >
         <CardMedia
           className={classes.media}
           image="/Rectangle32.png"
@@ -90,14 +95,14 @@ export default function MediaCard() {
         />
         <CardContent className={classes.content}>
           <div className={classes.timestamp}>
-            <Typography variant="subtitle2">May 06 2021</Typography>
-            <Typography variant="subtitle2">15 min read</Typography>
+            <Typography variant="subtitle1">May 06 2021</Typography>
+            <Typography variant="subtitle1">15 min read</Typography>
           </div>
           <Typography className={classes.title} variant="h5">
             GeoNight 2021: Contributing to the pandemic stricken tourism of
             Nepal
           </Typography>
-          <Typography className={classes.description}>
+          <Typography variant="subtitle1" className={classes.description}>
             Thamel is the heart of Nepali tourism. The narrow, winding,
             crisscrossing gallis feel like a maze with colorful shops,
             displays...
