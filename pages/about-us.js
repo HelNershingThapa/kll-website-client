@@ -7,7 +7,6 @@ import { Button, Container, Typography, Grid } from "@material-ui/core";
 import { spacing } from "@material-ui/system";
 import Box from "@material-ui/core/Box";
 import styles from "../styles/AboutUs.module.css";
-import abousUsImg from "public/about-us-header.png";
 import HowWeBegan from "components/about-us/HowWeBegan";
 import OurTeam from "components/home/OurTeam";
 import Footprint from "components/about-us/Footprint";

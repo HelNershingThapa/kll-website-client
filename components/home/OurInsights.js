@@ -5,7 +5,6 @@ import Image from "next/image";
 import { makeStyles } from "@material-ui/core/styles";
 import { Typography, Container, Button } from "@material-ui/core";
 import BlogListCard from "components/BlogListCard";
-import BlogBackground from "../../public/blog-bg.png";
 
 const useStyles = makeStyles((theme) => ({
   root: {

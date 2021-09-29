@@ -5,8 +5,6 @@ import fetch from "isomorphic-unfetch";
 import { makeStyles } from "@material-ui/core/styles";
 import Image from "next/image";
 import { Typography, Divider, Avatar, Container } from "@material-ui/core";
-import groupPhoto from "public/image2.png";
-import fullWidthPhoto from "public/image3.png";
 import BlogListCard from "components/BlogListCard";
 
 const useStyles = makeStyles((theme) => ({
@@ -231,7 +229,7 @@ function BlogDetail({ blog }) {
           Heroes of the day!
         </Typography>
         <div className={classes.image}>
-          <Image src={groupPhoto} layout="responsive" alt="Group photo" />
+          <Image src='/image2.png' layout="responsive" alt="Group photo" />
         </div>
         <div className={classes.content}>
           <Typography>
@@ -251,7 +249,7 @@ function BlogDetail({ blog }) {
           </Typography>
         </div>
         <div className={classes.imageFullWidth}>
-          <Image src={fullWidthPhoto} layout="responsive" alt="Group photo" />
+          <Image src='/image3.png' layout="responsive" alt="Group photo" />
         </div>
         <div className={classes.content}>
           <Typography>

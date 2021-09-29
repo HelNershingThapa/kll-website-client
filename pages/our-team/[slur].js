@@ -5,7 +5,6 @@ import Link from "next/link";
 import Image from "next/image";
 import { makeStyles } from "@material-ui/styles";
 import { Typography, IconButton } from "@material-ui/core";
-import mapImg from "public/Rectangle7.png";
 
 const member = {
   name: "Arogya Koirala",

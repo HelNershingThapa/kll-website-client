@@ -6,7 +6,6 @@ import { makeStyles } from "@material-ui/styles";
 import { Button, Container, Typography, Grid } from "@material-ui/core";
 import { spacing } from "@material-ui/system";
 import Box from "@material-ui/core/Box";
-import abousUsImg from "public/about-us-header.png";
 import TeamMemberCard from "components/our-team/TeamMemberCard";
 import YouCard from "components/our-team/YouCard";
 import WorkingAtKll from "components/our-team/WorkingAtKll";

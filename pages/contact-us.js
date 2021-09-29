@@ -3,7 +3,6 @@ import { uid } from "react-uid";
 import Image from "next/image";
 import { makeStyles } from "@material-ui/styles";
 import { Container, Typography, TextField, Button } from "@material-ui/core";
-import mapImg from "public/Rectangle7.png";
 
 const useStyles = makeStyles((theme) => ({
   mainContainer: {
@@ -135,7 +134,7 @@ export default function Home() {
             </Button>
           </div>
           <div className={classes.mapInfo}>
-            <Image src={mapImg} width={740} height={500} />
+            <Image src='/Rectangle7.png' width={740} height={500} />
             <div className={classes.contactInfo}>
               <div className={classes.location}>
                 <Typography
