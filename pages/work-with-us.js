@@ -17,8 +17,8 @@ import {
   Box,
 } from "@material-ui/core";
 import JobDescriptionDialog from "components/work-with-us/JobDescriptionDialog";
+import JoinOsmMovement from "components/work-with-us/JoinOsmMovement";
 import styles from "../styles/AboutUs.module.css";
-
 
 const jobListings = [
   {
@@ -61,26 +61,22 @@ const benefits = [
   {
     title: "Paid Leaves",
     icon: "/icons/benefit1.svg",
-    desc:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
+    desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
   },
   {
     title: "Monthly Outings",
     icon: "/icons/benefit2.svg",
-    desc:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
+    desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
   },
   {
     title: "Paid Leaves",
     icon: "/icons/benefit1.svg",
-    desc:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
+    desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
   },
   {
     title: "Monthly Outings",
     icon: "/icons/benefit2.svg",
-    desc:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
+    desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
   },
 ];
 
@@ -125,13 +121,11 @@ const values = [
 const valuesAndMission = [
   {
     title: "Our Values",
-    desc:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+    desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
   },
   {
     title: "Our Mission",
-    desc:
-      "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+    desc: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
   },
 ];
 
@@ -366,6 +360,9 @@ const useStyles = makeStyles((theme) => ({
   jobListingsContainer: {
     paddingTop: theme.spacing(15),
     paddingBottom: theme.spacing(20),
+    maxWidth: '860px',
+    marginLeft:'auto',
+    marginRight:'auto'
   },
   jobListingsHeader: {
     fontFamily: "Manrope",
@@ -708,200 +705,202 @@ function WorkWithUs() {
             </Typography>
           </div>
         </div>
+      </div>
 
-        {/* Testimonials Starts Here */}
+      <JoinOsmMovement />
 
-        <div className={classes.testimonials}>
-          <Container maxWidth="lg">
-            <div className={classes.testimonialsCtr}>
-              <div style={{ width: "361px", marginTop: "auto" }}>
-                <Typography
-                  variant="h5"
-                  className={classes.hearFromPeopleTitle}
-                >
-                  Hear from people at Kathmandu Living Labs
-                </Typography>
-                <Typography
-                  variant="body1"
-                  className={classes.hearFromPeopleDescription}
-                >
-                  Listen to what the people at Kathmandu Living Labs have to say
-                  about us.
-                </Typography>
-                <div className={classes.arrowNavigation}>
-                  <div
-                    style={{
-                      width: "60px",
-                      height: "60px",
-                      background: "inherit",
-                      borderRadius: "50%",
-                      display: "grid",
-                      placeContent: "center",
-                    }}
-                  >
-                    <Image
-                      src="/icons/ArrowLeft.svg"
-                      height={16}
-                      width={16}
-                      alt="remix arrow right"
-                    />
-                  </div>
-                  <div
-                    style={{
-                      width: "60px",
-                      height: "60px",
-                      background: "#185ADB",
-                      borderRadius: "50%",
-                      display: "grid",
-                      placeContent: "center",
-                    }}
-                  >
-                    <Image
-                      src="/icons/ArrowRight.svg"
-                      height={16}
-                      width={16}
-                      alt="remix arrow right"
-                    />
-                  </div>
-                </div>
-              </div>
-              <div
-                style={{
-                  width: "740px",
-                  position: "relative",
-                  marginTop: "130px",
-                }}
+      {/* Testimonials Starts Here */}
+
+      <div className={classes.testimonials}>
+        <Container maxWidth="lg">
+          <div className={classes.testimonialsCtr}>
+            <div style={{ width: "361px", marginTop: "auto" }}>
+              <Typography variant="h5" className={classes.hearFromPeopleTitle}>
+                Hear from people at Kathmandu Living Labs
+              </Typography>
+              <Typography
+                variant="body1"
+                className={classes.hearFromPeopleDescription}
               >
+                Listen to what the people at Kathmandu Living Labs have to say
+                about us.
+              </Typography>
+              <div className={classes.arrowNavigation}>
                 <div
                   style={{
-                    position: "absolute",
-                    top: "-32px",
-                    left: "-35px",
+                    width: "60px",
+                    height: "60px",
+                    background: "inherit",
+                    borderRadius: "50%",
+                    display: "grid",
+                    placeContent: "center",
                   }}
                 >
                   <Image
-                    src="/icons/quote.svg"
-                    width={29.7}
-                    height={22.8}
-                    alt="quote icon"
+                    src="/icons/ArrowLeft.svg"
+                    height={16}
+                    width={16}
+                    alt="remix arrow right"
                   />
                 </div>
-                <Typography className={classes.quote}>
-                  Ever since I first joined here, I’ve made countless friends
-                  and worked on impactful projects that I’m proud of.
-                </Typography>
-                <div className={classes.author}>
-                  <Avatar>
-                    <Image src="/author.png" layout="fill" alt="DP" />
-                  </Avatar>
-                  <div className={classes.authorDetails}>
-                    <Typography
-                      variant="subtitle1"
-                      className={classes.authorName}
-                    >
-                      {" "}
-                      Aishworya Shrestha
-                    </Typography>
-                    <Typography
-                      variant="subtitle2"
-                      className={classes.authorTitle}
-                    >
-                      {" "}
-                      Research Assistant
-                    </Typography>
-                  </div>
+                <div
+                  style={{
+                    width: "60px",
+                    height: "60px",
+                    background: "#185ADB",
+                    borderRadius: "50%",
+                    display: "grid",
+                    placeContent: "center",
+                  }}
+                >
+                  <Image
+                    src="/icons/ArrowRight.svg"
+                    height={16}
+                    width={16}
+                    alt="remix arrow right"
+                  />
                 </div>
               </div>
             </div>
-          </Container>
-        </div>
+            <div
+              style={{
+                width: "740px",
+                position: "relative",
+                marginTop: "130px",
+              }}
+            >
+              <div
+                style={{
+                  position: "absolute",
+                  top: "-32px",
+                  left: "-35px",
+                }}
+              >
+                <Image
+                  src="/icons/quote.svg"
+                  width={29.7}
+                  height={22.8}
+                  alt="quote icon"
+                />
+              </div>
+              <Typography className={classes.quote}>
+                Ever since I first joined here, I’ve made countless friends and
+                worked on impactful projects that I’m proud of.
+              </Typography>
+              <div className={classes.author}>
+                <Avatar>
+                  <Image src="/author.png" layout="fill" alt="DP" />
+                </Avatar>
+                <div className={classes.authorDetails}>
+                  <Typography
+                    variant="subtitle1"
+                    className={classes.authorName}
+                  >
+                    {" "}
+                    Aishworya Shrestha
+                  </Typography>
+                  <Typography
+                    variant="subtitle2"
+                    className={classes.authorTitle}
+                  >
+                    {" "}
+                    Research Assistant
+                  </Typography>
+                </div>
+              </div>
+            </div>
+          </div>
+        </Container>
+      </div>
 
-        {/* Job Listings Starts Here */}
-        <div className={classes.jobListingsContainer}>
-          <Typography variant="h6" className={classes.jobListingsHeader}>
-            Job Listings
-          </Typography>
-          <TableContainer>
-            <Table className={classes.table} aria-label="simple table">
-              <TableBody>
-                {jobListings.map((job) => (
-                  <TableRow key={uid(job)}>
-                    <TableCell
-                      component="th"
-                      scope="row"
-                      className={classes.tableCell}
-                    >
-                      <Typography variant="h6" className={classes.position}>
-                        {job.title}
-                      </Typography>
-                      <Typography variant="h6" className={classes.level}>
-                        {job.level}
-                      </Typography>
-                    </TableCell>
-                    <TableCell align="left" className={classes.tableCell}>
-                      {" "}
-                      <Typography variant="h6" className={classes.level}>
-                        Apply Before
-                      </Typography>
-                      <Typography variant="h6" className={classes.deadline}>
-                        {job.deadline}
-                      </Typography>
-                    </TableCell>
-                    <TableCell align="right" className={classes.tableCell}>
-                      <JobDescriptionDialog />
-                    </TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </TableContainer>
-        </div>
+      {/* Job Listings Starts Here */}
+      <div className={classes.jobListingsContainer}>
+        <Typography variant="h6" className={classes.jobListingsHeader}>
+          Job Listings
+        </Typography>
+        <TableContainer>
+          <Table className={classes.table} aria-label="simple table">
+            <TableBody>
+              {jobListings.map((job) => (
+                <TableRow key={uid(job)}>
+                  <TableCell
+                    component="th"
+                    scope="row"
+                    className={classes.tableCell}
+                  >
+                    <Typography variant="h6" className={classes.position}>
+                      {job.title}
+                    </Typography>
+                    <Typography variant="h6" className={classes.level}>
+                      {job.level}
+                    </Typography>
+                  </TableCell>
+                  <TableCell align="left" className={classes.tableCell}>
+                    {" "}
+                    <Typography variant="h6" className={classes.level}>
+                      Apply Before
+                    </Typography>
+                    <Typography variant="h6" className={classes.deadline}>
+                      {job.deadline}
+                    </Typography>
+                  </TableCell>
+                  <TableCell align="right" className={classes.tableCell}>
+                    <JobDescriptionDialog />
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
       </div>
 
       {/* Meet The Team */}
       {
         <div className={classes.meetTheTeamContainer}>
-        <div className={classes.teamCount}>
-          <div>
-            <div
-              styles={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-              }}
-            >
-              <Typography
-                variant="h1"
-                className={clsx(classes.teamNumber, styles.teamCount)}
+          <div className={classes.teamCount}>
+            <div>
+              <div
+                styles={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                }}
               >
-                16
+                <Typography
+                  variant="h1"
+                  className={clsx(classes.teamNumber, styles.teamCount)}
+                >
+                  16
+                </Typography>
+                <Typography variant="body1" style={{ color: "#304254" }}>
+                  awesome people at KLL
+                </Typography>
+              </div>
+            </div>
+            <div>
+              <Typography
+                className={classes.header}
+                style={{ color: "#304254" }}
+              >
+                Our Team
               </Typography>
-              <Typography variant="body1" style={{ color: "#304254" }}>
-                awesome people at KLL
+              <Typography
+                variant="body1"
+                style={{ color: "#1C2A3A" }}
+                className={classes.learnTeam}
+              >
+                Learn about our awesome team of people at Kathmandu Living Labs
               </Typography>
+              <Button
+                disableElevation
+                variant="contained"
+                color="primary"
+                classes={{ root: classes.meetBtn, label: classes.meetBtnLabel }}
+              >
+                Meet the Team
+              </Button>
             </div>
           </div>
-          <div>
-            <Typography className={classes.header} style={{ color: "#304254" }}>
-              Our Team
-            </Typography>
-            <Typography
-              variant="body1"
-              style={{ color: "#1C2A3A" }}
-              className={classes.learnTeam}
-            >
-              Learn about our awesome team of people at Kathmandu Living Labs
-            </Typography>
-            <Button
-              disableElevation
-              variant="contained"
-              color="primary"
-              classes={{ root: classes.meetBtn, label: classes.meetBtnLabel }}
-            >
-              Meet the Team
-            </Button>
-          </div>
-        </div>
         </div>
       }
       {/* Meet The Team Ends Here*/}
