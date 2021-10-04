@@ -34,6 +34,11 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     gap: theme.spacing(8),
     color: theme.palette.grey[600],
+    [theme.breakpoints.down("xs")]: {
+      "& h6": {
+        fontSize: "14px",
+      },
+    },
   },
   content: {
     marginTop: theme.spacing(5),
@@ -49,6 +54,7 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.grey[600],
     [theme.breakpoints.down("xs")]: {
       marginTop: theme.spacing(2),
+      fontSize: "0.778rem",
     },
   },
   chipRoot: {
@@ -64,7 +70,7 @@ const useStyles = makeStyles((theme) => ({
     // lineHeight: "14px",
     // padding: 0,
     color: "#F8FAFC",
-    overflow: 'visible'
+    overflow: "visible",
   },
   focusCard: {
     background: "none",
@@ -76,7 +82,10 @@ export default function MediaCard() {
   const classes = useStyles();
 
   return (
-    <Card className={classes.root} onClick={() => router.push("/blog/geonight-2021")}>
+    <Card
+      className={classes.root}
+      onClick={() => router.push("/blog/geonight-2021")}
+    >
       <CardActionArea
         classes={{
           focusVisible: classes.focusCard,

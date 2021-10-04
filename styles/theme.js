@@ -21,7 +21,7 @@ const borderColor = "rgba(0, 0, 0, 0.13)";
 // const sm = 768;
 // const xs = 478;
 const xl = 1920;
-const lg = 1464;
+const lg = 1500; // 1440 + 30 * 2(padding)
 const md = 1280;
 const sm = 600;
 const xs = 0;
@@ -108,6 +108,10 @@ const theme = createTheme({
   overrides: {
     MuiContainer: {
       root: {
+        [`@media (min-width:  ${lg}px)`]: {
+          paddingLeft: spacing * 7.5,
+          paddingRight: spacing * 7.5,
+        },
         [`@media (max-width:  ${sm}px)`]: {
           paddingLeft: spacing * 4,
           paddingRight: spacing * 4,
@@ -277,7 +281,11 @@ const theme = createTheme({
     body1: {
       fontSize: "1rem",
       fontWeight: "400",
-      lineHeight: "1.56rem",
+      lineHeight: 1.56,
+      [`@media (max-width:  ${sm}px)`]: {
+        fontSize: "0.8889rem",
+        lineHeight: 1.5,
+      },
     },
     // 16px font size
     subtitle1: {

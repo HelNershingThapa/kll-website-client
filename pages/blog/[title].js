@@ -6,12 +6,17 @@ import { makeStyles } from "@material-ui/core/styles";
 import Image from "next/image";
 import { Typography, Divider, Avatar, Container } from "@material-ui/core";
 import BlogListCard from "components/BlogListCard";
+import Tags from "../../components/blog/Tags";
 
 const useStyles = makeStyles((theme) => ({
   blog: {
     margin: "auto",
     marginTop: "1.78rem",
     maxWidth: "800px",
+    [theme.breakpoints.down(860)]: {
+      paddingLeft: 16,
+      paddingRight: 16,
+    },
   },
   headerImageContainer: {
     position: "relative",
@@ -19,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
   headerImageOverlay: {
     position: "absolute",
     background: "linear-gradient(180deg, #0D1829 0%, rgba(13, 24, 41, 0) 100%)",
-    transform: 'matrix(1, 0, 0, -1, 0, 0)',
+    transform: "matrix(1, 0, 0, -1, 0, 0)",
     bottom: 0,
     padding: theme.spacing(10),
     width: "100%",
@@ -30,6 +35,11 @@ const useStyles = makeStyles((theme) => ({
     gap: "1.78rem",
     marginBottom: "0.67rem",
     color: theme.palette.grey[700],
+    [theme.breakpoints.down("xs")]: {
+      "& h6": {
+        fontSize: "14px",
+      },
+    },
   },
   author: {
     display: "flex",
@@ -66,16 +76,52 @@ const useStyles = makeStyles((theme) => ({
     lineHeight: "1rem",
     marginTop: theme.spacing(6),
   },
-  image: {
-    marginTop: theme.spacing(10),
-    display: "block",
-  },
-  imageFullWidth: {
+  imageFill: {
+    position: "relative",
     width: "100vw",
-    marginLeft: "calc(-50vw + 49%)",
-    overflowX: "hidden",
-    marginTop: theme.spacing(12.5),
+    height: "100%",
+    [theme.breakpoints.down("xs")]: {
+      width: "100vw",
+      "& div": {
+        position: "unset !important",
+      },
+    },
   },
+  image: {
+    objectFit: "cover",
+    width: "100vw important",
+    position: "relative !important",
+    height: "unset !important",
+  },
+  heroImageFill: {
+    marginTop: theme.spacing(10),
+    position: "relative",
+    width: "100%",
+    height: "100%",
+    width: "100%",
+    "& div": {
+      position: "unset !important",
+    },
+  },
+  heroImage: {
+    objectFit: "cover",
+    width: "100% important",
+    position: "relative !important",
+    height: "unset !important",
+  },
+  // imageHeroes: {
+  //   marginTop: theme.spacing(10),
+  //   position: "relative",
+  //   width: "100%",
+  //   height: 396,
+  // },
+  // imageFullWidth: {
+  //   width: "100vw",
+  //   height: 700,
+  //   marginLeft: "calc(-50vw + 49%)",
+  //   overflowX: "hidden",
+  //   marginTop: theme.spacing(12.5),
+  // },
   divider: {
     marginTop: theme.spacing(12.5),
     marginBottom: theme.spacing(10),
@@ -85,28 +131,16 @@ const useStyles = makeStyles((theme) => ({
   footerMargin: {
     marginBottom: theme.spacing(3),
   },
-  tagsContainer: {
-    display: "flex",
-    alignItems: "center",
-    gap: theme.spacing(3),
-  },
-  tags: {
-    display: "flex",
-    gap: theme.spacing(2),
-  },
-  tagChip: {
-    background: "#F0F5F9",
-    borderRadius: "8px",
-    fontSize: "14px",
-    padding: "6px 12px",
-    color: "#445668",
-    fontWeight: 500,
-  },
   relatedPostsBgCtr: {
     background: theme.palette.grey[100],
     paddingTop: theme.spacing(20),
     paddingBottom: theme.spacing(20),
     marginTop: theme.spacing(15),
+    [theme.breakpoints.down("xs")]: {
+      paddingTop: theme.spacing(8),
+      paddingBottom: theme.spacing(8),
+      marginTop: theme.spacing(10),
+    },
   },
   relatedPostsBg: {
     margin: "auto",
@@ -136,12 +170,28 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 600,
     lineHeight: "32px",
     color: theme.palette.grey[800],
+    [theme.breakpoints.down("xs")]: {
+      fontSize: "1rem",
+      lineHeight: 1.5556,
+    },
   },
   blogListContainer: {
     display: "grid",
-    gridTemplateColumns: "1fr 1fr 1fr",
+    gridTemplateColumns: "repeat(3, 1fr)",
     columnGap: "15px",
     marginTop: theme.spacing(8),
+    [theme.breakpoints.only("xs")]: {
+      gridTemplateColumns: "repeat(1, 1fr)",
+      rowGap: theme.spacing(8),
+    },
+  },
+  authorBio: {
+    lineHeight: 1.5,
+    marginBottom: theme.spacing(6),
+    [theme.breakpoints.down("xs")]: {
+      lineHeight: 1.428,
+      marginBottom: theme.spacing(3),
+    },
   },
 }));
 
@@ -151,7 +201,7 @@ function BlogDetail({ blog }) {
   console.log("blog", blog);
   return (
     <>
-    <Head>
+      <Head>
         <title>{`GeoNight 2021 | Blog | Kathmandu Living Labs`}</title>
       </Head>
       <div className={classes.headerImageContainer}>
@@ -228,8 +278,14 @@ function BlogDetail({ blog }) {
         <Typography variant="h6" className={classes.photoTitle}>
           Heroes of the day!
         </Typography>
-        <div className={classes.image}>
-          <Image src='/image2.png' layout="responsive" alt="Group photo" />
+        <div className={classes.heroImageFill} objectFit="cover">
+          <Image
+            src="/image2.png"
+            layout="fill"
+            objectFit="cover"
+            alt="Group photo"
+            className={classes.heroImage}
+          />
         </div>
         <div className={classes.content}>
           <Typography>
@@ -248,8 +304,13 @@ function BlogDetail({ blog }) {
             business.
           </Typography>
         </div>
-        <div className={classes.imageFullWidth}>
-          <Image src='/image3.png' layout="responsive" alt="Group photo" />
+        <div className={classes.imageFill}>
+          <Image
+            src="/image3.png"
+            layout="fill"
+            alt="Group photo"
+            className={classes.image}
+          />
         </div>
         <div className={classes.content}>
           <Typography>
@@ -280,7 +341,7 @@ function BlogDetail({ blog }) {
         <Divider classes={{ root: classes.divider }} />
         <div className={clsx(classes.author, classes.footerMargin)}>
           <Avatar>
-            <Image src='/author.png' layout="fill" alt="DP" />
+            <Image src="/author.png" layout="fill" alt="DP" />
           </Avatar>
           <div className={classes.authorDetails}>
             <Typography variant="subtitle1" className={classes.authorName}>
@@ -293,15 +354,7 @@ function BlogDetail({ blog }) {
             </Typography>
           </div>
         </div>
-        <Typography
-          style={{
-            fontSize: "16px",
-            fontWeight: "400",
-            color: "#0D1829",
-            lineHeight: "1.33rem",
-            marginBottom: "29px",
-          }}
-        >
+        <Typography variant="subtitle1" className={classes.authorBio}>
           Aishworya is a research assistant working under the PEER Science
           Project at KLL. She is a social science researcher with a background
           in Social Work and Major English. Her major interest lies in using
@@ -310,22 +363,7 @@ function BlogDetail({ blog }) {
           advancement. Her prior works include being a wheelchair basketball
           coach, a school social worker and an adult literacy teacher.{" "}
         </Typography>
-        <div className={classes.tagsContainer}>
-          <Typography
-            style={{
-              fontWeight: "600",
-              fontSize: "16px",
-              lineHeight: "16px",
-              color: "#0D1829",
-            }}
-          >
-            Tags
-          </Typography>
-          <div className={classes.tags}>
-            <div className={classes.tagChip}>Community</div>
-            <div className={classes.tagChip}>Disaster Mapping</div>
-          </div>
-        </div>
+        <Tags />
       </div>
 
       <div className={classes.relatedPostsBgCtr}>

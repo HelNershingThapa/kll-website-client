@@ -20,13 +20,13 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     justifyContent: "space-between",
     alignItems: "flex-end",
+    marginBottom: theme.spacing(15),
   },
   description: {
     lineHeight: 1.6,
     fontWeight: 400,
     color: theme.palette.grey[300],
     width: 633,
-    marginBottom: theme.spacing(15),
   },
   btnRoot: {
     padding: "14px 32px",
@@ -38,12 +38,6 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.grey[300],
   },
 }));
-
-function range(start, end) {
-  return Array(end - start + 1)
-    .fill()
-    .map((_, idx) => start + idx);
-}
 
 const Partners = () => {
   const router = useRouter();
