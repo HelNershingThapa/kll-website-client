@@ -30,27 +30,28 @@ const stats = [
 ];
 
 const useStyles = makeStyles((theme) => ({
-  container: {
-    marginBottom: theme.spacing(25),
-  },
   pageTitle: {
     marginTop: theme.spacing(12),
     marginBottom: theme.spacing(5),
-    fontFamily: "Manrope",
-    fontWeight: "600",
-    fontSize: "32px",
-    color: "#0D1829",
-    lineHeight: "40px",
+    lineHeight: 1.25,
+    [theme.breakpoints.down("xs")]: {
+      marginTop: theme.spacing(3),
+      marginBottom: theme.spacing(3),
+    },
   },
-  imageFullWidth: {
-    width: "100vw",
-    marginLeft: "calc(-50vw + 49.5%)",
+  headerImgFill: {
+    position: "relative",
+    width: "100%",
+    height: 620,
+    [theme.breakpoints.down("xs")]: {
+      height: 121,
+    },
   },
   statsOverlay: {
     position: "absolute",
     display: "flex",
     justifyContent: "space-between",
-    gap: theme.spacing(25),
+    // gap: theme.spacing(25),
     background: "white",
     padding: theme.spacing(8, 15),
     left: 0,
@@ -59,17 +60,29 @@ const useStyles = makeStyles((theme) => ({
     marginRight: "auto",
     width: "670px",
     transform: "translate(0%, -50%)",
+    [theme.breakpoints.down("xs")]: {
+      left: 16,
+      right: 16,
+      width: "inherit",
+      padding: "13px",
+    },
   },
   statTitle: {
     fontWeight: 400,
-    lineHeight: "28px",
+    lineHeight: 1.5556,
+    [theme.breakpoints.down("xs")]: {
+      fontSize: "0.7778rem",
+      lineHeight: 1,
+    },
   },
   statValue: {
     marginTop: theme.spacing(1),
     fontFamily: "Manrope",
-    fontSize: "24px",
     fontWeight: "700",
-    lineHeight: "24px",
+    lineHeight: 1,
+    [theme.breakpoints.down("xs")]: {
+      lineHeight: 1.5556,
+    },
   },
   content: {
     width: "972px",
@@ -77,17 +90,20 @@ const useStyles = makeStyles((theme) => ({
     marginRight: "auto",
     marginTop: theme.spacing(25),
   },
-  imgFill: {
-    // position: "relative",
-    // width: "100%",
-    // height: "521px",
-  },
   membersContainer: {
     marginTop: theme.spacing(25),
+    marginBottom: theme.spacing(25),
     display: "grid",
-    gridTemplateColumns: "1fr 1fr 1fr",
+    gridTemplateColumns: "repeat(3, 1fr)",
     rowGap: "60px",
     columnGap: "30px",
+    [theme.breakpoints.down("xs")]: {
+      display: "flex",
+      flexDirection: "column",
+      gap: theme.spacing(10),
+      marginTop: theme.spacing(12),
+      marginBottom: theme.spacing(12),
+    },
   },
 }));
 
@@ -98,34 +114,33 @@ function OurTeam() {
       <Head>
         <title>Our Team | Kathmandu Living Labs</title>
       </Head>
-      <Container maxWidth="lg" className={classes.container}>
+      <Container fixed className={classes.container}>
         <Typography variant="h4" className={classes.pageTitle}>
           The Kathmandu Living Labs Team
         </Typography>
-        <div className={classes.imageFullWidth}>
-          <div className={classes.imgFill}>
-            <Image
-              src="/our-team-header.png"
-              layout="responsive"
-              width={1920}
-              height={600}
-              alt="People working at KLL"
-              priority
-            />
+      </Container>
+      <div className={classes.headerImgFill}>
+        <Image
+          priority
+          src="/our-team-header.png"
+          layout="fill"
+          objectFit="cover"
+          alt="People working at KLL"
+        />
+      </div>
+      <div className={classes.statsOverlay}>
+        {stats.map((stat) => (
+          <div key={uid(stat)}>
+            <Typography variant="body1" className={classes.statTitle}>
+              {stat.title}
+            </Typography>
+            <Typography variant="h5" className={classes.statValue}>
+              {stat.value}
+            </Typography>
           </div>
-          <div className={classes.statsOverlay}>
-            {stats.map((stat) => (
-              <div key={uid(stat)}>
-                <Typography variant="body1" className={classes.statTitle}>
-                  {stat.title}
-                </Typography>
-                <Typography variant="h6" className={classes.statValue}>
-                  {stat.value}
-                </Typography>
-              </div>
-            ))}
-          </div>
-        </div>
+        ))}
+      </div>
+      <Container fixed>
         <div className={classes.membersContainer}>
           {["", "", "", ""].map((member) => (
             <TeamMemberCard key={uid(member)} />

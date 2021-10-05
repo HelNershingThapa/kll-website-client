@@ -1,59 +1,62 @@
 import Link from "next/link";
 import Image from "next/image";
 import { makeStyles } from "@material-ui/core/styles";
-import Card from "@material-ui/core/Card";
-import CardActionArea from "@material-ui/core/CardActionArea";
-import CardActions from "@material-ui/core/CardActions";
-import CardContent from "@material-ui/core/CardContent";
-import CardMedia from "@material-ui/core/CardMedia";
-import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    width: 460,
+    width: "100%",
   },
-  image: {
+  imageFill: {
+    position: "relative",
+    width: "100%",
     height: 460,
-    width: 460,
+    [theme.breakpoints.down("xs")]: {
+      height: "calc(100vw - 32px)",
+    },
   },
   content: {
-    padding: 0,
+    // padding: 0,
   },
   name: {
-    fontFamily: "Manrope",
-    fontSize: "24px",
-    fontWeight: 700,
-    lineHeight: "32px",
     color: theme.palette.grey[800],
     marginTop: theme.spacing(4),
+    [theme.breakpoints.down("xs")]:{
+      marginTop: theme.spacing(3),
+      fontSize: '1.111rem',
+      lineHeight: 1.6,
+    }
   },
   position: {
-    fontSize: "18px",
-    fontWeight: 400,
-    lineHeight: "18px",
+    lineHeight: 1,
     color: "#61758A",
     marginTop: theme.spacing(1),
+    [theme.breakpoints.down("xs")]:{
+      marginTop: theme.spacing(0),
+      fontSize: '0.8889rem',
+      lineHeight: 1.5,
+    },
   },
   bio: {
-    fontSize: "16px",
-    fontWeight: 400,
-    lineHeight: "24px",
     color: theme.palette.grey[700],
     marginTop: theme.spacing(5),
+    [theme.breakpoints.down("xs")]:{
+      marginTop: theme.spacing(2),      
+    },
   },
   readMore: {
-    fontSize: "16px",
     fontWeight: 600,
-    lineHeight: "24px",
-    cursor: 'pointer'
+    cursor: "pointer",
   },
   socialLinks: {
     padding: 0,
     marginTop: theme.spacing(5),
     display: "flex",
-    gap: theme.spacing(4),
+    gap: theme.spacing(3),
     alignItems: "center",
+    [theme.breakpoints.down("xs")]:{
+      marginTop: theme.spacing(4),      
+    },
   },
 }));
 
@@ -61,34 +64,28 @@ function TeamMemberCard() {
   const classes = useStyles();
 
   return (
-    <Card className={classes.root} elevation={0}>
-      <CardMedia
-        className={classes.image}
-        component="img"
-        alt="Contemplative Reptile"
-        image="/team-member.png"
-        title="Contemplative Reptile"
-      />
-      <CardContent className={classes.content}>
-        <Typography className={classes.name}>Aishworya Shrestha</Typography>
-        <Typography className={classes.position}>Research Assistant</Typography>
-        <Typography component="p" className={classes.bio}>
-          Aishworya is a research assistant working under the PEER Science
-          Project at KLL. She is a social science researcher with a background
-          in Social ...{" "}
-          <Link href="/our-team/arogya-koirala">
-            <Typography
-              variant="body2"
-              className={classes.readMore}
-              display="inline"
-              color="primary"
-            >
-              Read More
-            </Typography>
-          </Link>
-        </Typography>
-      </CardContent>
-      <CardActions className={classes.socialLinks}>
+    <div>
+      <div className={classes.imageFill}>
+        <Image src="/team-member.png" layout="fill" objectFit="cover" alt="" />
+      </div>
+      <Typography variant="h5" className={classes.name}>Aishworya Shrestha</Typography>
+      <Typography className={classes.position}>Research Assistant</Typography>
+      <Typography variant="subtitle1" component="p" className={classes.bio}>
+        Aishworya is a research assistant working under the PEER Science Project
+        at KLL. She is a social science researcher with a background in Social
+        ...{" "}
+        <Link href="/our-team/arogya-koirala">
+          <Typography
+            variant="subtitle1"
+            className={classes.readMore}
+            display="inline"
+            color="primary"
+          >
+            Read More
+          </Typography>
+        </Link>
+      </Typography>
+      <div className={classes.socialLinks}>
         <Image
           src="/icons/twitter-logo.svg"
           height={20}
@@ -107,8 +104,8 @@ function TeamMemberCard() {
           width={20}
           alt="twitter icon"
         />
-      </CardActions>
-    </Card>
+      </div>
+    </div>
   );
 }
 

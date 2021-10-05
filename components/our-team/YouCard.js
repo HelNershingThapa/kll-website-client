@@ -10,14 +10,17 @@ import Typography from "@material-ui/core/Typography";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    width: 460,
+    // width: 460,
     borderRadius: 0,
   },
   blueBackground: {
+    width: '100%',
     height: 460,
-    width: 460,
     background: theme.palette.primary.main,
     position: "relative",
+    [theme.breakpoints.down("xs")]: {
+      height: 'calc(100vw - 32px)',
+    }
   },
   you: {
     position: "absolute",
@@ -44,10 +47,13 @@ const useStyles = makeStyles((theme) => ({
   },
   youText: {
     fontFamily: "Manrope",
-    fontSize: "60px",
+    fontSize: "3.33rem",
     fontWeight: 800,
-    lineHeight: "60px",
+    lineHeight: 1,
     color: theme.palette.grey[50],
+    [theme.breakpoints.down("xs")]: {
+      fontSize: "2.485rem",
+    }
   },
   btnRoot: {
     paddingTop: "10px",
@@ -72,7 +78,7 @@ function YouCard() {
       <CardContent className={classes.content}>
         <div className={classes.blueBackground}>
           <div className={classes.you}>
-            <Typography style={{ color: "white" }} className={classes.youText}>
+            <Typography className={classes.youText}>
               you.
             </Typography>
           </div>

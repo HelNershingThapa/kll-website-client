@@ -7,10 +7,13 @@ import { Typography } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   workingContainer: {
-
     background: "#F0F5F9",
     paddingTop: theme.spacing(15),
     paddingBottom: theme.spacing(25),
+    [theme.breakpoints.down("xs")]: {
+      paddingTop: theme.spacing(10),
+      paddingBottom: theme.spacing(12),
+    },
   },
   workingTitle: {
     fontSize: "16px",
@@ -18,6 +21,9 @@ const useStyles = makeStyles((theme) => ({
     lineHeight: "24px",
     color: theme.palette.grey[800],
     marginBottom: theme.spacing(4),
+    [theme.breakpoints.down("xs")]: {
+      marginBottom: theme.spacing(5),
+    },
   },
   imagesContainer: {
     display: "flex",

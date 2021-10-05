@@ -250,6 +250,10 @@ const theme = createTheme({
       fontSize: "2.22rem",
       fontWeight: "700",
       lineHeight: 1.2,
+      [`@media (max-width:  ${sm}px)`]: {
+        fontSize: "1.778rem",
+        lineHeight: 1.25, 
+      },
     },
     h4: {
       fontFamily: "Manrope",

@@ -92,49 +92,70 @@ const useStyles = makeStyles((theme) => ({
   container: {
     background: "#0D1829",
     padding: theme.spacing(20, 0),
+    [theme.breakpoints.down("xs")]: {
+      padding: theme.spacing(12, 0),
+    },
   },
   scheduleTitle: {
     fontFamily: "Manrope",
-    fontSize: "16px",
     fontWeight: 700,
-    lineHeight: "16px",
-    color: "#F8FAFC",
+    lineHeight: 1,
+    color: theme.palette.grey[50],
   },
   scheduleDescription: {
+    width: "459px",
     marginTop: theme.spacing(4),
     marginBottom: theme.spacing(11),
-    width: "459px",
-    fontFamily: "Manrope",
-    fontSize: "40px",
-    fontWeight: 700,
-    lineHeight: "48px",
-    color: "#F8FAFC",
+    color: theme.palette.grey[50],
+    [theme.breakpoints.down("xs")]: {
+      width: "100%",
+      marginTop: theme.spacing(1),
+      marginBottom: theme.spacing(6),
+    },
   },
   groups: {
     display: "flex",
     justifyContent: "space-between",
+    [theme.breakpoints.down("xs")]: {
+      width: "100%",
+      marginTop: theme.spacing(1),
+      marginBottom: theme.spacing(6),
+      flexWrap: "wrap",
+      rowGap: theme.spacing(10),
+      "& div": {
+        flex: "50%",
+      },
+    },
   },
   groupTitle: {
-    fontFamily: "Manrope",
-    fontSize: "24px",
     fontWeight: 600,
-    lineHeight: "24px",
-    color: "#91A4B7",
+    lineHeight: 1,
+    color: theme.palette.grey[400],
+    [theme.breakpoints.down("xs")]: {
+      fontSize: "1.111rem",
+    },
   },
   subGroups: {
     marginTop: theme.spacing(8),
     display: "flex",
     flexDirection: "column",
     gap: theme.spacing(6),
+    [theme.breakpoints.down("xs")]: {
+      marginTop: theme.spacing(4),
+      gap: theme.spacing(3),
+    },
   },
   subGroupTitle: {
     fontSize: "18px",
     fontWeight: 500,
-    lineHeight: "18px",
-    color: "#E1E8F0",
+    lineHeight: 1,
+    color: theme.palette.grey[200],
+    [theme.breakpoints.down("xs")]: {
+      fontSize: "14px",
+    },
   },
   logoCtr: {
-    marginTop: "55px",
+    marginTop: "48px",
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
@@ -144,23 +165,44 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(5),
     fontSize: "18px",
     fontWeight: 500,
-    lineHeight: "18px",
-    color: "#F8FAFC",
+    lineHeight: 1,
+    color: theme.palette.grey[50],
+    [theme.breakpoints.down("xs")]: {
+      width: 278,
+      fontSize: "14px",
+      lineHeight: 1.428,
+      marginLeft: 'auto',
+      marginRight: 'auto',
+    },
   },
   logoLine: {
     width: "100%",
     height: "0.5px",
     background: "#61758A",
   },
+  btnFlex: {
+    display: "inline-flex",
+    gap: theme.spacing(5),
+    [theme.breakpoints.down("xs")]: {
+      flexDirection: "column",
+      gap: theme.spacing(4),
+      alignItems: "flex-start",
+    },
+  },
   sendEmailBtn: {
-    marginLeft: theme.spacing(5),
-    color: "#CAD5E0",
+    color: theme.palette.grey[300],
+    [theme.breakpoints.down("xs")]: {
+      width: "100%",
+    },
   },
   divider: {
     marginTop: theme.spacing(20),
     marginBottom: theme.spacing(20),
     background: "#445668",
-    height: "1px",
+    [theme.breakpoints.down("xs")]: {
+      marginTop: theme.spacing(10),
+      marginBottom: theme.spacing(10),
+    },
   },
   endIcon: {
     marginLeft: theme.spacing(2),
@@ -187,7 +229,6 @@ const useStyles = makeStyles((theme) => ({
   },
   contactDetails: {
     marginTop: theme.spacing(8),
-
     "& h6": {
       fontSize: "16px",
       fontWeight: 500,
@@ -202,6 +243,10 @@ const useStyles = makeStyles((theme) => ({
       color: theme.palette.grey[50],
       marginTop: theme.spacing(1),
     },
+    [theme.breakpoints.down("xs")]: {
+    marginTop: theme.spacing(5),
+
+    }
   },
 }));
 
@@ -212,31 +257,38 @@ function Footer() {
     <div className={classes.container}>
       <Container maxWidth="lg">
         <div className={classes.scheduleCtr}>
-          <Typography className={classes.scheduleTitle}>
+          <Typography className={classes.scheduleTitle} variant="subtitle1">
             Want to chat?
           </Typography>
-          <Typography className={classes.scheduleDescription}>
+          <Typography variant="h3" className={classes.scheduleDescription}>
             Schedule a virtual meeting with us
           </Typography>
-          <Button
-            classes={{ endIcon: classes.endIcon }}
-            variant="contained"
-            color="primary"
-            endIcon={
-              <i style={{ fontSize: "16px" }} className="ri-arrow-right-line" />
-            }
-          >
-            Schedule a Meeting
-          </Button>
-          <Button variant="outlined" className={classes.sendEmailBtn}>
-            Send Us an Email
-          </Button>
+          <div className={classes.btnFlex}>
+            <Button
+              classes={{ endIcon: classes.endIcon }}
+              variant="contained"
+              color="primary"
+              endIcon={
+                <i
+                  style={{ fontSize: "16px" }}
+                  className="ri-arrow-right-line"
+                />
+              }
+            >
+              Schedule a Meeting
+            </Button>
+            <Button variant="outlined" className={classes.sendEmailBtn}>
+              Send Us an Email
+            </Button>
+          </div>
         </div>
         <Divider className={classes.divider} />
         <div className={classes.groups}>
           {groups.map((group) => (
             <div key={uid(group)}>
-              <div className={classes.groupTitle}>{group.title}</div>
+              <div variant="h5" className={classes.groupTitle}>
+                {group.title}
+              </div>
               <div className={classes.subGroups}>
                 {group.subGroups.map((subGroup) => (
                   <div key={uid(subGroup)} className={classes.subGroupTitle}>
