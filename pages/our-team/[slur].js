@@ -73,7 +73,7 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(2),
   },
   bio: {
-    width: 660,
+    maxWidth: 660,
     display: "flex",
     flexDirection: "column",
     marginTop: theme.spacing(10),

@@ -280,6 +280,10 @@ const theme = createTheme({
       fontSize: "1.1rem",
       fontWeight: "700",
       lineHeight: "4rem",
+      [`@media (max-width:  ${sm}px)`]: {
+        fontSize: "0.8889rem",
+        lineHeight: 1.5,
+      },
     },
     //18px default,
     body1: {
