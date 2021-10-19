@@ -7,11 +7,18 @@ const useStyles = makeStyles((theme) => ({
     background: theme.palette.grey[900],
     height: 432,
     marginTop: theme.spacing(46),
+    [theme.breakpoints.down("xs")]:{
+      height: '100%',
+    }
   },
   volunteeringCtr: {
     maxWidth: "860px",
     margin: "auto",
     transform: "translateY(-82px)",
+    [theme.breakpoints.down("xs")]:{
+      transform: "translateY(-50%)",
+      width: 238,
+    }
   },
   imgFill: {
     position: "relative",

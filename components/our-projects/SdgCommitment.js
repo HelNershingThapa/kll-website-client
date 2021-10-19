@@ -1,7 +1,7 @@
 import { uid } from "react-uid";
 import Image from "next/image";
 import { makeStyles } from "@material-ui/core/styles";
-import { Chip, Typography } from "@material-ui/core";
+import { Container, Typography } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -10,39 +10,69 @@ const useStyles = makeStyles((theme) => ({
     background: theme.palette.grey[100],
     display: "grid",
     placeContent: "center",
-    marginBottom: theme.spacing(20)
+    marginBottom: theme.spacing(20),
+    [theme.breakpoints.down("xs")]: {
+      paddingTop: theme.spacing(12),
+      paddingBottom: theme.spacing(12),
+    },
   },
   committment: {
-    width: 700,
+    maxWidth: 700,
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "center",
     "& h4": {
-      fontFamily: "Manrope",
-      fontWeight: 700,
-      lineHeight: "40px",
-      // color: theme.palette.grey[900],
+      lineHeight: 1.25,
       marginTop: theme.spacing(10),
       marginBottom: theme.spacing(2),
+      [theme.breakpoints.down("xs")]: {
+        marginTop: theme.spacing(5),
+        fontSize: "1rem",
+        lineHeight: 1.5556,
+      },
     },
     "& h5": {
       fontWeight: 400,
-      lineHeight: "40px",
+      lineHeight: 1.6667,
       width: "95%",
       marginBottom: theme.spacing(12),
+      color: theme.palette.grey[800],
+      [theme.breakpoints.down("xs")]: {
+        width: "100%",
+        fontSize: "0.7778rem",
+        lineHeight: 1.428,
+        marginBottom: theme.spacing(6),
+      },
     },
   },
   iconFill: {
     position: "relative",
     width: 240,
     height: 192,
+    [theme.breakpoints.down("xs")]: {
+      width: 120,
+      height: 96,
+    },
   },
   sdgIcons: {
     display: "flex",
-    gap: '25px',
-    flexWrap: 'wrap',
-    justifyContent: 'center'
+    gap: "25px",
+    flexWrap: "wrap",
+    justifyContent: "center",
+    [theme.breakpoints.down("xs")]: {
+      gap: theme.spacing(3),
+    },
+  },
+  imgFill: {
+    position: "relative",
+    width: 120,
+    height: 120,
+    mixBlendMode: "luminosity",
+    [theme.breakpoints.down("xs")]: {
+      width: 58.71,
+      height: 58.71,
+    },
   },
 }));
 
@@ -50,38 +80,33 @@ const SdgCommitment = ({ name, category, src }) => {
   const classes = useStyles();
   return (
     <div className={classes.root}>
-      <div className={classes.committment}>
-        <div className={classes.iconFill}>
-          <Image src="/icons/sdg.png" layout="fill" objectFit="cover" />
+      <Container fixed>
+        <div className={classes.committment}>
+          <div className={classes.iconFill}>
+            <Image src="/icons/sdg.png" layout="fill" objectFit="cover" />
+          </div>
+          <Typography variant="h4" align="center">
+            Our Commitment
+          </Typography>
+          <Typography variant="h5" align="center">
+            {`From our inception in 2012, Kathmandu Living Labs has been fully
+          committed to the UN’s Sustainable Development Goals. Our work, over
+          the years, has contributed to the following Sustainable Goals.`}
+          </Typography>
+          <div className={classes.sdgIcons}>
+            {["01", "02", "03", "07", "08", "12", "13", "14"].map((icon) => (
+              <div key={uid(icon)} className={classes.imgFill}>
+                <Image
+                  src={`/sdg/E-WEB-Goal-${icon}.png`}
+                  layout="fill"
+                  objectFit="cover"
+                  alt="SDG icons"
+                />
+              </div>
+            ))}
+          </div>
         </div>
-        <Typography variant="h4" align="center">
-          Our Commitment
-        </Typography>
-        <Typography
-          variant="h5"
-          align="center"
-        >{`From our inception in 2012, Kathmandu Living Labs has been fully committed to the UN’s Sustainable Development Goals. Our work, over the years, has contributed to the following Sustainable Goals.`}</Typography>
-        <div className={classes.sdgIcons}>
-          {["01", "02", "03", "07", "08", "12", "13", "14"].map((icon) => (
-            <div
-              key={uid(icon)}
-              style={{
-                position: "relative",
-                width: 120,
-                height: 120,
-                mixBlendMode: "luminosity",
-              }}
-            >
-              <Image
-                src={`/sdg/E-WEB-Goal-${icon}.png`}
-                layout="fill"
-                objectFit="cover"
-                alt="SDG icons"
-              />
-            </div>
-          ))}
-        </div>
-      </div>
+      </Container>
     </div>
   );
 };

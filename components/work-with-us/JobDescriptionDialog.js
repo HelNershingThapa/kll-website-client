@@ -60,13 +60,16 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: theme.spacing(1),
   },
   dialog: {
-    width: 920,
+    maxWidth: 920,
     marginLeft: "auto",
+    [theme.breakpoints.down("xs")]: {
+      height: "calc(100vh - 92px)",
+      marginTop: "auto",
+    },
   },
   content: {
     display: "flex",
     flexDirection: "column",
-
     height: "100vh",
     "& p": {
       color: theme.palette.grey[600],

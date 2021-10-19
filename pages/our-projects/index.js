@@ -14,25 +14,38 @@ const useStyles = makeStyles((theme) => ({
   pageTitle: {
     marginTop: theme.spacing(10),
     lineHeight: "40px",
-    marginBottom: theme.spacing(12),
+    marginBottom: theme.spacing(6) - theme.spacing(4),
+  },
+  quoteIcon: {
+    display: "block",
+    fontSize: 40,
+    color: theme.palette.grey[400],
+    transform: "translate(-40px, 16px)",
+    [theme.breakpoints.down("xs")]: {
+      fontSize: 24,
+      transform: "translate(0, 0)",
+    },
   },
   pageSubtitle: {
     fontFamily: "Manrope",
     fontSize: "60px",
     fontWeight: 300,
     lineHeight: "72px",
-    width: 891,
+    maxWidth: 891,
     marginBottom: theme.spacing(15),
+    [theme.breakpoints.down("xs")]: {
+      fontSize: "1.7778rem",
+      fontWeight: 300,
+      lineHeight: 1.25,
+      marginLeft: "18px",
+      marginBottom: theme.spacing(8),
+    },
   },
   subtitleHighlight: {
     fontWeight: 700,
-  },
-  quoteIcon: {
-    position: "absolute",
-    fontSize: "1.67rem",
-    color: theme.palette.grey[400],
-    top: -17,
-    left: -26,
+    [theme.breakpoints.down("xs")]: {
+      marginLeft: 0,
+    },
   },
 }));
 
@@ -48,20 +61,18 @@ const OurProjects = (props) => {
         <Typography variant="h4" className={classes.pageTitle}>
           Impact
         </Typography>
-        <div style={{ position: "relative" }}>
-          <Typography className={classes.pageSubtitle}>
-            We’ve worked on some{" "}
-            <Typography
-              display="inline"
-              color="primary"
-              className={clsx(classes.pageSubtitle, classes.subtitleHighlight)}
-            >
-              incredible initiatives
-            </Typography>
-            . Discover how we’ve made an impact
+        <i className={clsx("ri-double-quotes-l", classes.quoteIcon)} />
+        <Typography className={classes.pageSubtitle}>
+          We’ve worked on some{" "}
+          <Typography
+            display="inline"
+            color="primary"
+            className={clsx(classes.pageSubtitle, classes.subtitleHighlight)}
+          >
+            incredible initiatives
           </Typography>
-          <i className={clsx("ri-double-quotes-l", classes.quoteIcon)} />
-        </div>
+          . Discover how we’ve made an impact
+        </Typography>
         <ProjectsGrid />
       </Container>
       <SdgCommitment />
