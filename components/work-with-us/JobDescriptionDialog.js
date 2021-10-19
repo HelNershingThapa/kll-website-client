@@ -12,6 +12,7 @@ import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
 import CloseIcon from "@material-ui/icons/Close";
 import Slide from "@material-ui/core/Slide";
+import { Hidden } from "@material-ui/core";
 
 const job = {
   position: "Data Engineer",
@@ -56,7 +57,7 @@ const useStyles = makeStyles((theme) => ({
     color: "#304254",
   },
   icon: {
-    marginLeft: "6.67px",
+    marginLeft: theme.spacing(1),
   },
   dialog: {
     width: 920,
@@ -101,6 +102,14 @@ const useStyles = makeStyles((theme) => ({
   applyNowBtn: {
     padding: theme.spacing(3, 4),
   },
+  arrowUpBtn: {
+    padding: "10px",
+    border: "1px solid #CAD5E0",
+    borderRadius: "4px",
+  },
+  arrowUpBtnLabel: {
+    lineHeight: "16px",
+  },
   position: {
     lineHeight: 1,
   },
@@ -138,6 +147,10 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: "50%",
     boxShadow: "10px 10px 40px rgba(13, 24, 41, 0.2)",
   },
+  btnIconArrowRight: {
+    fontSize: "16px !important",
+    color: theme.palette.grey[700],
+  },
   // "@global": {
   //   "*::-webkit-scrollbar": {
   //     width: "8px",
@@ -171,25 +184,36 @@ export default function FullScreenDialog() {
 
   return (
     <div>
-      <Button
-        variant="outlined"
-        classes={{
-          root: classes.seeDetailsBtn,
-          label: classes.label,
-          endIcon: classes.icon,
-        }}
-        endIcon={
-          <Image
-            src="/icons/buttonRightIcon.svg"
-            width={11}
-            height={11}
-            alt="btnicon"
-          />
-        }
-        onClick={handleClickOpen}
-      >
-        See Details
-      </Button>
+      <Hidden xsDown>
+        <Button
+          variant="outlined"
+          classes={{
+            root: classes.seeDetailsBtn,
+            label: classes.label,
+            endIcon: classes.icon,
+          }}
+          endIcon={
+            <i
+              className={clsx("ri-arrow-right-line", classes.btnIconArrowRight)}
+            />
+          }
+          onClick={handleClickOpen}
+        >
+          See Details
+        </Button>
+      </Hidden>
+      <Hidden smUp>
+        <IconButton
+          variant="outlined"
+          classes={{
+            root: classes.arrowUpBtn,
+            label: classes.arrowUpBtnLabel,
+          }}
+          onClick={handleClickOpen}
+        >
+          <i className={clsx("ri-arrow-up-line", classes.btnIconArrowRight)} />
+        </IconButton>
+      </Hidden>
       <Dialog
         fullScreen
         open={open}
