@@ -17,13 +17,14 @@ import Slider from "react-slick";
 import CoverageCard from "components/in-the-media/CoverageCard";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import MoreCoverages from "../components/in-the-media/MoreCoverages";
 
 const useStyles = makeStyles((theme) => ({
   pageCtr: {
     marginTop: theme.spacing(12),
   },
   pageTitle: {
-    width: "358px",
+    maxWidth: "358px",
     fontFamily: "Manrope",
     fontSize: "32px",
     fontWeight: 700,
@@ -32,12 +33,25 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: theme.spacing(8),
   },
   headerCoveragesCtr: {
-    display: "flex",
+    display: "grid",
+    gridTemplateColumns: "1.13fr 1fr",
     gap: theme.spacing(8),
     alignItems: "center",
+    [theme.breakpoints.down("xs")]: {
+      gridTemplateColumns: "1fr",
+      gap: theme.spacing(4),
+    },
   },
   headerImgCtr: {
     position: "relative",
+  },
+  imgFill: {
+    position: "relative",
+    width: "100%",
+    height: "560px",
+    [theme.breakpoints.down("xs")]: {
+      height: "74vw",
+    },
   },
   headerImgOverlay: {
     position: "absolute",
@@ -53,19 +67,24 @@ const useStyles = makeStyles((theme) => ({
   },
   headerCoverageTitle: {
     width: "90%",
-    fontFamily: "Manrope",
-    fontSize: "40px",
-    fontWeight: 700,
-    lineHeight: "48px",
-    color: "#0D1829",
+    [theme.breakpoints.down("xs")]: {
+      fontSize: "1rem",
+      lineHeight: 1.5556,
+    },
   },
   headerCoverageDescription: {
     marginTop: theme.spacing(6),
     marginBottom: theme.spacing(8),
-    fontSize: "20px",
+    fontSize: "1.111rem",
     fontWeight: 300,
-    lineHeight: "32px",
-    color: "#1C2A3A",
+    lineHeight: 1.6,
+    color: theme.palette.grey[800],
+    [theme.breakpoints.down("xs")]: {
+      marginTop: theme.spacing(3),
+      marginBottom: theme.spacing(5),
+      fontSize: "0.8889rem",
+      lineHeight: 1.5,
+    },
   },
   iconButton: {
     background: "#3E64FF !important", //overriding default transparent background color
@@ -92,10 +111,16 @@ const useStyles = makeStyles((theme) => ({
   },
   featureInTitle: {
     fontFamily: "Manrope",
-    fontSize: "20px",
+    fontSize: "1.111rem",
     fontWeight: 600,
-    lineHeight: "24px",
-    color: "#304254",
+    lineHeight: 1.2,
+    color: theme.palette.grey[700],
+    [theme.breakpoints.down("xs")]: {
+      fontSize: "0.7778rem",
+      fontWeight: 600,
+      lineHeight: 1,
+      color: theme.palette.grey[900],
+    },
   },
   feautredInLogos: {
     display: "flex",
@@ -103,25 +128,13 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "space-around",
     marginTop: theme.spacing(6),
     marginBottom: theme.spacing(20),
+    [theme.breakpoints.down("xs")]: {
+      gap: theme.spacing(4),
+    },
   },
-  moreCoveragesCtr: {
-    background: "#F0F5F9",
-    paddingTop: theme.spacing(20),
-    paddingBottom: theme.spacing(20),
-  },
-  moreCoveragesTitle: {
-    fontFamily: "Manrope",
+  btnIcon: {
     fontSize: "24px",
-    fontWeight: 700,
-    lineHeight: "24px",
-    color: "#1C2A3A",
-    marginBottom: theme.spacing(5),
-  },
-  coversGrid: {
-    display: "grid",
-    gridTemplateColumns: "repeat(3, 1fr)",
-    rowGap: "40px",
-    columnGap: "13px",
+    color: "white",
   },
 }));
 
@@ -142,7 +155,7 @@ function InTheMedia() {
       <Head>
         <title>In the Media | Kathmandu Living Labs</title>
       </Head>
-      <Container maxWidth="lg" className={classes.pageCtr}>
+      <Container fixed className={classes.pageCtr}>
         <Typography variant="h5" className={classes.pageTitle}>
           Kathmandu Living Labs in the media
         </Typography>
@@ -152,35 +165,24 @@ function InTheMedia() {
             <div>
               <div className={classes.headerCoveragesCtr}>
                 <div className={classes.headerImgCtr}>
-                  <div
-                    style={{
-                      position: "relative",
-                      width: "750px",
-                      height: "560px",
-                    }}
-                  >
+                  <div className={classes.imgFill}>
                     <Image
+                      priority
                       src="/in-the-media-header.png"
                       layout="fill"
                       alt="KLL in media"
-                      priority
                     />
                   </div>
                   <div className={classes.headerImgOverlay}>
-                    <div>
-                      <Image
-                        src="/guardian-logo-white.png"
-                        width={116}
-                        height={48}
-                        alt="asdasd"
-                      />
-                    </div>
+                    <Image
+                      src="/guardian-logo-white.png"
+                      width={116}
+                      height={48}
+                      alt="asdasd"
+                    />
                     <div className={classes.controls}>
-                      <Image
-                        src="/icons/ArrowLeftWhite.svg"
-                        height={16}
-                        width={16}
-                        alt="right arrow icon"
+                      <i
+                        className={clsx("ri-arrow-left-line", classes.btnIcon)}
                       />
                       <IconButton
                         aria-label="delete"
@@ -188,11 +190,11 @@ function InTheMedia() {
                         className={classes.iconButton}
                         onClick={() => slider?.current?.slickNext()}
                       >
-                        <Image
-                          src="/icons/ArrowRight.svg"
-                          height={16}
-                          width={16}
-                          alt="right arrow icon"
+                        <i
+                          className={clsx(
+                            "ri-arrow-right-line",
+                            classes.btnIcon
+                          )}
                         />
                       </IconButton>
                     </div>
@@ -200,7 +202,7 @@ function InTheMedia() {
                 </div>
                 <div>
                   <Typography
-                    variant="h5"
+                    variant="h3"
                     className={classes.headerCoverageTitle}
                   >
                     The Guardian covers KLL’s post-earthquake works Team
@@ -247,19 +249,16 @@ function InTheMedia() {
                         className={classes.iconButton}
                         onClick={() => slider?.current?.slickPrev()}
                       >
-                        <Image
-                          src="/icons/ArrowLeftWhite.svg"
-                          height={16}
-                          width={16}
-                          alt="right arrow icon"
+                        <i
+                          className={clsx(
+                            "ri-arrow-left-line",
+                            classes.btnIcon
+                          )}
                         />
                       </IconButton>
 
-                      <Image
-                        src="/icons/ArrowRight.svg"
-                        height={16}
-                        width={16}
-                        alt="right arrow icon"
+                      <i
+                        className={clsx("ri-arrow-right-line", classes.btnIcon)}
                       />
                     </div>
                   </div>
@@ -311,31 +310,7 @@ function InTheMedia() {
           </div>
         </div>
       </Container>
-      <div className={classes.moreCoveragesCtr}>
-        <Container maxWidth="lg">
-          <Typography variant="h6" className={classes.moreCoveragesTitle}>
-            More Coverages
-          </Typography>
-          <div className={classes.coversGrid}>
-            {["", "", "", "", ""].map((cover) => (
-              <CoverageCard key={uid(cover)} />
-            ))}
-          </div>
-          <div
-            style={{
-              display: "grid",
-              placeContent: "center",
-              marginTop: "44px",
-            }}
-          >
-            <CircularProgress
-              color="secondary"
-              style={{ color: "#61758A" }}
-              size={24}
-            />
-          </div>
-        </Container>
-      </div>
+      <MoreCoverages />
     </>
   );
 }

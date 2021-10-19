@@ -21,25 +21,29 @@ const useStyles = makeStyles((theme) => ({
   },
   coverageTitle: {
     marginTop: theme.spacing(5),
-    fontFamily: "Manrope",
-    fontSize: "24px",
     fontWeight: 800,
-    lineHeight: "32px",
-    color: "#304254",
+    color: theme.palette.grey[700],
+    [theme.breakpoints.down("xs")]: {
+      marginTop: theme.spacing(4),
+    },
   },
   coverageDescription: {
     marginTop: theme.spacing(4),
-    fontSize: "16px",
-    fontWeight: 400,
-    lineHeight: "24px",
-    color: "#445668",
+    color: theme.palette.grey[600],
+    [theme.breakpoints.down("xs")]: {
+      marginTop: theme.spacing(2),
+    },
   },
   readFull: {
-    color: theme.palette.primary.main,
-    marginTop: theme.spacing(4),
-    fontSize: "16px",
     fontWeight: 600,
-    lineHeight: "24px",
+  },
+  imgFill: {
+    position: "relative",
+    width: "100%",
+    height: 320,
+    [theme.breakpoints.down("xs")]: {
+      height: "67vw",
+    },
   },
 }));
 
@@ -49,13 +53,11 @@ export default function CenteredGrid() {
   return (
     <div className={classes.root}>
       <div className={classes.imgContainer}>
-        <div
-          className={classes.imgFill}
-          style={{ width: "470px", height: "320px" }}
-        >
+        <div className={classes.imgFill}>
           <Image
             src="/coverage-image.png"
             layout="fill"
+            objectFit="cover"
             alt="kll"
           />
         </div>
@@ -63,14 +65,14 @@ export default function CenteredGrid() {
           <Image src="/bbc.png" width={58} height={40} alt="asdasd" />
         </div>
       </div>
-      <Typography className={classes.coverageTitle}>
+      <Typography variant="h5" className={classes.coverageTitle}>
         How ‘crisis mapping’ is helping relief efforts in Nepal Team
       </Typography>
-      <Typography className={classes.coverageDescription}>
+      <Typography variant="subtitle1" className={classes.coverageDescription}>
         &quot;Thousands of people in remote parts of Nepal are still in need of
         medical help and basic supplies. But with roads damaged and buildings
         collapsed, knowing what aid is needed and where, is a challenge.{" "}
-        <Typography display="inline" className={classes.readFull}>
+        <Typography color="primary" variant="subtitle1" display="inline" className={classes.readFull}>
           Read Full Article
         </Typography>
       </Typography>

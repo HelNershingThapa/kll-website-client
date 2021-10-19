@@ -145,11 +145,11 @@ const theme = createTheme({
       label: {
         fontSize: "14px",
         fontWeight: 500,
-        lineHeight: '1',
+        lineHeight: "1",
         color: "#F8FAFC",
         padding: 0,
         margin: 0,
-        [`@media (max-width:  ${sm}px)`]: {
+        [`@media (max-width: ${sm}px)`]: {
           fontSize: "12px",
           lineHeight: 1,
         },
@@ -252,7 +252,7 @@ const theme = createTheme({
       lineHeight: 1.2,
       [`@media (max-width:  ${sm}px)`]: {
         fontSize: "1.778rem",
-        lineHeight: 1.25, 
+        lineHeight: 1.25,
       },
     },
     h4: {

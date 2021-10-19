@@ -51,10 +51,11 @@ const useStyles = makeStyles((theme) => ({
       fontWeight: 700,
       lineHeight: "40px",
       color: theme.palette.grey[100],
-      width: 527,
+      maxWidth: 527,
       [theme.breakpoints.down("xs")]: {
         fontSize: "16px",
         lineHeight: 1.5,
+        width: "100%",
       },
     },
     [theme.breakpoints.down("xs")]: {
@@ -86,10 +87,10 @@ const ProjectCard = ({ name, category, src }) => {
         <div className={classes.imageFill}>
           <Image
             src={src}
-            alt="KLL projects"
+            className={classes.image}
             layout="fill"
             objectFit="cover"
-            className={classes.image}
+            alt="KLL projects"
           />
         </div>
         <div className={classes.projectInfoOverlay}>
