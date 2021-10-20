@@ -50,7 +50,7 @@ const useStyles = makeStyles((theme) => ({
   project2: {
     gridColumn: "3/4",
     "& h4": {
-      width: 489,
+      maxWidth: 489,
     },
     [theme.breakpoints.down("xs")]: {
       gridColumn: "auto",
@@ -76,7 +76,7 @@ const useStyles = makeStyles((theme) => ({
     gridColumn: "2/4",
     gridRow: "3/4",
     "& h4": {
-      width: 423,
+      maxWidth: 423,
     },
     [theme.breakpoints.down("xs")]: {
       gridColumn: "auto",

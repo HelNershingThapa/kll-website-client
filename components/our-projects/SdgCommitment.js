@@ -10,7 +10,6 @@ const useStyles = makeStyles((theme) => ({
     background: theme.palette.grey[100],
     display: "grid",
     placeContent: "center",
-    marginBottom: theme.spacing(20),
     [theme.breakpoints.down("xs")]: {
       paddingTop: theme.spacing(12),
       paddingBottom: theme.spacing(12),

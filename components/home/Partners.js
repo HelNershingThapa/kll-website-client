@@ -24,6 +24,18 @@ const useStyles = makeStyles((theme) => ({
     flexWrap: "wrap",
     justifyContent: "space-between",
     alignItems: "center",
+    [theme.breakpoints.down("xs")]:{
+      columnGap: theme.spacing(3),
+      rowGap: theme.spacing(3),
+      justifyContent: "center",
+    }
+  },
+  partnerLogo: {
+    mixBlendMode: "luminosity",
+    maxHeight: "80px",
+    [theme.breakpoints.down("xs")]: {
+      maxHeight: "40px",
+    },
   },
 }));
 
@@ -47,7 +59,7 @@ const Partners = () => {
             <div key={uid(partner)}>
               <img
                 src={`/project-partner-${partner}.png`}
-                style={{ mixBlendMode: "luminosity" }}
+                className={classes.partnerLogo}
                 alt=""
               />
             </div>

@@ -119,7 +119,6 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     alignItems: "center",
     gap: theme.spacing(15),
-
   },
   menuItemContainerMobile: {
     display: "flex",
@@ -139,8 +138,9 @@ const useStyles = makeStyles((theme) => ({
   contactUs: {
     marginLeft: theme.spacing(5),
     padding: "12px 24px",
-    lineHeight: "0.89rem",
-    fontSize: "0.89rem",
+    fontSize: "16px",
+    lineHeight: 1,
+    fontWeight: 500,
   },
   imgFill: {
     cursor: "pointer",
@@ -250,7 +250,7 @@ function NavBar({}) {
                             className={classes.menuItem}
                             style={{
                               display: "flex",
-                              gap: "12.23px",
+                              gap: "8px",
                               alignItems: "center",
                             }}
                           >

@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
     height: 320,
     position: "relative",
     [theme.breakpoints.down("xs")]: {
-      height: 234,
+      height: "62vw",
     },
   },
   timestamp: {

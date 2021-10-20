@@ -47,6 +47,9 @@ const useStyles = makeStyles((theme) => ({
       marginLeft: 0,
     },
   },
+  sdgMargin: {
+    marginBottom: theme.spacing(20),
+  }
 }));
 
 const OurProjects = (props) => {
@@ -75,7 +78,9 @@ const OurProjects = (props) => {
         </Typography>
         <ProjectsGrid />
       </Container>
+      <div className={classes.sdgMargin}>
       <SdgCommitment />
+      </div>
       <Container fixed>
         <ProjectsGrid />
       </Container>

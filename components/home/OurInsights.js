@@ -22,24 +22,25 @@ const useStyles = makeStyles((theme) => ({
       mixBlendMode: "luminosity",
       opacity: 0.8,
     },
+    [theme.breakpoints.down("xs")]: {
+      paddingTop: theme.spacing(10),
+      paddingBottom: theme.spacing(18),
+    },
   },
   title: {
     fontFamily: "Manrope",
-    fontSize: "14px",
     fontWeight: 700,
-    lineHeight: "14px",
+    lineHeight: 1,
     letterSpacing: "0.12em",
     color: theme.palette.grey[900],
     marginBottom: theme.spacing(1),
   },
   subtitle: {
-    fontFamily: "Manrope",
-    fontSize: "32px",
-    fontWeight: 700,
-    lineHeight: "40px",
-    letterSpacing: "0em",
-    color: theme.palette.grey[900],
+    lineHeight: 1.25,
     marginBottom: theme.spacing(12),
+    [theme.breakpoints.down("xs")]: {
+      marginBottom: theme.spacing(8),
+    },
   },
   blogListContainer: {
     display: "grid",
@@ -57,6 +58,7 @@ const useStyles = makeStyles((theme) => ({
     transform: "translate(-50%, 50%)",
     padding: "14px 32px",
     background: "#fff",
+    whiteSpace: 'nowrap',
   },
 }));
 
@@ -72,25 +74,26 @@ const Partners = () => {
             align="center"
             variant="subtitle2"
             className={classes.title}
-          >{`BLOG`}</Typography>
-          <Typography
-            align="center"
-            variant="h4"
-            className={classes.subtitle}
-          >{`Our Insights`}</Typography>
+          >
+            BLOG
+          </Typography>
+          <Typography align="center" variant="h4" className={classes.subtitle}>
+            Our Insights
+          </Typography>
           <div className={classes.blogListContainer}>
             {["", "", ""].map((blog) => (
               <BlogListCard key={uid(blog)} />
             ))}
           </div>
+          <Button
+            variant="outlined"
+            classes={{ root: classes.btnRoot }}
+            onClick={() => router.push("/blog")}
+          >
+            More at our blog{" "}
+          </Button>
         </Container>
-        <Button
-          variant="outlined"
-          classes={{ root: classes.btnRoot }}
-          onClick={() => router.push("/blog")}
-        >
-          More at our blog{" "}
-        </Button>
+
       </div>
     </>
   );

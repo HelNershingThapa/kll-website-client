@@ -51,7 +51,7 @@ const useStyles = makeStyles((theme) => ({
       fontWeight: 700,
       lineHeight: "40px",
       color: theme.palette.grey[100],
-      width: 527,
+      maxWidth: 527,
       [theme.breakpoints.down("xs")]: {
         fontSize: "16px",
         lineHeight: 1.5,
