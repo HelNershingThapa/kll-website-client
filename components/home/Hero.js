@@ -14,12 +14,15 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down("sm")]: {
       paddingTop: theme.spacing(15),
       paddingBottom: theme.spacing(15),
-      display: 'flex',
-      flexDirection: 'column',
+      display: "flex",
+      flexDirection: "column",
     },
   },
   heroTitleContainer: {
     width: "72%",
+    [theme.breakpoints.down("xs")]: {
+      width: "100%",
+    },
   },
   heroTitle: {
     color: theme.palette.grey[900],
@@ -61,8 +64,9 @@ const useStyles = makeStyles((theme) => ({
     gap: "4rem",
     alignItems: "center",
     [theme.breakpoints.down("xs")]: {
+      marginTop: theme.spacing(10),
       flexDirection: "column",
-      alignItems: 'flex-start',
+      alignItems: "flex-start",
       gap: theme.spacing(6),
     },
   },

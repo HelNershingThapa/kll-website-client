@@ -58,6 +58,13 @@ const menuItems = [
 ];
 
 const useStyles = makeStyles((theme) => ({
+  appBar: {
+    background: "#ffffff",
+    height: "80px",
+    [theme.breakpoints.down("xs")]: {
+      height: "64px",
+    },
+  },
   list: {
     width: 250,
   },
@@ -65,7 +72,10 @@ const useStyles = makeStyles((theme) => ({
     width: "auto",
   },
   menuButton: {
-    marginRight: theme.spacing(2),
+    // marginRight: theme.spacing(2),
+    padding: "10px",
+    background: theme.palette.grey[100],
+    borderRadius: "12px",
   },
   title: {
     // flexGrow: 1,
@@ -112,6 +122,10 @@ const useStyles = makeStyles((theme) => ({
     //   textDecoration: "underline",
     // },
   },
+  menuIcon: {
+    fontSize: "20px",
+    color: theme.palette.grey[600],
+  },
   noDecoration: {
     textDecoration: "none",
   },
@@ -147,6 +161,10 @@ const useStyles = makeStyles((theme) => ({
     position: "relative",
     height: 48,
     width: 48,
+    [theme.breakpoints.down("xs")]: {
+      height: 40,
+      width: 40,
+    },
   },
   tooltip: {
     background: "#fff",
@@ -182,14 +200,7 @@ function NavBar({}) {
   return (
     <Fragment>
       <Container maxWidth="lg">
-        <AppBar
-          position="static"
-          elevation={0}
-          style={{
-            background: "#ffffff",
-            height: "80px",
-          }}
-        >
+        <AppBar position="static" elevation={0} className={classes.appBar}>
           <Toolbar
             style={{
               height: "100%",
@@ -206,7 +217,7 @@ function NavBar({}) {
                     src="/kll-logos/kll-logo-default.svg"
                     layout="fill"
                     objectFit="cover"
-                    alt="Picture of the author"
+                    alt="KLL Logo"
                   />
                 </div>
               </Link>
@@ -218,7 +229,7 @@ function NavBar({}) {
                 onClick={() => setOpen(true)}
                 aria-label="Open Navigation"
               >
-                <MenuIcon color="primary" />
+                <i className={clsx("ri-menu-line", classes.menuIcon)}></i>
               </IconButton>
             </Hidden>
 
@@ -284,7 +295,7 @@ function NavBar({}) {
                   disableElevation
                   variant="contained"
                   color="primary"
-                  onClick={() => router.push('/contact-us')}
+                  onClick={() => router.push("/contact-us")}
                 >
                   Contact Us
                 </Button>

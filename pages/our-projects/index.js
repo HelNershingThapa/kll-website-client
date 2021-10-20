@@ -11,6 +11,12 @@ import SdgCommitment from "components/our-projects/SdgCommitment";
 import MoreProjects from "components/our-projects/MoreProjects";
 
 const useStyles = makeStyles((theme) => ({
+  root: {
+    marginBottom: "10rem",
+    [theme.breakpoints.down("xs")]: {
+      marginBottom: theme.spacing(8),
+    },
+  },
   pageTitle: {
     marginTop: theme.spacing(10),
     lineHeight: "40px",
@@ -49,7 +55,7 @@ const useStyles = makeStyles((theme) => ({
   },
   sdgMargin: {
     marginBottom: theme.spacing(20),
-  }
+  },
 }));
 
 const OurProjects = (props) => {
@@ -60,7 +66,7 @@ const OurProjects = (props) => {
       <Head>
         <title>Our Projects | Kathmandu Living Labs</title>
       </Head>
-      <Container maxWidth="lg" style={{ marginBottom: "10rem" }}>
+      <Container fixed className={classes.root}>
         <Typography variant="h4" className={classes.pageTitle}>
           Impact
         </Typography>
@@ -79,7 +85,7 @@ const OurProjects = (props) => {
         <ProjectsGrid />
       </Container>
       <div className={classes.sdgMargin}>
-      <SdgCommitment />
+        <SdgCommitment />
       </div>
       <Container fixed>
         <ProjectsGrid />

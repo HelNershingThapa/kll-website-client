@@ -8,6 +8,10 @@ const useStyles = makeStyles((theme) => ({
   container: {
     paddingTop: theme.spacing(20),
     paddingBottom: theme.spacing(25),
+    [theme.breakpoints.down("xs")]: {
+      paddingTop: theme.spacing(10),
+      paddingBottom: theme.spacing(10),
+    },
   },
   title: {
     fontFamily: "Manrope",
@@ -24,11 +28,11 @@ const useStyles = makeStyles((theme) => ({
     flexWrap: "wrap",
     justifyContent: "space-between",
     alignItems: "center",
-    [theme.breakpoints.down("xs")]:{
+    [theme.breakpoints.down("xs")]: {
       columnGap: theme.spacing(3),
       rowGap: theme.spacing(3),
       justifyContent: "center",
-    }
+    },
   },
   partnerLogo: {
     mixBlendMode: "luminosity",

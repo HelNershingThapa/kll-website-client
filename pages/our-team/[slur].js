@@ -14,13 +14,20 @@ const member = {
 const useStyles = makeStyles((theme) => ({
   root: {
     height: "calc(100vh - 80px)",
-    display: "flex",
-    gap: theme.spacing(15),
+    display: "grid",
+    gridTemplateColumns: "1fr 1fr",
+    [theme.breakpoints.down("xs")]: {
+      gridTemplateColumns: "1fr",
+      height: "auto",
+    },
   },
   imageContainer: {
     position: "relative",
-    height: "100%",
-    width: "50%",
+    width: "100%",
+    height: "inherit",
+    [theme.breakpoints.down("xs")]: {
+      height: "104vw",
+    },
   },
   navArrowsCtr: {
     position: "absolute",
@@ -31,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
     paddingBottom: theme.spacing(10),
   },
   arrows: {
-    height: '100%',
+    height: "100%",
     display: "flex",
     gap: "30px",
     alignItems: "flex-end",
@@ -55,8 +62,15 @@ const useStyles = makeStyles((theme) => ({
     lineHeight: "18px",
     color: theme.palette.grey[700],
   },
+  btnArrowIcon: {
+    fontSize: "24px",
+    color: "#fff",
+  },
   bioCtr: {
-    marginTop: theme.spacing(12),
+    padding: theme.spacing(12, 15),
+    [theme.breakpoints.down("xs")]: {
+      padding: "24px 16px",
+    },
   },
   name: {
     fontSize: "48px",
@@ -105,7 +119,7 @@ export default function Home() {
             src="/member-detail.png"
             layout="fill"
             objectFit="cover"
-            alt="KLL detail"
+            alt="KLL member"
           />
           <div className={classes.navArrowsCtr}>
             <div className={classes.arrows}>
@@ -115,8 +129,7 @@ export default function Home() {
                 style={{ background: "transparent" }}
               >
                 <i
-                  className="ri-arrow-left-line"
-                  style={{ fontSize: "24px", color: "#fff" }}
+                  className={clsx("ri-arrow-left-line", classes.btnArrowIcon)}
                 />
               </IconButton>
               <IconButton
@@ -124,8 +137,7 @@ export default function Home() {
                 classes={{ root: classes.iconBtnRoot }}
               >
                 <i
-                  className="ri-arrow-right-line"
-                  style={{ fontSize: "24px", color: "#fff" }}
+                  className={clsx("ri-arrow-right-line", classes.btnArrowIcon)}
                 />
               </IconButton>
             </div>
