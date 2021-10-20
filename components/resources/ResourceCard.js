@@ -8,19 +8,27 @@ const useStyles = makeStyles((theme) => ({
     padding: "32px 24px",
     background: theme.palette.grey[50],
     borderRadius: "12px",
+    [theme.breakpoints.down("xs")]: {
+      padding: theme.spacing(6, 5),
+    },
+  },
+  logoFill: {
+    position: "relative",
+    width: 60,
+    height: 60,
   },
   title: {
-    fontFamily: "Manrope",
-    fontWeight: 700,
-    lineHeight: "32px",
+    lineHeight: 1.6,
     color: theme.palette.grey[700],
     marginTop: theme.spacing(5),
     marginBottom: theme.spacing(3),
+    [theme.breakpoints.down("xs")]: {
+      marginBottom: theme.spacing(2),
+      fontSize: "1rem",
+      lineHeight: 1.5556,
+    },
   },
   description: {
-    fontSize: "16px",
-    fontWeight: 400,
-    lineHeight: "24px",
     color: theme.palette.grey[700],
     marginBottom: theme.spacing(5),
   },
@@ -34,8 +42,8 @@ const useStyles = makeStyles((theme) => ({
     padding: "10px 20px",
   },
   endIcon: {
-    marginLeft: theme.spacing(1)
-  }
+    marginLeft: theme.spacing(1),
+  },
 }));
 
 export default function ImgMediaCard() {
@@ -43,12 +51,14 @@ export default function ImgMediaCard() {
 
   return (
     <div className={classes.root}>
-      <Image src="/icons/osm.png" height={60} width={60} alt="" />
+      <div className={classes.logoFill}>
+        <Image src="/icons/osm.png" layout="fill" objectFit="cover" alt="" />
+      </div>
       <Typography
         className={classes.title}
         variant="h6"
       >{`What is OpenStreetMap?`}</Typography>
-      <Typography className={classes.description}>
+      <Typography variant="subtitle1" className={classes.description}>
         {`OpenStreetMap (OSM) is a collaborative project to create a free editable
         geographic database of the world. The geodata underlying the maps is
         considered the primary output of the project. The creation and growth of
@@ -58,15 +68,19 @@ export default function ImgMediaCard() {
       </Typography>
       <Button
         variant="outlined"
-        classes={{ root: classes.btnRoot, label: classes.btnLabel, endIcon:  classes.endIcon }}
+        classes={{
+          root: classes.btnRoot,
+          label: classes.btnLabel,
+          endIcon: classes.endIcon,
+        }}
         endIcon={
           <i
-            style={{ fontSize: "16px", color: "#445668" }}
+            style={{ fontSize: "14px", color: "#445668" }}
             className="ri-external-link-line"
           />
         }
       >
-        Visit page
+        Visit Page
       </Button>
     </div>
   );
