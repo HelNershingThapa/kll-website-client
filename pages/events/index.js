@@ -22,30 +22,36 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: theme.spacing(50),
   },
   pageTitle: {
-    fontFamily: "Manrope",
-    fontWeight: "600",
-    fontSize: "32px",
-    color: "#0D1829",
-    lineHeight: "40px",
+    lineHeight: 1.25,
+    [theme.breakpoints.down("xs")]: {
+      lineHeight: 1.6,
+    },
   },
   pageDescription: {
     color: theme.palette.grey[600],
     marginTop: theme.spacing(3),
     marginBottom: theme.spacing(12),
-    width: 800,
+    maxWidth: 800,
+    [theme.breakpoints.down("xs")]: {
+      marginTop: theme.spacing(1),
+      marginBottom: theme.spacing(6),
+      fontSize: "0.7778rem",
+      lineHeight: 1.428,
+    },
   },
   wholeContainer: {
     display: "grid",
     gridTemplateColumns: "2.18fr 1fr",
     gap: theme.spacing(10),
     marginTop: theme.spacing(8),
-    width: "100%",
+    [theme.breakpoints.down("xs")]: {
+      gridTemplateColumns: "1fr",
+    },
   },
   eventsContainer: {
     display: "flex",
     flexDirection: "column",
     gap: theme.spacing(40),
-    width: "100%",
     marginBottom: theme.spacing(40),
   },
   calendarCrossFill: {
@@ -102,11 +108,11 @@ function Events() {
           // <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         }
       </Head>
-      <Container maxWidth="lg" className={classes.pageCtr}>
-        <Typography variant="h5" className={classes.pageTitle}>
+      <Container fixed className={classes.pageCtr}>
+        <Typography variant="h4" className={classes.pageTitle}>
           Events at
         </Typography>
-        <Typography variant="h5" className={classes.pageTitle}>
+        <Typography variant="h4" className={classes.pageTitle}>
           Kathmandu Living Labs
         </Typography>
         <Typography variant="body1" className={classes.pageDescription}>
@@ -115,6 +121,7 @@ function Events() {
           our events and participate.
         </Typography>
         <EventTabs value={value} setValue={setValue} />
+
         <div className={classes.wholeContainer}>
           {value !== "Past Events" && (
             <div className={classes.eventsContainer}>
@@ -159,7 +166,7 @@ function Events() {
             </div>
           )}
           <div>
-          <RecurringEvents />
+            <RecurringEvents />
           </div>
           <div>
             <StayUpdated />

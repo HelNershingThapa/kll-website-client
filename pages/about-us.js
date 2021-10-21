@@ -56,46 +56,60 @@ const useStyles = makeStyles((theme) => ({
   pageTitle: {
     marginTop: theme.spacing(12),
     marginBottom: theme.spacing(5),
-    fontFamily: "Manrope",
-    fontWeight: "600",
-    fontSize: "32px",
-    color: "#0D1829",
-    lineHeight: "40px",
+    lineHeight: 1.25,
+    [theme.breakpoints.down("xs")]: {
+      lineHeight: 1.6,
+      marginTop: theme.spacing(4),
+      marginBottom: theme.spacing(3),
+    },
   },
-  imageFullWidth: {
-    width: "100vw",
-    marginLeft: "calc(-50vw + 49.5%)",
+  headerImgFill: {
+    position: "relative",
+    width: "100%",
+    height: "521px",
+    [theme.breakpoints.down("xs")]: {
+      height: "31vw",
+    },
   },
   statsOverlay: {
-    display: "flex",
-    justifyContent: "space-between",
-    gap: theme.spacing(25),
-    background: "white",
     position: "absolute",
-    padding: theme.spacing(8, 15),
     left: 0,
     right: 0,
+    bottom: 0,
     marginLeft: "auto",
     marginRight: "auto",
-    width: "670px",
-    transform: "translate(0%, -50%)",
+    maxWidth: "670px",
+    transform: "translate(0%, 50%)",
+    display: "flex",
+    justifyContent: "space-between",
+    background: "white",
+    padding: theme.spacing(8, 15),
+    [theme.breakpoints.down("xs")]: {
+      left: 16,
+      right: 16,
+      padding: "12px",
+    },
   },
   statTitle: {
     fontWeight: 400,
     lineHeight: "28px",
+    [theme.breakpoints.down("xs")]: {
+      fontSize: "0.7778rem",
+      lineHeight: 1,
+    },
   },
   statValue: {
     marginTop: theme.spacing(1),
-    fontFamily: "Manrope",
-    fontSize: "24px",
-    fontWeight: "700",
-    lineHeight: "24px",
+    lineHeight: 1,
   },
   content: {
-    width: "972px",
+    maxWidth: "972px",
     marginLeft: "auto",
     marginRight: "auto",
     marginTop: theme.spacing(25),
+    [theme.breakpoints.down("xs")]: {
+      marginTop: theme.spacing(13),
+    },
   },
   paragraphs: {
     display: "flex",
@@ -104,17 +118,20 @@ const useStyles = makeStyles((theme) => ({
     color: "blue",
   },
   para: {
-    fontSize: "20px",
-    fontWeight: 400,
-    lineHeight: "32px",
-    color: "#1C2A3A",
+    fontSize: "1.111rem",
+    lineHeight: 1.6,
+    color: theme.palette.grey[800],
     marginTop: theme.spacing(5),
+    [theme.breakpoints.down("xs")]: {
+      fontSize: "0.8889rem",
+      lineHeight: 1.5,
+    },
   },
   img1: {
     marginTop: theme.spacing(10),
     marginBottom: theme.spacing(10),
     position: "relative",
-    width: 972,
+    width: '100%',
     height: 500,
   },
   imgsCtr: {
@@ -147,12 +164,6 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
     background: "#F0F5F9",
   },
-
-  imgFill: {
-    position: "relative",
-    width: "100%",
-    height: "521px",
-  },
 }));
 
 function AboutUs() {
@@ -162,36 +173,36 @@ function AboutUs() {
       <Head>
         <title>About Us | Kathmandu Living Labs</title>
       </Head>
-      <Container maxWidth="lg" className={classes.container}>
+      <Container fixed className={classes.container}>
         <Typography variant="h4" className={classes.pageTitle}>
           About Us
         </Typography>
-        <div className={classes.imageFullWidth}>
-          <div className={classes.imgFill}>
-            <Image
-              src="/about-us-header.png"
-              layout="fill"
-              objectFit="cover"
-              alt="People working at KLL"
-              priority
-            />
-          </div>
-          <div className={classes.statsOverlay}>
-            {stats.map((stat) => (
-              <div key={uid(stat)}>
-                <Typography variant="body1" className={classes.statTitle}>
-                  {stat.title}
-                </Typography>
-                <Typography variant="h6" className={classes.statValue}>
-                  {stat.value}
-                </Typography>
-              </div>
-            ))}
-          </div>
+      </Container>
+      <div className={classes.headerImgFill}>
+        <Image
+          src="/about-us-header.png"
+          layout="fill"
+          objectFit="cover"
+          alt="People working at KLL"
+          priority
+        />
+        <div className={classes.statsOverlay}>
+          {stats.map((stat) => (
+            <div key={uid(stat)}>
+              <Typography variant="body1" className={classes.statTitle}>
+                {stat.title}
+              </Typography>
+              <Typography variant="h5" className={classes.statValue}>
+                {stat.value}
+              </Typography>
+            </div>
+          ))}
         </div>
+      </div>
+      <Container fixed>
         <div className={classes.content}>
           <div className={classes.paragraphs}>
-            <Typography className={classes.para}>
+            <Typography variant="body1" className={classes.para}>
               Kathmandu Living Labs is a pioneer civic-tech enterprise that
               provides data and technology solutions to businesses, governments,
               development partners, and civil society.

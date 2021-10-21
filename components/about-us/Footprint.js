@@ -39,13 +39,16 @@ const useStyles = makeStyles((theme) => ({
     transform: "translate(-50%, -50%)",
   },
   footprint: {
-    fontFamily: "Manrope",
     fontSize: "80px",
     fontWeight: 800,
-    lineHeight: "80px",
+    lineHeight: 1,
     color: theme.palette.grey[100],
     textTransform: "uppercase",
     marginTop: theme.spacing(30),
+    [theme.breakpoints.down("xs")]: {
+      fontSize: "60px",
+      marginTop: theme.spacing(10),
+    },
   },
   ourImpact: {
     display: "inline",
@@ -53,10 +56,21 @@ const useStyles = makeStyles((theme) => ({
     top: "50%",
     left: "50%",
     transform: "translate(-50%, -50%)",
-    fontSize: "20px",
+    fontSize: "1.111rem",
     fontWeight: 600,
-    lineHeight: "32px",
+    lineHeight: 1.6,
     color: theme.palette.grey[800],
+    [theme.breakpoints.down("xs")]: {
+      fontSize: "0.8889rem",
+      lineHeight: 1.5556,
+    },
+  },
+  impactsCtr: {
+    [theme.breakpoints.down("xs")]: {
+      display: "grid",
+      placeContent: "center",
+      borderBottom: "1px solid #E1E8F0",
+    },
   },
   impacts: {
     display: "flex",
@@ -64,6 +78,14 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(18),
     paddingBottom: theme.spacing(10),
     borderBottom: "1px solid #E1E8F0",
+    [theme.breakpoints.down("xs")]: {
+      display: "inline-flex",
+      flexDirection: "column",
+      alignItems: "flex-start",
+      gap: theme.spacing(8),
+      marginTop: theme.spacing(8),
+      borderBottom: "none",
+    },
   },
   impact: {
     display: "flex",
@@ -103,22 +125,29 @@ function Footprint() {
           </Typography>
         </div>
       </div>
-      <div className={classes.impacts}>
-        {impacts.map((impact) => (
-          <div key={uid(impact)} className={classes.impact}>
-            <div className={classes.imgFill}>
-              <Image src={impact.icon} alt="" layout="fill" objectFit="cover" />
+      <div className={classes.impactsCtr}>
+        <div className={classes.impacts}>
+          {impacts.map((impact) => (
+            <div key={uid(impact)} className={classes.impact}>
+              <div className={classes.imgFill}>
+                <Image
+                  src={impact.icon}
+                  alt=""
+                  layout="fill"
+                  objectFit="cover"
+                />
+              </div>
+              <div>
+                <Typography variant="h3" className={classes.value}>
+                  {impact.value}
+                </Typography>
+                <Typography variant="body1" className={classes.label}>
+                  {impact.label}
+                </Typography>
+              </div>
             </div>
-            <div>
-              <Typography variant="h3" className={classes.value}>
-                {impact.value}
-              </Typography>
-              <Typography variant="body1" className={classes.label}>
-                {impact.label}
-              </Typography>
-            </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </>
   );

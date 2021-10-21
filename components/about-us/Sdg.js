@@ -1,7 +1,7 @@
 import { uid } from "react-uid";
 import Image from "next/image";
 import { makeStyles } from "@material-ui/core/styles";
-import { Chip, Typography } from "@material-ui/core";
+import { Container, Chip, Typography } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -9,9 +9,13 @@ const useStyles = makeStyles((theme) => ({
     paddingBottom: theme.spacing(25),
     display: "grid",
     placeContent: "center",
+    [theme.breakpoints.down("xs")]: {
+      paddingTop: theme.spacing(8),
+      paddingBottom: theme.spacing(10),
+    },
   },
   committment: {
-    width: 496,
+    maxWidth: 496,
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
@@ -36,12 +40,30 @@ const useStyles = makeStyles((theme) => ({
     width: 200,
     height: 159,
     marginBottom: theme.spacing(10),
+    [theme.breakpoints.down("xs")]: {
+      width: 160,
+      height: 127,
+      marginBottom: theme.spacing(6),
+    },
   },
   sdgIcons: {
     display: "flex",
     gap: theme.spacing(8),
     flexWrap: "wrap",
     justifyContent: "center",
+    [theme.breakpoints.down("xs")]: {
+      gap: "22px",
+    },
+  },
+  sdgIconFill: {
+    position: "relative",
+    width: 100,
+    height: 100,
+    mixBlendMode: "luminosity",
+    [theme.breakpoints.down("xs")]: {
+      width: 69,
+      height: 69,
+    },
   },
 }));
 
@@ -51,7 +73,7 @@ const Sdg = ({ name, category, src }) => {
     <div className={classes.root}>
       <div className={classes.committment}>
         <div className={classes.iconFill}>
-          <Image src="/icons/sdg.png" layout="fill" objectFit="cover" />
+          <Image src="/icons/sdg.png" layout="fill" objectFit="cover" alt="" />
         </div>
         <div className={classes.sdgIcons}>
           {[
@@ -67,15 +89,7 @@ const Sdg = ({ name, category, src }) => {
             "16",
             "17",
           ].map((icon) => (
-            <div
-              key={uid(icon)}
-              style={{
-                position: "relative",
-                width: 100,
-                height: 100,
-                mixBlendMode: "luminosity",
-              }}
-            >
+            <div key={uid(icon)} className={classes.sdgIconFill}>
               <Image
                 src={`/sdg/E-WEB-Goal-${icon}.png`}
                 layout="fill"

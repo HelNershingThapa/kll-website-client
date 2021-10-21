@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
   layover: {
     position: "absolute",
     background: "white",
-    width: "614px",
+    maxWidth: "614px",
     padding: theme.spacing(6),
     top: "50%",
     left: "50%",
@@ -81,7 +81,12 @@ function Events() {
   return (
     <>
       <div className={classes.container}>
-        <Image src="/events.png" layout="fill" objectFit="cover" />
+        <Image
+          src="/events.png"
+          layout="fill"
+          objectFit="cover"
+          alt="event at KLL"
+        />
         <Chip
           label="21st Aug 2021"
           color="primary"
