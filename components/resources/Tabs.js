@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import withWidth, { isWidthUp } from "@material-ui/core/withWidth";
 import { makeStyles } from "@material-ui/core/styles";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
@@ -22,14 +23,23 @@ const useStyles = makeStyles((theme) => ({
   tabs: {
     marginTop: theme.spacing(8),
     // borderLeft: `1px solid ${theme.palette.primary.main}`,
+    [theme.breakpoints.down("xs")]: {
+      marginTop: theme.spacing(6),
+    },
   },
   selected: {
     background: "#E8EFFC",
+    [theme.breakpoints.down("xs")]: {
+      background: "none",
+    },
   },
   indicator: {
     left: "0px",
     width: theme.spacing(1),
     backgroundColor: theme.palette.primary.main,
+    [theme.breakpoints.down("xs")]: {
+      height: "4px",
+    },
   },
   tabRoot: {
     width: 290,
@@ -41,37 +51,56 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 700,
     lineHeight: "18px",
     color: theme.palette.grey[500],
+    [theme.breakpoints.down("xs")]: {
+      width: "auto",
+      padding: "7px 8px",
+      marginBottom: 0,
+    },
   },
   tabWrapper: {
-    flexDirection: 'row',
-    justifyContent: 'flex-start'
+    flexDirection: "row",
+    justifyContent: "flex-start",
   },
   textColorPrimary: {
     fontFamily: "Manrope",
     fontSize: "18px",
     fontWeight: 700,
-    lineHeight: "18px",
+    lineHeight: 1,
+    [theme.breakpoints.down("xs")]: {
+      fontSize: "16px",
+      fontWeight: 700,
+    },
+  },
+  tabsFlexContainer: {
+    [theme.breakpoints.down("xs")]: {
+      gap: theme.spacing(6),
+    },
   },
 }));
 
-export default function VerticalTabs() {
+function VerticalTabs({ width, value, setValue }) {
   const classes = useStyles();
-  const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
 
+  const tabOrientation = isWidthUp("sm", width) ? "vertical" : "horizontal";
+
+  console.log("tabOrientation", tabOrientation);
+
   return (
     <div className={classes.root}>
       <Tabs
-        orientation="vertical"
+        orientation={tabOrientation}
         value={value}
         onChange={handleChange}
         aria-label="Vertical tabs example"
         className={classes.tabs}
         classes={{
           indicator: classes.indicator,
+
+          flexContainer: classes.tabsFlexContainer,
         }}
         textColor="primary"
       >
@@ -109,3 +138,5 @@ export default function VerticalTabs() {
     </div>
   );
 }
+
+export default withWidth()(VerticalTabs);

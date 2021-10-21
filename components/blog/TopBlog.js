@@ -60,7 +60,7 @@ const useStyles = makeStyles((theme) => ({
   timeToRead: {
     color: theme.palette.grey[200],
     fontWeight: 500,
-    [theme.breakpoints.down("xs")]: {      
+    [theme.breakpoints.down("xs")]: {
       fontSize: "14px",
     },
   },
@@ -74,7 +74,7 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
     height: 572,
     [theme.breakpoints.down("xs")]: {
-      height: "320px",
+      height: "85vw",
     },
   },
 }));
@@ -89,6 +89,7 @@ const TopBlog = () => {
           className={classes.image}
           src="/blog-list-header.png"
           layout="fill"
+          objectFit="cover"
           alt="KLL Blog"
         />
       </div>
@@ -125,7 +126,7 @@ const TopBlog = () => {
           </IconButton>
         </div>
         </Hidden>
-        
+
       </div>
     </div>
   );
