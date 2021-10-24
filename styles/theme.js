@@ -22,12 +22,11 @@ const borderColor = "rgba(0, 0, 0, 0.13)";
 // const xs = 478;
 const xl = 1920;
 const lg = 1500; // 1440 + 30 * 2(padding)
-const md = 1280;
+const desktop = 1280;
+const md = 992;
+const tablet = 768;
 const sm = 600;
 const xs = 0;
-const mobile = 640;
-const laptop = 1024;
-const desktop = 1280;
 
 // spacing
 const spacing = 4;
@@ -93,12 +92,11 @@ const theme = createTheme({
     values: {
       xs,
       sm,
+      tablet,
       md,
+      desktop,
       lg,
       xl,
-      mobile,
-      laptop,
-      desktop,
     },
   },
   border: {
@@ -109,6 +107,10 @@ const theme = createTheme({
     MuiContainer: {
       root: {
         [`@media (min-width:  ${lg}px)`]: {
+          paddingLeft: spacing * 7.5,
+          paddingRight: spacing * 7.5,
+        },
+        [`@media (max-width:  ${md}px)`]: {
           paddingLeft: spacing * 7.5,
           paddingRight: spacing * 7.5,
         },
@@ -240,14 +242,14 @@ const theme = createTheme({
     h2: {
       // color: 'rgba(255,255,255)',
       fontFamily: "Manrope",
-      fontSize: "2.67rem",
+      fontSize: "2.667rem",
       fontWeight: "700",
       lineHeight: 1.125,
     },
     h3: {
       // color: 'rgba(255,255,255)',
       fontFamily: "Manrope",
-      fontSize: "2.22rem",
+      fontSize: "2.222rem",
       fontWeight: "700",
       lineHeight: 1.2,
       [`@media (max-width:  ${sm}px)`]: {
@@ -267,7 +269,7 @@ const theme = createTheme({
     },
     h5: {
       fontFamily: "Manrope",
-      fontSize: "1.33rem",
+      fontSize: "1.333rem",
       fontWeight: "700",
       lineHeight: 1.33,
       [`@media (max-width:  ${sm}px)`]: {
@@ -277,7 +279,7 @@ const theme = createTheme({
     },
     h6: {
       fontFamily: "Manrope",
-      fontSize: "1.1rem",
+      fontSize: "1.111rem",
       fontWeight: "700",
       lineHeight: "4rem",
       [`@media (max-width:  ${sm}px)`]: {

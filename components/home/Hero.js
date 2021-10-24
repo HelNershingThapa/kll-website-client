@@ -7,10 +7,11 @@ import { Typography, Container, Button } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   hero: {
-    position: "relative",
+    // position: "relative",
+    // display: "flex",
     background: theme.palette.grey[100],
-    paddingTop: "7.78rem",
-    paddingBottom: "7.78rem",
+    // paddingTop: "7.78rem",
+    // paddingBottom: "7.78rem",
     [theme.breakpoints.down("sm")]: {
       paddingTop: theme.spacing(15),
       paddingBottom: theme.spacing(15),
@@ -18,8 +19,19 @@ const useStyles = makeStyles((theme) => ({
       flexDirection: "column",
     },
   },
+  container: {
+    marginRight: 0,
+    paddingRight: 0,
+    display: "flex",
+    gap: "22px",
+  },
+  actionItemsWrapper: {
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+  },
   heroTitleContainer: {
-    width: "72%",
+    // width: "72%",
     [theme.breakpoints.down("xs")]: {
       width: "100%",
     },
@@ -46,12 +58,12 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   heroImg: {
-    position: "absolute",
-    top: 0,
-    right: 0,
-    [theme.breakpoints.down("xs")]: {
-      position: "static",
-    },
+    // position: "absolute",
+    // top: 0,
+    // right: 0,
+    // [theme.breakpoints.down("xs")]: {
+    //   position: "static",
+    // },
   },
   heroImageFill: {
     position: "relative",
@@ -113,62 +125,64 @@ const Hero = () => {
   const classes = useStyles();
   return (
     <div className={classes.hero}>
-      <Container maxWidth="lg">
-        <div className={classes.heroTitleContainer}>
-          <Typography variant="h2" className={classes.heroTitle}>
-            A{" "}
-            <Typography
-              className={classes.heroTitleHighlight}
+      <Container fixed className={classes.container}>
+        <div className={classes.actionItemsWrapper}>
+          <div className={classes.heroTitleContainer}>
+            <Typography variant="h2" className={classes.heroTitle}>
+              A{" "}
+              <Typography
+                className={classes.heroTitleHighlight}
+                color="primary"
+                display="inline"
+              >
+                pioneer civic-tech enterprise
+              </Typography>{" "}
+              providing humane data and technology solutions to businessnes,
+              governments, development partners and the civil society
+            </Typography>
+          </div>
+          <div className={classes.actionItems}>
+            <Button
               color="primary"
-              display="inline"
+              variant="contained"
+              classes={{ root: classes.button, endIcon: classes.endIcon }}
+              endIcon={
+                <i
+                  style={{ fontSize: "32px" }}
+                  className={clsx(
+                    "ri-arrow-right-circle-line",
+                    classes.circleIcon
+                  )}
+                />
+              }
+              onClick={() => router.push("/our-projects")}
             >
-              pioneer civic-tech enterprise
-            </Typography>{" "}
-            providing humane data and technology solutions to businessnes,
-            governments, development partners and the civil society
-          </Typography>
+              <div className={classes.buttonTitleCtr}>
+                <Typography className={classes.buttonTitle}>
+                  See Our Work
+                </Typography>
+                <Typography className={classes.buttonDesc}>
+                  25+ and counting
+                </Typography>
+              </div>
+            </Button>
+            <Typography
+              className={classes.getInTouch}
+            >{`Get In Touch ->`}</Typography>
+          </div>
         </div>
-        <div className={classes.actionItems}>
-          <Button
-            color="primary"
-            variant="contained"
-            classes={{ root: classes.button, endIcon: classes.endIcon }}
-            endIcon={
-              <i
-                style={{ fontSize: "32px" }}
-                className={clsx(
-                  "ri-arrow-right-circle-line",
-                  classes.circleIcon
-                )}
-              />
-            }
-            onClick={() => router.push("/our-projects")}
-          >
-            <div className={classes.buttonTitleCtr}>
-              <Typography className={classes.buttonTitle}>
-                See Our Work
-              </Typography>
-              <Typography className={classes.buttonDesc}>
-                25+ and counting
-              </Typography>
-            </div>
-          </Button>
-          <Typography
-            className={classes.getInTouch}
-          >{`Get In Touch ->`}</Typography>
+        <div className={classes.heroImg}>
+          <div className={classes.heroImageFill}>
+            <Image
+              src="/hero-img.png"
+              layout="fill"
+              objectFit="cover"
+              alt="KLL"
+              priority
+            />
+          </div>
         </div>
       </Container>
-      <div className={classes.heroImg}>
-        <div className={classes.heroImageFill}>
-          <Image
-            src="/hero-img.png"
-            layout="fill"
-            objectFit="cover"
-            alt="KLL"
-            priority
-          />
-        </div>
-      </div>
     </div>
   );
 };

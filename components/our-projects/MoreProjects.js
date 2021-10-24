@@ -68,7 +68,7 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(25),
     marginBottom: theme.spacing(25),
     "& h4": {
-      width: 323,
+      maxWidth: 323,
       color: theme.palette.grey[800],
       marginBottom: theme.spacing(12),
     },
@@ -82,8 +82,9 @@ const useStyles = makeStyles((theme) => ({
     gridTemplateColumns: "1fr 1fr 1fr",
     gridGap: "1px",
     background: "black",
-    "& :nth-child(-n + 3)": {
+    "& project:nth-child(-n + 3)": {
       paddingTop: 0,
+      borderTop: 'none',
     },
     "& :nth-child(3n)": {
       paddingRight: 0,

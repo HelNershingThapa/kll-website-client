@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
   items: {
     display: "flex",
     gap: theme.spacing(8),
-    [theme.breakpoints.down("xs")]: {
+    [theme.breakpoints.down("sm")]: {
       flexDirection: "column",
       gap: theme.spacing(4),
     },
@@ -32,16 +32,13 @@ const useStyles = makeStyles((theme) => ({
     display: "grid",
     gridTemplateColumns: "repeat(3, 1fr)",
     columnGap: "19px",
-    [theme.breakpoints.down("xs")]: {
+    [theme.breakpoints.down("sm")]: {
       gridTemplateColumns: "1fr",
       rowGap: theme.spacing(6),
     },
   },
   optionTitle: {
-    fontFamily: "Manrope",
-    fontSize: "20px",
-    fontWeight: 700,
-    lineHeight: "20px",
+    lineHeight: 1,
     color: theme.palette.grey[700],
     marginBottom: "38px",
     marginTop: "13px",
@@ -58,7 +55,7 @@ function Resources(props) {
         <title>Resources | Kathmandu Living Labs</title>
       </Head>
       <div className={classes.container}>
-        <Container>
+        <Container fixed>
           <div className={classes.items}>
             <div>
               <Typography variant="h4" className={classes.pageTitle}>
@@ -67,8 +64,9 @@ function Resources(props) {
               <Tabs value={tabValue} setValue={setTabValue} />
             </div>
             <div>
-              <Hidden xsDown>
+              <Hidden smDown>
                 <Typography
+                variant="h6"
                   className={classes.optionTitle}
                 >{`/${tabLabels[tabValue]}`}</Typography>
               </Hidden>

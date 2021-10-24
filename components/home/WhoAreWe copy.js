@@ -12,7 +12,7 @@ import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import Table from "@material-ui/core/Table";
 
-const stats = [
+const moreProjects = [
   {
     name: "Est",
     value: "2013",
@@ -49,7 +49,7 @@ const stats = [
 
 var perChunk = 4; // items per chunk
 
-var result = stats.reduce((resultArray, item, index) => {
+var result = moreProjects.reduce((resultArray, item, index) => {
   const chunkIndex = Math.floor(index / perChunk);
 
   if (!resultArray[chunkIndex]) {
@@ -103,13 +103,13 @@ const useStyles = makeStyles((theme) => ({
       lineHeight: 1.6,
       color: theme.palette.grey[800],
     },
-    [theme.breakpoints.down("xs")]: {
+    [theme.breakpoints.down("xs")]:{
       marginBottom: theme.spacing(5),
       "& p": {
         fontSize: "0.778rem",
         lineHeight: 1.428,
       },
-    },
+    }
   },
   kllInNumbers: {
     background: theme.palette.grey[100],
@@ -122,9 +122,9 @@ const useStyles = makeStyles((theme) => ({
       lineHeight: "24px",
       color: theme.palette.grey[900],
     },
-    [theme.breakpoints.down("xs")]: {
+    [theme.breakpoints.down("xs")]:{
       marginBottom: theme.spacing(6),
-    },
+    }
   },
   tableCtr: {
     marginTop: theme.spacing(8),
@@ -187,11 +187,17 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
   },
   name: {
+    fontSize: "18px",
+    fontWeight: 400,
+    lineHeight: "28px",
     color: theme.palette.grey[600],
     marginBottom: theme.spacing(1),
   },
   value: {
+    fontFamily: "Manrope",
+    fontWeight: 700,
     lineHeight: 1,
+    color: theme.palette.grey[900],
   },
   btnRoot: {
     padding: "14px 32px",
@@ -201,36 +207,6 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 500,
     lineHeight: "20px",
     color: theme.palette.grey[800],
-  },
-  statTitleTypo: {
-    marginBottom: theme.spacing(8),
-  },
-  statsCtr: {
-    display: "grid",
-    gridTemplateColumns: "repeat(4,1fr)",
-    "& :nth-child(-n + 4)": {
-      paddingTop: 0,
-      borderTop: 'none',
-    },
-    "& :nth-child(4n)": {
-      paddingRight: 0,
-      borderRight: 'none',
-    },
-    "& :nth-child(4n + 1)": {
-      paddingLeft: 0,
-      borderLeft: 'none',
-    },
-    "& :nth-child(n+4)": {
-      paddingBottom: 0,
-      borderBottom: 'none',
-    },
-  },
-  stat: {
-    // padding: "108px",
-    padding: "32px 0",
-    border: "1px solid #CAD5E0",
-    display: 'grid',
-    placeContent: 'center'
   },
 }));
 
@@ -268,21 +244,44 @@ const Partners = () => {
               </Typography>
             </div>
             <div className={classes.kllInNumbers}>
-              <Typography variant="h5" className={classes.statTitleTypo}>
-                KLL in numbers
-              </Typography>
-              <div className={classes.statsCtr}>
-                {stats.map((stat) => (
-                  <div key={uid(stat)} className={classes.stat}>
-                    <Typography variant="body1" className={classes.name}>
-                      {stat.name}
-                    </Typography>
-                    <Typography variant="h5" className={classes.value}>
-                      {stat.value}
-                    </Typography>
-                  </div>
-                ))}
-              </div>
+              <Typography variant="h5">KLL in numbers</Typography>
+              <TableContainer className={classes.tableCtr}>
+                <Table
+                  className={classes.table}
+                  aria-label="simple table"
+                  style={{ tableLayout: "fixed" }}
+                >
+                  <TableBody className={classes.tableBody}>
+                    {result.map((row) => (
+                      <TableRow key={uid(row)} className={classes.tableRow}>
+                        {row.map((stat) => (
+                          <TableCell
+                            key={uid(stat)}
+                            className={classes.tableCell}
+                          >
+                            <div key={uid(stat)} className={classes.stat}>
+                              <Typography
+                                variant="body1"
+                                className={classes.name}
+                                display="inline"
+                              >
+                                {stat.name}
+                              </Typography>
+                              <Typography
+                                variant="h5"
+                                className={classes.value}
+                                display="inline"
+                              >
+                                {stat.value}
+                              </Typography>
+                            </div>
+                          </TableCell>
+                        ))}
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              </TableContainer>
             </div>
             <Button
               variant="outlined"
