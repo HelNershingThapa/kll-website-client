@@ -70,7 +70,7 @@ const Partners = () => {
             {`We’ve worked on some amazing projects with our partners. Check out
           some of our featured work below`}
           </Typography>
-          <Hidden xsDown>
+          <Hidden smDown>
             <Button
               variant="outlined"
               classes={{ root: classes.btnRoot, label: classes.btnLabel }}

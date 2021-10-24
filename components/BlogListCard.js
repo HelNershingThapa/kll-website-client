@@ -23,9 +23,12 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   media: {
+    position: "relative",    
     width: "inherit",
     height: 320,
-    position: "relative",
+    [theme.breakpoints.down("tablet")]: {
+      height: 500,
+    },
     [theme.breakpoints.down("xs")]: {
       height: "62vw",
     },

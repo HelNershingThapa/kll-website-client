@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
     gridTemplateColumns: "1fr 0.57fr 1.0384fr",
     gridTemplateRows: "620px 500px 500px",
     gridGap: theme.spacing(10),
-    [theme.breakpoints.down("xs")]: {
+    [theme.breakpoints.down("sm")]: {
       gridTemplateColumns: "1fr",
       gridTemplateRows: "auto",
       gridGap: theme.spacing(6),
@@ -43,7 +43,7 @@ const useStyles = makeStyles((theme) => ({
   },
   project1: {
     gridColumn: "1 / 3",
-    [theme.breakpoints.down("xs")]: {
+    [theme.breakpoints.down("sm")]: {
       gridColumn: "auto",
     },
   },
@@ -52,14 +52,14 @@ const useStyles = makeStyles((theme) => ({
     "& h4": {
       maxWidth: 489,
     },
-    [theme.breakpoints.down("xs")]: {
+    [theme.breakpoints.down("sm")]: {
       gridColumn: "auto",
     },
   },
   project3: {
     gridColumn: "1/2",
     gridRow: "2/4",
-    [theme.breakpoints.down("xs")]: {
+    [theme.breakpoints.down("sm")]: {
       gridColumn: "auto",
       gridRow: "auto",
     },
@@ -67,7 +67,7 @@ const useStyles = makeStyles((theme) => ({
   project4: {
     gridColumn: "2/4",
     gridRow: "2/3",
-    [theme.breakpoints.down("xs")]: {
+    [theme.breakpoints.down("sm")]: {
       gridColumn: "auto",
       gridRow: "auto",
     },
@@ -78,7 +78,7 @@ const useStyles = makeStyles((theme) => ({
     "& h4": {
       maxWidth: 423,
     },
-    [theme.breakpoints.down("xs")]: {
+    [theme.breakpoints.down("sm")]: {
       gridColumn: "auto",
       gridRow: "auto",
     },

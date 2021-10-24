@@ -79,7 +79,7 @@ const useStyles = makeStyles((theme) => ({
   headerImgFill: {
     position: "relative",
     width: "100%",
-    height: 638,
+    height: '32vw',
     [theme.breakpoints.down("xs")]: {
       width: "100%",
       height: 121,
@@ -158,7 +158,7 @@ function WorkWithUs() {
         <title>Work With Us | Kathmandu Living Labs</title>
       </Head>
       <div className={classes.pageHeader}>
-        <Container maxWidth="lg">
+        <Container fixed>
           <Typography
             display="inline"
             variant="h4"

@@ -9,7 +9,7 @@ const useStyles = makeStyles((theme) => ({
     position: "relative",
     height: "100%",
     width: "100%",
-    [theme.breakpoints.down("xs")]: {
+    [theme.breakpoints.down("sm")]: {
       height: "auto",
     },
     cursor: "pointer",
@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
     position: "relative",
     width: "100%",
     height: "100%",
-    [theme.breakpoints.down("xs")]: {
+    [theme.breakpoints.down("sm")]: {
       width: "100%",
       "& div": {
         position: "unset !important",
@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   image: {
-    [theme.breakpoints.down("xs")]: {
+    [theme.breakpoints.down("sm")]: {
       objectFit: "cover",
       width: "100% important",
       position: "relative !important",
@@ -52,19 +52,19 @@ const useStyles = makeStyles((theme) => ({
       lineHeight: "40px",
       color: theme.palette.grey[100],
       maxWidth: 527,
-      [theme.breakpoints.down("xs")]: {
+      [theme.breakpoints.down("sm")]: {
         fontSize: "16px",
         lineHeight: 1.5,
         width: "100%",
       },
     },
-    [theme.breakpoints.down("xs")]: {
+    [theme.breakpoints.down("sm")]: {
       gap: theme.spacing(2),
       padding: theme.spacing(3),
     },
   },
   chipRoot: {
-    [theme.breakpoints.down("xs")]: {
+    [theme.breakpoints.down("sm")]: {
       gap: theme.spacing(2),
     },
   },

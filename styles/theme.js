@@ -84,6 +84,7 @@ const theme = createTheme({
   },
   spacing,
   breakpoints: {
+    keys: ["xs", "sm", "tablet", "md", "desktop", "lg", "xl"],
     // Define custom breakpoint values.
     // These will apply to Material-UI components that use responsive
     // breakpoints, such as `Grid` and `Hidden`. You can also use the
