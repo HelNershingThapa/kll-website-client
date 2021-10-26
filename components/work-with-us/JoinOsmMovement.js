@@ -9,6 +9,9 @@ const useStyles = makeStyles((theme) => ({
     display: "grid",
     gridTemplateColumns: "1fr 1fr",
     gap: theme.spacing(5),
+    [theme.breakpoints.down("sm")]:{
+      gridTemplateColumns: "1fr"
+    }
   },
   imgFill: {
     position: "relative",

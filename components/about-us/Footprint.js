@@ -66,7 +66,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   impactsCtr: {
-    [theme.breakpoints.down("xs")]: {
+    [theme.breakpoints.down("sm")]: {
       display: "grid",
       placeContent: "center",
       borderBottom: "1px solid #E1E8F0",
@@ -78,7 +78,7 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(18),
     paddingBottom: theme.spacing(10),
     borderBottom: "1px solid #E1E8F0",
-    [theme.breakpoints.down("xs")]: {
+    [theme.breakpoints.down("sm")]: {
       display: "inline-flex",
       flexDirection: "column",
       alignItems: "flex-start",

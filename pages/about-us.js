@@ -67,7 +67,7 @@ const useStyles = makeStyles((theme) => ({
     position: "relative",
     width: "100%",
     height: "521px",
-    [theme.breakpoints.down("xs")]: {
+    [theme.breakpoints.down("md")]: {
       height: "31vw",
     },
   },
@@ -84,6 +84,11 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "space-between",
     background: "white",
     padding: theme.spacing(8, 15),
+    [theme.breakpoints.down("sm")]: {
+      left: 32,
+      right: 32,
+      padding: theme.spacing(6),
+    },
     [theme.breakpoints.down("xs")]: {
       left: 16,
       right: 16,
@@ -133,6 +138,9 @@ const useStyles = makeStyles((theme) => ({
     position: "relative",
     width: '100%',
     height: 500,
+    [theme.breakpoints.down("sm")]:{
+      height: "46vw",
+    }
   },
   imgsCtr: {
     display: "flex",
@@ -142,6 +150,9 @@ const useStyles = makeStyles((theme) => ({
     position: "relative",
     width: 476,
     height: 583,
+    [theme.breakpoints.down("sm")]:{
+      height: "54vw",
+    }
   },
   header: {
     fontFamily: "Manrope",

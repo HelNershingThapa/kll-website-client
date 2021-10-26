@@ -2,6 +2,7 @@ import { uid } from "react-uid";
 import { makeStyles } from "@material-ui/core/styles";
 import { Container, Typography, CircularProgress } from "@material-ui/core";
 import CoverageCard from "./CoverageCard";
+import { desktop, tablet } from "../../styles/theme";
 
 const useStyles = makeStyles((theme) => ({
   moreCoveragesCtr: {
@@ -24,14 +25,14 @@ const useStyles = makeStyles((theme) => ({
   },
   coversGrid: {
     display: "grid",
-    gridTemplateColumns: "repeat(3, 1fr)",
-    rowGap: "40px",
-    columnGap: "13px",
-    [theme.breakpoints.down("sm")]: {
-        gridTemplateColumns: "1fr 1fr",
-      },
-    [theme.breakpoints.down("xs")]: {
+    gridTemplateColumns: "1fr 1fr 1fr",
+    columnGap: "15px",
+    rowGap: theme.spacing(12),
+    marginTop: theme.spacing(8),
+    [theme.breakpoints.down(tablet)]: {
       gridTemplateColumns: "1fr",
+      rowGap: theme.spacing(8),
+      marginTop: theme.spacing(4),
     },
   },
 }));

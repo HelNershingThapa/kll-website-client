@@ -10,6 +10,7 @@ const useStyles = makeStyles((theme) => ({
     background: theme.palette.grey[100],
     [theme.breakpoints.down("xs")]: {
       paddingTop: theme.spacing(12),
+      marginBottom: "118px",
     },
   },
   widthed: {
@@ -48,6 +49,9 @@ const useStyles = makeStyles((theme) => ({
     position: "relative",
     width: "100%",
     height: 480,
+    [theme.breakpoints.down("sm")]:{
+      height: "45vw",
+    }
   },
 }));
 

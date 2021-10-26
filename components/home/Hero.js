@@ -7,25 +7,32 @@ import { Typography, Container, Button } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   hero: {
-    // position: "relative",
+    position: "relative",
     // display: "flex",
     background: theme.palette.grey[100],
     // paddingTop: "7.78rem",
     // paddingBottom: "7.78rem",
     [theme.breakpoints.down("sm")]: {
-      paddingTop: theme.spacing(15),
-      paddingBottom: theme.spacing(15),
+      // paddingTop: theme.spacing(15),
+      // paddingBottom: theme.spacing(15),
       display: "flex",
       flexDirection: "column",
     },
   },
   container: {
-    marginRight: 0,
-    paddingRight: 0,
+    // marginRight: 0,
+    // paddingRight: 0,
     display: "flex",
     gap: "22px",
+    [theme.breakpoints.down("sm")]: {
+      flexDirection: "column",
+      gap: theme.spacing(15),
+      paddingTop: theme.spacing(15),
+      paddingBottom: theme.spacing(15),
+    },
   },
   actionItemsWrapper: {
+    height: 708,
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
@@ -58,17 +65,23 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   heroImg: {
-    // position: "absolute",
-    // top: 0,
-    // right: 0,
-    // [theme.breakpoints.down("xs")]: {
-    //   position: "static",
-    // },
+    position: "absolute",
+    top: 0,
+    right: 0,
+    [theme.breakpoints.down("xs")]: {
+      position: "static",
+    },
   },
   heroImageFill: {
     position: "relative",
     height: 708,
     width: 620,
+    [theme.breakpoints.down("sm")]: {
+      width: "100vw",
+      height: "80vw",
+      marginLeft: "-16px",
+      marginRight: "-16px"
+    },
   },
   actionItems: {
     marginTop: theme.spacing(15),
@@ -91,7 +104,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   circleIcon: {
-    fontSize: "26.67px",
+    fontSize: "32px !important",
   },
   buttonTitle: {
     fontSize: "20px",
@@ -99,7 +112,7 @@ const useStyles = makeStyles((theme) => ({
     lineHeight: "20px",
     color: theme.palette.grey[50],
   },
-  buttonDesc: {
+  buttonSubtitle: {
     fontSize: "16px",
     fontWeight: 500,
     lineHeight: "14px",
@@ -148,7 +161,6 @@ const Hero = () => {
               classes={{ root: classes.button, endIcon: classes.endIcon }}
               endIcon={
                 <i
-                  style={{ fontSize: "32px" }}
                   className={clsx(
                     "ri-arrow-right-circle-line",
                     classes.circleIcon
@@ -161,7 +173,7 @@ const Hero = () => {
                 <Typography className={classes.buttonTitle}>
                   See Our Work
                 </Typography>
-                <Typography className={classes.buttonDesc}>
+                <Typography className={classes.buttonSubtitle}>
                   25+ and counting
                 </Typography>
               </div>
@@ -174,11 +186,11 @@ const Hero = () => {
         <div className={classes.heroImg}>
           <div className={classes.heroImageFill}>
             <Image
+              priority
               src="/hero-img.png"
               layout="fill"
               objectFit="cover"
               alt="KLL"
-              priority
             />
           </div>
         </div>

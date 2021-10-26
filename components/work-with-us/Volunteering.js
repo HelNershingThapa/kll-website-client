@@ -1,43 +1,53 @@
 import { makeStyles } from "@material-ui/core/styles";
 import Image from "next/image";
 import { Container, Typography, Button } from "@material-ui/core";
+import {tablet} from 'styles/theme'
 
 const useStyles = makeStyles((theme) => ({
   backgroundCtr: {
     background: theme.palette.grey[900],
-    height: 432,
+    // height: 432,
     marginTop: theme.spacing(46),
-    [theme.breakpoints.down("xs")]:{
-      height: '100%',
-    }
+    [theme.breakpoints.down(tablet)]: {
+      height: "100%",
+      marginTop: "237px",
+    },
   },
   volunteeringCtr: {
     maxWidth: "860px",
     margin: "auto",
-    transform: "translateY(-82px)",
-    [theme.breakpoints.down("xs")]:{
-      transform: "translateY(-50%)",
-      width: 238,
-    }
+    // transform: "translateY(-82px)",
+    [theme.breakpoints.down(tablet)]: {
+      // transform: "translateY(-50%)",
+      maxWidth: 238,
+    },
   },
   imgFill: {
     position: "relative",
-    height: 600,
+    height: 432,
     width: 400,
-    [theme.breakpoints.down("xs")]:{
-      width: '100%'
-    }
+    transform: "scale(1.3889)",
+    [theme.breakpoints.down(tablet)]: {
+      width: "100%",
+      height: "357px",
+      transform: "translateY(-50%)",
+    },
   },
   imageOverlay: {
     display: "grid",
     gridTemplateColumns: "1fr 1fr",
     gridGap: theme.spacing(10),
-    [theme.breakpoints.down("xs")]: {
+    [theme.breakpoints.down(tablet)]: {
+      gridGap: theme.spacing(5),
       gridTemplateColumns: "1fr",
     },
   },
   volunteer: {
     margin: "auto",
+    [theme.breakpoints.down(tablet)]: {
+      marginTop: "-179px",
+      paddingBottom: theme.spacing(12),
+    },
   },
   volunteeringTitle: {
     fontFamily: "Manrope",
@@ -80,7 +90,7 @@ function Volunteering() {
               <Image
                 src="/volunteering.png"
                 layout="fill"
-                objectFit="cover"
+                objectFit="contain"
                 alt="volunteering"
               />
             </div>

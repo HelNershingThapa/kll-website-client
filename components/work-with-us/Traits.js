@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
     gridTemplateColumns: "repeat(4, 1fr)",
     gap: theme.spacing(5),
     marginBottom: "40px",
-    [theme.breakpoints.down("xs")]: {
+    [theme.breakpoints.down("sm")]: {
       gridTemplateColumns: "repeat(2, 1fr)",
       gap: "11px",
     },
@@ -50,6 +50,10 @@ const useStyles = makeStyles((theme) => ({
     position: "relative",
     height: 100,
     width: 100,
+    [theme.breakpoints.down(992)]: {
+      height: 80,
+      width: 80,
+    },
     [theme.breakpoints.down("xs")]: {
       height: 60,
       width: 60,
@@ -73,8 +77,8 @@ function Traits() {
           <div className={classes.traitLogoFill}>
             <Image
               src={`/icons/${trait.icon}`}
-              height={100}
-              width={100}
+              layout="fill"
+              objectFit="cover"
               alt="KLL traits"
             />
           </div>

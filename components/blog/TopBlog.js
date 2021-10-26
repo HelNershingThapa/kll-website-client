@@ -2,6 +2,7 @@ import Image from "next/image";
 import { makeStyles } from "@material-ui/core/styles";
 import { Chip, Typography, IconButton, Hidden } from "@material-ui/core";
 import rightArrowIcon from "public/icons/ArrowRight.svg";
+import { desktop, tablet } from "styles/theme";
 
 const useStyles = makeStyles((theme) => ({
   headerImage: {
@@ -47,7 +48,7 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down("xs")]: {
       marginTop: 0,
       fontSize: "14px",
-      width: '100%'
+      width: "100%",
     },
   },
   iconButton: {
@@ -73,6 +74,12 @@ const useStyles = makeStyles((theme) => ({
     position: "relative",
     width: "100%",
     height: 572,
+    [theme.breakpoints.down(' ')]: {
+      height: 502,
+    },
+    [theme.breakpoints.down(desktop)]: {
+      height: 387,
+    },
     [theme.breakpoints.down("xs")]: {
       height: "85vw",
     },
@@ -110,23 +117,22 @@ const TopBlog = () => {
           </Typography>
         </div>
         <Hidden xsDown>
-        <div style={{ display: "block", marginTop: "auto" }}>
-          <IconButton
-            aria-label="delete"
-            disabled
-            color="primary"
-            className={classes.iconButton}
-          >
-            <Image
-              src={rightArrowIcon}
-              height={16}
-              width={16}
-              alt="right arrow icon"
-            />
-          </IconButton>
-        </div>
+          <div style={{ display: "block", marginTop: "auto" }}>
+            <IconButton
+              aria-label="delete"
+              disabled
+              color="primary"
+              className={classes.iconButton}
+            >
+              <Image
+                src={rightArrowIcon}
+                height={16}
+                width={16}
+                alt="right arrow icon"
+              />
+            </IconButton>
+          </div>
         </Hidden>
-
       </div>
     </div>
   );

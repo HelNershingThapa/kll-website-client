@@ -255,7 +255,7 @@ function Footer() {
 
   return (
     <div className={classes.container}>
-      <Container maxWidth="lg">
+      <Container fixed>
         <div className={classes.scheduleCtr}>
           <Typography className={classes.scheduleTitle} variant="subtitle1">
             Want to chat?

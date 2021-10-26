@@ -207,10 +207,18 @@ const useStyles = makeStyles((theme) => ({
   },
   statsCtr: {
     display: "grid",
-    gridTemplateColumns: "repeat(4,1fr)",
-    "& :nth-child(-n + 4)": {
+    gridTemplateColumns: "1.1fr 2fr 2fr 1.1fr",
+    "& :first-child": {
       paddingTop: 0,
       borderTop: 'none',
+      display: 'flex',
+      flexDirection: 'column',
+    },
+    "& :nth-child(5)": {
+      paddingTop: 0,
+      borderTop: 'none',
+      display: 'flex',
+      flexDirection: 'column',
     },
     "& :nth-child(4n)": {
       paddingRight: 0,

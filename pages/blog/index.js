@@ -15,10 +15,11 @@ import {
   CircularProgress,
   InputAdornment,
 } from "@material-ui/core";
-import BlogListCard from "components/BlogListCard";
-import BlogTabs from "components/BlogTabs";
+import BlogListCard from "components/blog/BlogListCard";
+import BlogTabs from "components/blog/BlogTabs";
 import searchIcon from "public/icons/search.svg";
 import TopBlog from "../../components/blog/TopBlog";
+import { tablet } from "../../styles/theme";
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -31,7 +32,6 @@ const useStyles = makeStyles((theme) => ({
   },
   pageTitle: {
     color: "#0D1829",
-    marginBottom: theme.spacing(3),
     [theme.breakpoints.down("xs")]: {
       marginBottom: theme.spacing(1),
     },
@@ -59,7 +59,7 @@ const useStyles = makeStyles((theme) => ({
     columnGap: "15px",
     rowGap: theme.spacing(12),
     marginTop: theme.spacing(8),
-    [theme.breakpoints.down("xs")]: {
+    [theme.breakpoints.down(tablet)]: {
       gridTemplateColumns: "1fr",
       rowGap: theme.spacing(8),
       marginTop: theme.spacing(4),
@@ -99,7 +99,7 @@ const BlogList = (props) => {
       <Head>
         <title>Blog | Kathmandu Living Labs</title>
       </Head>
-      <Container maxWidth="lg" className={classes.container}>
+      <Container fixed className={classes.container}>
         <Typography variant="h4" className={classes.pageTitle}>
           Our Blog
         </Typography>

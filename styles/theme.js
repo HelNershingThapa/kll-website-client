@@ -22,9 +22,9 @@ const borderColor = "rgba(0, 0, 0, 0.13)";
 // const xs = 478;
 const xl = 1920;
 const lg = 1500; // 1440 + 30 * 2(padding)
-const desktop = 1280;
+export const desktop = 1280;
 const md = 992;
-const tablet = 768;
+export const tablet = 768;
 const sm = 600;
 const xs = 0;
 
@@ -84,7 +84,7 @@ const theme = createTheme({
   },
   spacing,
   breakpoints: {
-    keys: ["xs", "sm", "tablet", "md", "desktop", "lg", "xl"],
+    // keys: ["xs", "sm", "tablet", "md", "desktop", "lg", "xl"],
     // Define custom breakpoint values.
     // These will apply to Material-UI components that use responsive
     // breakpoints, such as `Grid` and `Hidden`. You can also use the

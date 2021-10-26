@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
   },
   selected: {
     background: "#E8EFFC",
-    [theme.breakpoints.down("md")]: {
+    [theme.breakpoints.down("sm")]: {
       background: "none",
     },
   },
@@ -52,9 +52,9 @@ const useStyles = makeStyles((theme) => ({
     lineHeight: "18px",
     color: theme.palette.grey[500],
     [theme.breakpoints.down("md")]: {
-      width: "auto",
-      // padding: "7px 8px",
+      // width: "auto",
       marginBottom: 0,
+      width: 210,
     },
     [theme.breakpoints.down("xs")]: {
       width: "auto",
@@ -91,8 +91,6 @@ function VerticalTabs({ width, value, setValue }) {
   };
 
   const tabOrientation = isWidthUp("md", width) ? "vertical" : "horizontal";
-
-  console.log("tabOrientation", tabOrientation);
 
   return (
     <div className={classes.root}>

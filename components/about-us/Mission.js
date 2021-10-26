@@ -1,7 +1,6 @@
 import { uid } from "react-uid";
-import Image from "next/image";
 import { makeStyles } from "@material-ui/core/styles";
-import { Typography } from "@material-ui/core";
+import { Container, Typography } from "@material-ui/core";
 
 const missions = [
   {
@@ -38,6 +37,12 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     justifyContent: "space-between",
     paddingBottom: theme.spacing(20),
+    [theme.breakpoints.down("sm")]: {
+      flexDirection: "column",
+      gap: theme.spacing(6),
+      paddingTop: theme.spacing(12),
+      paddingBottom: theme.spacing(12),
+    },
   },
   title: {
     display: "table-caption",
@@ -45,6 +50,10 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 700,
     lineHeight: "40px",
     color: theme.palette.grey[300],
+    [theme.breakpoints.down("sm")]: {
+      display: "block",
+      textAlign: "center",
+    },
   },
   sNo: {
     fontFamily: "Manrope",
@@ -60,20 +69,26 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: 768,
   },
   description: {
-    fontWeight: 400,
-    lineHeight: "40px",
     fontFamily: "Inter",
     fontSize: "24px",
     fontWeight: 400,
+    lineHeight: "40px",
     color: theme.palette.grey[200],
+    [theme.breakpoints.down("sm")]: {
+      fontSize: "0.8889rem",
+      lineHeight: 1.6667,
+    },
   },
   missionDescription: {
-    fontWeight: 400,
-    lineHeight: "40px",
     fontFamily: "Inter",
     fontSize: "24px",
     fontWeight: 400,
+    lineHeight: 1.6667,
     color: theme.palette.grey[200],
+    [theme.breakpoints.down("sm")]: {
+      fontSize: "0.8889rem",
+      lineHeight: 1.6667,
+    },
   },
 }));
 
@@ -82,29 +97,30 @@ function Mission() {
 
   return (
     <div className={classes.bgRoot}>
-      <div className={classes.root}>
-        <div>
-          <Typography variant="h4" className={classes.title}>
-            Our Mission
-          </Typography>
+      <Container fixed>
+        <div className={classes.root}>
+          <div>
+            <Typography variant="h4" className={classes.title}>
+              Our Mission
+            </Typography>
+          </div>
+          <div className={classes.missions}>
+            <ul style={{ margin: 0 }}>
+              {missions.map((mission, index) => (
+                <div key={uid(mission, index)} className={classes.description}>
+                  <li>
+                    <Typography
+                      className={classes.missionDescription}
+                    >
+                      {mission.description}
+                    </Typography>
+                  </li>
+                </div>
+              ))}
+            </ul>
+          </div>
         </div>
-        <div className={classes.missions}>
-          <ul style={{ margin: 0 }}>
-            {missions.map((mission, index) => (
-              <div key={uid(mission, index)} className={classes.description}>
-                <li>
-                  <Typography
-                    variant="h5"
-                    className={classes.missionDescription}
-                  >
-                    {mission.description}
-                  </Typography>
-                </li>
-              </div>
-            ))}
-          </ul>
-        </div>
-      </div>
+      </Container>
     </div>
   );
 }

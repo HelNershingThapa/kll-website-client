@@ -4,7 +4,7 @@ import { uid } from "react-uid";
 import Image from "next/image";
 import { makeStyles } from "@material-ui/core/styles";
 import { Typography, Container, Button } from "@material-ui/core";
-import BlogListCard from "components/BlogListCard";
+import BlogListCard from "components/blog/BlogListCard";
 
 const useStyles = makeStyles((theme) => ({
   root: {

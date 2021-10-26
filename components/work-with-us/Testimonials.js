@@ -26,11 +26,17 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
+    [theme.breakpoints.down(1280)]:{
+      flexDirection: "column",
+      alignItems: "flex-start",
+      gap: theme.spacing(6),
+    },
     [theme.breakpoints.down("xs")]: {
       flexDirection: "column",
       alignItems: "flex-start",
       gap: theme.spacing(6),
     },
+    
   },
   hearFromPeopleTitle: {
     lineHeight: 1.25,
@@ -56,6 +62,9 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "flex-end",
     gap: theme.spacing(7.5),
     marginTop: theme.spacing(10),
+    [theme.breakpoints.down(1280)]:{
+      display: 'none',
+    },
   },
   quoteCtr: {
     maxWidth: "742px",
@@ -66,7 +75,7 @@ const useStyles = makeStyles((theme) => ({
     fontSize: "40px",
     color: theme.palette.grey[400],
     transform: "translateX(-40px)",
-    [theme.breakpoints.down("xs")]: {
+    [theme.breakpoints.down(1280)]: {
       fontSize: "32px",
       transform: "translateX(0px)",
     },
@@ -75,8 +84,11 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(2.5),
     fontSize: "40px",
     fontWeight: 300,
-    lineHeight: "60px",
+    lineHeight: 1.5,
     color: theme.palette.grey[700],
+    [theme.breakpoints.down(1280)]:{
+      fontSize: "1.7778rem",
+    },
     [theme.breakpoints.down("xs")]: {
       marginTop: theme.spacing(2),
       fontSize: "1.33rem",
@@ -109,6 +121,15 @@ const useStyles = makeStyles((theme) => ({
   avatar: {
     width: "48px",
     height: "48px",
+  },
+  arrowNavigationEnd: {
+    display: "flex",
+    justifyContent: "flex-end",
+    gap: theme.spacing(7.5),
+    marginTop: theme.spacing(10),
+    [theme.breakpoints.up(1280)]:{
+      display: 'none',
+    },
   },
 }));
 
@@ -190,8 +211,7 @@ function Testimonials() {
                 </Typography>
               </div>
             </div>
-            <Hidden smUp>
-              <div className={classes.arrowNavigation}>
+              <div className={classes.arrowNavigationEnd}>
                 <div
                   style={{
                     width: "60px",
@@ -227,7 +247,6 @@ function Testimonials() {
                   />
                 </div>
               </div>
-            </Hidden>
           </div>
         </div>
       </Container>

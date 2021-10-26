@@ -10,6 +10,7 @@ import Chip from "@material-ui/core/Chip";
 
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
+import { desktop, tablet } from "../../styles/theme";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -23,11 +24,17 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   media: {
-    position: "relative",    
+    position: "relative",
     width: "inherit",
     height: 320,
-    [theme.breakpoints.down("tablet")]: {
-      height: 500,
+    [theme.breakpoints.down(desktop)]: {
+      height: 275,
+    },
+    [theme.breakpoints.down("sm")]: {
+      height: 195,
+    },
+    [theme.breakpoints.down(tablet)]: {
+      height: 372,
     },
     [theme.breakpoints.down("xs")]: {
       height: "62vw",

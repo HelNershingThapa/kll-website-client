@@ -62,9 +62,10 @@ const useStyles = makeStyles((theme) => ({
   dialog: {
     maxWidth: 920,
     marginLeft: "auto",
-    [theme.breakpoints.down("xs")]: {
+    [theme.breakpoints.down("sm")]: {
       height: "calc(100vh - 92px)",
       marginTop: "auto",
+      maxWidth: "100%",
     },
   },
   content: {
@@ -138,8 +139,11 @@ const useStyles = makeStyles((theme) => ({
   requirementsCtr: {
     marginTop: theme.spacing(2),
   },
-  btnIcon: {
+  closeDialogIcon: {
     fontSize: "32px",
+  },
+  applyNowBtnIcon: {
+    fontSize: "16px !important",
   },
   closeBtn: {
     position: "absolute",
@@ -170,10 +174,12 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Transition = React.forwardRef(function Transition(props, ref) {
-  return <Slide direction="left" ref={ref} {...props} />;
+  const slideDirection = screen.width > 992 ? "left" : "up";
+
+  return <Slide direction={slideDirection} ref={ref} {...props} />;
 });
 
-export default function FullScreenDialog() {
+function FullScreenDialog() {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
 
@@ -187,7 +193,7 @@ export default function FullScreenDialog() {
 
   return (
     <div>
-      <Hidden xsDown>
+      <Hidden smDown>
         <Button
           variant="outlined"
           classes={{
@@ -205,7 +211,7 @@ export default function FullScreenDialog() {
           See Details
         </Button>
       </Hidden>
-      <Hidden smUp>
+      <Hidden mdUp>
         <IconButton
           variant="outlined"
           classes={{
@@ -235,18 +241,30 @@ export default function FullScreenDialog() {
                 variant="contained"
                 color="primary"
                 startIcon={
-                  <Image src="/icons/list.svg" width={12} height={13.33} />
+                  <i
+                    className={clsx(
+                      "ri-file-copy-2-line",
+                      classes.applyNowBtnIcon
+                    )}
+                  ></i>
                 }
               >
                 Apply Now
               </Button>
-              <IconButton
-                aria-label="delete"
-                className={classes.closeBtn}
-                onClick={() => handleClose()}
-              >
-                <i className={clsx("ri-arrow-left-line", classes.btnIcon)} />
-              </IconButton>
+              <Hidden smDown>
+                <IconButton
+                  aria-label="delete"
+                  className={classes.closeBtn}
+                  onClick={() => handleClose()}
+                >
+                  <i
+                    className={clsx(
+                      "ri-arrow-left-line",
+                      classes.closeDialogIcon
+                    )}
+                  />
+                </IconButton>
+              </Hidden>
             </div>
             <Divider className={classes.divider} />
           </div>
@@ -284,3 +302,5 @@ export default function FullScreenDialog() {
     </div>
   );
 }
+
+export default FullScreenDialog;

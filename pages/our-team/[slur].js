@@ -91,6 +91,8 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "column",
     marginTop: theme.spacing(10),
+    height: "calc(100vh - 520px)",
+    overflow: 'auto',
     gap: theme.spacing(6),
   },
   para: {
@@ -103,6 +105,8 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "52.92px",
     display: "flex",
     gap: "29.12px",
+    position: 'absolute',
+    bottom: '82px',
   },
 }));
 

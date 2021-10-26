@@ -65,10 +65,9 @@ function Resources(props) {
             </div>
             <div>
               <Hidden smDown>
-                <Typography
-                variant="h6"
-                  className={classes.optionTitle}
-                >{`/${tabLabels[tabValue]}`}</Typography>
+                <Typography variant="h6" className={classes.optionTitle}>
+                  {`/${tabLabels[tabValue]}`}
+                </Typography>
               </Hidden>
               <div className={classes.resources}>
                 {["", "", ""].map((resource) => (

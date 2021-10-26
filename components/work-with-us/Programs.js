@@ -19,10 +19,13 @@ const useStyles = makeStyles((theme) => ({
   },
   imgFill: {
     position: "relative",
-    width: 420,
+    width: "100%",
     height: 500,
+    [theme.breakpoints.down("sm")]: {
+      height: 410,
+    },
     [theme.breakpoints.down("xs")]: {
-      width: "100%",
+      height: 500,
     },
   },
   programTitle: {

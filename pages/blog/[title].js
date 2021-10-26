@@ -4,12 +4,15 @@ import clsx from "clsx";
 import fetch from "isomorphic-unfetch";
 import { makeStyles } from "@material-ui/core/styles";
 import Image from "next/image";
-import { Typography, Divider, Avatar, Container } from "@material-ui/core";
-import BlogListCard from "components/BlogListCard";
-import Tags from "../../components/blog/Tags";
+import { Typography, Divider, Avatar, Container, Hidden } from "@material-ui/core";
+import BlogListCard from "components/blog/BlogListCard";
+import Tags from "components/blog/Tags";
+import Share from "components/blog/Share";
+import { tablet } from "../../styles/theme";
 
 const useStyles = makeStyles((theme) => ({
   blog: {
+    position: "relative",
     margin: "auto",
     marginTop: "1.78rem",
     maxWidth: "800px",
@@ -17,6 +20,18 @@ const useStyles = makeStyles((theme) => ({
       paddingLeft: 16,
       paddingRight: 16,
     },
+  },
+  share: {
+    position: "absolute",
+    bottom: "30%",
+    left: "-137px",
+    transform: "translateX(-100%)",
+  },
+  shareMobileView:{
+    marginTop: theme.spacing(10),
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: "center",
   },
   headerImageContainer: {
     position: "relative",
@@ -177,12 +192,14 @@ const useStyles = makeStyles((theme) => ({
   },
   blogListContainer: {
     display: "grid",
-    gridTemplateColumns: "repeat(3, 1fr)",
+    gridTemplateColumns: "1fr 1fr 1fr",
     columnGap: "15px",
+    rowGap: theme.spacing(12),
     marginTop: theme.spacing(8),
-    [theme.breakpoints.only("xs")]: {
-      gridTemplateColumns: "repeat(1, 1fr)",
+    [theme.breakpoints.down(tablet)]: {
+      gridTemplateColumns: "1fr",
       rowGap: theme.spacing(8),
+      marginTop: theme.spacing(4),
     },
   },
   authorBio: {
@@ -198,7 +215,7 @@ const useStyles = makeStyles((theme) => ({
 function BlogDetail({ blog }) {
   const classes = useStyles();
   const { API_URL } = process.env;
-  console.log("blog", blog);
+
   return (
     <>
       <Head>
@@ -364,10 +381,20 @@ function BlogDetail({ blog }) {
           coach, a school social worker and an adult literacy teacher.{" "}
         </Typography>
         <Tags />
+        <Hidden smUp>
+        <div className={classes.shareMobileView}>
+          <Share />
+        </div>
+        </Hidden>
+        <Hidden smDown>
+          <div className={classes.share}>
+            <Share />
+          </div>
+        </Hidden>
       </div>
 
       <div className={classes.relatedPostsBgCtr}>
-        <Container maxWidth="lg">
+        <Container fixed>
           <Typography className={classes.readMoreBlogsTitle}>
             Read More from our Blog
           </Typography>

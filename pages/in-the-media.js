@@ -18,6 +18,8 @@ import CoverageCard from "components/in-the-media/CoverageCard";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import MoreCoverages from "../components/in-the-media/MoreCoverages";
+import FeaturedIn from "../components/in-the-media/FeaturedIn";
+import { tablet } from "../styles/theme";
 
 const useStyles = makeStyles((theme) => ({
   pageCtr: {
@@ -25,19 +27,18 @@ const useStyles = makeStyles((theme) => ({
   },
   pageTitle: {
     maxWidth: "358px",
-    fontFamily: "Manrope",
-    fontSize: "32px",
-    fontWeight: 700,
-    lineHeight: "40px",
-    color: "#0D1829",
+    lineHeight: 1.25,
     marginBottom: theme.spacing(8),
+    [theme.breakpoints.down("xs")]: {
+      maxWidth: "224px",
+    },
   },
   headerCoveragesCtr: {
     display: "grid",
     gridTemplateColumns: "1.13fr 1fr",
     gap: theme.spacing(8),
     alignItems: "center",
-    [theme.breakpoints.down("xs")]: {
+    [theme.breakpoints.down(tablet)]: {
       gridTemplateColumns: "1fr",
       gap: theme.spacing(4),
     },
@@ -49,7 +50,7 @@ const useStyles = makeStyles((theme) => ({
     position: "relative",
     width: "100%",
     height: "560px",
-    [theme.breakpoints.down("xs")]: {
+    [theme.breakpoints.down(tablet)]: {
       height: "74vw",
     },
   },
@@ -105,31 +106,8 @@ const useStyles = makeStyles((theme) => ({
     bottom: "-68.5px",
     left: "-68.5px",
     zIndex: -1,
-  },
-  featuredInCtr: {
-    marginTop: theme.spacing(20),
-  },
-  featureInTitle: {
-    fontFamily: "Manrope",
-    fontSize: "1.111rem",
-    fontWeight: 600,
-    lineHeight: 1.2,
-    color: theme.palette.grey[700],
-    [theme.breakpoints.down("xs")]: {
-      fontSize: "0.7778rem",
-      fontWeight: 600,
-      lineHeight: 1,
-      color: theme.palette.grey[900],
-    },
-  },
-  feautredInLogos: {
-    display: "flex",
-    flexWrap: "wrap",
-    justifyContent: "space-around",
-    marginTop: theme.spacing(6),
-    marginBottom: theme.spacing(20),
-    [theme.breakpoints.down("xs")]: {
-      gap: theme.spacing(4),
+    [theme.breakpoints.down("md")]: {
+      display: "none",
     },
   },
   btnIcon: {
@@ -156,7 +134,7 @@ function InTheMedia() {
         <title>In the Media | Kathmandu Living Labs</title>
       </Head>
       <Container fixed className={classes.pageCtr}>
-        <Typography variant="h5" className={classes.pageTitle}>
+        <Typography variant="h4" className={classes.pageTitle}>
           Kathmandu Living Labs in the media
         </Typography>
 
@@ -256,7 +234,6 @@ function InTheMedia() {
                           )}
                         />
                       </IconButton>
-
                       <i
                         className={clsx("ri-arrow-right-line", classes.btnIcon)}
                       />
@@ -289,26 +266,7 @@ function InTheMedia() {
           <div className={classes.blob} />
         </div>
 
-        <div className={classes.featuredInCtr}>
-          <Typography
-            align="center"
-            variant="body1"
-            className={classes.featureInTitle}
-          >
-            We have been featured in
-          </Typography>
-          <div className={classes.feautredInLogos}>
-            {["", "", "", ""].map((logo) => (
-              <Image
-                key={uid(logo)}
-                src="/guardian-black.png"
-                width={182}
-                height={60}
-                alt="Guardian logo"
-              />
-            ))}
-          </div>
-        </div>
+        <FeaturedIn />
       </Container>
       <MoreCoverages />
     </>

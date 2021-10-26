@@ -1,7 +1,7 @@
 import { uid } from "react-uid";
 import Image from "next/image";
 import { makeStyles } from "@material-ui/core/styles";
-import { Typography } from "@material-ui/core";
+import { Typography, Container } from "@material-ui/core";
 
 const values = [
   {
@@ -34,6 +34,10 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     justifyContent: "space-between",
     paddingBottom: theme.spacing(20),
+    [theme.breakpoints.down("sm")]:{
+      flexDirection: 'column',
+      gap: theme.spacing(6),
+    }
   },
   title: {
     display: "table-caption",
@@ -41,6 +45,11 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 700,
     lineHeight: "40px",
     color: theme.palette.grey[800],
+    [theme.breakpoints.down("sm")]:{
+      display: "block",
+      textAlign: "center",
+
+    }
   },
   sNo: {
     fontFamily: "Manrope",
@@ -78,6 +87,7 @@ function Values() {
   const classes = useStyles();
 
   return (
+    <Container fixed>
     <div className={classes.root}>
       <div>
         <Typography variant="h4" className={classes.title}>
@@ -105,6 +115,7 @@ function Values() {
         ))}
       </div>
     </div>
+    </Container>
   );
 }
 

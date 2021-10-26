@@ -79,13 +79,14 @@ const useStyles = makeStyles((theme) => ({
   headerImgFill: {
     position: "relative",
     width: "100%",
-    height: '32vw',
+    height: "32vw",
     [theme.breakpoints.down("xs")]: {
       width: "100%",
       height: 121,
     },
   },
   statsOverlay: {
+    width: "670px",
     position: "absolute",
     display: "flex",
     justifyContent: "space-between",
@@ -95,8 +96,11 @@ const useStyles = makeStyles((theme) => ({
     right: 0,
     marginLeft: "auto",
     marginRight: "auto",
-    width: "670px",
     transform: "translate(0%, -50%)",
+    [theme.breakpoints.down("sm")]: {
+      width: "70%",
+      padding: theme.spacing(4,7)
+    },
     [theme.breakpoints.down("xs")]: {
       left: 16,
       right: 16,
@@ -123,15 +127,6 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down("xs")]: {
       marginTop: theme.spacing(13),
     },
-  },
-  traitsTitle: {
-    marginTop: theme.spacing(3),
-    fontFamily: "Manrope",
-    fontSize: "18px",
-    fontWeight: 700,
-    lineHeight: "28px",
-    color: "#304254",
-    width: "170px",
   },
   paragraphs: {
     display: "flex",

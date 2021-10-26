@@ -2,6 +2,7 @@ import React from "react";
 import Image from "next/image";
 import { makeStyles } from "@material-ui/core/styles";
 import { Typography } from "@material-ui/core";
+import { desktop, tablet } from "styles/theme";
 
 const useStyles = makeStyles((theme) => ({
   imgContainer: {
@@ -41,8 +42,17 @@ const useStyles = makeStyles((theme) => ({
     position: "relative",
     width: "100%",
     height: 320,
+    [theme.breakpoints.down(desktop)]: {
+      height: 275,
+    },
+    [theme.breakpoints.down("sm")]: {
+      height: 195,
+    },
+    [theme.breakpoints.down(tablet)]: {
+      height: 372,
+    },
     [theme.breakpoints.down("xs")]: {
-      height: "67vw",
+      height: "62vw",
     },
   },
 }));
