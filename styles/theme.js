@@ -146,12 +146,13 @@ const theme = createTheme({
         },
       },
       label: {
-        fontSize: "14px",
+        fontSize: "0.7778rem",
         fontWeight: 500,
-        lineHeight: "1",
+        lineHeight: 1,
         color: "#F8FAFC",
         padding: 0,
         margin: 0,
+        overflow: "visible",
         [`@media (max-width: ${sm}px)`]: {
           fontSize: "12px",
           lineHeight: 1,

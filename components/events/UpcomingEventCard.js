@@ -6,15 +6,16 @@ import { makeStyles } from "@material-ui/styles";
 import { Button, Container, Typography, Grid, Chip } from "@material-ui/core";
 import EventTabs from "components/events/EventTabs";
 import UpcomingEventCard from "components/events/UpcomingEventCard";
+import { desktop } from "../../styles/theme";
 
 const useStyles = makeStyles((theme) => ({
   imgFill: {
     position: "relative",
     width: "100%",
     height: 420,
-    [theme.breakpoints.down("sm")]:{
+    [theme.breakpoints.down("sm")]: {
       height: "58vw",
-    }
+    },
   },
   layover: {
     background: "white",
@@ -23,19 +24,24 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(6),
     transform: "translateY(-50%)",
     paddingBottom: 0,
-    [theme.breakpoints.down("sm")]:{
-      transform: 'translateY(0%)',
+    [theme.breakpoints.down(desktop)]: {
+      width: "500px",
+    },
+    [theme.breakpoints.down("sm")]: {
+      transform: "translateY(0%)",
       width: "100%",
       padding: 0,
       paddingTop: theme.spacing(3),
-    }
+    },
   },
   chipRoot: {
     position: "absolute",
-    top: "16px",
-    left: "16px",
-    padding: "6px 12px",
-    borderRadius: "8px",
+    top: theme.spacing(4),
+    left: theme.spacing(4),
+    [theme.breakpoints.down("xs")]: {
+      top: theme.spacing(3),
+      left: theme.spacing(3),
+    },
   },
   chipLabel: {
     fontSize: "14px",
@@ -45,10 +51,10 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     lineHeight: 1.6,
-    [theme.breakpoints.down("xs")]:{
+    [theme.breakpoints.down("xs")]: {
       fontSize: "1rem",
       lineHeight: 1.556,
-    }
+    },
   },
   description: {
     color: theme.palette.grey[600],
@@ -59,12 +65,33 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "space-between",
     alignItems: "center",
     marginTop: theme.spacing(4),
+    [theme.breakpoints.down("xs")]: {
+      flexDirection: "column",
+      alignItems: "flex-start",
+      gap: theme.spacing(2),
+    },
   },
   rendezvou: {
     display: "flex",
     alignItems: "center",
     gap: theme.spacing(2),
-    color: theme.palette.grey[700],    
+    color: theme.palette.grey[700],
+    [theme.breakpoints.down("xs")]: {
+      marginBottom: theme.spacing(2),
+    },
+  },
+  icon: {
+    fontSize: "16px",
+    lineHeight: 1,
+    [theme.breakpoints.down("xs")]: {
+      fontSize: "14px",
+    },
+  },
+  rendezvouTypo: {
+    [theme.breakpoints.down("xs")]: {
+      fontSize: "0.7778rem",
+      lineHeight: 1,
+    },
   },
   btnRoot: {
     padding: "10px 20px",
@@ -87,12 +114,12 @@ function Events() {
           objectFit="cover"
           alt="event at KLL"
         />
+        <Chip
+          label="21st Aug 2021"
+          color="primary"
+          classes={{ root: classes.chipRoot }}
+        />
       </div>
-      <Chip
-        label="21st Aug 2021"
-        color="primary"
-        classes={{ root: classes.chipRoot, label: classes.chipLabel }}
-      />
       <div className={classes.layover}>
         <Typography variant="h6" className={classes.title}>
           Earthquake Data Portal - Launch Event
@@ -105,15 +132,16 @@ function Events() {
         <div className={classes.moreInfo}>
           <div className={classes.rendezvous}>
             <div className={classes.rendezvou}>
-              <i className="ri-time-line" style={{ fontSize: "16px" }} />
-              <Typography variant="subtitle1">09:30 - 17:00</Typography>
+              <i className={clsx("ri-time-line", classes.icon)} />
+              <Typography variant="subtitle1" className={classes.rendezvouTypo}>
+                09:30 - 17:00
+              </Typography>
             </div>
             <div className={classes.rendezvou}>
-              <i
-                className="ri-map-pin-user-line"
-                style={{ fontSize: "16px" }}
-              />
-              <Typography variant="subtitle1">Hotel Manasalu, Lazimpat</Typography>
+              <i className={clsx("ri-map-pin-user-line", classes.icon)} />
+              <Typography variant="subtitle1" className={classes.rendezvouTypo}>
+                Hotel Manasalu, Lazimpat
+              </Typography>
             </div>
           </div>
           <Link href="/events/sample-event">

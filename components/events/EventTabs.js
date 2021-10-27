@@ -57,8 +57,8 @@ const useStyles = makeStyles((theme) => ({
     padding: 0,
     textTransform: "capitalize",
     color: "#61758A",
-    fontSize: "0.89rem",
-    lineHeight: "0.89rem",
+    fontSize: "0.8889rem",
+    lineHeight: 1,
     padding: 0,
   },
   selected: {

@@ -20,6 +20,10 @@ const useStyles = makeStyles((theme) => ({
   pageCtr: {
     marginTop: theme.spacing(12),
     marginBottom: theme.spacing(50),
+    [theme.breakpoints.down("xs")]:{
+    marginTop: theme.spacing(4),
+    marginBottom: theme.spacing(18),
+    }
   },
   pageTitle: {
     lineHeight: 1.25,
@@ -51,7 +55,6 @@ const useStyles = makeStyles((theme) => ({
   eventsContainer: {
     display: "flex",
     flexDirection: "column",
-    marginBottom: theme.spacing(40),
     [theme.breakpoints.down("sm")]:{
       gap: theme.spacing(8),
     }

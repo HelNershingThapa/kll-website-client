@@ -9,12 +9,21 @@ const useStyles = makeStyles((theme) => ({
   container: {
     background: theme.palette.grey[100],
     padding: theme.spacing(10),
+    [theme.breakpoints.down("xs")]: {
+      padding: theme.spacing(10, 4),
+      width: "100vw",
+      marginLeft: "-16px",
+    },
   },
   imgFill: {
     position: "relative",
     height: 60,
     width: 60,
     mixBlendMode: "luminosity",
+    [theme.breakpoints.down("xs")]: {
+      width: 40,
+      height: 40,
+    },
   },
   title: {
     fontFamily: "Manrope",
@@ -23,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: theme.spacing(2),
   },
   description: {
-    width: 566,
+    maxWidth: 566,
     marginBottom: theme.spacing(8),
   },
   textfieldLabel: {
@@ -34,8 +43,13 @@ const useStyles = makeStyles((theme) => ({
   textField: {
     height: "40px",
     width: 500,
+    background: "white",
+    [theme.breakpoints.down("sm")]: {
+      width: "100%",
+    },
   },
   textFieldRoot: {
+    width: "100%",
     "& label.Mui-focused": {
       color: "#CAD5E0",
     },
@@ -64,6 +78,9 @@ const useStyles = makeStyles((theme) => ({
   },
   button: {
     padding: "10px 20px",
+    [theme.breakpoints.down("xs")]: {
+      marginTop: theme.spacing(3),
+    },
   },
   label: {
     fontSize: "14px",
