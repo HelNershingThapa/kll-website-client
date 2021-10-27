@@ -44,15 +44,17 @@ const useStyles = makeStyles((theme) => ({
     gridTemplateColumns: "2.18fr 1fr",
     gap: theme.spacing(10),
     marginTop: theme.spacing(8),
-    [theme.breakpoints.down("xs")]: {
-      gridTemplateColumns: "1fr",
+    [theme.breakpoints.down("sm")]: {
+      gridTemplateColumns: "100%",
     },
   },
   eventsContainer: {
     display: "flex",
     flexDirection: "column",
-    gap: theme.spacing(40),
     marginBottom: theme.spacing(40),
+    [theme.breakpoints.down("sm")]:{
+      gap: theme.spacing(8),
+    }
   },
   calendarCrossFill: {
     position: "relative",
@@ -103,10 +105,7 @@ function Events() {
   return (
     <>
       <Head>
-        <title>Events | Kathmandu Living Labs</title>
-        {
-          // <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-        }
+        <title>Events | Kathmandu Living Labs</title>        
       </Head>
       <Container fixed className={classes.pageCtr}>
         <Typography variant="h4" className={classes.pageTitle}>
@@ -130,6 +129,7 @@ function Events() {
               ))}
             </div>
           )}
+          
           {value === "Past Events" && (
             <div className={classes.noUpcomingEventsContainer}>
               <div className={classes.calendarCrossFill}>

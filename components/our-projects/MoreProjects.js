@@ -76,30 +76,54 @@ const useStyles = makeStyles((theme) => ({
   name: {
     fontWeight: 600,
     marginTop: theme.spacing(3),
+    [theme.breakpoints.down("xs")]: {
+      marginTop: theme.spacing(2),
+    },
   },
   projectsCtr: {
     display: "grid",
     gridTemplateColumns: "1fr 1fr 1fr",
     gridGap: "1px",
-    background: "black",
-    "& project:nth-child(-n + 3)": {
+    background: theme.palette.grey[300],
+    "& div:nth-child(-n + 3)": {
       paddingTop: 0,
-      borderTop: 'none',
+      borderTop: "none",
     },
-    "& :nth-child(3n)": {
+    "& div:nth-child(3n)": {
       paddingRight: 0,
+      borderRight: "none",
     },
-    "& :nth-child(3n - 2)": {
+    "& div:nth-child(3n - 2)": {
       paddingLeft: 0,
     },
-    "& :nth-child(n+7)": {
+    "& div:nth-child(n+7)": {
       paddingBottom: 0,
+    },
+    [theme.breakpoints.down("xs")]: {
+      gridTemplateColumns: "1fr",
     },
   },
   project: {
-    outline: "1px solid #CAD5E0",
     padding: "32px 15px",
     background: "white",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    [theme.breakpoints.down("xs")]: {
+      padding: "16px 0 !important",
+    },
+  },
+  chipRoot: {
+    padding: "6px 12px !important",
+    borderRadius: "8px",
+  },
+  chipLabel: {
+    fontSize: "14px",
+    fontWeight: 500,
+    // lineHeight: "14px",
+    // padding: 0,
+    color: "#F8FAFC",
+    overflow: "visible",
   },
 }));
 
@@ -113,19 +137,24 @@ const MoreProjects = ({ name, category, src }) => {
       <div className={classes.projectsCtr}>
         {moreProjects.map((project) => (
           <div key={uid(project)} className={classes.project}>
-            <div style={{ margin: "auto" }}>
-              <Chip
+            {/* <Chip
                 label={project.category}
                 color="primary"
                 classes={{
                   root: classes.chipRoot,
                   label: classes.chipLabel,
                 }}
+              /> */}
+            <div>
+              <Chip
+                label="Mapping"
+                color="primary"
+                classes={{ root: classes.chipRoot, label: classes.chipLabel }}
               />
-              <Typography variant="h5" className={classes.name}>
-                {project.name}
-              </Typography>
             </div>
+            <Typography variant="h5" className={classes.name}>
+              {project.name}
+            </Typography>
           </div>
         ))}
       </div>
