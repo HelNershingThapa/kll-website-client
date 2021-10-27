@@ -34,8 +34,14 @@ const useStyles = makeStyles((theme) => ({
       marginBottom: theme.spacing(12),
     },
   },
-  logoFill: {
+  img: {
     maxHeight: "60px",
+    [theme.breakpoints.down("sm")]:{
+      maxHeight: "42px"
+    },
+    [theme.breakpoints.down("xs")]:{
+      maxHeight: "32px"
+    }
   },
 }));
 

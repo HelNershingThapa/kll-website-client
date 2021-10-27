@@ -71,6 +71,18 @@ const useStyles = makeStyles((theme) => ({
       maxWidth: 323,
       color: theme.palette.grey[800],
       marginBottom: theme.spacing(12),
+      lineHeight: 1.25,
+    },
+    [theme.breakpoints.down("xs")]: {
+      marginTop: theme.spacing(10),
+      marginBottom: theme.spacing(15),
+      "& h4": {
+        maxWidth: "65vw",
+        fontSize: "1.333rem",
+        lineHeight: 1.333,
+        color: theme.palette.grey[800],
+        marginBottom: theme.spacing(1),
+      },
     },
   },
   name: {
@@ -84,14 +96,12 @@ const useStyles = makeStyles((theme) => ({
     display: "grid",
     gridTemplateColumns: "1fr 1fr 1fr",
     gridGap: "1px",
-    background: theme.palette.grey[300],
+    background: theme.palette.grey[300], // grid-items border color
     "& div:nth-child(-n + 3)": {
       paddingTop: 0,
-      borderTop: "none",
     },
     "& div:nth-child(3n)": {
       paddingRight: 0,
-      borderRight: "none",
     },
     "& div:nth-child(3n - 2)": {
       paddingLeft: 0,
@@ -101,6 +111,9 @@ const useStyles = makeStyles((theme) => ({
     },
     [theme.breakpoints.down("xs")]: {
       gridTemplateColumns: "1fr",
+      "& div:last-child": {
+        borderBottom: `1px solid ${theme.palette.grey[300]}`,
+      },
     },
   },
   project: {
@@ -118,12 +131,15 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: "8px",
   },
   chipLabel: {
-    fontSize: "14px",
+    fontSize: "0.7778rem",
     fontWeight: 500,
     // lineHeight: "14px",
     // padding: 0,
     color: "#F8FAFC",
     overflow: "visible",
+    [theme.breakpoints.down("xs")]: {
+      fontSize: "0.6667rem",
+    },
   },
 }));
 
@@ -131,7 +147,7 @@ const MoreProjects = ({ name, category, src }) => {
   const classes = useStyles();
   return (
     <div className={classes.root}>
-      <Typography variant="h4" className={classes.title}>
+      <Typography variant="h4">
         Some more projects for you to check out
       </Typography>
       <div className={classes.projectsCtr}>

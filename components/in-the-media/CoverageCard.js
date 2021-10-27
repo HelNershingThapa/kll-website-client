@@ -19,13 +19,25 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(6),
     display: "flex",
     alignItems: "flex-end",
+    [theme.breakpoints.down("xs")]:{
+      padding: theme.spacing(3),
+    }
+  },
+  publisherLogo:{
+    maxHeight: "40px",
   },
   coverageTitle: {
     marginTop: theme.spacing(5),
     fontWeight: 800,
     color: theme.palette.grey[700],
+    [theme.breakpoints.down("sm")]: {
+      fontSize: "1.111rem",
+      lineHeight: 1.4,
+    },
     [theme.breakpoints.down("xs")]: {
       marginTop: theme.spacing(4),
+      fontSize: "1rem",
+      lineHeight: 1.5556,
     },
   },
   coverageDescription: {
@@ -72,7 +84,7 @@ export default function CenteredGrid() {
           />
         </div>
         <div className={classes.overlay}>
-          <Image src="/bbc.png" width={58} height={40} alt="asdasd" />
+          <img className={classes.publisherLogo} src="/bbc.png" alt="asdasd" />
         </div>
       </div>
       <Typography variant="h5" className={classes.coverageTitle}>

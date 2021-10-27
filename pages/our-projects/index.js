@@ -55,6 +55,9 @@ const useStyles = makeStyles((theme) => ({
   },
   sdgMargin: {
     marginBottom: theme.spacing(20),
+    [theme.breakpoints.down("xs")]:{
+      marginBottom: theme.spacing(8)
+    }
   },
 }));
 

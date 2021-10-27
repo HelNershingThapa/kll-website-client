@@ -19,7 +19,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import MoreCoverages from "../components/in-the-media/MoreCoverages";
 import FeaturedIn from "../components/in-the-media/FeaturedIn";
-import { tablet } from "../styles/theme";
+import { desktop, tablet } from "../styles/theme";
 
 const useStyles = makeStyles((theme) => ({
   pageCtr: {
@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
     gridTemplateColumns: "1.13fr 1fr",
     gap: theme.spacing(8),
     alignItems: "center",
-    [theme.breakpoints.down(tablet)]: {
+    [theme.breakpoints.down("sm")]: {
       gridTemplateColumns: "1fr",
       gap: theme.spacing(4),
     },
@@ -68,6 +68,10 @@ const useStyles = makeStyles((theme) => ({
   },
   headerCoverageTitle: {
     width: "90%",
+    [theme.breakpoints.down(desktop)]: {
+      fontSize: "1.7778rem",
+      lineHeight: 1.25,
+    },
     [theme.breakpoints.down("xs")]: {
       fontSize: "1rem",
       lineHeight: 1.5556,
@@ -80,6 +84,12 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 300,
     lineHeight: 1.6,
     color: theme.palette.grey[800],
+    [theme.breakpoints.down("xs")]: {
+      marginTop: theme.spacing(3),
+      marginBottom: theme.spacing(5),
+      fontSize: "1rem",
+      lineHeight: 1.5,
+    },
     [theme.breakpoints.down("xs")]: {
       marginTop: theme.spacing(3),
       marginBottom: theme.spacing(5),
@@ -106,7 +116,7 @@ const useStyles = makeStyles((theme) => ({
     bottom: "-68.5px",
     left: "-68.5px",
     zIndex: -1,
-    [theme.breakpoints.down("md")]: {
+    [theme.breakpoints.down(1625)]: {
       display: "none",
     },
   },
@@ -204,13 +214,7 @@ function InTheMedia() {
             <div>
               <div className={classes.headerCoveragesCtr}>
                 <div className={classes.headerImgCtr}>
-                  <div
-                    style={{
-                      position: "relative",
-                      width: "750px",
-                      height: "560px",
-                    }}
-                  >
+                  <div className={classes.imgFill}>
                     <Image
                       src="/Rectangle31.png"
                       layout="fill"
@@ -242,7 +246,7 @@ function InTheMedia() {
                 </div>
                 <div>
                   <Typography
-                    variant="h5"
+                    variant="h3"
                     className={classes.headerCoverageTitle}
                   >
                     {`How 'crisis mapping' is helping relief efforts in Nepal`}

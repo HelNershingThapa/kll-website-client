@@ -11,7 +11,7 @@ const useStyles = makeStyles((theme) => ({
     paddingBottom: theme.spacing(20),
     [theme.breakpoints.down("xs")]: {
       paddingTop: theme.spacing(12),
-      paddingBottom: theme.spacing(12),
+      paddingBottom: theme.spacing(13),
     },
   },
   moreCoveragesTitle: {
