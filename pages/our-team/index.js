@@ -42,29 +42,33 @@ const useStyles = makeStyles((theme) => ({
   headerImgFill: {
     position: "relative",
     width: "100%",
-    height: 620,
-    [theme.breakpoints.down("xs")]: {
-      height: 121,
+    height: "521px",
+    [theme.breakpoints.down("md")]: {
+      height: "31vw",
     },
   },
   statsOverlay: {
     position: "absolute",
-    display: "flex",
-    justifyContent: "space-between",
-    // gap: theme.spacing(25),
-    background: "white",
-    padding: theme.spacing(8, 15),
     left: 0,
     right: 0,
+    bottom: 0,
     marginLeft: "auto",
     marginRight: "auto",
-    width: "670px",
-    transform: "translate(0%, -50%)",
+    maxWidth: "670px",
+    transform: "translate(0%, 50%)",
+    display: "flex",
+    justifyContent: "space-between",
+    background: "white",
+    padding: theme.spacing(8, 15),
+    [theme.breakpoints.down("sm")]: {
+      left: 32,
+      right: 32,
+      padding: theme.spacing(6),
+    },
     [theme.breakpoints.down("xs")]: {
       left: 16,
       right: 16,
-      width: "inherit",
-      padding: "13px",
+      padding: "12px",
     },
   },
   statTitle: {
@@ -97,6 +101,9 @@ const useStyles = makeStyles((theme) => ({
     gridTemplateColumns: "repeat(3, 1fr)",
     rowGap: "60px",
     columnGap: "30px",
+    [theme.breakpoints.down("sm")]: {
+      gridTemplateColumns: "1fr 1fr",
+    },
     [theme.breakpoints.down("xs")]: {
       display: "flex",
       flexDirection: "column",
@@ -127,19 +134,20 @@ function OurTeam() {
           objectFit="cover"
           alt="People working at KLL"
         />
+        <div className={classes.statsOverlay}>
+          {stats.map((stat) => (
+            <div key={uid(stat)}>
+              <Typography variant="body1" className={classes.statTitle}>
+                {stat.title}
+              </Typography>
+              <Typography variant="h5" className={classes.statValue}>
+                {stat.value}
+              </Typography>
+            </div>
+          ))}
+        </div>
       </div>
-      <div className={classes.statsOverlay}>
-        {stats.map((stat) => (
-          <div key={uid(stat)}>
-            <Typography variant="body1" className={classes.statTitle}>
-              {stat.title}
-            </Typography>
-            <Typography variant="h5" className={classes.statValue}>
-              {stat.value}
-            </Typography>
-          </div>
-        ))}
-      </div>
+
       <Container fixed>
         <div className={classes.membersContainer}>
           {["", "", "", ""].map((member) => (

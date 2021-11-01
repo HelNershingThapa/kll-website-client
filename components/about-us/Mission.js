@@ -46,11 +46,11 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     display: "table-caption",
-    fontFamily: "Manrope",
-    fontWeight: 700,
-    lineHeight: "40px",
+    lineHeight: 1.25,
     color: theme.palette.grey[300],
     [theme.breakpoints.down("sm")]: {
+      fontSize: "1.7778rem",
+      lineHeight: 1.25,
       display: "block",
       textAlign: "center",
     },
@@ -80,8 +80,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   missionDescription: {
-    fontFamily: "Inter",
-    fontSize: "24px",
+    fontSize: "1.333rem",
     fontWeight: 400,
     lineHeight: 1.6667,
     color: theme.palette.grey[200],
@@ -109,9 +108,7 @@ function Mission() {
               {missions.map((mission, index) => (
                 <div key={uid(mission, index)} className={classes.description}>
                   <li>
-                    <Typography
-                      className={classes.missionDescription}
-                    >
+                    <Typography className={classes.missionDescription}>
                       {mission.description}
                     </Typography>
                   </li>

@@ -15,7 +15,8 @@ const useStyles = makeStyles((theme) => ({
   },
   blueBackground: {
     width: '100%',
-    height: 460,
+    height: 0,
+    paddingBottom: '100%',
     background: theme.palette.primary.main,
     position: "relative",
     [theme.breakpoints.down("xs")]: {

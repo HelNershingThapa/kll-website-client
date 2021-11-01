@@ -34,51 +34,60 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     justifyContent: "space-between",
     paddingBottom: theme.spacing(20),
-    [theme.breakpoints.down("sm")]:{
-      flexDirection: 'column',
+    [theme.breakpoints.down("sm")]: {
+      flexDirection: "column",
       gap: theme.spacing(6),
-    }
+    },
   },
   title: {
     display: "table-caption",
-    fontFamily: "Manrope",
-    fontWeight: 700,
-    lineHeight: "40px",
+    lineHeight: 1.25,
     color: theme.palette.grey[800],
-    [theme.breakpoints.down("sm")]:{
+    [theme.breakpoints.down("sm")]: {
+      fontSize: "1.7778rem",
+      lineHeight: 1.25,
       display: "block",
       textAlign: "center",
-
-    }
+    },
   },
   sNo: {
     fontFamily: "Manrope",
     fontSize: "72px",
     fontWeight: 800,
-    lineHeight: "72px",
+    lineHeight: 1,
     color: theme.palette.grey[200],
+    [theme.breakpoints.down("xs")]: {
+      fontSize: "2.6667rem",
+    },
   },
   values: {
     display: "flex",
     flexDirection: "column",
     gap: theme.spacing(12),
     maxWidth: 770,
+    [theme.breakpoints.down("xs")]: {
+      gap: theme.spacing(6),
+    },
   },
   head: {
     display: "flex",
     gap: theme.spacing(4),
     marginBottom: theme.spacing(5),
     alignItems: "center",
+    [theme.breakpoints.down("xs")]: {
+      marginBottom: theme.spacing(2),
+    },
   },
   valueTitle: {
-    fontWeight: 700,
-    lineHeight: "32px",
+    fontFamily: "Inter",
+    lineHeight: 1.6,
     color: theme.palette.grey[800],
     width: "246px",
   },
   valueDescription: {
+    fontFamily: "Inter",
     fontWeight: 400,
-    lineHeight: "32px",
+    lineHeight: 1.6,
     color: theme.palette.grey[800],
   },
 }));
@@ -88,33 +97,33 @@ function Values() {
 
   return (
     <Container fixed>
-    <div className={classes.root}>
-      <div>
-        <Typography variant="h4" className={classes.title}>
-          Our Values
-        </Typography>
-      </div>
-      <div className={classes.values}>
-        {values.map((value, index) => (
-          <div key={uid(value, index)}>
-            <div className={classes.head}>
-              <Typography variant="h4" className={classes.sNo}>
-                {(index + 1).toLocaleString("en-US", {
-                  minimumIntegerDigits: 2,
-                  useGrouping: false,
-                })}
-              </Typography>
-              <Typography variant="h6" className={classes.valueTitle}>
-                {value.title}
+      <div className={classes.root}>
+        <div>
+          <Typography variant="h4" className={classes.title}>
+            Our Values
+          </Typography>
+        </div>
+        <div className={classes.values}>
+          {values.map((value, index) => (
+            <div key={uid(value, index)}>
+              <div className={classes.head}>
+                <Typography className={classes.sNo}>
+                  {(index + 1).toLocaleString("en-US", {
+                    minimumIntegerDigits: 2,
+                    useGrouping: false,
+                  })}
+                </Typography>
+                <Typography variant="h6" className={classes.valueTitle}>
+                  {value.title}
+                </Typography>
+              </div>
+              <Typography variant="h6" className={classes.valueDescription}>
+                {value.description}
               </Typography>
             </div>
-            <Typography variant="h6" className={classes.valueDescription}>
-              {value.description}
-            </Typography>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
-    </div>
     </Container>
   );
 }

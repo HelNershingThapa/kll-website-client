@@ -96,17 +96,25 @@ const useStyles = makeStyles((theme) => ({
     height: 60,
     width: 60,
     mixBlendMode: "luminosity",
+    [theme.breakpoints.down("xs")]: {
+      height: 48,
+      width: 48,
+    },
   },
   value: {
-    fontFamily: "Manrope",
-    fontSize: 40,
     fontWeight: 800,
-    lineHeight: "40px",
+    lineHeight: 1,
     color: theme.palette.grey[900],
+    [theme.breakpoints.down("xs")]: {
+      lineHeight: 1,
+    },
   },
   label: {
     fontWeight: 500,
     color: theme.palette.grey[600],
+    [theme.breakpoints.down("xs")]:{
+      lineHeight: 1,
+    }
   },
 }));
 
@@ -132,9 +140,9 @@ function Footprint() {
               <div className={classes.imgFill}>
                 <Image
                   src={impact.icon}
-                  alt=""
                   layout="fill"
                   objectFit="cover"
+                  alt=""
                 />
               </div>
               <div>

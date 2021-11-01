@@ -8,9 +8,10 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
   },
   imageFill: {
-    position: "relative",
-    width: "100%",
-    height: 460,
+    position: 'relative',
+    width: '100%',
+    height: 0,
+    paddingBottom: '100%',
     [theme.breakpoints.down("xs")]: {
       height: "calc(100vw - 32px)",
     },
