@@ -208,37 +208,72 @@ const useStyles = makeStyles((theme) => ({
   statsCtr: {
     display: "grid",
     gridTemplateColumns: "1.1fr 2fr 2fr 1.1fr",
-    "& :first-child": {
-      paddingTop: 0,
-      borderTop: 'none',
-      display: 'flex',
-      flexDirection: 'column',
-    },
-    "& :nth-child(5)": {
-      paddingTop: 0,
-      borderTop: 'none',
-      display: 'flex',
-      flexDirection: 'column',
+    "& :nth-child(4n-3)": {
+      paddingLeft: 0,
+      borderLeft: "none",
+      borderRight: "none",
+      borderBottom: "none",
     },
     "& :nth-child(4n)": {
       paddingRight: 0,
-      borderRight: 'none',
+      borderRight: "none",
+      borderLeft: "none",
+      alignItems: "flex-end",
     },
-    "& :nth-child(4n + 1)": {
-      paddingLeft: 0,
-      borderLeft: 'none',
+    "& :nth-child(-n+4)": {
+      paddingTop: 0,
+      borderTop: "none",
     },
     "& :nth-child(n+4)": {
       paddingBottom: 0,
-      borderBottom: 'none',
+      borderBottom: "none",
     },
+    "& :nth-child(2)": {
+      paddingTop: 0,
+      borderTop: "none",
+      borderBottom: "none",
+      borderRight: "none",
+      alignItems: "center"
+    },
+    "& :nth-child(3)": {
+      paddingTop: 0,
+      borderTop: "none",
+      borderBottom: "none",
+      alignItems: "center"
+    },
+    "& :nth-child(6)": {
+      paddingBottom: 0,
+      borderBottom: "none",
+      borderRight: "none",
+      alignItems: "center"
+    },
+    "& :nth-child(7)": {
+      paddingBottom: 0,
+      borderBottom: "none",
+      alignItems: "center"
+    },
+    // "& :nth-child(2,3)": {
+    //   display: 'flex',
+    //   justifyContent: "center",
+    //   alignItems: "center"
+    // },
+    // "& :nth-child(4n)": {
+    //   paddingRight: 0,
+    //   borderRight: "none",
+    // },
+    // "& :nth-child(n+4)": {
+    //   paddingBottom: 0,
+    //   borderBottom: "none",
+    // },
   },
   stat: {
     // padding: "108px",
     padding: "32px 0",
     border: "1px solid #CAD5E0",
-    display: 'grid',
-    placeContent: 'center'
+    // display: "grid",
+    // placeContent: "center",
+    display: "flex",
+      flexDirection: "column",
   },
 }));
 

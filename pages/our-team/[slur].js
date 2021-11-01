@@ -57,9 +57,8 @@ const useStyles = makeStyles((theme) => ({
     gap: "11px",
   },
   gobackTitle: {
-    fontSize: "18px",
     fontWeight: 500,
-    lineHeight: "18px",
+    lineHeight: 1,
     color: theme.palette.grey[700],
   },
   btnArrowIcon: {
@@ -73,16 +72,16 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   name: {
-    fontSize: "48px",
+    fontSize: "2.6667rem",
     fontWeight: 600,
-    lineHeight: "60px",
+    lineHeight: 1.25,
     color: theme.palette.grey[900],
     marginTop: theme.spacing(20),
   },
   position: {
     fontSize: "24px",
     fontWeight: 400,
-    lineHeight: "24px",
+    lineHeight: 1,
     color: theme.palette.grey[600],
     marginTop: theme.spacing(2),
   },
@@ -92,8 +91,9 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
     marginTop: theme.spacing(10),
     height: "calc(100vh - 520px)",
-    overflow: 'auto',
+    overflow: "auto",
     gap: theme.spacing(6),
+    marginBottom: theme.spacing(12),
   },
   para: {
     fontSize: "18px",
@@ -102,11 +102,14 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.grey[900],
   },
   socialLinks: {
-    marginTop: "52.92px",
+    // marginTop: "52.92px",
     display: "flex",
-    gap: "29.12px",
-    position: 'absolute',
-    bottom: '82px',
+    gap: theme.spacing(6),
+    // position: 'absolute',
+    bottom: "82px",
+  },
+  socialIcon: {
+    fontSize: "32px",
   },
 }));
 
@@ -162,9 +165,7 @@ export default function Home() {
               </Typography>
             </a>
           </Link>
-          <Typography variant="body1" className={classes.name}>
-            {member.name}
-          </Typography>
+          <Typography className={classes.name}>{member.name}</Typography>
           <Typography variant="body1" className={classes.position}>
             {member.position}
           </Typography>
@@ -198,9 +199,18 @@ export default function Home() {
             </Typography>
           </div>
           <div className={classes.socialLinks}>
-            <Image src="/icons/twitter-logo.svg" width={27.18} height={22.1} />
-            <Image src="/icons/ig-logo.svg" width={27.18} height={22.1} />
-            <Image src="/icons/linkedin-logo.svg" width={27.18} height={22.1} />
+            <i
+              className={clsx("ri-twitter-fill", classes.socialIcon)}
+              style={{ color: "#1DA1F2" }}
+            />
+            <i
+              className={clsx("ri-instagram-line", classes.socialIcon)}
+              style={{ color: "#E1306C" }}
+            />
+            <i
+              className={clsx("ri-linkedin-fill", classes.socialIcon)}
+              style={{ color: "#0077B5" }}
+            />
           </div>
         </div>
       </div>

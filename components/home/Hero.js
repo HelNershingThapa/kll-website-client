@@ -55,17 +55,17 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   heroTitleHighlight: {
-    fontFamily: "Manrope",
-    fontSize: "48px",
+    // fontFamily: "Manrope",
+    // fontSize: "48px",
     fontWeight: 700,
-    lineHeight: "72px",
+    // lineHeight: "72px",
     [theme.breakpoints.down("xs")]: {
       fontSize: "20px",
       lineHeight: "32px",
     },
   },
   heroImg: {
-    position: "absolute",
+    // position: "absolute",
     top: 0,
     right: 0,
     [theme.breakpoints.down("xs")]: {
@@ -136,6 +136,7 @@ const useStyles = makeStyles((theme) => ({
 const Hero = () => {
   const router = useRouter();
   const classes = useStyles();
+  
   return (
     <div className={classes.hero}>
       <Container fixed className={classes.container}>
@@ -145,6 +146,7 @@ const Hero = () => {
               A{" "}
               <Typography
                 className={classes.heroTitleHighlight}
+                variant="h2"
                 color="primary"
                 display="inline"
               >
