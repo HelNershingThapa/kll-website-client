@@ -108,14 +108,14 @@ const MobileMenuDrawer = ({ open, onClose, menuItems }) => {
     >
       <Container fixed>
         <div className={classes.navBar}>
-          <Link href="/">
+          <Link href="/" passHref>
             <div className={classes.imgFill} onClick={onClose}>
               <Image
                 src="/kll-logos/kll-logo-default.svg"
                 layout="fill"
                 objectFit="cover"
                 alt="KLL Logo"
-              />
+              />  
             </div>
           </Link>
           <IconButton
@@ -142,7 +142,7 @@ const MobileMenuDrawer = ({ open, onClose, menuItems }) => {
                       <Link
                         href={subMenu.link}
                         className={classes.link}
-                        onClick={() => console.log("asdasd")}
+                        passHref
                       >
                         <div
                           style={{
@@ -174,6 +174,7 @@ const MobileMenuDrawer = ({ open, onClose, menuItems }) => {
                   key={uid(menuItem)}
                   href={menuItem.link}
                   className={classes.link}
+                  passHref
                 >
                   <Typography
                     variant="h6"
