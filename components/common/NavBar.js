@@ -27,13 +27,24 @@ import logo from "public/kll-logo.svg";
 // import messages from './messages';
 import RichTooltip from "./RichTooltip";
 import PopoverContent from "./PopoverContent";
+import MobileMenuDrawer from "./MobileMenuDrawer";
 
 const menuItems = [
   {
     name: "Who we are",
     link: "/whoweare",
-    subMenus: true,
+    isSubMenuAvailable: true,
     identifier: "whoweare",
+    subMenu: [
+      {
+        name: "About Us",
+        link: "/about-us",
+      },
+      {
+        name: "Our Team",
+        link: "/our-team",
+      },
+    ],
   },
   {
     name: "Impact",
@@ -46,14 +57,38 @@ const menuItems = [
   {
     name: "Insights",
     link: "/insights",
-    subMenus: true,
+    isSubMenuAvailable: true,
     identifier: "insights",
+    subMenu: [
+      {
+        name: "Blog",
+        link: "/blog",
+      },
+      {
+        name: "In the Media",
+        link: "/in-the-media",
+      },
+      {
+        name: "Events",
+        link: "/events",
+      },
+    ],
   },
   {
     name: "Get Involved",
     link: "/get-involved",
-    subMenus: true,
+    isSubMenuAvailable: true,
     identifier: "get-involved",
+    subMenu: [
+      {
+        name: "Work with Us",
+        link: "/work-with-us",
+      },
+      {
+        name: "Join the OSM Movement",
+        link: "/resources",
+      },
+    ],
   },
 ];
 
@@ -199,7 +234,7 @@ function NavBar({}) {
 
   return (
     <Fragment>
-      <Container maxWidth="lg">
+      <Container fixed>
         <AppBar position="static" elevation={0} className={classes.appBar}>
           <Toolbar
             style={{
@@ -237,7 +272,7 @@ function NavBar({}) {
               <div className={classes.menuItemsContainer}>
                 {menuItems.map((menuItem, index) => (
                   <>
-                    {menuItem.subMenus ? (
+                    {menuItem.isSubMenuAvailable ? (
                       <RichTooltip
                         key={uid(menuItem)}
                         content={
@@ -266,7 +301,7 @@ function NavBar({}) {
                             }}
                           >
                             {menuItem.name}
-                            {menuItem.subMenus && (
+                            {menuItem.isSubMenuAvailable && (
                               <i className="ri-arrow-down-s-line" />
                             )}
                           </Typography>
@@ -304,30 +339,7 @@ function NavBar({}) {
           </Toolbar>
         </AppBar>
       </Container>
-      <Drawer variant="temporary" open={open} onClose={onClose} anchor="right">
-        <Toolbar className={classes.headSection}>
-          <ListItem disableGutters>
-            <ListItemIcon className={classes.closeIcon}>
-              <IconButton onClick={onClose} aria-label="Close Navigation">
-                <CloseIcon color="primary" />
-              </IconButton>
-            </ListItemIcon>
-          </ListItem>
-        </Toolbar>
-        <List className={classes.blackList}>
-          <div className={classes.menuItemContainerMobile}>
-            {menuItems.map((menuItem) => (
-              <Link
-                key={uid(menuItem)}
-                href={menuItem.link}
-                className={classes.noDecoration}
-              >
-                {menuItem.name}
-              </Link>
-            ))}
-          </div>
-        </List>
-      </Drawer>
+      <MobileMenuDrawer open={open} onClose={onClose} menuItems={menuItems} />
     </Fragment>
   );
 }

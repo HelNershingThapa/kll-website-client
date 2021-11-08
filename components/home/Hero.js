@@ -6,33 +6,30 @@ import { makeStyles } from "@material-ui/core/styles";
 import { Typography, Container, Button } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
-  hero: {
+  root: {
     position: "relative",
-    // display: "flex",
+    display: "flex",
     background: theme.palette.grey[100],
-    // paddingTop: "7.78rem",
-    // paddingBottom: "7.78rem",
+    justifyContent: "flex-end",
+    gap: "22px",
     [theme.breakpoints.down("sm")]: {
-      // paddingTop: theme.spacing(15),
-      // paddingBottom: theme.spacing(15),
       display: "flex",
       flexDirection: "column",
     },
   },
   container: {
-    // marginRight: 0,
-    // paddingRight: 0,
     display: "flex",
     gap: "22px",
+    padding: 0,
+    margin: 0,
+    maxWidth: "54.3%",
     [theme.breakpoints.down("sm")]: {
       flexDirection: "column",
       gap: theme.spacing(15),
       paddingTop: theme.spacing(15),
-      paddingBottom: theme.spacing(15),
     },
   },
   actionItemsWrapper: {
-    height: 708,
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
@@ -64,25 +61,32 @@ const useStyles = makeStyles((theme) => ({
       lineHeight: "32px",
     },
   },
-  heroImg: {
-    // position: "absolute",
-    top: 0,
-    right: 0,
-    [theme.breakpoints.down("xs")]: {
-      position: "static",
-    },
-  },
-  heroImageFill: {
-    position: "relative",
-    height: 708,
+  imgFill: {
     width: 620,
-    [theme.breakpoints.down("sm")]: {
-      width: "100vw",
-      height: "80vw",
-      marginLeft: "-16px",
-      marginRight: "-16px"
+    height: 708,
+    [theme.breakpoints.down(1280)]: {
+      width: 500,
     },
   },
+  // heroImg: {
+  //   // position: "absolute",
+  //   top: 0,
+  //   right: 0,
+  //   [theme.breakpoints.down("xs")]: {
+  //     position: "static",
+  //   },
+  // },
+  // heroImageFill: {
+  //   position: "relative",
+  //   height: 708,
+  //   width: 620,
+  //   [theme.breakpoints.down("sm")]: {
+  //     width: "100vw",
+  //     height: "80vw",
+  //     marginLeft: "-16px",
+  //     marginRight: "-16px",
+  //   },
+  // },
   actionItems: {
     marginTop: theme.spacing(15),
     display: "flex",
@@ -136,9 +140,9 @@ const useStyles = makeStyles((theme) => ({
 const Hero = () => {
   const router = useRouter();
   const classes = useStyles();
-  
+
   return (
-    <div className={classes.hero}>
+    <div className={classes.root}>
       <Container fixed className={classes.container}>
         <div className={classes.actionItemsWrapper}>
           <div className={classes.heroTitleContainer}>
@@ -185,18 +189,10 @@ const Hero = () => {
             >{`Get In Touch ->`}</Typography>
           </div>
         </div>
-        <div className={classes.heroImg}>
-          <div className={classes.heroImageFill}>
-            <Image
-              priority
-              src="/hero-img.png"
-              layout="fill"
-              objectFit="cover"
-              alt="KLL"
-            />
-          </div>
-        </div>
       </Container>
+      <div className={classes.imgFill}>
+        <img src="/hero-img.png" className={classes.image} alt="" />
+      </div>
     </div>
   );
 };

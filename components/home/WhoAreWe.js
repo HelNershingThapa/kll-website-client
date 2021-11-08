@@ -4,13 +4,7 @@ import { uid } from "react-uid";
 import Image from "next/image";
 import { makeStyles } from "@material-ui/core/styles";
 import { Typography, Container, Button, Chip } from "@material-ui/core";
-import TableBody from "@material-ui/core/TableBody";
-import TableCell from "@material-ui/core/TableCell";
-import TableContainer from "@material-ui/core/TableContainer";
-import TableHead from "@material-ui/core/TableHead";
-import TableRow from "@material-ui/core/TableRow";
-import Paper from "@material-ui/core/Paper";
-import Table from "@material-ui/core/Table";
+import { desktop, tablet } from "../../styles/theme";
 
 const stats = [
   {
@@ -62,27 +56,66 @@ var result = stats.reduce((resultArray, item, index) => {
 }, []);
 
 const useStyles = makeStyles((theme) => ({
+  root: {
+    position: "relative",
+    display: "flex",
+    gap: "108px",
+    // alignItems: "center",
+    [theme.breakpoints.down("xs")]: {
+      flexDirection: "column",
+      gap: theme.spacing(6),
+    },
+  },
+  imgFill: {
+    width: 600,
+    height: 900,
+    [theme.breakpoints.down(1280)]: {
+      width: 500,
+    },
+  },
+  image: {
+    objectFit: "cover",
+    width: "100%",
+    height: "100%",
+  },
+  // imageCtr: {
+  //   position: "absolute",
+  //   left: 0,
+  //   top: 0,
+  // },
+  // imgFill: {
+  //   position: "relative",
+  //   height: 900,
+  //   width: "31.25vw",
+  // },
   container: {
     display: "flex",
-    gap: "6rem",
-    alignItems: "center",
-    position: "relative",
+    padding: 0,
+    margin: 0,
+    maxWidth: "50.625%",
+    // justifyContent: "flex-end",
+    [theme.breakpoints.down("md")]: {
+      maxWidth: "44.8%",
+    },
+    [theme.breakpoints.down(desktop)]: {
+      maxWidth: "40.2%",
+    },
+    [theme.breakpoints.down("xs")]: {
+      maxWidth: "100%",
+      padding: "0",
+    },
   },
-  imageCtr: {
-    position: "absolute",
-    left: 0,
-    top: 0,
-  },
-  imgFill: { position: "relative", height: 900, width: 600 },
-  contentCtr: {
-    display: "flex",
-    justifyContent: "flex-end",
+  imaginaryFill: {
+    // width: 468,
   },
   content: {
     maxWidth: 972,
     height: 900,
     display: "flex",
     alignItems: "center",
+  },
+  contentMock: {
+    width: 468,
   },
   title: {
     marginBottom: theme.spacing(6),
@@ -102,6 +135,13 @@ const useStyles = makeStyles((theme) => ({
       fontWeight: 400,
       lineHeight: 1.6,
       color: theme.palette.grey[800],
+    },
+    [theme.breakpoints.down(desktop)]: {
+      marginBottom: theme.spacing(10),
+      "& p": {
+        fontSize: "0.8889rem",
+        lineHeight: 1.5,
+      },
     },
     [theme.breakpoints.down("xs")]: {
       marginBottom: theme.spacing(5),
@@ -139,58 +179,15 @@ const useStyles = makeStyles((theme) => ({
       // paddingLeft: "15px",
     },
   },
-  tableBody: {
-    "& tr": {
-      "& td:not(:first-child):not(:last-child)": {
-        borderLeft: "1px solid #CAD5E0",
-        borderRight: "1px solid #CAD5E0",
-        textAlign: "center",
-      },
-      "& td:last-child": {
-        textAlign: "right",
-        paddingRight: 0,
-      },
-      "& td:first-child": {
-        paddingLeft: 0,
-      },
-      "& td:not(:first-child)": {
-        // paddingLeft: '109px',
-      },
-    },
-    "& tr:first-child": {
-      "& td": {
-        paddingBottom: theme.spacing(8),
-      },
-    },
-    "& tr:not(:first-child)": {
-      "& td:not(:first-child)": {
-        // paddingLeft: "15px",
-      },
-    },
-    "& tr:not(:first-child):not(:last-child)": {
-      "& td": {
-        paddingTop: theme.spacing(8),
-        paddingBottom: theme.spacing(8),
-        // display: "grid",
-        // placeContent: "center",
-      },
-    },
-    "& tr:last-child": {
-      "& td": {
-        paddingTop: theme.spacing(8),
-        borderBottom: "none",
-      },
-    },
-  },
   stat: {
     display: "flex",
     flexDirection: "column",
   },
-  name: {
+  statTitle: {
     color: theme.palette.grey[600],
     marginBottom: theme.spacing(1),
   },
-  value: {
+  statValue: {
     lineHeight: 1,
   },
   btnRoot: {
@@ -233,24 +230,24 @@ const useStyles = makeStyles((theme) => ({
       borderTop: "none",
       borderBottom: "none",
       borderRight: "none",
-      alignItems: "center"
+      alignItems: "center",
     },
     "& :nth-child(3)": {
       paddingTop: 0,
       borderTop: "none",
       borderBottom: "none",
-      alignItems: "center"
+      alignItems: "center",
     },
     "& :nth-child(6)": {
       paddingBottom: 0,
       borderBottom: "none",
       borderRight: "none",
-      alignItems: "center"
+      alignItems: "center",
     },
     "& :nth-child(7)": {
       paddingBottom: 0,
       borderBottom: "none",
-      alignItems: "center"
+      alignItems: "center",
     },
     // "& :nth-child(2,3)": {
     //   display: 'flex',
@@ -265,6 +262,18 @@ const useStyles = makeStyles((theme) => ({
     //   paddingBottom: 0,
     //   borderBottom: "none",
     // },
+    [theme.breakpoints.down(desktop)]: {
+      gridTemplateColumns: "1.1fr 2fr 1.1fr",
+      "& div:first-of-type": {
+        borderBottom: "1px solid #CAD5E0",
+      },
+      "& :nth-child(4n)": {
+        paddingRight: 0,
+        borderRight: "none",
+        borderLeft: "none",
+        alignItems: "flex-end",
+      },
+    },
   },
   stat: {
     // padding: "108px",
@@ -273,7 +282,11 @@ const useStyles = makeStyles((theme) => ({
     // display: "grid",
     // placeContent: "center",
     display: "flex",
-      flexDirection: "column",
+    flexDirection: "column",
+    [theme.breakpoints.down(desktop)]: {
+      paddingTop: "11px",
+      paddingBottom: "21px",
+    },
   },
 }));
 
@@ -282,13 +295,11 @@ const Partners = () => {
   const classes = useStyles();
 
   return (
-    <div className={classes.container}>
-      <div className={classes.imageCtr}>
-        <div className={classes.imgFill}>
-          <Image src="/whoarewe.png" layout="fill" objectFit="cover" alt="" />
-        </div>
+    <div className={classes.root}>
+      <div className={classes.imgFill}>
+        <img src="/whoarewe.png" className={classes.image} alt="" />
       </div>
-      <Container maxWidth="lg" className={classes.contentCtr}>
+      <Container fixed className={classes.container}>
         <div className={classes.content}>
           <div>
             <Typography variant="h3" className={classes.title}>
@@ -317,10 +328,10 @@ const Partners = () => {
               <div className={classes.statsCtr}>
                 {stats.map((stat) => (
                   <div key={uid(stat)} className={classes.stat}>
-                    <Typography variant="body1" className={classes.name}>
+                    <Typography variant="body1" className={classes.statTitle}>
                       {stat.name}
                     </Typography>
-                    <Typography variant="h5" className={classes.value}>
+                    <Typography variant="h5" className={classes.statValue}>
                       {stat.value}
                     </Typography>
                   </div>
