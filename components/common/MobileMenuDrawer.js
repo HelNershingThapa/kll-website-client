@@ -1,4 +1,5 @@
 import clsx from "clsx";
+import Image from "next/image";
 import { uid } from "react-uid";
 import Link from "next/link";
 import { makeStyles } from "@material-ui/core/styles";
@@ -15,6 +16,22 @@ const useStyles = makeStyles((theme) => ({
   paper: {
     width: "100%",
   },
+  navBar: {
+    height: "80px",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between",
+  },
+  imgFill: {
+    cursor: "pointer",
+    position: "relative",
+    height: 48,
+    width: 48,
+    [theme.breakpoints.down("xs")]: {
+      height: 40,
+      width: 40,
+    },
+  },
   closeIcon: {
     marginRight: theme.spacing(0.5),
   },
@@ -22,6 +39,7 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 200,
     lineHeight: 1.25,
     color: theme.palette.grey[600],
+    marginTop: theme.spacing(5),
     marginBottom: theme.spacing(8),
   },
 
@@ -47,6 +65,13 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 600,
     lineHeight: 1.6,
   },
+  menuItemLink: {
+    fontWeight: 600,
+    lineHeight: 1.6,
+    "&:hover": {
+      cursor: "pointer",
+    },
+  },
   subMenuCtr: {
     display: "flex",
     flexDirection: "column",
@@ -57,6 +82,16 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 500,
     color: theme.palette.grey[500],
     margin: theme.spacing(0, 8),
+    "&:hover": {
+      cursor: "pointer",
+    },
+  },
+  arrowRight: {
+    fontSize: "18px",
+    color: theme.palette.grey[500],
+    "&:hover": {
+      cursor: "pointer",
+    },
   },
 }));
 
@@ -72,13 +107,25 @@ const MobileMenuDrawer = ({ open, onClose, menuItems }) => {
       classes={{ paper: classes.paper }}
     >
       <Container fixed>
-        <IconButton
-          className={classes.menuButton}
-          onClick={onClose}
-          aria-label="Open Navigation"
-        >
-          <i className={clsx("ri-menu-line", classes.menuIcon)}></i>
-        </IconButton>
+        <div className={classes.navBar}>
+          <Link href="/">
+            <div className={classes.imgFill} onClick={onClose}>
+              <Image
+                src="/kll-logos/kll-logo-default.svg"
+                layout="fill"
+                objectFit="cover"
+                alt="KLL Logo"
+              />
+            </div>
+          </Link>
+          <IconButton
+            className={classes.menuButton}
+            onClick={onClose}
+            aria-label="Open Navigation"
+          >
+            <i className={clsx("ri-close-line", classes.menuIcon)}></i>
+          </IconButton>
+        </div>
         <Typography variant="h4" className={classes.title}>
           Website Menu
         </Typography>
@@ -93,16 +140,31 @@ const MobileMenuDrawer = ({ open, onClose, menuItems }) => {
                   {menuItem.subMenu.map((subMenu) => (
                     <div key={uid(subMenu)}>
                       <Link
-                        key={uid(menuItem)}
-                        href={menuItem.link}
+                        href={subMenu.link}
                         className={classes.link}
+                        onClick={() => console.log("asdasd")}
                       >
-                        <Typography
-                          variant="body1"
-                          className={classes.subMenuItemTypo}
+                        <div
+                          style={{
+                            display: "flex",
+                            justifyContent: "space-between",
+                          }}
                         >
-                          {subMenu.name}
-                        </Typography>
+                          <Typography
+                            variant="body1"
+                            className={classes.subMenuItemTypo}
+                            onClick={onClose}
+                          >
+                            {subMenu.name}
+                          </Typography>
+                          <i
+                            className={clsx(
+                              "ri-arrow-right-line",
+                              classes.arrowRight
+                            )}
+                            onClick={onClose}
+                          />
+                        </div>
                       </Link>
                     </div>
                   ))}
@@ -113,7 +175,11 @@ const MobileMenuDrawer = ({ open, onClose, menuItems }) => {
                   href={menuItem.link}
                   className={classes.link}
                 >
-                  <Typography variant="h6" className={classes.menuItem}>
+                  <Typography
+                    variant="h6"
+                    className={classes.menuItemLink}
+                    onClick={onClose}
+                  >
                     {menuItem.name}
                   </Typography>
                 </Link>

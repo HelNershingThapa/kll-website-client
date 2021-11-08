@@ -21,7 +21,7 @@ import MenuIcon from "@material-ui/icons/Menu";
 import CloseIcon from "@material-ui/icons/Close";
 import LiveHelpIcon from "@material-ui/icons/LiveHelp";
 import Tooltip from "@material-ui/core/Tooltip";
-import { primary } from "../../styles/theme";
+import { desktop, primary } from "../../styles/theme";
 import logo from "public/kll-logo.svg";
 // import { FormattedMessage } from 'react-intl';
 // import messages from './messages';
@@ -146,6 +146,9 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 500,
     lineHeight: "18px",
     color: theme.palette.grey[900],
+    [theme.breakpoints.down(desktop)]:{
+      fontSize: "0.8889rem",
+    }
   },
   menuLink: {
     textDecoration: "none",
@@ -168,6 +171,9 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     alignItems: "center",
     gap: theme.spacing(15),
+    [theme.breakpoints.down(desktop)]:{
+      gap: theme.spacing(10),
+    }
   },
   menuItemContainerMobile: {
     display: "flex",

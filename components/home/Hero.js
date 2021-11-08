@@ -61,6 +61,10 @@ const useStyles = makeStyles((theme) => ({
     fontSize: "48px",
     fontWeight: 300,
     lineHeight: "72px",
+    [theme.breakpoints.down("md")]: {
+      fontSize: "40px",
+      lineHeight: 1.5,
+    },
     [theme.breakpoints.down(desktop)]: {
       fontSize: "36px",
       lineHeight: 1.5,
@@ -72,6 +76,10 @@ const useStyles = makeStyles((theme) => ({
   },
   heroTitleHighlight: {
     fontWeight: 700,
+    [theme.breakpoints.down("md")]: {
+      fontSize: "40px",
+      lineHeight: 1.5,
+    },
     [theme.breakpoints.down(desktop)]: {
       fontSize: "40px",
       lineHeight: 1.5,
