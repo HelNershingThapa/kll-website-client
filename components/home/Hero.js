@@ -4,17 +4,30 @@ import { uid } from "react-uid";
 import Image from "next/image";
 import { makeStyles } from "@material-ui/core/styles";
 import { Typography, Container, Button } from "@material-ui/core";
+import { desktop, tablet } from "styles/theme";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    position: "relative",
-    display: "flex",
+    display: "grid",
+    gridTemplateColumns: "1fr 1440px 1fr",
     background: theme.palette.grey[100],
     justifyContent: "flex-end",
-    gap: "22px",
+    [theme.breakpoints.down("md")]: {
+      gridTemplateColumns: "1fr 1220px 1fr",
+    },
+    [theme.breakpoints.down(desktop)]: {
+      gridTemplateColumns: "1fr 932px 1fr",
+    },
     [theme.breakpoints.down("sm")]: {
-      display: "flex",
-      flexDirection: "column",
+      gridTemplateColumns: "708px",
+      justifyContent: "center",
+    },
+    [theme.breakpoints.down(tablet)]: {
+      gridTemplateColumns: "540px",
+    },
+    [theme.breakpoints.down("xs")]: {
+      gridTemplateColumns: "100%",
+      padding: "0px 16px",
     },
   },
   container: {
@@ -22,8 +35,10 @@ const useStyles = makeStyles((theme) => ({
     gap: "22px",
     padding: 0,
     margin: 0,
-    maxWidth: "54.3%",
+    // maxWidth: "100%",
+    gridColumn: "2 / 4",
     [theme.breakpoints.down("sm")]: {
+      gridColumn: "1 / -1",
       flexDirection: "column",
       gap: theme.spacing(15),
       paddingTop: theme.spacing(15),
@@ -46,16 +61,21 @@ const useStyles = makeStyles((theme) => ({
     fontSize: "48px",
     fontWeight: 300,
     lineHeight: "72px",
+    [theme.breakpoints.down(desktop)]: {
+      fontSize: "36px",
+      lineHeight: 1.5,
+    },
     [theme.breakpoints.down("xs")]: {
       fontSize: "20px",
       lineHeight: "32px",
     },
   },
   heroTitleHighlight: {
-    // fontFamily: "Manrope",
-    // fontSize: "48px",
     fontWeight: 700,
-    // lineHeight: "72px",
+    [theme.breakpoints.down(desktop)]: {
+      fontSize: "40px",
+      lineHeight: 1.5,
+    },
     [theme.breakpoints.down("xs")]: {
       fontSize: "20px",
       lineHeight: "32px",
@@ -64,9 +84,21 @@ const useStyles = makeStyles((theme) => ({
   imgFill: {
     width: 620,
     height: 708,
-    [theme.breakpoints.down(1280)]: {
-      width: 500,
+    flexShrink: "0",
+    [theme.breakpoints.down(desktop)]: {
+      width: 470,
+      height: 575,
     },
+    [theme.breakpoints.down("sm")]: {
+      width: "100vw",
+      height: "80vw",
+      marginLeft: "calc(-50vw + 50%)"
+    },
+  },
+  image: {
+    width: "100%",
+    height: "100%",
+    objectFit: "cover",
   },
   // heroImg: {
   //   // position: "absolute",
@@ -92,6 +124,9 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     gap: "4rem",
     alignItems: "center",
+    [theme.breakpoints.down(desktop)]: {
+      marginTop: theme.spacing(10),
+    },
     [theme.breakpoints.down("xs")]: {
       marginTop: theme.spacing(10),
       flexDirection: "column",
@@ -115,11 +150,19 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 600,
     lineHeight: "20px",
     color: theme.palette.grey[50],
+    [theme.breakpoints.down("sm")]: {
+      fontSize: "1rem",
+      lineHeight: 1,
+    },
   },
   buttonSubtitle: {
     fontSize: "16px",
     fontWeight: 500,
-    lineHeight: "14px",
+    lineHeight: 1,
+    [theme.breakpoints.down("sm")]: {
+      fontSize: "14px",
+      lineHeight: 1,
+    },
   },
   buttonTitleCtr: {
     display: "flex",
@@ -127,13 +170,15 @@ const useStyles = makeStyles((theme) => ({
     gap: theme.spacing(2),
   },
   endIcon: {
-    marginLeft: "18px",
+    marginLeft: theme.spacing(4),
   },
   getInTouch: {
-    fontSize: "16px",
     fontWeight: 500,
-    lineHeight: "16px",
+    lineHeight: 1,
     color: theme.palette.grey[600],
+    [theme.breakpoints.down("xs")]: {
+      marginLeft: "35px",
+    },
   },
 }));
 
@@ -143,7 +188,7 @@ const Hero = () => {
 
   return (
     <div className={classes.root}>
-      <Container fixed className={classes.container}>
+      <div fixed className={classes.container}>
         <div className={classes.actionItemsWrapper}>
           <div className={classes.heroTitleContainer}>
             <Typography variant="h2" className={classes.heroTitle}>
@@ -185,13 +230,14 @@ const Hero = () => {
               </div>
             </Button>
             <Typography
+            variant="subtitle1"
               className={classes.getInTouch}
             >{`Get In Touch ->`}</Typography>
           </div>
         </div>
-      </Container>
-      <div className={classes.imgFill}>
-        <img src="/hero-img.png" className={classes.image} alt="" />
+        <div className={classes.imgFill}>
+          <img src="/hero-img.png" className={classes.image} alt="" />
+        </div>
       </div>
     </div>
   );

@@ -107,6 +107,14 @@ const theme = createTheme({
   overrides: {
     MuiContainer: {
       root: {
+        [`@media (min-width:  ${desktop}px)`]: {
+          paddingLeft: spacing * 7.5,
+          paddingRight: spacing * 7.5,
+        },
+        [`@media (min-width:  ${desktop}px)`]: {
+          paddingLeft: spacing * 7.5,
+          paddingRight: spacing * 7.5,
+        },
         [`@media (min-width:  ${lg}px)`]: {
           paddingLeft: spacing * 7.5,
           paddingRight: spacing * 7.5,
