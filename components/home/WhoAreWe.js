@@ -41,36 +41,60 @@ const stats = [
   },
 ];
 
-var perChunk = 4; // items per chunk
-
-var result = stats.reduce((resultArray, item, index) => {
-  const chunkIndex = Math.floor(index / perChunk);
-
-  if (!resultArray[chunkIndex]) {
-    resultArray[chunkIndex] = []; // start a new chunk
-  }
-
-  resultArray[chunkIndex].push(item);
-
-  return resultArray;
-}, []);
-
 const useStyles = makeStyles((theme) => ({
   root: {
-    position: "relative",
-    display: "flex",
-    gap: "108px",
-    // alignItems: "center",
+    display: "grid",
+    gridTemplateColumns: "1fr 1440px 1fr",
+    justifyContent: "flex-start",
+    [theme.breakpoints.down("md")]: {
+      gridTemplateColumns: "1fr 1220px 1fr",
+    },
+    [theme.breakpoints.down(desktop)]: {
+      gridTemplateColumns: "1fr 932px 1fr",
+    },
+    [theme.breakpoints.down("sm")]: {
+      gridTemplateColumns: "708px",
+      justifyContent: "center",
+    },
+    [theme.breakpoints.down(tablet)]: {
+      gridTemplateColumns: "540px",
+    },
     [theme.breakpoints.down("xs")]: {
+      gridTemplateColumns: "100%",
+      padding: "0px 16px",
+    },
+  },
+  container: {
+    display: "flex",
+    gap: theme.spacing(27),
+    padding: 0,
+    margin: 0,
+    gridColumn: "1 / 3",
+    [theme.breakpoints.down(desktop)]: {
+      gap: theme.spacing(20),
+    },
+    [theme.breakpoints.down("sm")]: {
+      gridColumn: "1 / -1",
       flexDirection: "column",
-      gap: theme.spacing(6),
+      gap: theme.spacing(5),
+      paddingTop: theme.spacing(15),
+    },
+    [theme.breakpoints.down("xs")]: {
+      gap: theme.spacing(0),
     },
   },
   imgFill: {
     width: 600,
-    height: 900,
-    [theme.breakpoints.down(1280)]: {
-      width: 500,
+    height: "100%",
+    flexShrink: "0",
+    [theme.breakpoints.down(desktop)]: {
+      width: 470,
+      height: "100%",
+    },
+    [theme.breakpoints.down("sm")]: {
+      width: "100vw",
+      height: "80vw",
+      marginLeft: "calc(-50vw + 50%)",
     },
   },
   image: {
@@ -78,47 +102,24 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
     height: "100%",
   },
-  // imageCtr: {
-  //   position: "absolute",
-  //   left: 0,
-  //   top: 0,
-  // },
-  // imgFill: {
-  //   position: "relative",
-  //   height: 900,
-  //   width: "31.25vw",
-  // },
-  container: {
-    display: "flex",
-    padding: 0,
-    margin: 0,
-    maxWidth: "50.625%",
-    // justifyContent: "flex-end",
-    [theme.breakpoints.down("md")]: {
-      maxWidth: "44.8%",
-    },
-    [theme.breakpoints.down(desktop)]: {
-      maxWidth: "40.2%",
-    },
-    [theme.breakpoints.down("xs")]: {
-      maxWidth: "100%",
-      padding: "0",
-    },
-  },
-  imaginaryFill: {
-    // width: 468,
-  },
   content: {
-    maxWidth: 972,
-    height: 900,
+    // maxWidth: 972,
+    // height: 900,
     display: "flex",
     alignItems: "center",
-  },
-  contentMock: {
-    width: 468,
+    padding: "70px 0px",
+    [theme.breakpoints.down("sm")]: {
+      paddingTop: "24px",
+      paddingBottom: "40px",
+    },
   },
   title: {
     marginBottom: theme.spacing(6),
+    [theme.breakpoints.down(desktop)]: {
+      fontSize: "1.7778rem",
+      lineHeight: 1.25,
+      marginBottom: theme.spacing(4),
+    },
     [theme.breakpoints.down("xs")]: {
       fontSize: "1.111rem",
       lineHeight: 1.6,
@@ -128,7 +129,7 @@ const useStyles = makeStyles((theme) => ({
   paragraphs: {
     display: "flex",
     flexDirection: "column",
-    gap: "1.5rem",
+    gap: "1.111rem",
     marginBottom: theme.spacing(15),
     "& p": {
       fontSize: "1.111rem",
@@ -138,6 +139,7 @@ const useStyles = makeStyles((theme) => ({
     },
     [theme.breakpoints.down(desktop)]: {
       marginBottom: theme.spacing(10),
+      gap: "0.8889rem",
       "& p": {
         fontSize: "0.8889rem",
         lineHeight: 1.5,
@@ -145,6 +147,7 @@ const useStyles = makeStyles((theme) => ({
     },
     [theme.breakpoints.down("xs")]: {
       marginBottom: theme.spacing(5),
+      gap: "0.7778rem",
       "& p": {
         fontSize: "0.778rem",
         lineHeight: 1.428,
@@ -164,129 +167,96 @@ const useStyles = makeStyles((theme) => ({
     },
     [theme.breakpoints.down("xs")]: {
       marginBottom: theme.spacing(6),
+      padding: theme.spacing(5),
     },
-  },
-  tableCtr: {
-    marginTop: theme.spacing(8),
-    overflowY: "hidden",
-  },
-  table: {},
-  tableCell: {
-    padding: 0,
-  },
-  tableRow: {
-    "& td:not(:first-child)": {
-      // paddingLeft: "15px",
-    },
-  },
-  stat: {
-    display: "flex",
-    flexDirection: "column",
   },
   statTitle: {
     color: theme.palette.grey[600],
     marginBottom: theme.spacing(1),
+    [theme.breakpoints.down("xs")]: {
+      fontSize: "1rem",
+      lineHeight: 1.5556,
+    },
   },
   statValue: {
     lineHeight: 1,
-  },
-  btnRoot: {
-    padding: "14px 32px",
-  },
-  btnLabel: {
-    fontSize: "14px",
-    fontWeight: 500,
-    lineHeight: "20px",
-    color: theme.palette.grey[800],
+    [theme.breakpoints.down("xs")]: {
+      fontSize: "1.333rem",
+      lineHeight: 1,
+    },
   },
   statTitleTypo: {
     marginBottom: theme.spacing(8),
+    [theme.breakpoints.down("xs")]: {
+      marginBottom: theme.spacing(5),
+    },
   },
   statsCtr: {
     display: "grid",
+    background: "#CAD5E0",
+    gap: "1px",
     gridTemplateColumns: "1.1fr 2fr 2fr 1.1fr",
-    "& :nth-child(4n-3)": {
-      paddingLeft: 0,
-      borderLeft: "none",
-      borderRight: "none",
-      borderBottom: "none",
-    },
-    "& :nth-child(4n)": {
-      paddingRight: 0,
-      borderRight: "none",
-      borderLeft: "none",
-      alignItems: "flex-end",
-    },
-    "& :nth-child(-n+4)": {
+    "& div:nth-child(-n+4)": {
       paddingTop: 0,
-      borderTop: "none",
     },
-    "& :nth-child(n+4)": {
+    "& div:nth-child(n+4)": {
       paddingBottom: 0,
-      borderBottom: "none",
     },
-    "& :nth-child(2)": {
-      paddingTop: 0,
-      borderTop: "none",
-      borderBottom: "none",
-      borderRight: "none",
-      alignItems: "center",
+    "& div:nth-child(4), & div:nth-child(8)": {
+      display: "grid",
+      justifyContent: "flex-end",
     },
-    "& :nth-child(3)": {
-      paddingTop: 0,
-      borderTop: "none",
-      borderBottom: "none",
-      alignItems: "center",
+    "& div:nth-child(2), & :nth-child(3), & :nth-child(6), & :nth-child(7)": {
+      display: "grid",
+      placeContent: "center",
     },
-    "& :nth-child(6)": {
-      paddingBottom: 0,
-      borderBottom: "none",
-      borderRight: "none",
-      alignItems: "center",
-    },
-    "& :nth-child(7)": {
-      paddingBottom: 0,
-      borderBottom: "none",
-      alignItems: "center",
-    },
-    // "& :nth-child(2,3)": {
-    //   display: 'flex',
-    //   justifyContent: "center",
-    //   alignItems: "center"
-    // },
-    // "& :nth-child(4n)": {
-    //   paddingRight: 0,
-    //   borderRight: "none",
-    // },
-    // "& :nth-child(n+4)": {
-    //   paddingBottom: 0,
-    //   borderBottom: "none",
-    // },
     [theme.breakpoints.down(desktop)]: {
-      gridTemplateColumns: "1.1fr 2fr 1.1fr",
-      "& div:first-of-type": {
-        borderBottom: "1px solid #CAD5E0",
+      gridTemplateColumns: "1.1fr 1.5fr 1.1fr",
+      "& div:nth-child(4)": {
+        paddingTop: "11px",
       },
-      "& :nth-child(4n)": {
-        paddingRight: 0,
-        borderRight: "none",
-        borderLeft: "none",
-        alignItems: "flex-end",
+      "& div:nth-child(6)": {
+        paddingBottom: 0,
+        alignContent: "flex-start",
+      },
+      "& div:nth-child(4), & div:nth-child(5)": {
+        paddingBottom: "21px",
+      },
+      "& div:nth-child(4), & div:nth-child(7),": {
+        display: "grid",
+        placeContent: "flex-start",
+      },
+      "& div:nth-child(5), & div:nth-child(8),": {
+        display: "grid",
+        placeContent: "center",
+      },
+      "& :nth-child(n+7)": {
+        paddingBottom: 0,
       },
     },
   },
   stat: {
-    // padding: "108px",
     padding: "32px 0",
-    border: "1px solid #CAD5E0",
-    // display: "grid",
-    // placeContent: "center",
+    background: theme.palette.grey[100],
     display: "flex",
     flexDirection: "column",
     [theme.breakpoints.down(desktop)]: {
       paddingTop: "11px",
       paddingBottom: "21px",
     },
+  },
+  btnRoot: {
+    padding: "14px 32px",
+    [theme.breakpoints.down("sm")]: {
+      display: "flex",
+      margin: "auto",
+    },
+  },
+  btnLabel: {
+    fontSize: "14px",
+    fontWeight: 500,
+    lineHeight: "20px",
+    color: theme.palette.grey[800],
   },
 }));
 
@@ -296,10 +266,10 @@ const Partners = () => {
 
   return (
     <div className={classes.root}>
-      <div className={classes.imgFill}>
-        <img src="/whoarewe.png" className={classes.image} alt="" />
-      </div>
-      <Container fixed className={classes.container}>
+      <div fixed className={classes.container}>
+        <div className={classes.imgFill}>
+          <img src="/whoarewe.png" className={classes.image} alt="" />
+        </div>
         <div className={classes.content}>
           <div>
             <Typography variant="h3" className={classes.title}>
@@ -347,7 +317,7 @@ const Partners = () => {
             </Button>
           </div>
         </div>
-      </Container>
+      </div>
     </div>
   );
 };
