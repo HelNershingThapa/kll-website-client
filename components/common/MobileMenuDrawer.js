@@ -11,6 +11,7 @@ import {
   IconButton,
   Typography,
 } from "@material-ui/core";
+import { Fragment } from "react";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -131,7 +132,7 @@ const MobileMenuDrawer = ({ open, onClose, menuItems }) => {
         </Typography>
         <div className={classes.menuItemContainerMobile}>
           {menuItems.map((menuItem) => (
-            <>
+            <Fragment key={uid(menuItem)}>
               {menuItem.isSubMenuAvailable ? (
                 <div className={classes.subMenuCtr}>
                   <Typography variant="h6" className={classes.menuItem}>
@@ -185,7 +186,7 @@ const MobileMenuDrawer = ({ open, onClose, menuItems }) => {
                   </Typography>
                 </Link>
               )}
-            </>
+            </Fragment>
           ))}
         </div>
       </Container>

@@ -18,11 +18,14 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   layover: {
+    position: "relative",
     background: "white",
     width: "614px",
     margin: "auto",
     padding: theme.spacing(6),
-    transform: "translateY(-50%)",
+    marginTop: "-100px",
+    // transform: "translateY(-50%)",
+    marginTop: "-100px",
     paddingBottom: 0,
     [theme.breakpoints.down(desktop)]: {
       width: "500px",

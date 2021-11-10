@@ -1,3 +1,5 @@
+import withWidth from "@material-ui/core/withWidth";
+
 import { useRouter } from "next/router";
 import clsx from "clsx";
 import { uid } from "react-uid";
@@ -245,6 +247,10 @@ const useStyles = makeStyles((theme) => ({
       paddingBottom: "21px",
     },
   },
+  extraDiv: {
+    position: "absolute",
+    background: theme.palette.grey[100],
+  },
   btnRoot: {
     padding: "14px 32px",
     [theme.breakpoints.down("sm")]: {
@@ -260,9 +266,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Partners = () => {
+const Partners = ({ width }) => {
   const router = useRouter();
   const classes = useStyles();
+
+  console.log(">>>", width);
 
   return (
     <div className={classes.root}>
@@ -296,16 +304,19 @@ const Partners = () => {
                 KLL in numbers
               </Typography>
               <div className={classes.statsCtr}>
-                {stats.map((stat) => (
-                  <div key={uid(stat)} className={classes.stat}>
-                    <Typography variant="body1" className={classes.statTitle}>
-                      {stat.name}
-                    </Typography>
-                    <Typography variant="h5" className={classes.statValue}>
-                      {stat.value}
-                    </Typography>
-                  </div>
+                {stats.map((stat, index) => (
+                  <>
+                    <div key={uid(stat)} className={classes.stat}>
+                      <Typography variant="body1" className={classes.statTitle}>
+                        {stat.name}
+                      </Typography>
+                      <Typography variant="h5" className={classes.statValue}>
+                        {stat.value}
+                      </Typography>
+                    </div>
+                  </>
                 ))}
+                {/* {(width === "sm" || width === "xs") && <div className={classes.extraDiv} />} */}
               </div>
             </div>
             <Button
@@ -322,4 +333,4 @@ const Partners = () => {
   );
 };
 
-export default Partners;
+export default withWidth()(Partners);

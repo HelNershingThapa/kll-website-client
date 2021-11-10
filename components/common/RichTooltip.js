@@ -19,6 +19,7 @@ const useStyles = makeStyles((theme) => {
       boxShadow: "0px 10px 45px rgba(13, 24, 41, 0.15)",
       padding: "24px 20px",
       borderRadius: "12px",
+      position: "relative",
     },
     content: {
       // padding: theme.spacing(2),
@@ -26,13 +27,10 @@ const useStyles = makeStyles((theme) => {
     // Stolen from https://github.com/mui-org/material-ui/blob/next/packages/material-ui/src/Tooltip/Tooltip.js and https://github.com/mui-org/material-ui/blob/4f2a07e140c954b478a6670c009c23a59ec3e2d4/docs/src/pages/components/popper/ScrollPlayground.js
     popper: {
       zIndex: 2000,
-      marginTop: "1rem",
+      paddingTop: "1rem",
       '&[x-placement*="bottom"] $arrow': {
-        top: 0,
+        top: "-15px",
         left: 0,
-        marginTop: "-0.71em",
-        marginLeft: 4,
-        marginRight: 4,
         "&::before": {
           transformOrigin: "0 100%",
         },
@@ -74,8 +72,8 @@ const useStyles = makeStyles((theme) => {
     arrow: {
       overflow: "hidden",
       position: "absolute",
-      width: "1em",
-      height: "0.71em" /* = width / sqrt(2) = (length of the hypotenuse) */,
+      width: "20px",
+      height: "20px" /* = width / sqrt(2) = (length of the hypotenuse) */,
       boxSizing: "border-box",
       color,
       "&::before": {
@@ -84,7 +82,6 @@ const useStyles = makeStyles((theme) => {
         display: "block",
         width: "100%",
         height: "100%",
-        boxShadow: theme.shadows[1],
         backgroundColor: "currentColor",
         transform: "rotate(45deg)",
       },
@@ -104,6 +101,7 @@ const RichTooltip = ({
   index,
   handlePopoverOpen,
   setOpenedPopoverId,
+  setOpen,
 }) => {
   const classes = useStyles();
   const [arrowRef, setArrowRef] = React.useState(null);
@@ -130,20 +128,29 @@ const RichTooltip = ({
         }}
       >
         {({ TransitionProps }) => (
-          <Fade {...TransitionProps} timeout={0}>
-            <ClickAwayListener onClickAway={onClose}>
-              <Paper
-                className={classes.popoverRoot}
-                onMouseEnter={() => handlePopoverOpen(index)}
-                onMouseLeave={() => setOpenedPopoverId(null)}
-              >
-                {arrow ? (
-                  <span className={classes.arrow} ref={setArrowRef} />
-                ) : null}
-                <Box className={classes.content}>{content}</Box>
-              </Paper>
-            </ClickAwayListener>
-          </Fade>
+          <div
+            style={{
+              background: "transparent",
+              marginTop: "-1rem",
+              paddingTop: "2rem",
+            }}
+            onMouseOver={() => handlePopoverOpen(index)}
+          >
+            <Fade {...TransitionProps} timeout={0}>
+              <ClickAwayListener onClickAway={onClose}>
+                <Paper
+                  className={classes.popoverRoot}
+                  onMouseEnter={() => handlePopoverOpen(index)}
+                  onMouseLeave={() => setOpenedPopoverId(null)}
+                >
+                  {arrow ? (
+                    <span className={classes.arrow} ref={setArrowRef} />
+                  ) : null}
+                  <Box className={classes.content}>{content}</Box>
+                </Paper>
+              </ClickAwayListener>
+            </Fade>
+          </div>
         )}
       </Popper>
     </div>

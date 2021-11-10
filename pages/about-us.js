@@ -1,3 +1,4 @@
+import axios from "axios";
 import Head from "next/head";
 import clsx from "clsx";
 import { uid } from "react-uid";
@@ -119,14 +120,15 @@ const useStyles = makeStyles((theme) => ({
   paragraphs: {
     display: "flex",
     flexDirection: "column",
-    gap: "1rem",
-    color: "blue",
+    gap: "1.111rem", // gap set as the line height for text
+    [theme.breakpoints.down("xs")]: {
+      gap: "0.8889rem",
+    },
   },
   para: {
     fontSize: "1.111rem",
     lineHeight: 1.6,
     color: theme.palette.grey[800],
-    marginTop: theme.spacing(5),
     [theme.breakpoints.down("xs")]: {
       fontSize: "0.8889rem",
       lineHeight: 1.5,
@@ -136,11 +138,11 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(10),
     marginBottom: theme.spacing(10),
     position: "relative",
-    width: '100%',
+    width: "100%",
     height: 500,
-    [theme.breakpoints.down("sm")]:{
+    [theme.breakpoints.down("sm")]: {
       height: "46vw",
-    }
+    },
   },
   imgsCtr: {
     display: "flex",
@@ -150,9 +152,9 @@ const useStyles = makeStyles((theme) => ({
     position: "relative",
     width: 476,
     height: 583,
-    [theme.breakpoints.down("sm")]:{
+    [theme.breakpoints.down("sm")]: {
       height: "54vw",
-    }
+    },
   },
   header: {
     fontFamily: "Manrope",
@@ -177,8 +179,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function AboutUs() {
+function AboutUs({ data }) {
   const classes = useStyles();
+
+  console.log("data>>", data);
   return (
     <>
       <Head>
@@ -198,13 +202,13 @@ function AboutUs() {
           priority
         />
         <div className={classes.statsOverlay}>
-          {stats.map((stat) => (
+          {data.stats.map((stat) => (
             <div key={uid(stat)}>
               <Typography variant="body1" className={classes.statTitle}>
-                {stat.title}
+                {stat.label}
               </Typography>
               <Typography variant="h5" className={classes.statValue}>
-                {stat.value}
+                {stat.number}
               </Typography>
             </div>
           ))}
@@ -271,11 +275,21 @@ function AboutUs() {
         </div>
       </Container>
       <HowWeBegan />
-      <Values />
-      <Mission />
+      <Values values={data.values}/>
+      <Mission missions={data.mission}/>
       <OurTeam />
     </>
   );
+}
+
+export async function getStaticProps(context) {
+  const { data } = await axios.get(`http://localhost:1337/about-us`);
+
+  return {
+    props: {
+      data,
+    },
+  };
 }
 
 export default AboutUs;

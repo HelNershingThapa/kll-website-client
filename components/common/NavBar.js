@@ -1,6 +1,5 @@
 import React, { useState, Fragment } from "react";
 import { useRouter } from "next/router";
-
 import clsx from "clsx";
 import { uid } from "react-uid";
 import Link from "next/link";
@@ -218,7 +217,7 @@ function NavBar({}) {
   const classes = useStyles();
   const router = useRouter();
 
-  const [open, setOpen] = useState(false);
+  const [mobileMenuDrawerOpen, setOpen] = useState(false);
   const [openedPopoverId, setOpenedPopoverId] = useState(null);
   const [popoverOpen, setPopoverOpen] = useState(false);
 
@@ -277,7 +276,7 @@ function NavBar({}) {
             <Hidden smDown>
               <div className={classes.menuItemsContainer}>
                 {menuItems.map((menuItem, index) => (
-                  <>
+                  <Fragment key={uid(menuItem, index)}>
                     {menuItem.isSubMenuAvailable ? (
                       <RichTooltip
                         key={uid(menuItem)}
@@ -291,6 +290,7 @@ function NavBar({}) {
                         popoverLeave={() => setOpenedPopoverId(null)}
                         index={index}
                         setOpenedPopoverId={setOpenedPopoverId}
+                        setOpen={handlePopoverOpen}
                       >
                         <div
                           style={{ display: "flex" }}
@@ -329,7 +329,7 @@ function NavBar({}) {
                         </Typography>
                       </Link>
                     )}
-                  </>
+                  </Fragment>
                 ))}
                 <Button
                   className={classes.contactUs}
@@ -345,7 +345,7 @@ function NavBar({}) {
           </Toolbar>
         </AppBar>
       </Container>
-      <MobileMenuDrawer open={open} onClose={onClose} menuItems={menuItems} />
+      <MobileMenuDrawer open={mobileMenuDrawerOpen} onClose={onClose} menuItems={menuItems} />
     </Fragment>
   );
 }

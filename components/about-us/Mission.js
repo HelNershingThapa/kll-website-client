@@ -2,29 +2,6 @@ import { uid } from "react-uid";
 import { makeStyles } from "@material-ui/core/styles";
 import { Container, Typography } from "@material-ui/core";
 
-const missions = [
-  {
-    title: "Not Merely Technology, Civic Technology",
-    description:
-      "Become a center of excellence with thought leaders in data and technology ",
-  },
-  {
-    title: "Open Data and Open Source Technology",
-    description:
-      "Lay the groundwork for and build technology and data-driven tools that will enable an engaged and informed citizenry ",
-  },
-  {
-    title: "Local Yet Global",
-    description:
-      "Pursue innovation in civic-tech with impact to truly change people’s lives",
-  },
-  {
-    title: "Reflect and Optimize",
-    description:
-      "Become the forefront of improving and promoting OpenStreetMap ",
-  },
-];
-
 const useStyles = makeStyles((theme) => ({
   bgRoot: {
     background: theme.palette.grey[900],
@@ -91,7 +68,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Mission() {
+function Mission({ missions }) {
   const classes = useStyles();
 
   return (
@@ -109,7 +86,7 @@ function Mission() {
                 <div key={uid(mission, index)} className={classes.description}>
                   <li>
                     <Typography className={classes.missionDescription}>
-                      {mission.description}
+                      {mission.text}
                     </Typography>
                   </li>
                 </div>
