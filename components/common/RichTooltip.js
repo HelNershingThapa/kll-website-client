@@ -135,6 +135,7 @@ const RichTooltip = ({
               paddingTop: "2rem",
             }}
             onMouseOver={() => handlePopoverOpen(index)}
+            onMouseOut={() => setOpenedPopoverId(null)}
           >
             <Fade {...TransitionProps} timeout={0}>
               <ClickAwayListener onClickAway={onClose}>

@@ -8,6 +8,7 @@ import InputLabel from "@material-ui/core/InputLabel";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import FormControl from "@material-ui/core/FormControl";
 import Divider from "@material-ui/core/Divider";
+import { desktop } from "../../styles/theme";
 
 const groups = [
   {
@@ -116,21 +117,34 @@ const useStyles = makeStyles((theme) => ({
   groups: {
     display: "flex",
     justifyContent: "space-between",
-    [theme.breakpoints.down("xs")]: {
-      width: "100%",
-      marginTop: theme.spacing(1),
-      marginBottom: theme.spacing(6),
-      flexWrap: "wrap",
-      rowGap: theme.spacing(10),
-      "& div": {
-        flex: "50%",
-      },
+    // [theme.breakpoints.down("xs")]: {
+    //   width: "100%",
+    //   marginTop: theme.spacing(1),
+    //   marginBottom: theme.spacing(6),
+    //   flexWrap: "wrap",
+    //   rowGap: theme.spacing(10),
+    //   "& div": {
+    //     flex: "50%",
+    //   },
+    // },
+    [theme.breakpoints.down("sm")]:{
+      display: "grid",
+      gridTemplateColumns: "1fr 1fr 1fr 1fr",
+      gap: theme.spacing(10)
     },
+    [theme.breakpoints.down("xs")]:{
+      display: "grid",
+      gridTemplateColumns: "1fr 1fr",
+      gap: theme.spacing(10)
+    }
   },
   groupTitle: {
     fontWeight: 600,
     lineHeight: 1,
     color: theme.palette.grey[400],
+    [theme.breakpoints.down(desktop)]: {
+      fontSize: "0.8889rem",
+    },
     [theme.breakpoints.down("xs")]: {
       fontSize: "1.111rem",
     },
@@ -140,6 +154,10 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "column",
     gap: theme.spacing(6),
+    [theme.breakpoints.down(desktop)]: {
+      marginTop: theme.spacing(6),
+      gap: theme.spacing(5),
+    },
     [theme.breakpoints.down("xs")]: {
       marginTop: theme.spacing(4),
       gap: theme.spacing(3),
@@ -150,6 +168,9 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 500,
     lineHeight: 1,
     color: theme.palette.grey[200],
+    [theme.breakpoints.down(desktop)]: {
+      fontSize: "0.8889rem",
+    },
     [theme.breakpoints.down("xs")]: {
       fontSize: "14px",
     },
@@ -171,8 +192,8 @@ const useStyles = makeStyles((theme) => ({
       width: 278,
       fontSize: "14px",
       lineHeight: 1.428,
-      marginLeft: 'auto',
-      marginRight: 'auto',
+      marginLeft: "auto",
+      marginRight: "auto",
     },
   },
   logoLine: {
@@ -207,6 +228,11 @@ const useStyles = makeStyles((theme) => ({
   endIcon: {
     marginLeft: theme.spacing(2),
   },
+  newsLetter: {
+    [theme.breakpoints.down("sm")]: {
+      gridColumn: "1 / -1",
+    },
+  },
   newsletterHeader: {
     fontSize: "16px",
     fontWeight: 500,
@@ -216,6 +242,9 @@ const useStyles = makeStyles((theme) => ({
   },
   newsletterInput: {
     background: theme.palette.grey[800],
+    [theme.breakpoints.down("sm")]:{
+      width: "100%",
+    }
   },
   placeholder: {
     padding: "15px 16px",
@@ -244,9 +273,8 @@ const useStyles = makeStyles((theme) => ({
       marginTop: theme.spacing(1),
     },
     [theme.breakpoints.down("xs")]: {
-    marginTop: theme.spacing(5),
-
-    }
+      marginTop: theme.spacing(5),
+    },
   },
 }));
 
@@ -313,8 +341,8 @@ function Footer() {
               endAdornment={
                 <i
                   className="ri-send-plane-line"
-                  style={{ color: "#CAD5E0" }}
-                ></i>
+                  style={{ color: "#CAD5E0", fontSize: "24px" }}
+                />
               }
             />
             <div className={classes.contactDetails}>
