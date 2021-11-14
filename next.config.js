@@ -8,7 +8,7 @@ module.exports = {
   },
   images: {
     domains: [
-      "http://localhost:1337",
+      "localhost",
       "https://salty-bastion-86199.herokuapp.com",
     ],
   },

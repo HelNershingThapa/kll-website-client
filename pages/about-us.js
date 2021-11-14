@@ -1,13 +1,10 @@
+import ReactMarkdown from "react-markdown";
 import axios from "axios";
 import Head from "next/head";
-import clsx from "clsx";
 import { uid } from "react-uid";
 import Image from "next/image";
 import { makeStyles } from "@material-ui/styles";
-import { Button, Container, Typography, Grid } from "@material-ui/core";
-import { spacing } from "@material-ui/system";
-import Box from "@material-ui/core/Box";
-import styles from "../styles/AboutUs.module.css";
+import { Container, Typography } from "@material-ui/core";
 import HowWeBegan from "components/about-us/HowWeBegan";
 import OurTeam from "components/home/OurTeam";
 import Footprint from "components/about-us/Footprint";
@@ -129,6 +126,7 @@ const useStyles = makeStyles((theme) => ({
     fontSize: "1.111rem",
     lineHeight: 1.6,
     color: theme.palette.grey[800],
+    marginBottom: "1.111rem", // giving same size as the font size
     [theme.breakpoints.down("xs")]: {
       fontSize: "0.8889rem",
       lineHeight: 1.5,
@@ -179,10 +177,23 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+function MarkdownParagraph(props) {
+  const classes = useStyles();
+
+  return (
+    <Typography variant="body1" className={classes.para}>
+      {props.children}
+    </Typography>
+  );
+}
+
+const renderers = {
+  paragraph: MarkdownParagraph,
+};
+
 function AboutUs({ data }) {
   const classes = useStyles();
 
-  console.log("data>>", data);
   return (
     <>
       <Head>
@@ -216,32 +227,8 @@ function AboutUs({ data }) {
       </div>
       <Container fixed>
         <div className={classes.content}>
-          <div className={classes.paragraphs}>
-            <Typography variant="body1" className={classes.para}>
-              Kathmandu Living Labs is a pioneer civic-tech enterprise that
-              provides data and technology solutions to businesses, governments,
-              development partners, and civil society.
-            </Typography>
-            <Typography className={classes.para}>
-              KLL was established to challenge the status quo of the knowledge
-              production paradigm, in which a vast majority of the people in the
-              world are excluded. It aims to bridge that gap and bring the
-              voices and needs of the people on ground and resolve some of the
-              pressing issues using technological innovation and deep immersion
-              in communities.
-            </Typography>
-            <Typography className={classes.para}>
-              Founded in 2013 to further the OpenStreetMap (OSM) movement, KLL
-              believes in harnessing the power of open-source technology for
-              improving the lives of citizens. Over the past 8 years, KLL has
-              built and sustained OSM communities of thousands of people from
-              Nepal and countries across Asia. The organization’s work spans
-              diverse sectors including climate change and resilience, civic
-              engagement, map-based surveys, and digital governance. KLL has
-              built and sustained a community of thousands of volunteers,
-              partners, and supporters that spans across the globe.
-            </Typography>
-          </div>
+          {/* eslint-disable-next-line react/no-children-prop */}
+          <ReactMarkdown children={data.description} renderers={renderers} />
           <div className={classes.imgContainer}>
             <div className={classes.img1}>
               <Image
@@ -274,9 +261,9 @@ function AboutUs({ data }) {
           <Sdg />
         </div>
       </Container>
-      <HowWeBegan />
-      <Values values={data.values}/>
-      <Mission missions={data.mission}/>
+      <HowWeBegan data={data.howWeBegan} />
+      <Values values={data.values} />
+      <Mission missions={data.mission} />
       <OurTeam />
     </>
   );

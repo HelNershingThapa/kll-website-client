@@ -8,10 +8,10 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
   },
   imageFill: {
-    position: 'relative',
-    width: '100%',
+    position: "relative",
+    width: "100%",
     height: 0,
-    paddingBottom: '100%',
+    paddingBottom: "100%",
     [theme.breakpoints.down("xs")]: {
       height: "calc(100vw - 32px)",
     },
@@ -22,27 +22,27 @@ const useStyles = makeStyles((theme) => ({
   name: {
     color: theme.palette.grey[800],
     marginTop: theme.spacing(4),
-    [theme.breakpoints.down("xs")]:{
+    [theme.breakpoints.down("xs")]: {
       marginTop: theme.spacing(3),
-      fontSize: '1.111rem',
+      fontSize: "1.111rem",
       lineHeight: 1.6,
-    }
+    },
   },
   position: {
     lineHeight: 1,
     color: "#61758A",
     marginTop: theme.spacing(1),
-    [theme.breakpoints.down("xs")]:{
+    [theme.breakpoints.down("xs")]: {
       marginTop: theme.spacing(0),
-      fontSize: '0.8889rem',
+      fontSize: "0.8889rem",
       lineHeight: 1.5,
     },
   },
   bio: {
     color: theme.palette.grey[700],
     marginTop: theme.spacing(5),
-    [theme.breakpoints.down("xs")]:{
-      marginTop: theme.spacing(2),      
+    [theme.breakpoints.down("xs")]: {
+      marginTop: theme.spacing(2),
     },
   },
   readMore: {
@@ -55,25 +55,28 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     gap: theme.spacing(3),
     alignItems: "center",
-    [theme.breakpoints.down("xs")]:{
-      marginTop: theme.spacing(4),      
+    [theme.breakpoints.down("xs")]: {
+      marginTop: theme.spacing(4),
     },
   },
 }));
 
-function TeamMemberCard() {
+function TeamMemberCard({ memberData }) {
   const classes = useStyles();
+
+  const { name, bio, position, image } = memberData;
 
   return (
     <div>
       <div className={classes.imageFill}>
-        <Image src="/team-member.png" layout="fill" objectFit="cover" alt="" />
+        <Image src={`http://localhost:1337${image.url}`} layout="fill" objectFit="cover" alt="" />
       </div>
-      <Typography variant="h5" className={classes.name}>Aishworya Shrestha</Typography>
-      <Typography className={classes.position}>Research Assistant</Typography>
+      <Typography variant="h5" className={classes.name}>
+        {name}
+      </Typography>
+      <Typography className={classes.position}>{position}</Typography>
       <Typography variant="subtitle1" component="p" className={classes.bio}>
-        Aishworya is a research assistant working under the PEER Science Project
-        at KLL. She is a social science researcher with a background in Social
+        {bio.substring(0,143)}
         ...{" "}
         <Link href="/our-team/arogya-koirala">
           <Typography

@@ -1,3 +1,4 @@
+import axios from "axios";
 import Head from "next/head";
 import { uid } from "react-uid";
 import clsx from "clsx";
@@ -114,8 +115,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function OurTeam() {
+function OurTeam({ data, headerStats }) {
   const classes = useStyles();
+
+  console.log("props in members", data, headerStats);
+
   return (
     <>
       <Head>
@@ -135,10 +139,10 @@ function OurTeam() {
           alt="People working at KLL"
         />
         <div className={classes.statsOverlay}>
-          {stats.map((stat) => (
+          {headerStats.map((stat) => (
             <div key={uid(stat)}>
               <Typography variant="body1" className={classes.statTitle}>
-                {stat.title}
+                {stat.label}
               </Typography>
               <Typography variant="h5" className={classes.statValue}>
                 {stat.value}
@@ -150,8 +154,8 @@ function OurTeam() {
 
       <Container fixed>
         <div className={classes.membersContainer}>
-          {["", "", "", ""].map((member) => (
-            <TeamMemberCard key={uid(member)} />
+          {data.map((member) => (
+            <TeamMemberCard key={uid(member)} memberData={member} />
           ))}
           <YouCard />
         </div>
@@ -159,6 +163,22 @@ function OurTeam() {
       <WorkingAtKll />
     </>
   );
+}
+
+export async function getStaticProps(context) {
+  const { data } = await axios.get(
+    `http://localhost:1337/members?_sort=name:ASC`
+  );
+
+  const res = await fetch(`http://localhost:1337/our-team`);
+  const headerStats = await res.json();
+
+  return {
+    props: {
+      data,
+      headerStats: headerStats.headerStat,
+    },
+  };
 }
 
 export default OurTeam;
