@@ -2,6 +2,7 @@ import { uid } from "react-uid";
 import Image from "next/image";
 import { makeStyles } from "@material-ui/core/styles";
 import { Container, Typography } from "@material-ui/core";
+import { desktop } from "styles/theme";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -25,6 +26,11 @@ const useStyles = makeStyles((theme) => ({
       lineHeight: 1.25,
       marginTop: theme.spacing(10),
       marginBottom: theme.spacing(2),
+      [theme.breakpoints.down(desktop)]: {
+        marginTop: theme.spacing(5),
+        fontSize: "1.5rem",
+        lineHeight: 1.5556,
+      },
       [theme.breakpoints.down("xs")]: {
         marginTop: theme.spacing(5),
         fontSize: "1rem",
@@ -37,6 +43,11 @@ const useStyles = makeStyles((theme) => ({
       width: "95%",
       marginBottom: theme.spacing(12),
       color: theme.palette.grey[800],
+      [theme.breakpoints.down(desktop)]: {
+        fontSize: "1.111rem",
+        lineHeight: 1.5,
+        marginBottom: theme.spacing(8),
+      },
       [theme.breakpoints.down("xs")]: {
         width: "100%",
         fontSize: "0.7778rem",
@@ -49,6 +60,10 @@ const useStyles = makeStyles((theme) => ({
     position: "relative",
     width: 240,
     height: 192,
+    [theme.breakpoints.down(desktop)]: {
+      width: 160,
+      height: 128,
+    },
     [theme.breakpoints.down("xs")]: {
       width: 120,
       height: 96,
@@ -68,6 +83,10 @@ const useStyles = makeStyles((theme) => ({
     width: 120,
     height: 120,
     mixBlendMode: "luminosity",
+    [theme.breakpoints.down(desktop)]: {
+      width: 100,
+      height: 100,
+    },
     [theme.breakpoints.down("xs")]: {
       width: 58.71,
       height: 58.71,

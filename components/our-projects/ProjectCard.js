@@ -3,6 +3,7 @@ import Image from "next/image";
 import Head from "next/head";
 import { makeStyles } from "@material-ui/core/styles";
 import { Chip, Typography } from "@material-ui/core";
+import { desktop, tablet } from "styles/theme";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -52,7 +53,16 @@ const useStyles = makeStyles((theme) => ({
       lineHeight: "40px",
       color: theme.palette.grey[100],
       maxWidth: 527,
+      [theme.breakpoints.down(desktop)]: {
+        fontSize: "24px",
+        lineHeight: 1.25,
+      },
       [theme.breakpoints.down("sm")]: {
+        fontSize: "20px",
+        lineHeight: 1.5,
+        width: "100%",
+      },
+      [theme.breakpoints.down("xs")]: {
         fontSize: "16px",
         lineHeight: 1.5,
         width: "100%",
@@ -70,7 +80,7 @@ const useStyles = makeStyles((theme) => ({
   },
   chipLabel: {
     padding: 0,
-  },
+  },  
 }));
 
 const ProjectCard = ({ name, category, src }) => {
@@ -102,7 +112,9 @@ const ProjectCard = ({ name, category, src }) => {
               classes={{ root: classes.chipRoot, label: classes.chipLabel }}
             />
           </div>
-          <Typography variant="h4">{name}</Typography>
+          <Typography variant="h4" className={classes.projectTitle}>
+            {name}
+          </Typography>
         </div>
       </div>
     </>

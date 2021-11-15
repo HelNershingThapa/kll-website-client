@@ -166,7 +166,7 @@ function OurTeam({ members, headerStats }) {
   );
 }
 
-export async function getStaticProps(context) {
+export async function getStaticProps() {
   const res = await fetch(`http://localhost:1337/our-team`);
   const headerStats = await res.json();
 

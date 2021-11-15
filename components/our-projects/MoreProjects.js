@@ -2,13 +2,7 @@ import { uid } from "react-uid";
 import Image from "next/image";
 import { Chip, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import Table from "@material-ui/core/Table";
-import TableBody from "@material-ui/core/TableBody";
-import TableCell from "@material-ui/core/TableCell";
-import TableContainer from "@material-ui/core/TableContainer";
-import TableHead from "@material-ui/core/TableHead";
-import TableRow from "@material-ui/core/TableRow";
-import Paper from "@material-ui/core/Paper";
+import { desktop } from "styles/theme";
 
 const moreProjects = [
   {
@@ -67,29 +61,41 @@ const useStyles = makeStyles((theme) => ({
   root: {
     marginTop: theme.spacing(25),
     marginBottom: theme.spacing(25),
-    "& h4": {
-      maxWidth: 323,
-      color: theme.palette.grey[800],
-      marginBottom: theme.spacing(12),
-      lineHeight: 1.25,
-    },
     [theme.breakpoints.down("xs")]: {
       marginTop: theme.spacing(10),
       marginBottom: theme.spacing(15),
-      "& h4": {
-        maxWidth: "65vw",
-        fontSize: "1.333rem",
-        lineHeight: 1.333,
-        color: theme.palette.grey[800],
-        marginBottom: theme.spacing(1),
-      },
+    },
+  },
+  title: {
+    maxWidth: 323,
+    color: theme.palette.grey[800],
+    marginBottom: theme.spacing(12),
+    lineHeight: 1.25,
+    [theme.breakpoints.down(desktop)]: {
+      maxWidth: "300px",
+      fontSize: "1.556rem",
+      lineHeight: 1.333,
+      color: theme.palette.grey[800],
+    },
+    [theme.breakpoints.down("xs")]: {
+      maxWidth: "65vw",
+      fontSize: "1.333rem",
+      lineHeight: 1.333,
+      color: theme.palette.grey[800],
+      marginBottom: theme.spacing(1),
     },
   },
   name: {
     fontWeight: 600,
     marginTop: theme.spacing(3),
+    [theme.breakpoints.down(desktop)]: {
+      fontSize: "1.111rem",
+      lineHeight: 1.5556,
+    },
     [theme.breakpoints.down("xs")]: {
       marginTop: theme.spacing(2),
+      fontSize: "1rem",
+      lineHeight: 1.5556,
     },
   },
   projectsCtr: {
@@ -147,7 +153,7 @@ const MoreProjects = ({ name, category, src }) => {
   const classes = useStyles();
   return (
     <div className={classes.root}>
-      <Typography variant="h4">
+      <Typography variant="h4" className={classes.title}>
         Some more projects for you to check out
       </Typography>
       <div className={classes.projectsCtr}>

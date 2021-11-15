@@ -9,6 +9,7 @@ import ProjectCard from "components/our-projects/ProjectCard";
 import ProjectsGrid from "components/our-projects/ProjectsGrid";
 import SdgCommitment from "components/our-projects/SdgCommitment";
 import MoreProjects from "components/our-projects/MoreProjects";
+import { desktop, tablet } from "styles/theme";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -39,6 +40,16 @@ const useStyles = makeStyles((theme) => ({
     lineHeight: "72px",
     maxWidth: 891,
     marginBottom: theme.spacing(15),
+    [theme.breakpoints.down(desktop)]: {
+      fontSize: "40px",
+      fontWeight: 300,
+      lineHeight: 1.25,
+      maxWidth: "62%",
+      marginBottom: theme.spacing(12),
+    },
+    [theme.breakpoints.down("sm")]: {
+      maxWidth: "100%"
+    },
     [theme.breakpoints.down("xs")]: {
       fontSize: "1.7778rem",
       fontWeight: 300,
@@ -55,9 +66,9 @@ const useStyles = makeStyles((theme) => ({
   },
   sdgMargin: {
     marginBottom: theme.spacing(20),
-    [theme.breakpoints.down("xs")]:{
-      marginBottom: theme.spacing(8)
-    }
+    [theme.breakpoints.down("xs")]: {
+      marginBottom: theme.spacing(8),
+    },
   },
 }));
 
@@ -93,7 +104,7 @@ const OurProjects = (props) => {
       <Container fixed>
         <ProjectsGrid />
       </Container>
-      <Container maxWidth="lg">
+      <Container fixed>
         <MoreProjects />
       </Container>
     </>
