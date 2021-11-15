@@ -1,6 +1,7 @@
 import axios from "axios";
 import Head from "next/head";
 import { uid } from "react-uid";
+import fetch from "isomorphic-unfetch";
 import clsx from "clsx";
 import Image from "next/image";
 import { makeStyles } from "@material-ui/styles";
@@ -115,10 +116,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function OurTeam({ data, headerStats }) {
+function OurTeam({ members, headerStats }) {
   const classes = useStyles();
 
-  console.log("props in members", data, headerStats);
+  console.log("members", members);
 
   return (
     <>
@@ -154,7 +155,7 @@ function OurTeam({ data, headerStats }) {
 
       <Container fixed>
         <div className={classes.membersContainer}>
-          {data.map((member) => (
+          {members.map((member) => (
             <TeamMemberCard key={uid(member)} memberData={member} />
           ))}
           <YouCard />
@@ -166,16 +167,15 @@ function OurTeam({ data, headerStats }) {
 }
 
 export async function getStaticProps(context) {
-  const { data } = await axios.get(
-    `http://localhost:1337/members?_sort=name:ASC`
-  );
-
   const res = await fetch(`http://localhost:1337/our-team`);
   const headerStats = await res.json();
 
+  const response = await fetch(`http://localhost:1337/members?_sort=name:ASC`);
+  const members = await response.json();
+
   return {
     props: {
-      data,
+      members,
       headerStats: headerStats.headerStat,
     },
   };

@@ -1,8 +1,8 @@
-import ReactMarkdown from "react-markdown";
 import axios from "axios";
 import Head from "next/head";
 import { uid } from "react-uid";
 import Image from "next/image";
+import ReactMarkdown from "react-markdown";
 import { makeStyles } from "@material-ui/styles";
 import { Container, Typography } from "@material-ui/core";
 import HowWeBegan from "components/about-us/HowWeBegan";

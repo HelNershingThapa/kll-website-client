@@ -412,9 +412,7 @@ function BlogDetail({ blog }) {
 export async function getServerSideProps() {
   const { API_URL } = process.env;
   const res = await fetch(`${API_URL}blogs/1`);
-  console.log("res", res);
   const data = await res.json();
-  console.log("data", data);
   return {
     props: {
       blog: data,

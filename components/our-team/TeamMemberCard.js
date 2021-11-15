@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import Link from "next/link";
 import Image from "next/image";
 import { makeStyles } from "@material-ui/core/styles";
@@ -59,26 +60,37 @@ const useStyles = makeStyles((theme) => ({
       marginTop: theme.spacing(4),
     },
   },
+  socialIcon: {
+    fontSize: "24px",
+    color: theme.palette.grey[600],
+  },
 }));
 
-function TeamMemberCard({ memberData }) {
+function TeamMemberCard({ memberData, key }) {
   const classes = useStyles();
 
-  const { name, bio, position, image } = memberData;
+  const { slug, name, bio, position, image } = memberData;
 
   return (
     <div>
       <div className={classes.imageFill}>
-        <Image src={`http://localhost:1337${image.url}`} layout="fill" objectFit="cover" alt="" />
+        <Image
+          src={`http://localhost:1337${image.url}`}
+          layout="fill"
+          objectFit="cover"
+          sizes="50vw"
+          alt=""
+          unoptimized
+        />
       </div>
       <Typography variant="h5" className={classes.name}>
         {name}
       </Typography>
       <Typography className={classes.position}>{position}</Typography>
       <Typography variant="subtitle1" component="p" className={classes.bio}>
-        {bio.substring(0,143)}
+        {bio.substring(0, 143)}
         ...{" "}
-        <Link href="/our-team/arogya-koirala">
+        <Link href="/our-team/[slug]" as={`/our-team/${slug}`} passHref>
           <Typography
             variant="subtitle1"
             className={classes.readMore}
@@ -90,23 +102,17 @@ function TeamMemberCard({ memberData }) {
         </Link>
       </Typography>
       <div className={classes.socialLinks}>
-        <Image
-          src="/icons/twitter-logo.svg"
-          height={20}
-          width={20}
-          alt="twitter icon"
+        <i
+          className={clsx("ri-twitter-fill", classes.socialIcon)}
+          style={{ color: "#1DA1F2" }}
         />
-        <Image
-          src="/icons/ig-logo.svg"
-          height={20}
-          width={20}
-          alt="twitter icon"
+        <i
+          className={clsx("ri-instagram-line", classes.socialIcon)}
+          style={{ color: "#E1306C" }}
         />
-        <Image
-          src="/icons/linkedin-logo.svg"
-          height={20}
-          width={20}
-          alt="twitter icon"
+        <i
+          className={clsx("ri-linkedin-fill", classes.socialIcon)}
+          style={{ color: "#0077B5" }}
         />
       </div>
     </div>

@@ -1,10 +1,13 @@
+import { useRouter } from "next/router";
 import clsx from "clsx";
 import { uid } from "react-uid";
 import Head from "next/head";
 import Link from "next/link";
 import Image from "next/image";
+import ReactMarkdown from "react-markdown";
 import { makeStyles } from "@material-ui/styles";
 import { Typography, IconButton } from "@material-ui/core";
+import fetch from "isomorphic-unfetch";
 
 const member = {
   name: "Arogya Koirala",
@@ -50,6 +53,9 @@ const useStyles = makeStyles((theme) => ({
   iconBtnRoot: {
     padding: "18px",
     background: theme.palette.primary.main,
+    "&:hover": {
+      background: theme.palette.primary.main,
+    },
   },
   goBackCtr: {
     display: "flex",
@@ -92,11 +98,10 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(10),
     height: "calc(100vh - 520px)",
     overflow: "auto",
-    gap: theme.spacing(6),
+    gap: theme.spacing(7),
     marginBottom: theme.spacing(12),
   },
   para: {
-    fontSize: "18px",
     fontWeight: 400,
     lineHeight: "28px",
     color: theme.palette.grey[900],
@@ -111,29 +116,62 @@ const useStyles = makeStyles((theme) => ({
   socialIcon: {
     fontSize: "32px",
   },
+  transparentButton: {
+    background: "transparent",
+  },
 }));
 
-export default function Home() {
+function MarkdownParagraph(props) {
   const classes = useStyles();
+
+  return (
+    <Typography variant="body1" className={classes.para}>
+      {props.children}
+    </Typography>
+  );
+}
+
+const renderers = {
+  paragraph: MarkdownParagraph,
+};
+
+function MemberDetail({ allMembers, memberDetail }) {
+  const router = useRouter();
+  const classes = useStyles();
+
+  const { slug, name, position, bio, image } = memberDetail;
+
+  const arrayPosition = allMembers.map((e) => e.slug).indexOf(slug);
+
+  const previousMemberSlug =
+    allMembers[arrayPosition - 1] && allMembers[arrayPosition - 1].slug;
+
+  const nextMemberSlug =
+    allMembers[arrayPosition + 1] && allMembers[arrayPosition + 1].slug;
+
   return (
     <>
       <Head>
-        <title>Arogya Koirala | Our Team | Kathmandu Living Labs</title>
+        <title>{name} | Our Team | Kathmandu Living Labs</title>
       </Head>
       <div className={classes.root}>
         <div className={classes.imageContainer}>
           <Image
-            src="/member-detail.png"
+            src={`http://localhost:1337${image.url}`}
             layout="fill"
             objectFit="cover"
             alt="KLL member"
+            unoptimized
           />
           <div className={classes.navArrowsCtr}>
             <div className={classes.arrows}>
               <IconButton
                 aria-label="delete"
                 classes={{ root: classes.iconBtnRoot }}
-                style={{ background: "transparent" }}
+                disabled={arrayPosition === 0}
+                onClick={() =>
+                  router.push(previousMemberSlug && previousMemberSlug)
+                }
               >
                 <i
                   className={clsx("ri-arrow-left-line", classes.btnArrowIcon)}
@@ -141,7 +179,9 @@ export default function Home() {
               </IconButton>
               <IconButton
                 aria-label="delete"
+                disabled={arrayPosition === allMembers.length - 1}
                 classes={{ root: classes.iconBtnRoot }}
+                onClick={() => router.push(nextMemberSlug)}
               >
                 <i
                   className={clsx("ri-arrow-right-line", classes.btnArrowIcon)}
@@ -153,50 +193,19 @@ export default function Home() {
         <div className={classes.bioCtr}>
           <Link href="/our-team">
             <a className={classes.goBackCtr}>
-              <Image
-                src="/icons/ArrowLeft.svg"
-                width={11.67}
-                height={12}
-                objectFit="cover"
-                alt="asdasd"
-              />
+              <i className="ri-arrow-left-line" style={{ fontSize: "18px" }} />
               <Typography variant="body1" className={classes.gobackTitle}>
                 Go Back to All Team Members
               </Typography>
             </a>
           </Link>
-          <Typography className={classes.name}>{member.name}</Typography>
+          <Typography className={classes.name}>{name}</Typography>
           <Typography variant="body1" className={classes.position}>
-            {member.position}
+            {position}
           </Typography>
           <div className={classes.bio}>
-            <Typography variant="body1" className={classes.para}>
-              Arogya is the Tech and Innovation lead at Kathmandu Living Labs.
-              He has been directly involved in the conceptualization, design and
-              development of several open data and civic-tech projects. Some of
-              these projects, such as the Open Local Government Digital System
-              for Neelakantha Municipality
-              (https://neelakanthamunicipality.klldev.org), and the 2015 Nepal
-              Earthquake data portal (https://opendata.klldev.org) are
-              considered as exemplary civic-tech projects to come from the
-              global south.
-            </Typography>
-            <Typography variant="body1" className={classes.para}>
-              In addition to overseeing technical implementation and ensuring
-              effective communication between project stakeholders, he is
-              heavily involved in supporting the professional growth of young
-              team members by helping them identify, select and tackle learning
-              opportunities within KLL’s scope of work.
-            </Typography>
-            <Typography variant="body1" className={classes.para}>
-              Prior to joining KLL, Arogya spent more than two years working as
-              a data scientist out of Bangalore, India. An engineer by degree,
-              he combined his interests in statistical programming (R, Python,
-              SQL), data visualization (d3js, c3js, Leaflet, Mapbox GL) and web
-              development (Javascript, HTML, CSS) to build robust and scalable
-              analytical solutions for several Fortune 500 companies in the
-              retail, banking and technology sectors.
-            </Typography>
+            {/* eslint-disable-next-line react/no-children-prop */}
+            <ReactMarkdown children={bio} renderers={renderers} />
           </div>
           <div className={classes.socialLinks}>
             <i
@@ -217,3 +226,26 @@ export default function Home() {
     </>
   );
 }
+
+export async function getServerSideProps(context) {
+  const { slug } = context.query;
+
+  const response = await fetch(`http://localhost:1337/members?slug=${slug}`);
+  const memberDetail = await response.json();
+
+  const allMembersResponse = await fetch(
+    `http://localhost:1337/members?_sort=name:ASC`
+  );
+  const allMembers = await allMembersResponse.json();
+
+  console.log(memberDetail);
+
+  return {
+    props: {
+      memberDetail: memberDetail[0],
+      allMembers,
+    },
+  };
+}
+
+export default MemberDetail;

@@ -58,7 +58,6 @@ const useStyles = makeStyles((theme) => ({
 function HowWeBegan(props) {
   const classes = useStyles();
 
-  console.log("how we began props", props);
 
   return (
     <div className={classes.historyContainer}>

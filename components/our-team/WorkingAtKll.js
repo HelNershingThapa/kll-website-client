@@ -48,7 +48,7 @@ const WorkingAtKll = (props) => {
         <div className={classes.imagesContainer}>
           {["", "", "", "", ""].map((image, index) => (
             <div
-              key={uid(image)}
+              key={uid(image, index)}
               className={classes.imageFill}
               style={{
                 marginTop: Math.floor(Math.random() * (0 - 60 + 1) + 60),
