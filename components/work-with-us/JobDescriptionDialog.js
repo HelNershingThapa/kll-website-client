@@ -2,6 +2,7 @@ import React from "react";
 import clsx from "clsx";
 import { uid } from "react-uid";
 import { makeStyles } from "@material-ui/core/styles";
+import ReactMarkdown from "react-markdown";
 import Image from "next/image";
 import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
@@ -121,7 +122,7 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(5),
     marginBottom: theme.spacing(6),
   },
-  jobDescriptionTypo: {
+  header: {
     marginBottom: theme.spacing(2),
     lineHeight: 1.6,
   },
@@ -171,6 +172,21 @@ const useStyles = makeStyles((theme) => ({
   //     borderRadius: "23px",
   //   },
   // },
+
+  para: {
+    marginBottom: "1rem",
+  },
+  description: {
+    padding: "24px 40px",
+    paddingTop: "0px",
+  },
+  listItem: {
+    color: theme.palette.grey[600],
+  },
+  list: {
+    margin: 0,
+    paddingLeft: theme.spacing(6),
+  },
 }));
 
 const Transition = React.forwardRef(function Transition(props, ref) {
@@ -179,7 +195,70 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction={slideDirection} ref={ref} {...props} />;
 });
 
-function FullScreenDialog() {
+function MarkdownParagraph(props) {
+  const classes = useStyles();
+
+  return (
+    <Typography variant="body1" className={classes.para}>
+      {props.children}
+    </Typography>
+  );
+}
+
+const MarkdownHeading = (props) => {
+  const classes = useStyles();
+
+  let variant;
+  switch (props.level) {
+    case 1:
+      variant = "h5";
+      break;
+    case 2:
+      variant = "h6";
+      break;
+    case 3:
+      variant = "subtitle1";
+      break;
+    case 4:
+      variant = "subtitle2";
+      break;
+    default:
+      variant = "h6";
+      break;
+  }
+  return (
+    <Typography className={classes.header} gutterBottom variant={variant}>
+      {props.children}
+    </Typography>
+  );
+};
+
+const MarkdownListItem = (props) => {
+  const classes = useStyles();
+
+  return (
+    <li className={classes.listItem}>
+      <Typography variant="body1" component="span" className={classes.listItem}>
+        {props.children}
+      </Typography>
+    </li>
+  );
+};
+
+const MarkdownList = (props) => {
+  const classes = useStyles();
+
+  return <ul className={classes.list}>{props.children}</ul>;
+};
+
+const renderers = {
+  paragraph: MarkdownParagraph,
+  heading: MarkdownHeading,
+  listItem: MarkdownListItem,
+  list: MarkdownList,
+};
+
+function FullScreenDialog({ description }) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
 
@@ -190,6 +269,8 @@ function FullScreenDialog() {
   const handleClose = () => {
     setOpen(false);
   };
+
+  console.log("description", description);
 
   return (
     <div>
@@ -269,7 +350,7 @@ function FullScreenDialog() {
             <Divider className={classes.divider} />
           </div>
 
-          <div className={classes.description}>
+          {/* <div className={classes.description}>
             <Typography variant="h6" className={classes.jobDescriptionTypo}>
               Job Description
             </Typography>
@@ -296,6 +377,11 @@ function FullScreenDialog() {
                 ))}
               </ul>
             </div>
+          </div> */}
+
+          <div className={classes.description}>
+            {/* eslint-disable-next-line react/no-children-prop */}
+            <ReactMarkdown children={description} renderers={renderers} />
           </div>
         </div>
       </Dialog>

@@ -1,7 +1,7 @@
 import { makeStyles } from "@material-ui/core/styles";
 import Image from "next/image";
 import { Container, Typography, Button } from "@material-ui/core";
-import {tablet} from 'styles/theme'
+import { tablet } from "styles/theme";
 
 const useStyles = makeStyles((theme) => ({
   backgroundCtr: {
@@ -78,8 +78,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Volunteering() {
+function Volunteering({ volunteering }) {
   const classes = useStyles();
+
+  const { label, description, image } = volunteering;
 
   return (
     <div className={classes.backgroundCtr}>
@@ -88,7 +90,7 @@ function Volunteering() {
           <div className={classes.imageOverlay}>
             <div className={classes.imgFill}>
               <Image
-                src="/volunteering.png"
+                src={`http://localhost:1337${image.url}`}
                 layout="fill"
                 objectFit="contain"
                 alt="volunteering"
@@ -100,14 +102,13 @@ function Volunteering() {
                 variant="h4"
                 style={{ color: "white" }}
               >
-                Volunteering
+                {label}
               </Typography>
               <Typography
                 className={classes.volunteeringDescription}
                 variant="body1"
               >
-                Become a part of our initiatives and discover the power of
-                helping others!
+                {description}
               </Typography>
               <Button
                 variant="contained"

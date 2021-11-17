@@ -1,5 +1,7 @@
 import { makeStyles } from "@material-ui/core/styles";
+
 import Image from "next/image";
+import ReactMarkdown from "react-markdown";
 import { Container, Typography, Button } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
@@ -42,6 +44,7 @@ const useStyles = makeStyles((theme) => ({
   },
   programDescription: {
     color: theme.palette.grey[600],
+    marginBottom: "0.8889rem",
     [theme.breakpoints.down("xs")]: {
       marginTop: theme.spacing(2),
     },
@@ -57,8 +60,24 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Programs() {
+function MarkdownParagraph(props) {
   const classes = useStyles();
+
+  return (
+    <Typography variant="subtitle1" className={classes.programDescription}>
+      {props.children}
+    </Typography>
+  );
+}
+
+const renderers = {
+  paragraph: MarkdownParagraph,
+};
+
+function Programs({ fellowships, mentorships }) {
+  const classes = useStyles();
+
+  console.log("mentorships", mentorships);
 
   return (
     <Container fixed>
@@ -73,29 +92,13 @@ function Programs() {
             />
           </div>
           <Typography variant="h5" className={classes.programTitle}>
-            Fellowships
+            {fellowships.label}
           </Typography>
-          <Typography
-            variant="subtitle1"
-            className={classes.programDescription}
-            paragraph
-          >
-            {`Kathmandu Living Labs provides fellowships to individuals with
-          promising ideas, and demonstrated interest, to address difficult
-          problems Nepalese society is facing.`}
-          </Typography>
-          <Typography
-            variant="subtitle1"
-            className={classes.programDescription}
-            paragraph
-          >
-            {`KLL fellows receive monthly stipend (depending on the fellow’s
-          qualification and experience); a working space with high speed
-          internet connection; access to our extensive network; an arrangement
-          for both international and in-country mentorship as needed;
-          opportunities to attend Kathmandu Living Labs’ weekly innovation hour
-          and other activities.`}
-          </Typography>
+          {/* eslint-disable-next-line react/no-children-prop */}
+          <ReactMarkdown
+            children={fellowships.description}
+            renderers={renderers}
+          />
           <Button
             variant="outlined"
             classes={{ root: classes.btnRoot, label: classes.btnLabel }}
@@ -113,26 +116,12 @@ function Programs() {
             />
           </div>
           <Typography variant="h5" className={classes.programTitle}>
-            Mentorships
+            {mentorships.label}
           </Typography>
-          <Typography
-            variant="subtitle1"
-            className={classes.programDescription}
-            paragraph
-          >
-            {`Would you like to share your knowledge and guide KLL fellows in
-          achieving their challenging aim of making people's everyday life
-          better?`}
-          </Typography>
-          <Typography
-            variant="subtitle1"
-            className={classes.programDescription}
-            paragraph
-          >
-            {`Through Kathmandu Living Labs' mentorship, you will be closely guiding
-          and nurturing our fellows and their projects. Or you will be using
-          your vast knowledge and experiences to inspire our fellows.`}
-          </Typography>
+          <ReactMarkdown
+            children={mentorships.description}
+            renderers={renderers}
+          />
           <Button
             variant="outlined"
             classes={{ root: classes.btnRoot, label: classes.btnLabel }}

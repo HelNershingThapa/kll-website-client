@@ -1,13 +1,9 @@
-import axios from "axios";
 import Head from "next/head";
 import { uid } from "react-uid";
 import fetch from "isomorphic-unfetch";
-import clsx from "clsx";
 import Image from "next/image";
 import { makeStyles } from "@material-ui/styles";
-import { Button, Container, Typography, Grid } from "@material-ui/core";
-import { spacing } from "@material-ui/system";
-import Box from "@material-ui/core/Box";
+import { Container, Typography} from "@material-ui/core";
 import TeamMemberCard from "components/our-team/TeamMemberCard";
 import YouCard from "components/our-team/YouCard";
 import WorkingAtKll from "components/our-team/WorkingAtKll";

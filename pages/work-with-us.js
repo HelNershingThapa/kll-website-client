@@ -1,23 +1,13 @@
+import fetch from "isomorphic-unfetch";
 import Head from "next/head";
 import { uid } from "react-uid";
 import clsx from "clsx";
 import Image from "next/image";
+import ReactMarkdown from "react-markdown";
 import { makeStyles } from "@material-ui/styles";
-import {
-  Button,
-  Container,
-  Typography,
-  Grid,
-  TableContainer,
-  Table,
-  TableBody,
-  TableRow,
-  TableCell,
-  Box,
-} from "@material-ui/core";
+import { Container, Typography } from "@material-ui/core";
 import JoinOsmMovement from "components/work-with-us/JoinOsmMovement";
 import OurTeam from "components/home/OurTeam";
-import styles from "../styles/AboutUs.module.css";
 import Traits from "../components/work-with-us/Traits";
 import Benefits from "../components/work-with-us/Benefits";
 import Programs from "../components/work-with-us/Programs";
@@ -99,7 +89,7 @@ const useStyles = makeStyles((theme) => ({
     transform: "translate(0%, -50%)",
     [theme.breakpoints.down("sm")]: {
       width: "70%",
-      padding: theme.spacing(4,7)
+      padding: theme.spacing(4, 7),
     },
     [theme.breakpoints.down("xs")]: {
       left: 16,
@@ -128,16 +118,12 @@ const useStyles = makeStyles((theme) => ({
       marginTop: theme.spacing(13),
     },
   },
-  paragraphs: {
-    display: "flex",
-    flexDirection: "column",
-    gap: "1rem",
-  },
   para: {
     fontSize: "1.111rem",
     fontWeight: 400,
     lineHeight: 1.6,
     color: theme.palette.grey[800],
+    marginBottom: "1.111rem",
     [theme.breakpoints.down("xs")]: {
       fontSize: "0.8889rem",
       lineHeight: 1.5,
@@ -145,8 +131,24 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function WorkWithUs() {
+function MarkdownParagraph(props) {
   const classes = useStyles();
+
+  return (
+    <Typography variant="body1" className={classes.para}>
+      {props.children}
+    </Typography>
+  );
+}
+
+const renderers = {
+  paragraph: MarkdownParagraph,
+};
+
+function WorkWithUs({ data, vacancies }) {
+  const classes = useStyles();
+
+  console.log(data);
   return (
     <>
       <Head>
@@ -169,16 +171,14 @@ function WorkWithUs() {
             Kathmandu Living Labs
           </Typography>
           <Typography variant="body1" className={classes.pageDesc}>
-            Kathmandu Living Labs has the most unique working environment and
-            culture. On top of all, we offer competitive salaries, monthly
-            outings and a flexible schedule
+            {data.pageDescription}
           </Typography>
         </Container>
       </div>
 
       <div className={classes.headerImgFill}>
         <Image
-          src="/work-with-us-header.png"
+          src={`http://localhost:1337${data.headerImage.url}`}
           layout="fill"
           objectFit="cover"
           alt="People working at KLL"
@@ -186,13 +186,13 @@ function WorkWithUs() {
         />
       </div>
       <div className={classes.statsOverlay}>
-        {stats.map((stat) => (
+        {data.headerStats.map((stat) => (
           <div key={uid(stat)}>
             <Typography variant="body1" className={classes.statTitle}>
-              {stat.title}
+              {stat.label}
             </Typography>
             <Typography variant="h5" className={classes.statValue}>
-              {stat.value}
+              {stat.number}
             </Typography>
           </div>
         ))}
@@ -201,41 +201,34 @@ function WorkWithUs() {
       <Container fixed>
         <div className={classes.content}>
           <Traits />
-          <div className={classes.paragraphs}>
-            <Typography variant="body1" className={classes.para}>
-              {`Kathmandu Living Labs has a unique environment where we can
-              guarantee you will be challenged, feel truly fulfilled and grow
-              beyond your limits. We take pride in knowing that our work
-              environment is a golden egg and we’d love for you to join it!`}
-            </Typography>
-            <Typography variant="body1" className={classes.para}>
-              {`We are a community of action-takers and builders who believe that
-              small contributions from many can last and contribute to a
-              large-scale impact. We have foundations in technology and the
-              society we live in. We take steps to consider our impact on both
-              worlds and know to strike the perfect balance. With a deeply
-              passionate belief that technology has the power to change people’s
-              lives, we work to create solutions that help improve the society
-              we live in. We tackle tasks that seem impossible, and even have
-              fun while doing it.`}
-            </Typography>
-            <Typography variant="body1" className={classes.para}>
-              {`There is no magic criterion that will make you a KLL family. At
-              the intersection of people and technology, everyone fits. Our
-              team's strength is our personal and professional diversity.`}
-            </Typography>
-          </div>
-          <Benefits />
+          {/* eslint-disable-next-line react/no-children-prop */}
+          <ReactMarkdown children={data.blurb} renderers={renderers} />
+          <Benefits benefits={data.benefits} />
         </div>
       </Container>
-      <Volunteering />
-      <Programs />
-      <JoinOsmMovement />
-      <Testimonials />
-      <JobListings />
+      <Volunteering volunteering={data.volunteering} />
+      <Programs fellowships={data.fellowships} mentorships={data.mentorships} />
+      <JoinOsmMovement joinOsmMovement={data.joinOsmMovement} />
+      <Testimonials testimonials={data.testimonials} />
+      <JobListings vacancies={vacancies}/>
       <OurTeam />
     </>
   );
+}
+
+export async function getStaticProps() {
+  const res = await fetch(`http://localhost:1337/work-with-us`);
+  const data = await res.json();
+
+  const vacanciesRes = await fetch(`http://localhost:1337/vacancies`);
+  const vacancies = await vacanciesRes.json();
+
+  return {
+    props: {
+      data,
+      vacancies,
+    },
+  };
 }
 
 export default WorkWithUs;

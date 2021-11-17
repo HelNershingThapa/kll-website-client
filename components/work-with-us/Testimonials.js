@@ -1,3 +1,4 @@
+import { useRef } from "react";
 import clsx from "clsx";
 import { uid } from "react-uid";
 import { makeStyles } from "@material-ui/core/styles";
@@ -8,13 +9,15 @@ import {
   Avatar,
   Button,
   Hidden,
+  IconButton,
 } from "@material-ui/core";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 const useStyles = makeStyles((theme) => ({
   testimonials: {
-    width: "100vw",
     position: "relative",
-    left: "calc(-50vw + 50%)",
     marginTop: theme.spacing(20),
     background: "#F0F5F9",
     padding: "80px 0px",
@@ -26,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
-    [theme.breakpoints.down(1280)]:{
+    [theme.breakpoints.down(1280)]: {
       flexDirection: "column",
       alignItems: "flex-start",
       gap: theme.spacing(6),
@@ -36,7 +39,6 @@ const useStyles = makeStyles((theme) => ({
       alignItems: "flex-start",
       gap: theme.spacing(6),
     },
-    
   },
   hearFromPeopleTitle: {
     lineHeight: 1.25,
@@ -53,8 +55,7 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down("xs")]: {
       fontSize: "0.7778rem",
       width: "85%",
-    marginTop: theme.spacing(2),
-
+      marginTop: theme.spacing(2),
     },
   },
   arrowNavigation: {
@@ -62,19 +63,33 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "flex-end",
     gap: theme.spacing(7.5),
     marginTop: theme.spacing(10),
-    [theme.breakpoints.down(1280)]:{
-      display: 'none',
+    [theme.breakpoints.down(1280)]: {
+      display: "none",
     },
   },
+  button: {
+    background: theme.palette.primary.main,
+    padding: "18px",
+    "&:hover": {
+      background: theme.palette.primary.main,
+    },
+  },
+  btnLabel: {
+    height: "24px", // label had some 2px streched, so mentioned this height
+  },
+  btnIcon: {
+    fontSize: "24px",
+    color: "#fff",
+  },
   quoteCtr: {
-    maxWidth: "742px",
+    maxWidth: "782px",
     position: "relative",
   },
   quoteIcon: {
     display: "block",
     fontSize: "40px",
     color: theme.palette.grey[400],
-    transform: "translateX(-40px)",
+    marginBottom: "10px",
     [theme.breakpoints.down(1280)]: {
       fontSize: "32px",
       transform: "translateX(0px)",
@@ -86,7 +101,7 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 300,
     lineHeight: 1.5,
     color: theme.palette.grey[700],
-    [theme.breakpoints.down(1280)]:{
+    [theme.breakpoints.down(1280)]: {
       fontSize: "1.7778rem",
     },
     [theme.breakpoints.down("xs")]: {
@@ -127,14 +142,25 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "flex-end",
     gap: theme.spacing(7.5),
     marginTop: theme.spacing(10),
-    [theme.breakpoints.up(1280)]:{
-      display: 'none',
+    [theme.breakpoints.up(1280)]: {
+      display: "none",
     },
   },
 }));
 
-function Testimonials() {
+const settings = {
+  dots: false,
+  infinite: true,
+  arrows: false,
+  speed: 500,
+  slidesToShow: 1,
+  slidesToScroll: 1,
+};
+function Testimonials({ testimonials }) {
   const classes = useStyles();
+  const slider = useRef(null);
+
+  const { title, description, testimonies } = testimonials;
 
   return (
     <div className={classes.testimonials}>
@@ -142,111 +168,89 @@ function Testimonials() {
         <div className={classes.testimonialsCtr}>
           <div style={{ maxWidth: "361px" }}>
             <Typography variant="h4" className={classes.hearFromPeopleTitle}>
-              Hear from people at Kathmandu Living Labs
+              {title}
             </Typography>
             <Typography
               variant="body1"
               className={classes.hearFromPeopleDescription}
             >
-              Our Team Members take the opportunity to share what the KLL
-              experience really is.
+              {description}
             </Typography>
             <Hidden xsDown>
               <div className={classes.arrowNavigation}>
-                <div
-                  style={{
-                    width: "60px",
-                    height: "60px",
-                    background: "inherit",
-                    borderRadius: "50%",
-                    display: "grid",
-                    placeContent: "center",
-                  }}
+                <IconButton
+                  className={classes.button}
+                  classes={{ label: classes.btnLabel }}
+                  onClick={() => slider?.current?.slickPrev()}
                 >
-                  <Image
-                    src="/icons/ArrowLeft.svg"
-                    height={16}
-                    width={16}
-                    alt="remix arrow right"
-                  />
-                </div>
-                <div
-                  style={{
-                    width: "60px",
-                    height: "60px",
-                    background: "#185ADB",
-                    borderRadius: "50%",
-                    display: "grid",
-                    placeContent: "center",
-                  }}
+                  <i className={clsx("ri-arrow-left-line", classes.btnIcon)} />
+                </IconButton>
+                <IconButton
+                  className={classes.button}
+                  onClick={() => slider?.current?.slickNext()}
                 >
-                  <Image
-                    src="/icons/ArrowRight.svg"
-                    height={16}
-                    width={16}
-                    alt="remix arrow right"
-                  />
-                </div>
+                  <i className={clsx("ri-arrow-right-line", classes.btnIcon)} />
+                </IconButton>
               </div>
             </Hidden>
           </div>
-          <div className={classes.quoteCtr}>
-            <i className={clsx("ri-double-quotes-l", classes.quoteIcon)} />
-            <Typography className={classes.quote}>
-              Ever since I first joined here, I’ve made countless friends and
-              worked on impactful projects that I’m proud of.
-            </Typography>
-            <div className={classes.author}>
-              <Avatar className={classes.avatar}>
-                <Image src="/author.png" layout="fill" alt="DP" />
-              </Avatar>
-              <div className={classes.authorDetails}>
-                <Typography variant="subtitle1" className={classes.authorName}>
-                  {" "}
-                  Aishworya Shrestha
-                </Typography>
-                <Typography variant="subtitle2" className={classes.authorTitle}>
-                  {" "}
-                  Research Assistant
-                </Typography>
-              </div>
-            </div>
-              <div className={classes.arrowNavigationEnd}>
-                <div
-                  style={{
-                    width: "60px",
-                    height: "60px",
-                    background: "inherit",
-                    borderRadius: "50%",
-                    display: "grid",
-                    placeContent: "center",
-                  }}
-                >
-                  <Image
-                    src="/icons/ArrowLeft.svg"
-                    height={16}
-                    width={16}
-                    alt="remix arrow right"
+
+          <div style={{ width: "782px" }}>
+            <Slider ref={slider} {...settings}>
+              {testimonies.map((testimony) => (
+                <div key={uid(testimony)} className={classes.quoteCtr}>
+                  <i
+                    className={clsx("ri-double-quotes-l", classes.quoteIcon)}
                   />
+                  <div style={{ marginLeft: "40px" }}>
+                    <Typography className={classes.quote}>
+                      {testimony.quote}
+                    </Typography>
+                    <div className={classes.author}>
+                      <Avatar className={classes.avatar}>
+                        <Image
+                          src={`http://localhost:1337${testimony.member.image.url}`}
+                          layout="fill"
+                          alt="DP"
+                        />
+                      </Avatar>
+                      <div className={classes.authorDetails}>
+                        <Typography
+                          variant="subtitle1"
+                          className={classes.authorName}
+                        >
+                          {testimony.member.name}
+                        </Typography>
+                        <Typography
+                          variant="subtitle2"
+                          className={classes.authorTitle}
+                        >
+                          {testimony.member.position}
+                        </Typography>
+                      </div>
+                    </div>
+                    <div className={classes.arrowNavigationEnd}>
+                      <IconButton className={classes.button}>
+                        <i
+                          className={clsx(
+                            "ri-arrow-left-line",
+                            classes.btnIcon
+                          )}
+                        />
+                      </IconButton>
+                      <IconButton className={classes.button}>
+                        <i
+                          className={clsx(
+                            "ri-arrow-right-line",
+                            classes.btnIcon
+                          )}
+                        />
+                      </IconButton>
+                    </div>
+                  </div>
                 </div>
-                <div
-                  style={{
-                    width: "60px",
-                    height: "60px",
-                    background: "#185ADB",
-                    borderRadius: "50%",
-                    display: "grid",
-                    placeContent: "center",
-                  }}
-                >
-                  <Image
-                    src="/icons/ArrowRight.svg"
-                    height={16}
-                    width={16}
-                    alt="remix arrow right"
-                  />
-                </div>
-              </div>
+              ))}
+            </Slider>
           </div>
         </div>
       </Container>

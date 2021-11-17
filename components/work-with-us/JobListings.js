@@ -38,6 +38,8 @@ const jobListings = [
   },
 ];
 
+
+
 const useStyles = makeStyles((theme) => ({
   jobListingsContainer: {
     paddingTop: theme.spacing(15),
@@ -61,19 +63,19 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 600,
     lineHeight: 1,
     color: theme.palette.grey[700],
-		[theme.breakpoints.down("xs")]: {
-			fontSize: '0.8889rem',
-		}
+    [theme.breakpoints.down("xs")]: {
+      fontSize: "0.8889rem",
+    },
   },
   level: {
     marginTop: theme.spacing(1),
-    fontSize: '0.7778rem',
+    fontSize: "0.7778rem",
     fontWeight: 400,
     lineHeight: 1,
     color: theme.palette.grey[600],
-		[theme.breakpoints.down("xs")]: {
-			fontSize: '0.7778rem',
-		}
+    [theme.breakpoints.down("xs")]: {
+      fontSize: "0.7778rem",
+    },
   },
   deadline: {
     marginTop: theme.spacing(1),
@@ -81,9 +83,9 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 600,
     lineHeight: 1,
     color: theme.palette.grey[700],
-		[theme.breakpoints.down("xs")]: {
-			fontSize: '0.8889rem',
-		}
+    [theme.breakpoints.down("xs")]: {
+      fontSize: "0.8889rem",
+    },
   },
   tableCell: {
     padding: 0,
@@ -93,7 +95,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function JobListings() {
+
+
+function JobListings({ vacancies }) {
   const classes = useStyles();
 
   return (
@@ -105,14 +109,14 @@ function JobListings() {
         <TableContainer>
           <Table className={classes.table} aria-label="simple table">
             <TableBody>
-              {jobListings.map((job) => (
-                <TableRow key={uid(job)}>
+              {vacancies.map((vacancy) => (
+                <TableRow key={uid(vacancy)}>
                   <TableCell className={classes.tableCell}>
                     <Typography className={classes.position}>
-                      {job.title}
+                      {vacancy.position}
                     </Typography>
                     <Typography className={classes.level}>
-                      {job.level}
+                      {vacancy.level}
                     </Typography>
                   </TableCell>
                   <TableCell align="left" className={classes.tableCell}>
@@ -121,11 +125,11 @@ function JobListings() {
                       Apply Before
                     </Typography>
                     <Typography className={classes.deadline}>
-                      {job.deadline}
+                      {vacancy.deadline}
                     </Typography>
                   </TableCell>
                   <TableCell align="right" className={classes.tableCell}>
-                    <JobDescriptionDialog />
+                    <JobDescriptionDialog description={vacancy.description} />
                   </TableCell>
                 </TableRow>
               ))}

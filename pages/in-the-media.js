@@ -1,6 +1,5 @@
 import { useRef } from "react";
 import Head from "next/head";
-
 import { uid } from "react-uid";
 import clsx from "clsx";
 import Image from "next/image";

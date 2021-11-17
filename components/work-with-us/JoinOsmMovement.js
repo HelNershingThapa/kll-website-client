@@ -1,4 +1,5 @@
-import { useRouter } from 'next/router'
+import ReactMarkdown from "react-markdown";
+import { useRouter } from "next/router";
 import { makeStyles } from "@material-ui/core/styles";
 import Image from "next/image";
 import { Container, Typography, Button } from "@material-ui/core";
@@ -9,14 +10,19 @@ const useStyles = makeStyles((theme) => ({
     display: "grid",
     gridTemplateColumns: "1fr 1fr",
     gap: theme.spacing(5),
-    [theme.breakpoints.down("sm")]:{
-      gridTemplateColumns: "1fr"
-    }
+    [theme.breakpoints.down("sm")]: {
+      gridTemplateColumns: "1fr",
+    },
   },
   imgFill: {
     position: "relative",
     width: "100%",
     height: 440,
+  },
+  descriptors: {
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
   },
   title: {
     fontWeight: 800,
@@ -32,6 +38,7 @@ const useStyles = makeStyles((theme) => ({
   paragraph: {
     fontWeight: 400,
     color: theme.palette.grey[700],
+    marginBottom: "0.8889rem",
   },
   actionButtons: {
     display: "flex",
@@ -54,9 +61,27 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function JoinOsmMovement() {
-    const router = useRouter()
+function MarkdownParagraph(props) {
   const classes = useStyles();
+
+  return (
+    <Typography variant="subtitle1" className={classes.paragraph}>
+      {props.children}
+    </Typography>
+  );
+}
+
+const renderers = {
+  paragraph: MarkdownParagraph,
+};
+
+function JoinOsmMovement({ joinOsmMovement }) {
+  const router = useRouter();
+  const classes = useStyles();
+
+  console.log("joinOsmMovement", joinOsmMovement);
+
+  const { label, description, image } = joinOsmMovement;
 
   return (
     <Container fixed className={classes.container}>
@@ -68,30 +93,19 @@ function JoinOsmMovement() {
           alt="Join the OSM Movement"
         />
       </div>
-      <div>
-        <Typography
-          variant="h3"
-          className={classes.title}
-        >{`Join the OSM Movement`}</Typography>
-        <div className={classes.paragraphs}>
-          <Typography variant="subtitle1" className={classes.paragraph}>
-            {`When we began, Nepal was virtually blank on most maps. Today, a
-          growing community has put our houses, neighborhoods and our gallis on
-          OpenStreetMap. It is now possible to get around Kathmandu with a
-          completely offline digital map, and the open map digital
-          infrastructure is serving government, app developers, and businesses.`}
-          </Typography>
-          <Typography variant="subtitle1" className={classes.paragraph}>
-            {`After the 2015 earthquakes, the map was used extensively to provide
-          support to the disaster response. Nepal’s mapping community is
-          recognized as pioneers in the world today.`}
-          </Typography>
-        </div>
+      <div className={classes.descriptors}>
+        <Typography variant="h3" className={classes.title}>
+          {label}
+        </Typography>
+        <ReactMarkdown children={description} renderers={renderers} />
         <div className={classes.actionButtons}>
           <Button
             variant="contained"
             color="primary"
             classes={{ root: classes.btnRoot, label: classes.btnLabel }}
+            onClick={() =>
+              window.open("https://www.openstreetmap.org/user/new")
+            }
           >
             Join OSM
           </Button>
@@ -101,7 +115,7 @@ function JoinOsmMovement() {
               root: classes.btnRoot,
               label: classes.btnResourcesLabel,
             }}
-            onClick={() => router.push('/resources')}
+            onClick={() => router.push("/resources")}
           >
             View Resources
           </Button>

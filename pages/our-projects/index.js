@@ -22,6 +22,9 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(10),
     lineHeight: "40px",
     marginBottom: theme.spacing(6) - theme.spacing(4),
+    [theme.breakpoints.down("xs")]: {
+      marginTop: theme.spacing(4),
+    },
   },
   quoteIcon: {
     display: "block",
@@ -48,7 +51,7 @@ const useStyles = makeStyles((theme) => ({
       marginBottom: theme.spacing(12),
     },
     [theme.breakpoints.down("sm")]: {
-      maxWidth: "100%"
+      maxWidth: "100%",
     },
     [theme.breakpoints.down("xs")]: {
       fontSize: "1.7778rem",

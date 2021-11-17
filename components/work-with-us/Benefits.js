@@ -1,31 +1,32 @@
+import clsx from "clsx";
 import { uid } from "react-uid";
 import { useRouter } from "next/router";
 import { makeStyles } from "@material-ui/core/styles";
 import Image from "next/image";
 import { Container, Typography, Button } from "@material-ui/core";
 
-const benefits = [
-  {
-    title: "Paid Leaves",
-    icon: "/icons/benefit1.svg",
-    desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
-  },
-  {
-    title: "Monthly Outings",
-    icon: "/icons/benefit2.svg",
-    desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
-  },
-  {
-    title: "Paid Leaves",
-    icon: "/icons/benefit1.svg",
-    desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
-  },
-  {
-    title: "Monthly Outings",
-    icon: "/icons/benefit2.svg",
-    desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
-  },
-];
+// const benefits = [
+//   {
+//     title: "Paid Leaves",
+//     icon: "/icons/benefit1.svg",
+//     desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
+//   },
+//   {
+//     title: "Monthly Outings",
+//     icon: "/icons/benefit2.svg",
+//     desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
+//   },
+//   {
+//     title: "Paid Leaves",
+//     icon: "/icons/benefit1.svg",
+//     desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
+//   },
+//   {
+//     title: "Monthly Outings",
+//     icon: "/icons/benefit2.svg",
+//     desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
+//   },
+// ];
 
 const useStyles = makeStyles((theme) => ({
   benefitsContainer: {
@@ -50,13 +51,17 @@ const useStyles = makeStyles((theme) => ({
       gridGap: theme.spacing(5),
     },
   },
-  imgFill: {
+  iconFill: {
     width: "48px",
     height: "48px",
     display: "grid",
     placeContent: "center",
     padding: theme.spacing(2),
     background: theme.palette.blue[100],
+  },
+  icon: {
+    fontSize: "32px",
+    color: theme.palette.primary.main,
   },
   benefitTitle: {
     fontFamily: "Manrope",
@@ -76,7 +81,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Benefits() {
+function Benefits({ benefits }) {
   const classes = useStyles();
 
   return (
@@ -94,19 +99,14 @@ function Benefits() {
               gap: "12px",
             }}
           >
-            <div className={classes.imgFill}>
-              <Image
-                src={`${benefit.icon}`}
-                height={32}
-                width={32}
-                alt="KLL benefits"
-              />
+            <div className={classes.iconFill}>
+              <i className={clsx(benefit.riIconName, classes.icon)} />
             </div>
             <Typography className={classes.benefitTitle}>
-              {benefit.title}
+              {benefit.label}
             </Typography>
             <Typography className={classes.benefitDescription}>
-              {benefit.desc}
+              {benefit.description}
             </Typography>
           </div>
         ))}
