@@ -116,6 +116,7 @@ function VerticalTabs({ width, value, setValue }) {
             selected: classes.selected,
             textColorPrimary: classes.textColorPrimary,
           }}
+          value="openStreetMap"
         />
         <Tab
           label="Application"
@@ -126,6 +127,7 @@ function VerticalTabs({ width, value, setValue }) {
             textColorPrimary: classes.textColorPrimary,
             selected: classes.selected,
           }}
+          value="application"
         />
         <Tab
           label="Tools"
@@ -136,6 +138,7 @@ function VerticalTabs({ width, value, setValue }) {
             textColorPrimary: classes.textColorPrimary,
             selected: classes.selected,
           }}
+          value="tools"
         />
       </Tabs>
     </div>

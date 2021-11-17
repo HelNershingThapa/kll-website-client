@@ -6,7 +6,11 @@ import { Container, Typography, Hidden } from "@material-ui/core/";
 import Tabs from "components/resources/Tabs";
 import ResourceCard from "components/resources/ResourceCard";
 
-const tabLabels = ["OpenStreetMap", "Application", "Tools"];
+const tabLabels = {
+  openStreetMap: "OpenStreetMap",
+  application: "Application",
+  tools: "Tools",
+};
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -45,9 +49,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Resources(props) {
+
+
+function Resources({ resources }) {
   const classes = useStyles();
-  const [tabValue, setTabValue] = useState(0);
+  const [tabValue, setTabValue] = useState("openStreetMap");
+
+  console.log("resources", resources);
 
   return (
     <>
@@ -70,8 +78,8 @@ function Resources(props) {
                 </Typography>
               </Hidden>
               <div className={classes.resources}>
-                {["", "", ""].map((resource) => (
-                  <ResourceCard key={uid(resource)} />
+                {resources[tabValue].map((resource) => (
+                  <ResourceCard key={uid(resource)} resource={resource} />
                 ))}
               </div>
             </div>
@@ -80,6 +88,17 @@ function Resources(props) {
       </div>
     </>
   );
+}
+
+export async function getStaticProps() {
+  const res = await fetch(`http://localhost:1337/resources`);
+  const resources = await res.json();
+
+  return {
+    props: {
+      resources,
+    },
+  };
 }
 
 export default Resources;

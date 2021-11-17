@@ -1,7 +1,8 @@
 import Image from "next/image";
 import { makeStyles } from "@material-ui/core/styles";
-
+import ReactMarkdown from "react-markdown";
 import { Typography, Button } from "@material-ui/core";
+import Link from "@material-ui/core/Link";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -30,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
   },
   description: {
     color: theme.palette.grey[700],
-    marginBottom: theme.spacing(5),
+    marginBottom: "0.8889rem",
   },
   btnLabel: {
     fontSize: "14px",
@@ -40,32 +41,48 @@ const useStyles = makeStyles((theme) => ({
   },
   btnRoot: {
     padding: "10px 20px",
+    marginTop: "4px",
   },
   endIcon: {
     marginLeft: theme.spacing(1),
   },
 }));
 
-export default function ImgMediaCard() {
+function MarkdownParagraph(props) {
   const classes = useStyles();
+
+  return (
+    <Typography variant="subtitle1" className={classes.description}>
+      {props.children}
+    </Typography>
+  );
+}
+
+const renderers = {
+  paragraph: MarkdownParagraph,
+  link: Link,
+};
+
+function Resource({ resource }) {
+  const classes = useStyles();
+
+  const { title, description, link, image } = resource;
 
   return (
     <div className={classes.root}>
       <div className={classes.logoFill}>
-        <Image src="/icons/osm.png" layout="fill" objectFit="cover" alt="" />
+        <Image
+          src={`http://localhost:1337${image.url}`}
+          layout="fill"
+          objectFit="cover"
+          alt=""
+        />
       </div>
-      <Typography
-        className={classes.title}
-        variant="h6"
-      >{`What is OpenStreetMap?`}</Typography>
-      <Typography variant="subtitle1" className={classes.description}>
-        {`OpenStreetMap (OSM) is a collaborative project to create a free editable
-        geographic database of the world. The geodata underlying the maps is
-        considered the primary output of the project. The creation and growth of
-        OSM has been motivated by restrictions on use or availability of map
-        data across much of the world, and the advent of inexpensive portable
-        satellite navigation devices.`}
+      <Typography className={classes.title} variant="h6">
+        {title}
       </Typography>
+      {/* eslint-disable-next-line react/no-children-prop */}
+      <ReactMarkdown children={description} renderers={renderers} />
       <Button
         variant="outlined"
         classes={{
@@ -79,9 +96,12 @@ export default function ImgMediaCard() {
             className="ri-external-link-line"
           />
         }
+        onClick={() => window.open(link)}
       >
         Visit Page
       </Button>
     </div>
   );
 }
+
+export default Resource;
