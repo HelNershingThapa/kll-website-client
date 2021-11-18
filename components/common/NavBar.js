@@ -279,7 +279,7 @@ function NavBar({}) {
                   <Fragment key={uid(menuItem, index)}>
                     {menuItem.isSubMenuAvailable ? (
                       <RichTooltip
-                        key={uid(menuItem)}
+                        key={uid(menuItem, index)}
                         content={
                           <PopoverContent identifier={menuItem.identifier} />
                         }

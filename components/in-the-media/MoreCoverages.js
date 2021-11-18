@@ -37,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function MoreCoverages() {
+export default function MoreCoverages({ coverages }) {
   const classes = useStyles();
 
   return (
@@ -47,8 +47,8 @@ export default function MoreCoverages() {
           More Coverages
         </Typography>
         <div className={classes.coversGrid}>
-          {["", "", "", "", ""].map((cover) => (
-            <CoverageCard key={uid(cover)} />
+          {coverages.map((coverage) => (
+            <CoverageCard key={uid(coverage)} coverage={coverage} />
           ))}
         </div>
         <div

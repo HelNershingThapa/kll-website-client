@@ -36,17 +36,20 @@ const useStyles = makeStyles((theme) => ({
   },
   img: {
     maxHeight: "60px",
-    [theme.breakpoints.down("sm")]:{
-      maxHeight: "42px"
+    mixBlendMode: "luminosity",
+    [theme.breakpoints.down("sm")]: {
+      maxHeight: "42px",
     },
-    [theme.breakpoints.down("xs")]:{
-      maxHeight: "32px"
-    }
+    [theme.breakpoints.down("xs")]: {
+      maxHeight: "32px",
+    },
   },
 }));
 
-export default function CenteredGrid() {
+export default function CenteredGrid({ featuredInImages }) {
   const classes = useStyles();
+
+  console.log("featuredInImages", featuredInImages);
 
   return (
     <div className={classes.featuredInCtr}>
@@ -58,12 +61,12 @@ export default function CenteredGrid() {
         We have been featured in
       </Typography>
       <div className={classes.feautredInLogos}>
-        {["", "", "", ""].map((logo) => (
+        {featuredInImages.map((logo) => (
           <img
             key={uid(logo)}
-            src="/guardian-black.png"
+            src={`http://localhost:1337${logo.newspaperLogo.url}`}
             className={classes.img}
-            alt="Guardian logo"
+            alt={logo.caption}
           />
         ))}
       </div>

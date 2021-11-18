@@ -1,3 +1,5 @@
+import fetch from "isomorphic-unfetch";
+import ReactMarkdown from "react-markdown";
 import { useRef } from "react";
 import Head from "next/head";
 import { uid } from "react-uid";
@@ -11,6 +13,7 @@ import {
   Grid,
   IconButton,
   CircularProgress,
+  Link,
 } from "@material-ui/core";
 import Slider from "react-slick";
 import CoverageCard from "components/in-the-media/CoverageCard";
@@ -45,7 +48,7 @@ const useStyles = makeStyles((theme) => ({
   headerImgCtr: {
     position: "relative",
   },
-  imgFill: {
+  coverImgFill: {
     position: "relative",
     width: "100%",
     height: "560px",
@@ -101,6 +104,9 @@ const useStyles = makeStyles((theme) => ({
     height: 60,
     width: 60,
   },
+  iconButtonTransparent: {
+    background: "transparent !important",
+  },
   controls: {
     display: "flex",
     gap: "52px",
@@ -123,6 +129,10 @@ const useStyles = makeStyles((theme) => ({
     fontSize: "24px",
     color: "white",
   },
+  newspaperLogo: {
+    maxHeight: "48px",
+    width: "100%",
+  },
 }));
 
 const settings = {
@@ -133,9 +143,36 @@ const settings = {
   slidesToScroll: 1,
 };
 
-function InTheMedia() {
+function MarkdownParagraph(props) {
+  const classes = useStyles();
+
+  return (
+    <Typography variant="h5" className={classes.headerCoverageDescription}>
+      {props.children}
+    </Typography>
+  );
+}
+
+const renderers = {
+  paragraph: MarkdownParagraph,
+  link: Link,
+};
+
+function InTheMedia({ mediaCoverages, inTheMedia }) {
   const classes = useStyles();
   const slider = useRef(null);
+
+  console.log("mediaCoverages", mediaCoverages);
+
+  const headerCoverages = mediaCoverages.filter(
+    (coverage) => coverage.isTopCoverage
+  );
+
+  const notHeaderCoverages = mediaCoverages.filter(
+    (coverage) => !coverage.isTopCoverage
+  );
+
+  console.log("headerCoverages", headerCoverages);
 
   return (
     <>
@@ -149,131 +186,112 @@ function InTheMedia() {
 
         <div style={{ position: "relative" }}>
           <Slider ref={slider} {...settings}>
-            <div>
-              <div className={classes.headerCoveragesCtr}>
-                <div className={classes.headerImgCtr}>
-                  <div className={classes.imgFill}>
-                    <Image
-                      priority
-                      src="/in-the-media-header.png"
-                      layout="fill"
-                      alt="KLL in media"
-                    />
-                  </div>
-                  <div className={classes.headerImgOverlay}>
-                    <Image
-                      src="/guardian-logo-white.png"
-                      width={116}
-                      height={48}
-                      alt="asdasd"
-                    />
-                    <div className={classes.controls}>
-                      <i
-                        className={clsx("ri-arrow-left-line", classes.btnIcon)}
-                      />
-                      <IconButton
-                        aria-label="delete"
-                        color="primary"
-                        className={classes.iconButton}
-                        onClick={() => slider?.current?.slickNext()}
-                      >
-                        <i
-                          className={clsx(
-                            "ri-arrow-right-line",
-                            classes.btnIcon
-                          )}
-                        />
-                      </IconButton>
-                    </div>
-                  </div>
-                </div>
-                <div>
-                  <Typography
-                    variant="h3"
-                    className={classes.headerCoverageTitle}
-                  >
-                    The Guardian covers KLL’s post-earthquake works Team
-                  </Typography>
-                  <Typography
-                    variant="h5"
-                    className={classes.headerCoverageDescription}
-                  >
-                    The British Newspaper giant, The Guardian, covers Kathmandu
-                    Living Lab&apos;s key role in the days following the massive
-                    earthquake in the April of last year. The article highlights
-                    KLL&apos;s instrumental role in mobilizing thousands of
-                    online volunteers in creating rapid digital and paper maps
-                    of earthquake affected areas immediately after the
-                    earthquake
-                  </Typography>
-                  <Button variant="outlined">Read the Coverage</Button>
-                </div>
-              </div>
-            </div>
-            <div>
-              <div className={classes.headerCoveragesCtr}>
-                <div className={classes.headerImgCtr}>
-                  <div className={classes.imgFill}>
-                    <Image
-                      src="/Rectangle31.png"
-                      layout="fill"
-                      alt="KLL in media"
-                    />
-                  </div>
-                  <div className={classes.headerImgOverlay}>
-                    <div>
-                      <img src="/bbc.png" />
-                    </div>
-                    <div className={classes.controls}>
-                      <IconButton
-                        color="primary"
-                        className={classes.iconButton}
-                        onClick={() => slider?.current?.slickPrev()}
-                      >
-                        <i
-                          className={clsx(
-                            "ri-arrow-left-line",
-                            classes.btnIcon
-                          )}
-                        />
-                      </IconButton>
-                      <i
-                        className={clsx("ri-arrow-right-line", classes.btnIcon)}
+            {headerCoverages.map((coverage, index) => (
+              <div key={uid(coverage, index)}>
+                <div className={classes.headerCoveragesCtr}>
+                  <div className={classes.headerImgCtr}>
+                    <div className={classes.coverImgFill}>
+                      <Image
+                        priority
+                        src={`http://localhost:1337${coverage.image.url}`}
+                        layout="fill"
+                        alt="KLL in media"
+                        objectFit="cover"
                       />
                     </div>
+                    <div className={classes.headerImgOverlay}>
+                      <div>
+                        <img
+                          className={classes.newspaperLogo}
+                          src={`http://localhost:1337${coverage.layoverNewspaperLogo.url}`}
+                          alt="asdasd"
+                        />
+                      </div>
+                      <div className={classes.controls}>
+                        <IconButton
+                          aria-label="delete"
+                          color="primary"
+                          disabled={index === 0}
+                          className={clsx(
+                            classes.iconButton,
+                            index === 0 && classes.iconButtonTransparent
+                          )}
+                          onClick={() => slider?.current?.slickPrev()}
+                        >
+                          <i
+                            className={clsx(
+                              "ri-arrow-left-line",
+                              classes.btnIcon
+                            )}
+                          />
+                        </IconButton>
+                        <IconButton
+                          aria-label="delete"
+                          color="primary"
+                          disabled={index === headerCoverages.length - 1}
+                          className={clsx(
+                            classes.iconButton,
+                            index === headerCoverages.length - 1 &&
+                              classes.iconButtonTransparent
+                          )}
+                          onClick={() => slider?.current?.slickNext()}
+                        >
+                          <i
+                            className={clsx(
+                              "ri-arrow-right-line",
+                              classes.btnIcon
+                            )}
+                          />
+                        </IconButton>
+                      </div>
+                    </div>
+                  </div>
+                  <div>
+                    <Typography
+                      variant="h3"
+                      className={classes.headerCoverageTitle}
+                    >
+                      {coverage.headline}
+                    </Typography>
+                    {/* eslint-disable-next-line react/no-children-prop */}
+                    <ReactMarkdown
+                      children={coverage.description}
+                      renderers={renderers}
+                    />
+                    <Button
+                      variant="outlined"
+                      onClick={() => window.open(coverage.link)}
+                    >
+                      Read the Coverage
+                    </Button>
                   </div>
                 </div>
-                <div>
-                  <Typography
-                    variant="h3"
-                    className={classes.headerCoverageTitle}
-                  >
-                    {`How 'crisis mapping' is helping relief efforts in Nepal`}
-                  </Typography>
-                  <Typography
-                    variant="h5"
-                    className={classes.headerCoverageDescription}
-                  >
-                    {`"Thousands of people in remote parts of Nepal are still in
-                    need of medical help and basic supplies. But with roads
-                    damaged and buildings collapsed, knowing what aid is needed
-                    and where, is a challenge. One group of Nepalis, backed by a
-                    global community, is trying to change that by 'crisis
-                    mapping' Nepal", write BBC News.`}
-                  </Typography>
-                  <Button variant="outlined">Read the Coverage</Button>
-                </div>
               </div>
-            </div>
+            ))}
           </Slider>
           <div className={classes.blob} />
         </div>
 
-        <FeaturedIn />
+        <FeaturedIn featuredInImages={inTheMedia.featuredInImages} />
       </Container>
-      <MoreCoverages />
+      <MoreCoverages coverages={notHeaderCoverages} />
     </>
   );
+}
+
+export async function getStaticProps() {
+  const res = await fetch(`http://localhost:1337/media-coverages`);
+  const mediaCoverages = await res.json();
+
+  const response = await fetch(`http://localhost:1337/in-the-media`);
+  const inTheMedia = await response.json();
+
+  return {
+    props: {
+      mediaCoverages,
+      inTheMedia,
+    },
+  };
 }
 
 export default InTheMedia;

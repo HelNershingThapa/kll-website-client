@@ -1,7 +1,7 @@
-import React from "react";
+import ReactMarkdown from "react-markdown";
 import Image from "next/image";
 import { makeStyles } from "@material-ui/core/styles";
-import { Typography } from "@material-ui/core";
+import { Typography, Link } from "@material-ui/core";
 import { desktop, tablet } from "styles/theme";
 
 const useStyles = makeStyles((theme) => ({
@@ -19,11 +19,11 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(6),
     display: "flex",
     alignItems: "flex-end",
-    [theme.breakpoints.down("xs")]:{
+    [theme.breakpoints.down("xs")]: {
       padding: theme.spacing(3),
-    }
+    },
   },
-  publisherLogo:{
+  publisherLogo: {
     maxHeight: "40px",
   },
   coverageTitle: {
@@ -49,6 +49,9 @@ const useStyles = makeStyles((theme) => ({
   },
   readFull: {
     fontWeight: 600,
+    "&:hover": {
+      cursor: "pointer",
+    },
   },
   imgFill: {
     position: "relative",
@@ -67,9 +70,28 @@ const useStyles = makeStyles((theme) => ({
       height: "62vw",
     },
   },
+  newspaperLogo: {
+    maxHeight: "40px",
+    width: "100%",
+  },
 }));
 
-export default function CenteredGrid() {
+function MarkdownParagraph(props) {
+  const classes = useStyles();
+
+  return (
+    <Typography variant="subtitle1" className={classes.coverageDescription}>
+      {props.children}
+    </Typography>
+  );
+}
+
+const renderers = {
+  paragraph: MarkdownParagraph,
+  link: Link,
+};
+
+function CoverageCard({ coverage }) {
   const classes = useStyles();
 
   return (
@@ -77,27 +99,41 @@ export default function CenteredGrid() {
       <div className={classes.imgContainer}>
         <div className={classes.imgFill}>
           <Image
-            src="/coverage-image.png"
+            src={`http://localhost:1337${coverage.image.url}`}
             layout="fill"
             objectFit="cover"
             alt="kll"
           />
         </div>
         <div className={classes.overlay}>
-          <img className={classes.publisherLogo} src="/bbc.png" alt="asdasd" />
+          <div>
+            {coverage.layoverNewspaperLogo && (
+              <img
+                className={classes.newspaperLogo}
+                src={`http://localhost:1337${coverage.layoverNewspaperLogo.url}`}
+                alt="asdasd"
+              />
+            )}
+          </div>
         </div>
       </div>
       <Typography variant="h5" className={classes.coverageTitle}>
-        How ‘crisis mapping’ is helping relief efforts in Nepal Team
+        {coverage.headline}
       </Typography>
-      <Typography variant="subtitle1" className={classes.coverageDescription}>
-        &quot;Thousands of people in remote parts of Nepal are still in need of
-        medical help and basic supplies. But with roads damaged and buildings
-        collapsed, knowing what aid is needed and where, is a challenge.{" "}
-        <Typography color="primary" variant="subtitle1" display="inline" className={classes.readFull}>
-          Read Full Article
-        </Typography>
+      {/* eslint-disable-next-line react/no-children-prop */}
+      <ReactMarkdown children={coverage.description} renderers={renderers} />
+
+      <Typography
+        color="primary"
+        variant="subtitle1"
+        display="inline"
+        className={classes.readFull}
+        onClick={() => window.open(coverage.link)}
+      >
+        Read Full Article
       </Typography>
     </div>
   );
 }
+
+export default CoverageCard;
