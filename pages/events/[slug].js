@@ -1,18 +1,11 @@
+import moment from "moment";
 import Head from "next/head";
-import { useState } from "react";
-import { uid } from "react-uid";
+import ReactMarkdown from "react-markdown";
 import clsx from "clsx";
 import Image from "next/image";
 import { makeStyles } from "@material-ui/styles";
-import {
-  Button,
-  Container,
-  Typography,
-  Grid,
-  Divider,
-} from "@material-ui/core";
-import EventTabs from "components/events/EventTabs";
-import UpcomingEventCard from "components/events/UpcomingEventCard";
+import { Container, Typography } from "@material-ui/core";
+import Link from "@material-ui/core/Link";
 
 const useStyles = makeStyles((theme) => ({
   headerImgFill: {
@@ -99,21 +92,87 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(10),
     marginBottom: theme.spacing(10),
   },
+  markdownImageFill: {
+    marginTop: theme.spacing(10),
+    marginBottom: theme.spacing(10),
+    position: "relative",
+    width: "100%",
+    height: "100%",
+    "& div": {
+      position: "unset !important",
+    },
+  },
+  markdownImage: {
+    objectFit: "cover",
+    width: "100vw important",
+    position: "relative !important",
+    height: "unset !important",
+  },
+  paragraph: {
+    marginBottom: "1rem",
+  },
 }));
 
-function Events() {
+function MarkdownParagraph(props) {
   const classes = useStyles();
+
+  return (
+    <Typography variant="body1" className={classes.paragraph}>
+      {props.children}
+    </Typography>
+  );
+}
+
+function MarkdownImage(props) {
+  const classes = useStyles();
+
+  console.log("image props", props);
+
+  return (
+    <div className={classes.markdownImageFill}>
+      <Image
+        className={classes.markdownImage}
+        src={`http://localhost:1337${props.src}`}
+        layout="fill"
+        objectFit="cover"
+        alt={props.alt}
+      />
+    </div>
+  );
+}
+
+const renderers = {
+  paragraph: MarkdownParagraph,
+  link: Link,
+  image: MarkdownImage,
+};
+
+function EventDetail({ eventDetail }) {
+  const classes = useStyles();
+
+  const formattedStartDate = moment(eventDetail.startDate, "YYYY-MM-DD").format(
+    "LL"
+  );
+  const formattedEndDate = moment(eventDetail.endDate, "YYYY-MM-DD").format(
+    "LL"
+  );
+
+  const date =
+    eventDetail.startDate === eventDetail.endDate
+      ? eventDetail.startDate
+      : `${eventDetail.startDate} - ${eventDetail.endDate}`;
+
+  console.log("eventDetail", eventDetail);
+
   return (
     <>
       <Head>
-        <title>
-          Earthquake Data Portal - Launch Event | Events | Kathmandu Living Labs
-        </title>
+        <title>{eventDetail.title} | Events | Kathmandu Living Labs</title>
       </Head>
       <div className={classes.imageFullWidth}>
         <div className={classes.headerImgFill}>
           <Image
-            src="/event-details.png"
+            src={`http://localhost:1337${eventDetail.coverPhoto.url}`}
             layout="fill"
             objectFit="cover"
             alt="People working at KLL"
@@ -121,53 +180,39 @@ function Events() {
         </div>
         <div className={classes.statsOverlay}>
           <Typography variant="h6" className={classes.title}>
-            Earthquake Data Portal - Launch Event
+            {eventDetail.title}
           </Typography>
           <div className={classes.rendezvouCtr}>
             <div className={classes.rendezvou}>
               <i className={clsx("ri-time-line", classes.icon)} />
               <Typography variant="subtitle1" className={classes.rendezvouTypo}>
-                09:30 - 17:00
+                {eventDetail.startTime.substring(0, 5)} -{" "}
+                {eventDetail.endTime.substring(0, 5)}
+              </Typography>
+            </div>
+            <div className={classes.rendezvou}>
+              <i className={clsx("ri-calendar-event-fill", classes.icon)} />
+              <Typography variant="subtitle1" className={classes.rendezvouTypo}>
+                {eventDetail.startDate === eventDetail.endDate
+                  ? formattedStartDate
+                  : `${formattedStartDate} - ${formattedEndDate}`}
               </Typography>
             </div>
             <div className={classes.rendezvou}>
               <i className={clsx("ri-map-pin-user-line", classes.icon)} />
               <Typography variant="subtitle1" className={classes.rendezvouTypo}>
-                Hotel Manasalu, Lazimpat
+                {eventDetail.venue}
               </Typography>
             </div>
           </div>
         </div>
         <Container fixed>
           <div className={classes.eventInfoContainer}>
-            <div className={classes.paragraphs}>
-              <Typography variant="body1">
-                Earthquke Data Portal will be launced on Aug 26, 2019. It
-                contains rich visualizations as well as downloadable data of the
-                massive earthquake damage + socio-economic data collected by the
-                goverment after the Gorkha Earthquake. The launch event will
-                have high level officials from the National Planning Commission,
-                National Reconstruction Authority, and the Central Bureau of
-                Statistics as its esteemed guests and speakers. It will also
-                have data pracitioners, development agencies and civic society
-                organizations among its guests.
-              </Typography>{" "}
-              <Typography variant="body1">
-                The Portal is available at:&nbsp;
-                <Typography variant="body1" color="primary" display="inline">
-                  https://eq2015.npc.gov.np
-                </Typography>
-              </Typography>{" "}
-            </div>
-            <div className={classes.eventImage}>
-              <Image src="/event-detail-img.png" width={800} height={360} />
-            </div>
-            <Typography variant="body1">
-              Registration Link:&nbsp;
-              <Typography variant="body1" color="primary" display="inline">
-                https://forms.google.com/GHp56
-              </Typography>
-            </Typography>{" "}
+            {/* eslint-disable-next-line react/no-children-prop */}
+            <ReactMarkdown
+              children={eventDetail.description}
+              renderers={renderers}
+            />
           </div>
         </Container>
       </div>
@@ -175,4 +220,26 @@ function Events() {
   );
 }
 
-export default Events;
+export async function getStaticPaths() {
+  const res = await fetch("http://localhost:1337/events");
+  const events = await res.json();
+
+  const paths = events.map((post) => ({
+    params: { slug: post.slug },
+  }));
+
+  return { paths, fallback: false };
+}
+
+export async function getStaticProps({ params }) {
+  const res = await fetch(`http://localhost:1337/events?slug=${params.slug}`);
+  const eventDetail = await res.json();
+
+  return {
+    props: {
+      eventDetail: eventDetail[0],
+    },
+  };
+}
+
+export default EventDetail;

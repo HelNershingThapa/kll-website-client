@@ -49,13 +49,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-
-
 function Resources({ resources }) {
   const classes = useStyles();
   const [tabValue, setTabValue] = useState("openStreetMap");
-
-  console.log("resources", resources);
 
   return (
     <>
