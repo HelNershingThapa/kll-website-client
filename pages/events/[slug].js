@@ -126,8 +126,6 @@ function MarkdownParagraph(props) {
 function MarkdownImage(props) {
   const classes = useStyles();
 
-  console.log("image props", props);
-
   return (
     <div className={classes.markdownImageFill}>
       <Image
@@ -149,6 +147,7 @@ const renderers = {
 
 function EventDetail({ eventDetail }) {
   const classes = useStyles();
+  const { API_URL } = process.env;
 
   const formattedStartDate = moment(eventDetail.startDate, "YYYY-MM-DD").format(
     "LL"
@@ -162,7 +161,8 @@ function EventDetail({ eventDetail }) {
       ? eventDetail.startDate
       : `${eventDetail.startDate} - ${eventDetail.endDate}`;
 
-  console.log("eventDetail", eventDetail);
+
+
 
   return (
     <>
@@ -172,7 +172,7 @@ function EventDetail({ eventDetail }) {
       <div className={classes.imageFullWidth}>
         <div className={classes.headerImgFill}>
           <Image
-            src={`http://localhost:1337${eventDetail.coverPhoto.url}`}
+            src={`${API_URL}${eventDetail.coverPhoto.url}`}
             layout="fill"
             objectFit="cover"
             alt="People working at KLL"
@@ -221,7 +221,8 @@ function EventDetail({ eventDetail }) {
 }
 
 export async function getStaticPaths() {
-  const res = await fetch("http://localhost:1337/events");
+  const { API_URL } = process.env;
+  const res = await fetch(`${API_URL}/events`);
   const events = await res.json();
 
   const paths = events.map((post) => ({
@@ -232,7 +233,9 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  const res = await fetch(`http://localhost:1337/events?slug=${params.slug}`);
+  const { API_URL } = process.env;
+
+  const res = await fetch(`${API_URL}/events?slug=${params.slug}`);
   const eventDetail = await res.json();
 
   return {

@@ -12,6 +12,7 @@ import Paper from "@material-ui/core/Paper";
 import { Typography, Container, Divider, Chip, TableHead, TableRow, TableCell, TableBody } from "@material-ui/core";
 import ProjectPartners from "../../components/our-projects/ProjectPartners";
 import Documents from "../../components/our-projects/Documents";
+import { desktop } from 'styles/theme';
 
 const project = {
   title: "National Housing Reconstruction Programme",
@@ -21,20 +22,67 @@ const project = {
 };
 
 const useStyles = makeStyles((theme) => ({
-  imageFill: { position: "relative", width: "100%", height: 620 },
+  imageFill: {
+    position: "relative",
+    width: "100%",
+    height: 620,
+    [theme.breakpoints.down("xs")]: {
+      height: "320px",
+    }
+  },
   projectDescription: {
     position: "absolute",
     bottom: 0,
     left: 0,
     right: 0,
-    width: 800,
-    marginLeft: "auto",
-    marginRight: "auto",
+    // width: 800,
+    // marginLeft: "auto",
+    // marginRight: "auto",
     paddingBottom: theme.spacing(12),
+    [theme.breakpoints.down("xs")]: {
+      paddingBottom: theme.spacing(4),
+    }
+  },
+  headerGrid: {
+    display: "grid",
+    gridTemplateColumns: "1fr 800px 1fr",
+    [theme.breakpoints.down("sm")]: {
+      gridTemplateColumns: "1fr",
+    }
+  },
+  primaryCtr: {
+    gridColumn: "2 / -1",
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "flex-end",
+    [theme.breakpoints.down("sm")]: {
+      gridColumn: "1 / -1",
+    }
+  },
+  sdgIconsCtr: {
+    display: "flex",
+    gap: theme.spacing(3),
+    [theme.breakpoints.down("sm")]: {
+      display: "none"
+    }
+  },
+  sdgIcon: {
+    width: 80,
+    height: 80,
+    [theme.breakpoints.down("sm")]: {
+      width: 60,
+      height: 60,
+    }
+  },
+  titleStatus: {
+    maxWidth: 800,
   },
   chipRoot: {
     background: "#E9F3EB",
     padding: "10px 25.5px",
+    [theme.breakpoints.down("xs")]: {
+      padding: "6px 12px",
+    },
   },
   label: {
     padding: 0,
@@ -44,14 +92,25 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 600,
     lineHeight: 1,
     color: "#0F5C2B",
-    textTransform: "capitalize"
+    textTransform: "capitalize",
+    [theme.breakpoints.down("xs")]: {
+      fontSize: "0.6667rem",
+    },
   },
   title: {
     fontWeight: 800,
-    lineHeight: "60px",
+    lineHeight: 1.25,
     color: theme.palette.grey[50],
-    width: 692,
+    maxWidth: 692,
     marginTop: theme.spacing(4),
+    [theme.breakpoints.down(desktop)]: {
+      fontSize: "1.7778rem",
+      lineHeight: 1.5,
+    },
+    [theme.breakpoints.down("xs")]: {
+      fontSize: "1rem",
+      lineHeight: 1.5556,
+    }
   },
   headerImageOverlay: {
     position: "absolute",
@@ -85,6 +144,9 @@ const useStyles = makeStyles((theme) => ({
     lineHeight: 1,
     marginTop: theme.spacing(1),
     marginBottom: theme.spacing(10),
+    "&:hover": {
+      cursor: "pointer",
+    }
   },
   header: {
     fontWeight: 700,
@@ -105,47 +167,14 @@ const useStyles = makeStyles((theme) => ({
     width: 800,
     height: 400,
   },
-  bullets: {
-    marginTop: theme.spacing(5),
-  },
-  outcomeTitle: {
-    fontWeight: 600,
-  },
-  imagesCtr: {
-    display: "grid",
-    gridTemplateColumns: "1fr 1fr",
-    gridTemplateRows: "500px 350px",
-    padding: theme.spacing(10, 0),
-    gap: theme.spacing(5),
-  },
-  images: {
-    position: "relative",
-    gridColumn: "span 1",
-  },
-  wideImage: {
-    position: "relative",
-    gridColumn: "1/3",
-  },
-  partnersCtr: {
-    marginTop: theme.spacing(15),
-  },
-  partnersLogos: {
-    width: "80%",
-    display: "flex",
-    gap: theme.spacing(8),
-    flexWrap: "wrap",
-    alignItems: "center",
-  },
-
-  partnerLogo: {
-    maxWidth: 300,
-    height: "auto",
-  },
   tagsCtr: {
     marginTop: theme.spacing(10),
     display: "flex",
     gap: theme.spacing(3),
     alignItems: "center",
+    [theme.breakpoints.down("xs")]: {
+      // alignItems: "flex-start",
+    }
   },
   tagsTypo: {
     fontWeight: 600,
@@ -179,10 +208,11 @@ const useStyles = makeStyles((theme) => ({
   },
   markdownImage: {
     objectFit: "cover",
-    width: "100vw important",
+    width: "100% important",
     position: "relative !important",
     height: "unset !important",
   },
+
 }));
 
 function MarkdownParagraph(props) {
@@ -254,6 +284,8 @@ function MarkdownImage(props) {
   const classes = useStyles();
   const { API_URL } = process.env;
 
+  console.log("props image", props);
+
   return (
     <div className={classes.markdownImageFill}>
       <Image
@@ -262,6 +294,7 @@ function MarkdownImage(props) {
         layout="fill"
         objectFit="cover"
         alt={props.alt}
+        sizes="800px"
       />
     </div>
   );
@@ -287,6 +320,11 @@ function ProjectDetails({ projectDetail }) {
 
   console.log("projectDetail", projectDetail);
 
+
+  const sdg = projectDetail.sdg.map(project => project.goalNumber).sort((a, b) => a - b)
+
+  const formattedSdgNumber = sdg.map(n => n > 9 ? "" + n : "0" + n)
+
   return (
     <>
       <Head>
@@ -299,20 +337,39 @@ function ProjectDetails({ projectDetail }) {
           layout="fill"
           objectFit="cover"
           alt=""
+          unoptimized
         />
         <div className={classes.headerImageOverlay} />
         <div className={classes.projectDescription}>
-          <Chip
-            label={
-              <Typography variant="subtitle1" className={classes.chipLabel}>
-                {projectDetail.status}
-              </Typography>
-            }
-            classes={{ root: classes.chipRoot, label: classes.label }}
-          />
-          <Typography variant="h2" className={classes.title}>
-            {projectDetail.name}
-          </Typography>
+          <Container fixed>
+            <div className={classes.headerGrid}>
+              <div className={classes.primaryCtr}>
+                <div className={classes.titleStatus}>
+                  <Chip
+                    label={
+                      <Typography variant="subtitle1" className={classes.chipLabel}>
+                        {projectDetail.status}
+                      </Typography>
+                    }
+                    classes={{ root: classes.chipRoot, label: classes.label }}
+                  />
+                  <Typography variant="h2" className={classes.title}>
+                    {projectDetail.name}
+                  </Typography>
+                </div>
+
+                <div className={classes.sdgIconsCtr}>
+                  {formattedSdgNumber.map((icon) => (
+                    <img
+                      src={`/sdg/E-WEB-Goal-${icon}.png`}
+                      alt="SDG icons"
+                      className={classes.sdgIcon}
+                    />
+                  ))}
+                </div>
+              </div>
+            </div>
+          </Container>
         </div>
       </div>
 
@@ -325,11 +382,15 @@ function ProjectDetails({ projectDetail }) {
               variant="body1"
               className={classes.link}
               color="primary"
-            >{`https://bit.ly/GH45H`}</Typography></>}
+              onClick={() => window.open(projectDetail.projectLink)}
+            >
+              {projectDetail.projectLink}
+            </Typography></>
+          }
 
           <ReactMarkdown children={projectDetail.description} escapeHtml={false} renderers={renderers} />
 
-          {projectDetail.partners.length > 0 && <ProjectPartners />}
+          {projectDetail.partners.length > 0 && <ProjectPartners partners={projectDetail.partners} />}
           {projectDetail.documents.length > 0 && <Documents documents={projectDetail.documents} />}
           {projectDetail.tags.length > 0 && <div className={classes.tagsCtr}>
             <Typography variant="subtitle1" className={classes.tagsTypo}>

@@ -1,5 +1,6 @@
 import { uid } from "react-uid";
 import Image from "next/image";
+import Link from 'next/link'
 import { Chip, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { desktop } from "styles/theme";
@@ -88,6 +89,9 @@ const useStyles = makeStyles((theme) => ({
   name: {
     fontWeight: 600,
     marginTop: theme.spacing(3),
+    "&:hover": {
+      cursor: "pointer",
+    },
     [theme.breakpoints.down(desktop)]: {
       fontSize: "1.111rem",
       lineHeight: 1.5556,
@@ -149,7 +153,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const MoreProjects = ({ name, category, src }) => {
+const MoreProjects = ({ projects }) => {
   const classes = useStyles();
   return (
     <div className={classes.root}>
@@ -157,7 +161,7 @@ const MoreProjects = ({ name, category, src }) => {
         Some more projects for you to check out
       </Typography>
       <div className={classes.projectsCtr}>
-        {moreProjects.map((project) => (
+        {projects.map((project) => (
           <div key={uid(project)} className={classes.project}>
             {/* <Chip
                 label={project.category}
@@ -174,9 +178,11 @@ const MoreProjects = ({ name, category, src }) => {
                 classes={{ root: classes.chipRoot, label: classes.chipLabel }}
               />
             </div>
-            <Typography variant="h5" className={classes.name}>
-              {project.name}
-            </Typography>
+            <Link href={`/our-projects/${project.slug}`} passHref>
+              <Typography variant="h5" className={classes.name}>
+                {project.name}
+              </Typography>
+            </Link>
           </div>
         ))}
       </div>

@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { makeStyles } from "@material-ui/core/styles";
 import { Chip, Typography } from "@material-ui/core";
+import { uid } from "react-uid";
 
 const useStyles = makeStyles((theme) => ({
   header: {
@@ -19,57 +20,42 @@ const useStyles = makeStyles((theme) => ({
     flexWrap: "wrap",
     alignItems: "center",
   },
-
   partnerLogo: {
     maxWidth: 300,
     height: "auto",
   },
   unsetImg: {
-    maxWidth: 300,
+    maxHeight: 80,
     "& div": {
       position: "unset !important",
     },
   },
   custom: {
     objectFit: "contain",
-    width: "100%  !important",
-    position: "relative  !important",
-    height: "unset  !important",
+    height: "80px !important",
+    position: "relative !important",
+    width: "unset !important",
   },
 }));
 
-const ProjectPartners = () => {
+const ProjectPartners = ({ partners }) => {
   const classes = useStyles();
+  const { API_URL } = process.env;
+
   return (
     <div className={classes.partnersCtr}>
       <Typography variant="h5" className={classes.header}>
         {`Our Partners`}
       </Typography>
       <div className={classes.partnersLogos}>
-        <div className={classes.unsetImg}>
+        {partners.map(partner => <div className={classes.unsetImg} key={uid(partner)}>
           <Image
-            src="/project-detail-5.png"
+            src={`${API_URL}${partner.image.url}`}
             className={classes.custom}
             layout="fill"
             alt=""
           />
-        </div>
-        <div className={classes.unsetImg}>
-          <Image
-            src="/project-detail-6.png"
-            className={classes.custom}
-            layout="fill"
-            alt=""
-          />
-        </div>
-        <div className={classes.unsetImg}>
-          <Image
-            src="/project-detail-7.png"
-            className={classes.custom}
-            layout="fill"
-            alt=""
-          />
-        </div>
+        </div>)}
       </div>
     </div>
   );

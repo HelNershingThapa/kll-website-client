@@ -101,7 +101,7 @@ const SdgCommitment = ({ name, category, src }) => {
       <Container fixed>
         <div className={classes.committment}>
           <div className={classes.iconFill}>
-            <Image src="/icons/sdg.png" layout="fill" objectFit="cover" />
+            <Image src="/icons/sdg.png" layout="fill" objectFit="cover" unoptimized alt="" />
           </div>
           <Typography variant="h4" align="center">
             Our Commitment
@@ -119,6 +119,7 @@ const SdgCommitment = ({ name, category, src }) => {
                   layout="fill"
                   objectFit="cover"
                   alt="SDG icons"
+                  unoptimized
                 />
               </div>
             ))}

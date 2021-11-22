@@ -38,6 +38,10 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(2),
     display: "flex",
     gap: "15px",
+    flexWrap: "wrap",
+    [theme.breakpoints.down("xs")]: {
+      gap: theme.spacing(3),
+    }
   },
   fileCard: {
     position: "relative",
@@ -48,6 +52,9 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(3),
     display: "flex",
     flexDirection: "column-reverse",
+    "&:hover": {
+      cursor: "pointer",
+    },
   },
   fileName: {
     lineHeight: 1,
@@ -79,8 +86,6 @@ const extensionsMap = {
 const Documents = ({ documents }) => {
   const classes = useStyles();
 
-  console.log(documents);
-
   const getFileExtension = (ext) => {
     if (extensionsMap[ext]) {
       return extensionsMap[ext]
@@ -101,7 +106,7 @@ const Documents = ({ documents }) => {
       </Typography>
       <div className={classes.documents}>
         {documents.map((file) => (
-          <div key={uid(file)} className={classes.fileCard}>
+          <div key={uid(file)} className={classes.fileCard} onClick={() => window.open(`http://localhost:1337${file.file.url}`)}>
             <div className={classes.icon}>
               <Image
                 src={`/icons/${getFileExtension(file.file.ext.replace('.', ''))}.png`}
@@ -119,7 +124,7 @@ const Documents = ({ documents }) => {
               >
                 {file.file.name}
               </Typography>
-              <i className={clsx("ri-download-line", classes.downloadIcon)}></i>
+              <i className={clsx("ri-download-line", classes.downloadIcon)} ></i>
             </div>
           </div>
         ))}

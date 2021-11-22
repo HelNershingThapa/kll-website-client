@@ -112,10 +112,10 @@ const OurProjects = ({ projects }) => {
         <SdgCommitment />
       </div>
       <Container fixed>
-        <ProjectsGrid projects={projects.slice(0, 5)} />
+        <ProjectsGrid projects={projects.slice(5, 10)} />
       </Container>
       <Container fixed>
-        <MoreProjects />
+        <MoreProjects projects={projects.slice(5)}/>
       </Container>
     </>
   );
