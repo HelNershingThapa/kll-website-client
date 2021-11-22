@@ -361,6 +361,7 @@ function ProjectDetails({ projectDetail }) {
                 <div className={classes.sdgIconsCtr}>
                   {formattedSdgNumber.map((icon) => (
                     <img
+                      key={uid(icon)}
                       src={`/sdg/E-WEB-Goal-${icon}.png`}
                       alt="SDG icons"
                       className={classes.sdgIcon}
@@ -388,7 +389,11 @@ function ProjectDetails({ projectDetail }) {
             </Typography></>
           }
 
-          <ReactMarkdown children={projectDetail.description} escapeHtml={false} renderers={renderers} />
+          {/* eslint-disable react/no-children-prop */}
+          <ReactMarkdown
+            children={projectDetail.description}
+            escapeHtml={false} renderers={renderers}
+          />
 
           {projectDetail.partners.length > 0 && <ProjectPartners partners={projectDetail.partners} />}
           {projectDetail.documents.length > 0 && <Documents documents={projectDetail.documents} />}

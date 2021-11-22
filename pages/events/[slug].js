@@ -208,7 +208,7 @@ function EventDetail({ eventDetail }) {
         </div>
         <Container fixed>
           <div className={classes.eventInfoContainer}>
-            {/* eslint-disable-next-line react/no-children-prop */}
+            {/* eslint-disable react/no-children-prop */}
             <ReactMarkdown
               children={eventDetail.description}
               renderers={renderers}

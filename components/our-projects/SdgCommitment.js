@@ -94,8 +94,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const SdgCommitment = ({ name, category, src }) => {
+const SdgCommitment = () => {
   const classes = useStyles();
+  
   return (
     <div className={classes.root}>
       <Container fixed>

@@ -249,7 +249,7 @@ function InTheMedia({ mediaCoverages, inTheMedia }) {
                     >
                       {coverage.headline}
                     </Typography>
-                    {/* eslint-disable-next-line react/no-children-prop */}
+                    {/* eslint-disable react/no-children-prop */}
                     <ReactMarkdown
                       children={coverage.description}
                       renderers={renderers}

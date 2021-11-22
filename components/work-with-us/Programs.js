@@ -94,7 +94,7 @@ function Programs({ fellowships, mentorships }) {
           <Typography variant="h5" className={classes.programTitle}>
             {fellowships.label}
           </Typography>
-          {/* eslint-disable-next-line react/no-children-prop */}
+          {/* eslint-disable react/no-children-prop */}
           <ReactMarkdown
             children={fellowships.description}
             renderers={renderers}
@@ -118,6 +118,7 @@ function Programs({ fellowships, mentorships }) {
           <Typography variant="h5" className={classes.programTitle}>
             {mentorships.label}
           </Typography>
+          {/* eslint-disable react/no-children-prop */}
           <ReactMarkdown
             children={mentorships.description}
             renderers={renderers}

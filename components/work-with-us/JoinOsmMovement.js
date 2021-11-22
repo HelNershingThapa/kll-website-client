@@ -97,6 +97,7 @@ function JoinOsmMovement({ joinOsmMovement }) {
         <Typography variant="h3" className={classes.title}>
           {label}
         </Typography>
+        {/* eslint-disable react/no-children-prop */}
         <ReactMarkdown children={description} renderers={renderers} />
         <div className={classes.actionButtons}>
           <Button
