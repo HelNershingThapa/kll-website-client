@@ -70,8 +70,26 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Documents = () => {
+const extensionsMap = {
+  pdf: "pdf",
+  xls: "excel",
+  xlsx: "excel",
+}
+
+const Documents = ({ documents }) => {
   const classes = useStyles();
+
+  console.log(documents);
+
+  const getFileExtension = (ext) => {
+    if (extensionsMap[ext]) {
+      return extensionsMap[ext]
+    }
+    else {
+      return "defaultFileIcon"
+    }
+  }
+
   return (
     <div className={classes.documentsCtr}>
       <Typography
@@ -82,14 +100,15 @@ const Documents = () => {
         {`Documents`}
       </Typography>
       <div className={classes.documents}>
-        {files.map((file) => (
+        {documents.map((file) => (
           <div key={uid(file)} className={classes.fileCard}>
             <div className={classes.icon}>
               <Image
-                src={`/icons/${file.fileType}.png`}
+                src={`/icons/${getFileExtension(file.file.ext.replace('.', ''))}.png`}
                 width={48}
                 height={48}
                 alt="excel icon"
+                unoptimized
               />
             </div>
             <div className={classes.links}>
@@ -98,7 +117,7 @@ const Documents = () => {
                 className={classes.fileName}
                 align="left"
               >
-                {file.fileName}
+                {file.file.name}
               </Typography>
               <i className={clsx("ri-download-line", classes.downloadIcon)}></i>
             </div>

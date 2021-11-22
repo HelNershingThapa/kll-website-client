@@ -55,7 +55,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Home() {
+export default function Home({ projects }) {
   const classes = useStyles();
 
   return (
@@ -69,7 +69,7 @@ export default function Home() {
         <Hero />
         <Partners />
         <WhoAreWe />
-        <OurWork />
+        <OurWork projects={projects} />
         <SdgCommitment />
         <OurInsights />
         <FeaturedIn />
@@ -169,4 +169,17 @@ export default function Home() {
       </div>
     </>
   );
+}
+
+export async function getStaticProps() {
+  const res = await fetch(`http://localhost:1337/projects`);
+  const projects = await res.json();
+
+  console.log("server projects", projects);
+
+  return {
+    props: {
+      projects,
+    },
+  };
 }

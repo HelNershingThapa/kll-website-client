@@ -46,10 +46,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function CenteredGrid({ featuredInImages }) {
+function FeaturedIn({ featuredInImages }) {
   const classes = useStyles();
-
-  console.log("featuredInImages", featuredInImages);
 
   return (
     <div className={classes.featuredInCtr}>
@@ -73,3 +71,5 @@ export default function CenteredGrid({ featuredInImages }) {
     </div>
   );
 }
+
+export default FeaturedIn;

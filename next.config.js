@@ -9,7 +9,7 @@ module.exports = {
   images: {
     domains: [
       "localhost",
-      "https://salty-bastion-86199.herokuapp.com",
+      "salty-bastion-86199.herokuapp.com",
     ],
   },
   webpack: (config) => {

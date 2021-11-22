@@ -1,5 +1,5 @@
 import Head from "next/head";
-
+import fetch from "isomorphic-unfetch";
 import clsx from "clsx";
 import { makeStyles } from "@material-ui/core";
 import { Container, Typography } from "@material-ui/core";
@@ -75,8 +75,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const OurProjects = (props) => {
+const OurProjects = ({ projects }) => {
   const classes = useStyles();
+
+  projects.sort(
+    (a, b) => parseFloat(a.displayOrder) - parseFloat(b.displayOrder)
+  );
+
+  console.log("projects", projects);
 
   return (
     <>
@@ -93,19 +99,20 @@ const OurProjects = (props) => {
           <Typography
             display="inline"
             color="primary"
+            component="span"
             className={clsx(classes.pageSubtitle, classes.subtitleHighlight)}
           >
             incredible initiatives
           </Typography>
           . Discover how we’ve made an impact
         </Typography>
-        <ProjectsGrid />
+        <ProjectsGrid projects={projects.slice(0, 5)} />
       </Container>
       <div className={classes.sdgMargin}>
         <SdgCommitment />
       </div>
       <Container fixed>
-        <ProjectsGrid />
+        <ProjectsGrid projects={projects.slice(0, 5)} />
       </Container>
       <Container fixed>
         <MoreProjects />
@@ -113,5 +120,16 @@ const OurProjects = (props) => {
     </>
   );
 };
+
+export async function getStaticProps() {
+  const res = await fetch(`http://localhost:1337/projects`);
+  const projects = await res.json();
+
+  return {
+    props: {
+      projects,
+    },
+  };
+}
 
 export default OurProjects;

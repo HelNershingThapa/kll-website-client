@@ -85,43 +85,51 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const ProjectsGrid = (props) => {
+const ProjectsGrid = ({ projects }) => {
   const classes = useStyles();
+
+  console.log("projects", projects);
+
   return (
     <div className={classes.projects}>
       <div className={classes.project1}>
         <ProjectCard
           name={projects[0].name}
           category={projects[0].category}
-          src={projects[0].src}
+          src={projects[0].coverImage.image.url}
+          slug={projects[0].slug}
         />
       </div>
       <div className={classes.project2}>
         <ProjectCard
           name={projects[1].name}
           category={projects[1].category}
-          src={projects[1].src}
+          src={projects[1].coverImage.image.url}
+          slug={projects[1].slug}
         />
       </div>
       <div className={classes.project3}>
         <ProjectCard
           name={projects[2].name}
           category={projects[2].category}
-          src={projects[2].src}
+          src={projects[2].coverImage.image.url}
+          slug={projects[2].slug}
         />
       </div>
       <div className={classes.project4}>
         <ProjectCard
           name={projects[3].name}
           category={projects[3].category}
-          src={projects[3].src}
+          src={projects[3].coverImage.image.url}
+          slug={projects[3].slug}
         />
       </div>
       <div className={classes.project5}>
         <ProjectCard
           name={projects[4].name}
           category={projects[4].category}
-          src={projects[4].src}
+          src={projects[4].coverImage.image.url}
+          slug={projects[4].slug}
         />
       </div>
     </div>

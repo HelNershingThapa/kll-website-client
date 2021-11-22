@@ -162,8 +162,6 @@ function InTheMedia({ mediaCoverages, inTheMedia }) {
   const classes = useStyles();
   const slider = useRef(null);
 
-  console.log("mediaCoverages", mediaCoverages);
-
   const headerCoverages = mediaCoverages.filter(
     (coverage) => coverage.isTopCoverage
   );
@@ -171,8 +169,6 @@ function InTheMedia({ mediaCoverages, inTheMedia }) {
   const notHeaderCoverages = mediaCoverages.filter(
     (coverage) => !coverage.isTopCoverage
   );
-
-  console.log("headerCoverages", headerCoverages);
 
   return (
     <>

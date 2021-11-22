@@ -80,44 +80,55 @@ const useStyles = makeStyles((theme) => ({
   },
   chipLabel: {
     padding: 0,
-  },  
+  },
 }));
 
-const ProjectCard = ({ name, category, src }) => {
+const label = {
+  "disaster_preparedness": "Disaster Preparedness",
+  "disaster_response": "Disaster Response",
+  "governance": "Governance",
+  "openstreetmap": "OpenStreetMap",
+  "civic_engagement": "Civic Engagement",
+  "climate_change_and_sustainability": "Climate Change and Sustainability",
+}
+
+const ProjectCard = ({ name, category, src, slug }) => {
   const router = useRouter();
   const classes = useStyles();
+
+  const { API_URL } = process.env;
+
   return (
-    <>
-      <div
-        className={classes.root}
-        onClick={() =>
-          router.push("/our-projects/national-housing-reconstruction-programme")
-        }
-      >
-        <div className={classes.imageFill}>
-          <Image
-            src={src}
-            className={classes.image}
-            layout="fill"
-            objectFit="cover"
-            alt="KLL projects"
+    <div
+      className={classes.root}
+      onClick={() =>
+        router.push(`/our-projects/${slug}`)
+      }
+    >
+      <div className={classes.imageFill}>
+        <Image
+          src={`${API_URL}${src}`}
+          className={classes.image}
+          layout="fill"
+          objectFit="cover"
+          alt="KLL projects"
+          unoptimized
+        />
+      </div>
+      <div className={classes.projectInfoOverlay}>
+        {" "}
+        <div>
+          <Chip
+            label={label[category]}
+            color="primary"
+            classes={{ root: classes.chipRoot, label: classes.chipLabel }}
           />
         </div>
-        <div className={classes.projectInfoOverlay}>
-          {" "}
-          <div>
-            <Chip
-              label={category}
-              color="primary"
-              classes={{ root: classes.chipRoot, label: classes.chipLabel }}
-            />
-          </div>
-          <Typography variant="h4" className={classes.projectTitle}>
-            {name}
-          </Typography>
-        </div>
+        <Typography variant="h4" className={classes.projectTitle}>
+          {name}
+        </Typography>
       </div>
-    </>
+    </div>
   );
 };
 

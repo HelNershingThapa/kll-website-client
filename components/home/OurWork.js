@@ -55,9 +55,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Partners = () => {
+const Partners = ({ projects }) => {
   const router = useRouter();
   const classes = useStyles();
+
+  console.log("projects", projects);
 
   return (
     <div className={classes.container}>
@@ -80,7 +82,7 @@ const Partners = () => {
             </Button>
           </Hidden>
         </div>
-        <ProjectsGrid />
+        <ProjectsGrid projects={projects} />
         <Hidden mdUp>
           <div className={classes.mobileBtnCtr}>
             <Button
@@ -96,5 +98,7 @@ const Partners = () => {
     </div>
   );
 };
+
+
 
 export default Partners;
