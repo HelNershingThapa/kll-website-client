@@ -107,9 +107,7 @@ const SdgCommitment = ({ name, category, src }) => {
             Our Commitment
           </Typography>
           <Typography variant="h5" align="center">
-            {`From our inception in 2012, Kathmandu Living Labs has been fully
-          committed to the UN’s Sustainable Development Goals. Our work, over
-          the years, has contributed to the following Sustainable Goals.`}
+            {`From our inception in 2012, Kathmandu Living Labs has been fully committed to the UN’s Sustainable Development Goals (SDGs). Our work, over the years, has contributed to the following SDGs.`}
           </Typography>
           <div className={classes.sdgIcons}>
             {["01", "02", "03", "07", "08", "12", "13", "14"].map((icon) => (

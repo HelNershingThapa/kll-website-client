@@ -111,7 +111,7 @@ const FeaturedIn = () => {
                 Our Team
               </Typography>
               <Typography variant="body1" className={classes.learnTeam}>
-                Learn about our awesome team of people at Kathmandu Living Labs
+              Get to know our awesome team at Kathmandu Living Labs
               </Typography>
               <Button
                 disableElevation

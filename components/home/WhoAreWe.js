@@ -286,20 +286,19 @@ const Partners = ({ width }) => {
             </Typography>
             <div className={classes.paragraphs}>
               <Typography variant="body1" component="p">
-                Kathmandu Living Labs is a pioneer civic-tech enterprise that
-                provides data and technology solutions to businesses,
-                governments, development partners, and civil society.{" "}
+                Kathmandu Living Labs is a pioneer civic-tech enterprise that provides data and technology solutions to businesses, governments, development partners, and civil society.
               </Typography>
               <Typography variant="body1" component="p">
-                KLL was established to challenge the status quo of the knowledge
-                production paradigm, in which a vast majority of the people in
-                the world are excluded. It aims to bridge that gap and bring the
-                voices and needs of the people on ground and resolve some of the
-                pressing issues using technological innovation and deep
-                immersion in communities.
+                KLL was established to challenge the status quo of knowledge production paradigm, in which a vast majority are excluded. It aims to bridge that gap and bring the voices and needs from the ground and resolve pressing issues using technological innovation and deep immersion in communities.
+              </Typography>
+              <Typography variant="body1" component="p">
+                So far, we have touched the lives of thousands of people across the globe through open mapping, disaster response, civic engagement, internships, skill-building, and community-based projects.
+              </Typography>
+              <Typography variant="body1" component="p">
+                Our team is a diverse mix of experts in areas of technology, civil society, social science, and finance - passionate about improving the society we live in through the power of technology.
               </Typography>
             </div>
-            <div className={classes.kllInNumbers}>
+            {/* <div className={classes.kllInNumbers}>
               <Typography variant="h5" className={classes.statTitleTypo}>
                 KLL in numbers
               </Typography>
@@ -316,9 +315,8 @@ const Partners = ({ width }) => {
                     </div>
                   </>
                 ))}
-                {/* {(width === "sm" || width === "xs") && <div className={classes.extraDiv} />} */}
               </div>
-            </div>
+            </div> */}
             <Button
               variant="outlined"
               classes={{ root: classes.btnRoot, label: classes.btnLabel }}

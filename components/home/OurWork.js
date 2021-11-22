@@ -69,8 +69,7 @@ const Partners = ({ projects }) => {
         </Typography>
         <div className={classes.descCtr}>
           <Typography variant="h6" className={classes.description}>
-            {`We’ve worked on some amazing projects with our partners. Check out
-          some of our featured work below`}
+            {`We have worked on some amazing projects with our partners. Check out some of our featured work below:`}
           </Typography>
           <Hidden smDown>
             <Button
@@ -78,7 +77,7 @@ const Partners = ({ projects }) => {
               classes={{ root: classes.btnRoot, label: classes.btnLabel }}
               onClick={() => router.push("/our-projects")}
             >
-              {`Check Out All Our Work`}
+              {`Check Out Our Work`}
             </Button>
           </Hidden>
         </div>
