@@ -1,9 +1,10 @@
+import { Fragment } from "react";
 import Head from "next/head";
 import { uid } from "react-uid";
 import fetch from "isomorphic-unfetch";
 import Image from "next/image";
 import { makeStyles } from "@material-ui/styles";
-import { Container, Typography} from "@material-ui/core";
+import { Container, Typography } from "@material-ui/core";
 import TeamMemberCard from "components/our-team/TeamMemberCard";
 import YouCard from "components/our-team/YouCard";
 import WorkingAtKll from "components/our-team/WorkingAtKll";
@@ -115,7 +116,9 @@ const useStyles = makeStyles((theme) => ({
 function OurTeam({ members, headerStats }) {
   const classes = useStyles();
 
-  console.log("members", members);
+  const { API_URL } = process.env;
+
+  console.log("header",headerStats);
 
   return (
     <>
@@ -130,13 +133,14 @@ function OurTeam({ members, headerStats }) {
       <div className={classes.headerImgFill}>
         <Image
           priority
-          src="/our-team-header.png"
+          src={`${API_URL}${headerStats.headerImage.url}`}
           layout="fill"
           objectFit="cover"
           alt="People working at KLL"
+          sizes="100vw"
         />
         <div className={classes.statsOverlay}>
-          {headerStats.map((stat) => (
+          {headerStats.headerStat.map((stat) => (
             <div key={uid(stat)}>
               <Typography variant="body1" className={classes.statTitle}>
                 {stat.label}
@@ -152,7 +156,9 @@ function OurTeam({ members, headerStats }) {
       <Container fixed>
         <div className={classes.membersContainer}>
           {members.map((member) => (
-            <TeamMemberCard key={uid(member)} memberData={member} />
+            <Fragment key={uid(member)}>
+            <TeamMemberCard  memberData={member} />
+            </Fragment>
           ))}
           <YouCard />
         </div>
@@ -172,7 +178,7 @@ export async function getStaticProps() {
   return {
     props: {
       members,
-      headerStats: headerStats.headerStat,
+      headerStats: headerStats,
     },
   };
 }

@@ -1,7 +1,6 @@
 import { useRouter } from "next/router";
 import clsx from "clsx";
-import { uid } from "react-uid";
-import Image from "next/image";
+import Link from 'next/link';
 import { makeStyles } from "@material-ui/core/styles";
 import { Typography, Container, Button } from "@material-ui/core";
 import { desktop, tablet } from "styles/theme";
@@ -184,6 +183,9 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 500,
     lineHeight: 1,
     color: theme.palette.grey[600],
+    "&:hover": {
+      cursor: "pointer",
+    },
     [theme.breakpoints.down("xs")]: {
       marginLeft: "35px",
     },
@@ -237,10 +239,12 @@ const Hero = () => {
                 </Typography>
               </div>
             </Button>
-            <Typography
-            variant="subtitle1"
-              className={classes.getInTouch}
-            >{`Get In Touch ->`}</Typography>
+            <Link href="/contact-us" passHref>
+              <Typography
+                variant="subtitle1"
+                className={classes.getInTouch}
+              >{`Get In Touch ->`}</Typography>
+            </Link>
           </div>
         </div>
         <div className={classes.imgFill}>

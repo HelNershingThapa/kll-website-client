@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { uid } from "react-uid";
 import { makeStyles } from "@material-ui/core/styles";
 import { Chip, Typography, IconButton, Hidden } from "@material-ui/core";
 
@@ -39,25 +39,22 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Tags = () => {
+const Tags = ({ tags }) => {
   const classes = useStyles();
   return (
     <div className={classes.tagsContainer}>
       <Typography
-      variant="subtitle1"
-      className={classes.tagsTypo}
+        variant="subtitle1"
+        className={classes.tagsTypo}
       >
         Tags
       </Typography>
       <div className={classes.tags}>
-        <Chip
-          label="Community"
+        {tags.map(tag => <Chip
+          key={uid(tag)}
+          label={tag.tag}
           classes={{ root: classes.chipRoot, label: classes.chipLabel }}
-        />
-        <Chip
-          label="Disaster Mapping"
-          classes={{ root: classes.chipRoot, label: classes.chipLabel }}
-        />
+        />)}
       </div>
     </div>
   );

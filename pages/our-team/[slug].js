@@ -161,7 +161,7 @@ function MemberDetail({ allMembers, memberDetail }) {
             layout="fill"
             objectFit="cover"
             alt="KLL member"
-            unoptimized
+            sizes="50vw"
           />
           <div className={classes.navArrowsCtr}>
             <div className={classes.arrows}>

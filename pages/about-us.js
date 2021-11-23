@@ -193,6 +193,7 @@ const renderers = {
 
 function AboutUs({ data }) {
   const classes = useStyles();
+  const { API_URL } = process.env;
 
   return (
     <>
@@ -206,11 +207,11 @@ function AboutUs({ data }) {
       </Container>
       <div className={classes.headerImgFill}>
         <Image
-          src="/about-us-header.png"
+          priority
+          src={`${API_URL}${data.headerImage.url}`}
           layout="fill"
           objectFit="cover"
           alt="People working at KLL"
-          priority
         />
         <div className={classes.statsOverlay}>
           {data.stats.map((stat) => (

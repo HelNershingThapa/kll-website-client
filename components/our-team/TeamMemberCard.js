@@ -78,9 +78,8 @@ function TeamMemberCard({ memberData, key }) {
           src={`http://localhost:1337${image.url}`}
           layout="fill"
           objectFit="cover"
-          sizes="50vw"
+          sizes="33vw"
           alt=""
-          unoptimized
         />
       </div>
       <Typography variant="h5" className={classes.name}>

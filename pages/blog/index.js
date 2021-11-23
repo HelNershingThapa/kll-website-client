@@ -92,8 +92,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const BlogList = (props) => {
+const BlogList = ({ blogs }) => {
   const classes = useStyles();
+
+  console.log(blogs);
+
   return (
     <>
       <Head>
@@ -117,7 +120,7 @@ const BlogList = (props) => {
             variant="outlined"
             startAdornment={
               <InputAdornment position="start">
-                <i className="ri-search-2-line" style={{fontSize: '16px'}}></i>
+                <i className="ri-search-2-line" style={{ fontSize: '16px' }}></i>
               </InputAdornment>
             }
           />
@@ -148,5 +151,18 @@ const BlogList = (props) => {
     </>
   );
 };
+
+export async function getStaticProps() {
+  const { API_URL } = process.env;
+
+  const res = await fetch(`${API_URL}/blogs`);
+  const blogs = await res.json();
+
+  return {
+    props: {
+      blogs,
+    },
+  };
+}
 
 export default BlogList;

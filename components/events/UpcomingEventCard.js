@@ -109,9 +109,10 @@ const useStyles = makeStyles((theme) => ({
 
 function Events({ event }) {
   const classes = useStyles();
+  const {API_URL} = process.env
 
-  const formattedStartDate = moment(event.startDate, "YYYY-MM-DD").format("LL");
-  const formattedEndDate = moment(event.endDate, "YYYY-MM-DD").format("LL");
+  const formattedStartDate = moment(event.startDate, "YYYY-MM-DD").format("Do MMM YYYY");
+  const formattedEndDate = moment(event.endDate, "YYYY-MM-DD").format("Do MMM YYYY");
 
   const date =
     event.startDate === event.endDate
@@ -122,7 +123,7 @@ function Events({ event }) {
     <div className={classes.root}>
       <div className={classes.imgFill}>
         <Image
-          src={`http://localhost:1337${event.coverPhoto.url}`}
+          src={`${API_URL}${event.coverPhoto.url}`}
           layout="fill"
           objectFit="cover"
           alt="event at KLL"
@@ -160,7 +161,7 @@ function Events({ event }) {
               </Typography>
             </div>
           </div>
-          <Link href={`/events/${event.slug}`}>
+          <Link href={`/events/${event.slug}`} passHref>
             <Button
               variant="outlined"
               color="primary"

@@ -83,6 +83,9 @@ const useStyles = makeStyles((theme) => ({
     width: 120,
     height: 120,
     mixBlendMode: "luminosity",
+    "&:hover": {
+      mixBlendMode: "normal",
+    },
     [theme.breakpoints.down(desktop)]: {
       width: 100,
       height: 100,
@@ -96,7 +99,7 @@ const useStyles = makeStyles((theme) => ({
 
 const SdgCommitment = () => {
   const classes = useStyles();
-  
+
   return (
     <div className={classes.root}>
       <Container fixed>

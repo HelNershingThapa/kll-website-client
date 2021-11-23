@@ -16,9 +16,6 @@ import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
 import Hidden from "@material-ui/core/Hidden";
 import { Drawer } from "@material-ui/core";
-import MenuIcon from "@material-ui/icons/Menu";
-import CloseIcon from "@material-ui/icons/Close";
-import LiveHelpIcon from "@material-ui/icons/LiveHelp";
 import Tooltip from "@material-ui/core/Tooltip";
 import { desktop, primary } from "../../styles/theme";
 import logo from "public/kll-logo.svg";
@@ -95,6 +92,8 @@ const useStyles = makeStyles((theme) => ({
   appBar: {
     background: "#ffffff",
     height: "80px",
+    display: 'flex',
+    justifyContent: "center",
     [theme.breakpoints.down("xs")]: {
       height: "64px",
     },
@@ -145,7 +144,7 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 500,
     lineHeight: "18px",
     color: theme.palette.grey[900],
-    [theme.breakpoints.down(desktop)]:{
+    [theme.breakpoints.down(desktop)]: {
       fontSize: "0.8889rem",
     }
   },
@@ -170,7 +169,7 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     alignItems: "center",
     gap: theme.spacing(15),
-    [theme.breakpoints.down(desktop)]:{
+    [theme.breakpoints.down(desktop)]: {
       gap: theme.spacing(10),
     }
   },
@@ -213,7 +212,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function NavBar({}) {
+function NavBar({ }) {
   const classes = useStyles();
   const router = useRouter();
 
@@ -239,17 +238,9 @@ function NavBar({}) {
 
   return (
     <Fragment>
-      <Container fixed>
-        <AppBar position="static" elevation={0} className={classes.appBar}>
-          <Toolbar
-            style={{
-              height: "100%",
-              paddingLeft: 0,
-              paddingRight: 0,
-              display: "flex",
-              justifyContent: "space-between",
-            }}
-          >
+      <AppBar position="sticky" elevation={0} className={classes.appBar}>
+        <Toolbar disableGutters>
+          <Container fixed style={{ display: 'flex', justifyContent: "space-between" }}>
             <div className={classes.title}>
               <Link href="/">
                 <div className={classes.imgFill}>
@@ -279,7 +270,6 @@ function NavBar({}) {
                   <Fragment key={uid(menuItem, index)}>
                     {menuItem.isSubMenuAvailable ? (
                       <RichTooltip
-                        key={uid(menuItem, index)}
                         content={
                           <PopoverContent identifier={menuItem.identifier} />
                         }
@@ -342,9 +332,9 @@ function NavBar({}) {
                 </Button>
               </div>
             </Hidden>
-          </Toolbar>
-        </AppBar>
-      </Container>
+          </Container>
+        </Toolbar>
+      </AppBar>
       <MobileMenuDrawer open={mobileMenuDrawerOpen} onClose={onClose} menuItems={menuItems} />
     </Fragment>
   );
