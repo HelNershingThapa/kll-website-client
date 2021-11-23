@@ -172,7 +172,7 @@ export async function getStaticProps() {
   const res = await fetch(`http://localhost:1337/our-team`);
   const headerStats = await res.json();
 
-  const response = await fetch(`http://localhost:1337/members?_sort=name:ASC`);
+  const response = await fetch(`http://localhost:1337/members?_sort=name:ASC&isAlumnus=false`);
   const members = await response.json();
 
   return {
