@@ -1,25 +1,20 @@
+import { useState, useEffect, useRef } from "react";
 import Head from "next/head";
 import { makeStyles } from "@material-ui/core/styles";
 import { uid } from "react-uid";
-import clsx from "clsx";
-import Image from "next/image";
 import fetch from "isomorphic-unfetch";
 import {
   Container,
   Typography,
-  Divider,
-  Avatar,
-  Chip,
-  IconButton,
   OutlinedInput,
   CircularProgress,
   InputAdornment,
 } from "@material-ui/core";
 import BlogListCard from "components/blog/BlogListCard";
 import BlogTabs from "components/blog/BlogTabs";
-import searchIcon from "public/icons/search.svg";
 import TopBlog from "../../components/blog/TopBlog";
 import { tablet } from "../../styles/theme";
+import useIntersection from 'components/blog/useIntersection'
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -92,10 +87,25 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const BlogList = ({ blogs }) => {
+const BlogList = ({ featuredBlog }) => {
+  const ref = useRef();
+  const inViewport = useIntersection(ref.current, '0px')
   const classes = useStyles();
+  const [category, setCategory] = useState('none')
+  const [blogs, setBlogs] = useState([])
+  const { API_URL } = process.env;
 
-  console.log(blogs);
+  useEffect(() => {
+    async function fetchBlogs() {
+      const res = await fetch(`${API_URL}/blogs?isFeatured=false&${category === 'none' ? '' : `category=${category}`}`);
+      const blogs = await res.json();
+      setBlogs(blogs);
+    }
+
+    fetchBlogs();
+  }, [category])
+
+  console.log("inViewport", inViewport);
 
   return (
     <>
@@ -125,13 +135,13 @@ const BlogList = ({ blogs }) => {
             }
           />
         </div>
-        <TopBlog />
+        <TopBlog featuredBlog={featuredBlog} />
 
-        <BlogTabs />
+        <BlogTabs category={category} setCategory={setCategory} />
 
         <div className={classes.blogListContainer}>
-          {["", "", "", "", "", ""].map((blog) => (
-            <BlogListCard key={uid(blog)} />
+          {blogs.map((blog) => (
+            <BlogListCard key={uid(blog)} blog={blog} />
           ))}
         </div>
         <div
@@ -140,6 +150,7 @@ const BlogList = ({ blogs }) => {
             placeContent: "center",
             marginTop: "44px",
           }}
+            ref={ref}
         >
           <CircularProgress
             color="secondary"
@@ -152,15 +163,19 @@ const BlogList = ({ blogs }) => {
   );
 };
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const { API_URL } = process.env;
 
-  const res = await fetch(`${API_URL}/blogs`);
-  const blogs = await res.json();
+  const response = await fetch(`${API_URL}/blogs?isFeatured=true`);
+  const featuredBlog = await response.json();
+
+  // const res = await fetch(`${API_URL}/blogs?isFeatured=false`);
+  // const blogs = await res.json();
 
   return {
     props: {
-      blogs,
+      featuredBlog: featuredBlog[0],
+      // blogs,
     },
   };
 }

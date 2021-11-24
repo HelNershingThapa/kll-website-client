@@ -71,7 +71,7 @@ export default function Home({ projects }) {
         <WhoAreWe />
         <OurWork projects={projects} />
         <SdgCommitment />
-        <OurInsights />
+        {/* <OurInsights /> */}
         <FeaturedIn />
         <OurTeam />
         {

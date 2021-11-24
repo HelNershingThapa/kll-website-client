@@ -95,6 +95,7 @@ const Sdg = ({ name, category, src }) => {
                 layout="fill"
                 objectFit="cover"
                 alt="SDG icon"
+                unoptimized
               />
             </div>
           ))}

@@ -1,4 +1,5 @@
 import React from "react";
+import moment from "moment";
 import { useRouter } from "next/router";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
@@ -81,20 +82,22 @@ const useStyles = makeStyles((theme) => ({
     // padding: 0,
     color: "#F8FAFC",
     overflow: "visible",
+    textTransform: "capitalize",
   },
   focusCard: {
     background: "none",
   },
 }));
 
-export default function MediaCard() {
+function BlogListCard({ blog }) {
   const router = useRouter();
   const classes = useStyles();
+  const { API_URL } = process.env;
 
   return (
     <Card
       className={classes.root}
-      onClick={() => router.push("/blog/geonight-2021")}
+      onClick={() => router.push(`/blog/${blog.slug}`)}
     >
       <CardActionArea
         classes={{
@@ -104,30 +107,28 @@ export default function MediaCard() {
       >
         <CardMedia
           className={classes.media}
-          image="/Rectangle32.png"
-          title="Contemplative Reptile"
+          image={`${API_URL}${blog.coverPhoto && blog.coverPhoto.url}`}
         />
         <Chip
-          label="Mapping"
+          label={blog.category}
           color="primary"
           classes={{ root: classes.chipRoot, label: classes.chipLabel }}
         />
         <CardContent className={classes.content}>
           <div className={classes.timestamp}>
-            <Typography variant="subtitle1">May 06 2021</Typography>
-            <Typography variant="subtitle1">15 min read</Typography>
+            <Typography variant="subtitle1">{moment(blog.published_at).format('MMM DD YYYY')}</Typography>
+            <Typography variant="subtitle1">{Math.ceil(blog.content.split(" ").length / 200)} min read</Typography>
           </div>
           <Typography className={classes.title} variant="h5">
-            GeoNight 2021: Contributing to the pandemic stricken tourism of
-            Nepal
+            {blog.title}
           </Typography>
           <Typography variant="subtitle1" className={classes.description}>
-            Thamel is the heart of Nepali tourism. The narrow, winding,
-            crisscrossing gallis feel like a maze with colorful shops,
-            displays...
+            {blog.content.substring(0, 127)}......
           </Typography>
         </CardContent>
       </CardActionArea>
     </Card>
   );
 }
+
+export default BlogListCard

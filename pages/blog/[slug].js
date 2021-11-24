@@ -243,6 +243,13 @@ const useStyles = makeStyles((theme) => ({
     position: "relative !important",
     height: "unset !important",
   },
+  header: {
+    fontWeight: 700,
+    lineHeight: 1.55,
+    color: theme.palette.grey[800],
+    marginBottom: theme.spacing(3),
+    marginTop: theme.spacing(10),
+  },
 }));
 
 function MarkdownParagraph(props) {
@@ -343,8 +350,6 @@ function BlogDetail({ blog }) {
   const classes = useStyles();
   const { API_URL } = process.env;
 
-  console.log("blog", blog);
-
   return (
     <>
       <Head>
@@ -359,7 +364,7 @@ function BlogDetail({ blog }) {
           width={1920}
           height={722}
           objectFit="cover"
-          alt="Picture of the author" 
+          alt="Picture of the author"
         />
         <div className={classes.headerImageOverlay} />
       </div>}
@@ -421,7 +426,7 @@ function BlogDetail({ blog }) {
         </div>
       </Container>
 
-      <div className={classes.relatedPostsBgCtr}>
+      {/* <div className={classes.relatedPostsBgCtr}>
         <Container fixed>
           <Typography className={classes.readMoreBlogsTitle}>
             Read More from our Blog
@@ -432,7 +437,7 @@ function BlogDetail({ blog }) {
             ))}
           </div>
         </Container>
-      </div>
+      </div> */}
     </>
   );
 }

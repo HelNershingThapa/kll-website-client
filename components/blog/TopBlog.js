@@ -1,7 +1,7 @@
+import { useRouter } from 'next/router'
 import Image from "next/image";
 import { makeStyles } from "@material-ui/core/styles";
 import { Chip, Typography, IconButton, Hidden } from "@material-ui/core";
-import rightArrowIcon from "public/icons/ArrowRight.svg";
 import { desktop, tablet } from "styles/theme";
 
 const useStyles = makeStyles((theme) => ({
@@ -36,6 +36,7 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(3),
     color: theme.palette.grey[50],
     fontWeight: 700,
+    maxWidth: "550px",
     [theme.breakpoints.down("xs")]: {
       marginTop: theme.spacing(1),
     },
@@ -53,8 +54,7 @@ const useStyles = makeStyles((theme) => ({
   },
   iconButton: {
     background: "#185ADB !important", //overriding default transparent background color
-    height: 60,
-    width: 60,
+    padding: "18px",
     marginRight: theme.spacing(2),
     marginBottom: theme.spacing(2),
   },
@@ -86,18 +86,22 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const TopBlog = () => {
+const TopBlog = ({ featuredBlog }) => {
   const classes = useStyles();
+  const router = useRouter()
+  const { API_URL } = process.env
+
   return (
     <div className={classes.headerImage}>
       <div className={classes.imgFill}>
         <Image
           priority
           className={classes.image}
-          src="/blog-list-header.png"
+          src={`${API_URL}${featuredBlog.coverPhoto.url}`}
           layout="fill"
           objectFit="cover"
           alt="KLL Blog"
+          unoptimized
         />
       </div>
       <div className={classes.headerBlogOverlay}>
@@ -105,31 +109,25 @@ const TopBlog = () => {
           <div className={classes.descriptionHead}>
             <Chip label="Featured" color="primary" />
             <Typography variant="subtitle1" className={classes.timeToRead}>
-              12 min read
+              {Math.ceil(featuredBlog.content.split(" ").length / 200)} min read
             </Typography>
           </div>
           <Typography variant="h4" className={classes.title}>
-            Girls Mapping their Community
+            {featuredBlog.title}
           </Typography>
           <Typography variant="subtitle1" className={classes.description}>
-            We need more girl mappers and their contribution in open geographic
-            data. As, we believe that when a girl maps or uses the open...
+            {featuredBlog.content.substring(0, 127)}...
           </Typography>
         </div>
         <Hidden xsDown>
           <div style={{ display: "block", marginTop: "auto" }}>
             <IconButton
               aria-label="delete"
-              disabled
               color="primary"
               className={classes.iconButton}
+              onClick={() => router.push(`/blog/${featuredBlog.slug}`)}
             >
-              <Image
-                src={rightArrowIcon}
-                height={16}
-                width={16}
-                alt="right arrow icon"
-              />
+              <i className="ri-arrow-right-line" style={{ fontSize: "24px", color: "white" }} />
             </IconButton>
           </div>
         </Hidden>
