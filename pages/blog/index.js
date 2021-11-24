@@ -10,6 +10,7 @@ import {
   CircularProgress,
   InputAdornment,
 } from "@material-ui/core";
+import InfiniteScroll from 'react-infinite-scroller';
 import BlogListCard from "components/blog/BlogListCard";
 import BlogTabs from "components/blog/BlogTabs";
 import TopBlog from "../../components/blog/TopBlog";
@@ -88,24 +89,28 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const BlogList = ({ featuredBlog }) => {
-  const ref = useRef();
-  const inViewport = useIntersection(ref.current, '0px')
   const classes = useStyles();
   const [category, setCategory] = useState('none')
   const [blogs, setBlogs] = useState([])
+  const [blogCount, setBlogCount] = useState(0);
   const { API_URL } = process.env;
 
+  const hasMore = blogs.length < blogCount
+
   useEffect(() => {
-    async function fetchBlogs() {
-      const res = await fetch(`${API_URL}/blogs?isFeatured=false&${category === 'none' ? '' : `category=${category}`}`);
-      const blogs = await res.json();
-      setBlogs(blogs);
-    }
+    loadFunc();
+  }, [])
 
-    fetchBlogs();
-  }, [category])
+  async function loadFunc() {
+    const countRes = await fetch(`${API_URL}/blogs/count?isFeatured=false${category === 'none' ? '' : `&category=${category}`}`);
+    const resCount = await countRes.json();
+    setBlogCount(resCount);
 
-  console.log("inViewport", inViewport);
+    const res = await fetch(`${API_URL}/blogs?_start=${blogs.length}&_limit=6&isFeatured=false${category === 'none' ? '' : `&category=${category}`}`);
+    const blogRes = await res.json();
+    console.log("blogRes", blogRes);
+    setBlogs(blogs.concat(blogRes));
+  }
 
   return (
     <>
@@ -137,27 +142,32 @@ const BlogList = ({ featuredBlog }) => {
         </div>
         <TopBlog featuredBlog={featuredBlog} />
 
-        <BlogTabs category={category} setCategory={setCategory} />
+        <BlogTabs category={category} setCategory={setCategory} loadFunc={loadFunc} setBlogs={setBlogs} />
 
-        <div className={classes.blogListContainer}>
-          {blogs.map((blog) => (
-            <BlogListCard key={uid(blog)} blog={blog} />
-          ))}
-        </div>
-        <div
-          style={{
-            display: "grid",
-            placeContent: "center",
-            marginTop: "44px",
-          }}
-            ref={ref}
+        <InfiniteScroll
+          pageStart={0}
+          loadMore={loadFunc}
+          hasMore={hasMore}
+          loader={<div
+            style={{
+              display: "grid",
+              placeContent: "center",
+              marginTop: "44px",
+            }}
+          >
+            <CircularProgress
+              color="secondary"
+              style={{ color: "#61758A" }}
+              size={24}
+            />
+          </div>}
         >
-          <CircularProgress
-            color="secondary"
-            style={{ color: "#61758A" }}
-            size={24}
-          />
-        </div>
+          <div className={classes.blogListContainer}>
+            {blogs && blogs.map((blog) => (
+              <BlogListCard key={uid(blog)} blog={blog} />
+            ))}
+          </div>
+        </InfiniteScroll>
       </Container>
     </>
   );

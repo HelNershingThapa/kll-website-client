@@ -1,4 +1,5 @@
-import React from "react";
+
+import React, {useEffect} from "react";
 import { uid } from "react-uid";
 import clsx from "clsx";
 import PropTypes from "prop-types";
@@ -91,10 +92,16 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SimpleTabs({category, setCategory}) {
+export default function SimpleTabs({ category, setCategory, setBlogs, loadFunc }) {
   const classes = useStyles();
 
+  useEffect(() => {
+    setBlogs([])
+    loadFunc();
+  }, [category])
+
   const handleChange = (event, newValue) => {
+    console.log("handleChange");
     setCategory(newValue);
   };
 
@@ -129,7 +136,7 @@ export default function SimpleTabs({category, setCategory}) {
           value={category.value}
           {...a11yProps(index)}
         />)}
-        
+
       </Tabs>
     </div>
   );

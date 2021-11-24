@@ -170,10 +170,11 @@ function OurTeam({ members, headerStats }) {
 }
 
 export async function getStaticProps() {
-  const res = await fetch(`http://167.71.225.119:1337/our-team`);
+  const {API_URL} = process.env
+  const res = await fetch(`${API_URL}/our-team`);
   const headerStats = await res.json();
 
-  const response = await fetch(`http://167.71.225.119:1337/members?_sort=name:ASC&isAlumnus=false`);
+  const response = await fetch(`${API_URL}/members?_sort=name:ASC&isAlumnus=false`);
   const members = await response.json();
 
   return {
