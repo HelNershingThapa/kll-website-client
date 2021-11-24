@@ -93,6 +93,7 @@ const BlogList = ({ featuredBlog }) => {
   const [category, setCategory] = useState('none')
   const [blogs, setBlogs] = useState([])
   const [blogCount, setBlogCount] = useState(0);
+  const [searchQuery, setSearchQuery] = useState('')
   const { API_URL } = process.env;
 
   const hasMore = blogs.length < blogCount
@@ -102,13 +103,13 @@ const BlogList = ({ featuredBlog }) => {
   }, [])
 
   async function loadFunc() {
-    const countRes = await fetch(`${API_URL}/blogs/count?isFeatured=false${category === 'none' ? '' : `&category=${category}`}`);
+    console.log("searchQuery load", searchQuery);
+    const countRes = await fetch(`${API_URL}/blogs/count?isFeatured=false${searchQuery === '' ? '' : `&title_contains=${searchQuery}`}${category === 'none' ? '' : `&category=${category}`}`);
     const resCount = await countRes.json();
     setBlogCount(resCount);
 
-    const res = await fetch(`${API_URL}/blogs?_start=${blogs.length}&_limit=6&isFeatured=false${category === 'none' ? '' : `&category=${category}`}`);
+    const res = await fetch(`${API_URL}/blogs?_start=${blogs.length}&_limit=6&isFeatured=false${searchQuery === '' ? '' : `&title_contains=${searchQuery}`}${category === 'none' ? '' : `&category=${category}`}`);
     const blogRes = await res.json();
-    console.log("blogRes", blogRes);
     setBlogs(blogs.concat(blogRes));
   }
 
@@ -133,11 +134,17 @@ const BlogList = ({ featuredBlog }) => {
             }}
             placeholder="Search for Blog Posts"
             variant="outlined"
+            value={searchQuery}
             startAdornment={
               <InputAdornment position="start">
                 <i className="ri-search-2-line" style={{ fontSize: '16px' }}></i>
               </InputAdornment>
             }
+            onChange={(e) => {
+              setBlogs([]);
+              setSearchQuery(e.target.value);
+              loadFunc();
+            }}
           />
         </div>
         <TopBlog featuredBlog={featuredBlog} />
