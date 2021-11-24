@@ -80,6 +80,7 @@ const useStyles = makeStyles((theme) => ({
 
 function Volunteering({ volunteering }) {
   const classes = useStyles();
+  const {API_URL} = process.env
 
   const { label, description, image } = volunteering;
 
@@ -90,7 +91,7 @@ function Volunteering({ volunteering }) {
           <div className={classes.imageOverlay}>
             <div className={classes.imgFill}>
               <Image
-                src={`http://localhost:1337${image.url}`}
+                src={`${API_URL}${image.url}`}
                 layout="fill"
                 objectFit="contain"
                 alt="volunteering"

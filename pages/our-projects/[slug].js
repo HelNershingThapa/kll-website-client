@@ -418,7 +418,8 @@ function ProjectDetails({ projectDetail }) {
 }
 
 export async function getStaticPaths() {
-  const res = await fetch("http://localhost:1337/projects");
+  const {API_URL} = process.env
+  const res = await fetch(`${API_URL}/projects`);
   const projects = await res.json();
 
   const paths = projects.map((project) => ({
@@ -429,7 +430,7 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  const res = await fetch(`http://localhost:1337/projects?slug=${params.slug}`);
+  const res = await fetch(`${API_URL}/projects?slug=${params.slug}`);
   const projectDetail = await res.json();
 
   return {

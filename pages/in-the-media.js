@@ -161,6 +161,7 @@ const renderers = {
 function InTheMedia({ mediaCoverages, inTheMedia }) {
   const classes = useStyles();
   const slider = useRef(null);
+  const { API_URL } = process.env
 
   const headerCoverages = mediaCoverages.filter(
     (coverage) => coverage.isTopCoverage
@@ -189,7 +190,7 @@ function InTheMedia({ mediaCoverages, inTheMedia }) {
                     <div className={classes.coverImgFill}>
                       <Image
                         priority
-                        src={`http://localhost:1337${coverage.image.url}`}
+                        src={`${API_URL}${coverage.image.url}`}
                         layout="fill"
                         alt="KLL in media"
                         objectFit="cover"
@@ -199,7 +200,7 @@ function InTheMedia({ mediaCoverages, inTheMedia }) {
                       <div>
                         <img
                           className={classes.newspaperLogo}
-                          src={`http://localhost:1337${coverage.layoverNewspaperLogo.url}`}
+                          src={`${API_URL}${coverage.layoverNewspaperLogo.url}`}
                           alt="asdasd"
                         />
                       </div>
@@ -228,7 +229,7 @@ function InTheMedia({ mediaCoverages, inTheMedia }) {
                           className={clsx(
                             classes.iconButton,
                             index === headerCoverages.length - 1 &&
-                              classes.iconButtonTransparent
+                            classes.iconButtonTransparent
                           )}
                           onClick={() => slider?.current?.slickNext()}
                         >
@@ -276,10 +277,11 @@ function InTheMedia({ mediaCoverages, inTheMedia }) {
 }
 
 export async function getStaticProps() {
-  const res = await fetch(`http://localhost:1337/media-coverages`);
+  const { API_URL } = process.env
+  const res = await fetch(`${API_URL}/media-coverages`);
   const mediaCoverages = await res.json();
 
-  const response = await fetch(`http://localhost:1337/in-the-media`);
+  const response = await fetch(`${API_URL}/in-the-media`);
   const inTheMedia = await response.json();
 
   return {

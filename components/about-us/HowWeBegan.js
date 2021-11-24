@@ -57,6 +57,7 @@ const useStyles = makeStyles((theme) => ({
 
 function HowWeBegan(props) {
   const classes = useStyles();
+  const { API_URL } = process.env;
 
 
   return (
@@ -72,7 +73,7 @@ function HowWeBegan(props) {
           <div className={classes.imgOverlay}>
             <div className={classes.imgFill}>
               <Image
-                src={`http://localhost:1337${props.data.image.url}`}
+                src={`${API_URL}${props.data.image.url}`}
                 layout="fill"
                 objectFit="cover"
                 alt="KLL history"

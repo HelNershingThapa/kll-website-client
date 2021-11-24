@@ -84,6 +84,7 @@ const extensionsMap = {
 
 const Documents = ({ documents }) => {
   const classes = useStyles();
+  const {API_URL} = process.env
 
   const getFileExtension = (ext) => {
     if (extensionsMap[ext]) {
@@ -105,7 +106,7 @@ const Documents = ({ documents }) => {
       </Typography>
       <div className={classes.documents}>
         {documents.map((file) => (
-          <div key={uid(file)} className={classes.fileCard} onClick={() => window.open(`http://localhost:1337${file.file.url}`)}>
+          <div key={uid(file)} className={classes.fileCard} onClick={() => window.open(`${API_URL}${file.file.url}`)}>
             <div className={classes.icon}>
               <Image
                 src={`/icons/${getFileExtension(file.file.ext.replace('.', ''))}.png`}

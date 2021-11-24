@@ -271,7 +271,8 @@ function AboutUs({ data }) {
 }
 
 export async function getStaticProps(context) {
-  const { data } = await axios.get(`http://localhost:1337/about-us`);
+  const {API_URL} = process.env
+  const { data } = await axios.get(`${API_URL}/about-us`);
 
   return {
     props: {

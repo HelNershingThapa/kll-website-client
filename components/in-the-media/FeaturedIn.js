@@ -48,6 +48,7 @@ const useStyles = makeStyles((theme) => ({
 
 function FeaturedIn({ featuredInImages }) {
   const classes = useStyles();
+  const { API_URL } = process.env
 
   return (
     <div className={classes.featuredInCtr}>
@@ -62,7 +63,7 @@ function FeaturedIn({ featuredInImages }) {
         {featuredInImages.map((logo) => (
           <img
             key={uid(logo)}
-            src={`http://localhost:1337${logo.newspaperLogo.url}`}
+            src={`${API_URL}${logo.newspaperLogo.url}`}
             className={classes.img}
             alt={logo.caption}
           />

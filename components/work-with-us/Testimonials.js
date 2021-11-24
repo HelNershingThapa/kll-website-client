@@ -159,7 +159,7 @@ const settings = {
 function Testimonials({ testimonials }) {
   const classes = useStyles();
   const slider = useRef(null);
-
+  const { API_URL } = process.env
   const { title, description, testimonies } = testimonials;
 
   return (
@@ -209,7 +209,7 @@ function Testimonials({ testimonials }) {
                     <div className={classes.author}>
                       <Avatar className={classes.avatar}>
                         <Image
-                          src={`http://localhost:1337${testimony.member.image.url}`}
+                          src={`${API_URL}${testimony.member.image.url}`}
                           layout="fill"
                           alt="DP"
                         />

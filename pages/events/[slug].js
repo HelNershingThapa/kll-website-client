@@ -125,12 +125,13 @@ function MarkdownParagraph(props) {
 
 function MarkdownImage(props) {
   const classes = useStyles();
+  const {API_URL} = process.env
 
   return (
     <div className={classes.markdownImageFill}>
       <Image
         className={classes.markdownImage}
-        src={`http://localhost:1337${props.src}`}
+        src={`${API_URL}${props.src}`}
         layout="fill"
         objectFit="cover"
         alt={props.alt}

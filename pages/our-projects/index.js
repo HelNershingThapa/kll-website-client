@@ -122,7 +122,8 @@ const OurProjects = ({ projects }) => {
 };
 
 export async function getStaticProps() {
-  const res = await fetch(`http://localhost:1337/projects`);
+  const {API_URL} = process.env
+  const res = await fetch(`${API_URL}/projects`);
   const projects = await res.json();
 
   return {

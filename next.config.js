@@ -10,6 +10,7 @@ module.exports = {
     domains: [
       "localhost",
       "salty-bastion-86199.herokuapp.com",
+      "167.71.225.119",
     ],
   },
   webpack: (config) => {

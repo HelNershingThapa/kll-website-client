@@ -138,6 +138,7 @@ const renderers = {
 function MemberDetail({ allMembers, memberDetail }) {
   const router = useRouter();
   const classes = useStyles();
+  const {API_URL} = process.env
 
   const { slug, name, position, bio, image } = memberDetail;
 
@@ -157,7 +158,7 @@ function MemberDetail({ allMembers, memberDetail }) {
       <div className={classes.root}>
         <div className={classes.imageContainer}>
           <Image
-            src={`http://localhost:1337${image.url}`}
+            src={`${API_URL}${image.url}`}
             layout="fill"
             objectFit="cover"
             alt="KLL member"
@@ -229,12 +230,13 @@ function MemberDetail({ allMembers, memberDetail }) {
 
 export async function getServerSideProps(context) {
   const { slug } = context.query;
+  const {API_URL} = process.env
 
-  const response = await fetch(`http://localhost:1337/members?slug=${slug}`);
+  const response = await fetch(`${API_URL}/members?slug=${slug}`);
   const memberDetail = await response.json();
 
   const allMembersResponse = await fetch(
-    `http://localhost:1337/members?_sort=name:ASC`
+    `${API_URL}/members?_sort=name:ASC`
   );
   const allMembers = await allMembersResponse.json();
 

@@ -68,6 +68,8 @@ const useStyles = makeStyles((theme) => ({
 
 function TeamMemberCard({ memberData, key }) {
   const classes = useStyles();
+  const {API_URL} = process.env
+  
 
   const { slug, name, bio, position, image } = memberData;
 
@@ -75,12 +77,13 @@ function TeamMemberCard({ memberData, key }) {
     <div>
       <div className={classes.imageFill}>
         <Image
-          src={`http://localhost:1337${image.url}`}
+          src={`${API_URL}${image.url}`}
           layout="fill"
           objectFit="cover"
           sizes="33vw"
           alt=""
-        />
+          unoptimized
+        />  
       </div>
       <Typography variant="h5" className={classes.name}>
         {name}

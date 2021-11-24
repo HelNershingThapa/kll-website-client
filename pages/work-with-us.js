@@ -147,6 +147,7 @@ const renderers = {
 
 function WorkWithUs({ data, vacancies }) {
   const classes = useStyles();
+  const {API_URL} = process.env
 
   console.log(data);
   return (
@@ -178,7 +179,7 @@ function WorkWithUs({ data, vacancies }) {
 
       <div className={classes.headerImgFill}>
         <Image
-          src={`http://localhost:1337${data.headerImage.url}`}
+          src={`${API_URL}${data.headerImage.url}`}
           layout="fill"
           objectFit="cover"
           alt="People working at KLL"
@@ -217,10 +218,11 @@ function WorkWithUs({ data, vacancies }) {
 }
 
 export async function getStaticProps() {
-  const res = await fetch(`http://localhost:1337/work-with-us`);
+  const {API_URL} = process.env
+  const res = await fetch(`${API_URL}/work-with-us`);
   const data = await res.json();
 
-  const vacanciesRes = await fetch(`http://localhost:1337/vacancies`);
+  const vacanciesRes = await fetch(`${API_URL}/vacancies`);
   const vacancies = await vacanciesRes.json();
 
   return {

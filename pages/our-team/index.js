@@ -138,6 +138,7 @@ function OurTeam({ members, headerStats }) {
           objectFit="cover"
           alt="People working at KLL"
           sizes="100vw"
+          unoptimized
         />
         <div className={classes.statsOverlay}>
           {headerStats.headerStat.map((stat) => (
@@ -169,10 +170,10 @@ function OurTeam({ members, headerStats }) {
 }
 
 export async function getStaticProps() {
-  const res = await fetch(`http://localhost:1337/our-team`);
+  const res = await fetch(`http://167.71.225.119:1337/our-team`);
   const headerStats = await res.json();
 
-  const response = await fetch(`http://localhost:1337/members?_sort=name:ASC&isAlumnus=false`);
+  const response = await fetch(`http://167.71.225.119:1337/members?_sort=name:ASC&isAlumnus=false`);
   const members = await response.json();
 
   return {

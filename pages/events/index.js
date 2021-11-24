@@ -133,7 +133,8 @@ function Events({ events }) {
 }
 
 export async function getStaticProps() {
-  const res = await fetch(`http://localhost:1337/events`);
+  const {API_URL} = process.env
+  const res = await fetch(`${API_URL}/events`);
   const events = await res.json();
 
   return {

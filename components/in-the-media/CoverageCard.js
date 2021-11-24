@@ -93,13 +93,15 @@ const renderers = {
 
 function CoverageCard({ coverage }) {
   const classes = useStyles();
+  const { API_URL } = process.env;
+
 
   return (
     <div className={classes.root}>
       <div className={classes.imgContainer}>
         <div className={classes.imgFill}>
           <Image
-            src={`http://localhost:1337${coverage.image.url}`}
+            src={`${API_URL}${coverage.image.url}`}
             layout="fill"
             objectFit="cover"
             alt="kll"
@@ -110,7 +112,7 @@ function CoverageCard({ coverage }) {
             {coverage.layoverNewspaperLogo && (
               <img
                 className={classes.newspaperLogo}
-                src={`http://localhost:1337${coverage.layoverNewspaperLogo.url}`}
+                src={`${API_URL}${coverage.layoverNewspaperLogo.url}`}
                 alt="asdasd"
               />
             )}

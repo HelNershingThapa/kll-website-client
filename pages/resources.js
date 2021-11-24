@@ -87,7 +87,8 @@ function Resources({ resources }) {
 }
 
 export async function getStaticProps() {
-  const res = await fetch(`http://localhost:1337/resources`);
+  const {API_URL} = process.env
+  const res = await fetch(`${API_URL}/resources`);
   const resources = await res.json();
 
   return {
