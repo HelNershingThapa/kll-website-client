@@ -115,14 +115,14 @@ const OurProjects = ({ projects }) => {
         <ProjectsGrid projects={projects.slice(5, 10)} />
       </Container>
       <Container fixed>
-        <MoreProjects projects={projects.slice(5)}/>
+        <MoreProjects projects={projects.slice(5)} />
       </Container>
     </>
   );
 };
 
-export async function getStaticProps() {
-  const {API_URL} = process.env
+export async function getStaticProps() {  
+  const { API_URL } = process.env
   const res = await fetch(`${API_URL}/projects`);
   const projects = await res.json();
 

@@ -211,7 +211,7 @@ function AboutUs({ data }) {
           src={`${API_URL}${data.headerImage.url}`}
           layout="fill"
           objectFit="cover"
-          alt="People working at KLL"
+          alt=""
         />
         <div className={classes.statsOverlay}>
           {data.stats.map((stat) => (
@@ -271,7 +271,7 @@ function AboutUs({ data }) {
 }
 
 export async function getStaticProps(context) {
-  const {API_URL} = process.env
+  const { API_URL } = process.env
   const { data } = await axios.get(`${API_URL}/about-us`);
 
   return {

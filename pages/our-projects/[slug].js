@@ -418,7 +418,7 @@ function ProjectDetails({ projectDetail }) {
 }
 
 export async function getStaticPaths() {
-  const {API_URL} = process.env
+  const { API_URL } = process.env
   const res = await fetch(`${API_URL}/projects`);
   const projects = await res.json();
 
@@ -430,6 +430,8 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
+  const { API_URL } = process.env
+
   const res = await fetch(`${API_URL}/projects?slug=${params.slug}`);
   const projectDetail = await res.json();
 

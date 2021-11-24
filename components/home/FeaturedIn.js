@@ -48,7 +48,7 @@ const FeaturedIn = () => {
 
   return (
     <div className={classes.featuredInCtr}>
-      <Container maxWidth="lg">
+      <Container fixed>
         <Typography
           align="center"
           variant="body1"
@@ -59,8 +59,8 @@ const FeaturedIn = () => {
         <div className={classes.feautredInLogos}>
           {["", "", "", ""].map((logo) => (
             <img
-              className={classes.logo}
               key={uid(logo)}
+              className={classes.logo}
               src="/guardian-black.png"
               alt="Guardian logo"
             />
