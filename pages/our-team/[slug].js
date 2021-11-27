@@ -236,7 +236,7 @@ export async function getServerSideProps(context) {
   const memberDetail = await response.json();
 
   const allMembersResponse = await fetch(
-    `${API_URL}/members?_sort=name:ASC`
+    `${API_URL}/members?_sort=name:ASC&isAlumnus=false`
   );
   const allMembers = await allMembersResponse.json();
 

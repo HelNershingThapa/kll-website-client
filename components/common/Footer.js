@@ -127,12 +127,12 @@ const useStyles = makeStyles((theme) => ({
     //     flex: "50%",
     //   },
     // },
-    [theme.breakpoints.down("sm")]:{
+    [theme.breakpoints.down("sm")]: {
       display: "grid",
       gridTemplateColumns: "1fr 1fr 1fr 1fr",
       gap: theme.spacing(10)
     },
-    [theme.breakpoints.down("xs")]:{
+    [theme.breakpoints.down("xs")]: {
       display: "grid",
       gridTemplateColumns: "1fr 1fr",
       gap: theme.spacing(10)
@@ -242,7 +242,7 @@ const useStyles = makeStyles((theme) => ({
   },
   newsletterInput: {
     background: theme.palette.grey[800],
-    [theme.breakpoints.down("sm")]:{
+    [theme.breakpoints.down("sm")]: {
       width: "100%",
     }
   },
@@ -296,6 +296,7 @@ function Footer() {
               classes={{ endIcon: classes.endIcon }}
               variant="contained"
               color="primary"
+              onClick={() => window.open("https://calendly.com/helnershingthapa")}
               endIcon={
                 <i
                   style={{ fontSize: "16px" }}

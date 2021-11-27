@@ -195,6 +195,8 @@ function AboutUs({ data }) {
   const classes = useStyles();
   const { API_URL } = process.env;
 
+  console.log("data", data);
+
   return (
     <>
       <Head>
@@ -233,7 +235,7 @@ function AboutUs({ data }) {
           <div className={classes.imgContainer}>
             <div className={classes.img1}>
               <Image
-                src="/Rectangle31.png"
+                src={`${API_URL}${data.image1.url}`}
                 alt="asdasd"
                 layout="fill"
                 objectFit="cover"
@@ -242,18 +244,18 @@ function AboutUs({ data }) {
             <div className={classes.imgsCtr}>
               <div className={classes.img2}>
                 <Image
-                  src="/Rectangle32dup.png"
-                  alt="asdasd"
+                  src={`${API_URL}${data.image2.url}`}
+                  alt=""
                   layout="fill"
                   objectFit="cover"
                 />
               </div>
               <div className={classes.img2}>
                 <Image
-                  src="/Rectangle33.png"
+                  src={`${API_URL}${data.image3.url}`}
                   layout="fill"
                   objectFit="cover"
-                  alt="asdasd"
+                  alt=""
                 />
               </div>
             </div>

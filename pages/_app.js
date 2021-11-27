@@ -6,11 +6,13 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import theme from "styles/theme";
 import NavBar from "components/common/NavBar";
 import Footer from "components/common/Footer";
+import { useRouter } from "next/router";
 import 'remixicon/fonts/remixicon.css'
 import "styles/globals.css";
 
 export default function MyApp(props) {
   const { Component, pageProps } = props;
+  const router = useRouter()
 
   React.useEffect(() => {
     // Remove the server-side injected CSS.
@@ -23,7 +25,7 @@ export default function MyApp(props) {
   return (
     <React.Fragment>
       <Head>
-        <title>My page</title>
+        <title>Kathmandu Living Labs</title>
         <meta
           name="viewport"
           content="minimum-scale=1, initial-scale=1, width=device-width"
@@ -34,7 +36,7 @@ export default function MyApp(props) {
         <CssBaseline />
         <NavBar />
         <Component {...pageProps} />
-        <Footer />
+        {router.pathname !== '/our-team/[slug]' && <Footer />}
       </ThemeProvider>
     </React.Fragment>
   );

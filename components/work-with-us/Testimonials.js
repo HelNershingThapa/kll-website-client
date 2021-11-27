@@ -44,7 +44,7 @@ const useStyles = makeStyles((theme) => ({
     lineHeight: 1.25,
     color: theme.palette.grey[800],
     [theme.breakpoints.down("xs")]: {
-      width: "60%",
+      maxWidth: "60%",
       fontSize: "1rem",
       lineHeight: 1.5556,
     },
@@ -54,7 +54,7 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.grey[700],
     [theme.breakpoints.down("xs")]: {
       fontSize: "0.7778rem",
-      width: "85%",
+      maxWidth: "85%",
       marginTop: theme.spacing(2),
     },
   },
@@ -80,6 +80,7 @@ const useStyles = makeStyles((theme) => ({
   btnIcon: {
     fontSize: "24px",
     color: "#fff",
+    height: "100%",
   },
   quoteCtr: {
     maxWidth: "782px",
@@ -146,6 +147,11 @@ const useStyles = makeStyles((theme) => ({
       display: "none",
     },
   },
+  sliderCtr: {
+    "& .slick-slider": {
+      maxWidth: 792,
+    }
+  }
 }));
 
 const settings = {
@@ -187,6 +193,8 @@ function Testimonials({ testimonials }) {
                 </IconButton>
                 <IconButton
                   className={classes.button}
+                  classes={{ label: classes.btnLabel }}
+
                   onClick={() => slider?.current?.slickNext()}
                 >
                   <i className={clsx("ri-arrow-right-line", classes.btnIcon)} />
@@ -195,7 +203,7 @@ function Testimonials({ testimonials }) {
             </Hidden>
           </div>
 
-          <div style={{ width: "782px" }}>
+          <div style={{ maxWidth: "100%" }} className={classes.sliderCtr}>
             <Slider ref={slider} {...settings}>
               {testimonies.map((testimony) => (
                 <div key={uid(testimony)} className={classes.quoteCtr}>
@@ -229,28 +237,33 @@ function Testimonials({ testimonials }) {
                         </Typography>
                       </div>
                     </div>
-                    <div className={classes.arrowNavigationEnd}>
-                      <IconButton className={classes.button}>
-                        <i
-                          className={clsx(
-                            "ri-arrow-left-line",
-                            classes.btnIcon
-                          )}
-                        />
-                      </IconButton>
-                      <IconButton className={classes.button}>
-                        <i
-                          className={clsx(
-                            "ri-arrow-right-line",
-                            classes.btnIcon
-                          )}
-                        />
-                      </IconButton>
-                    </div>
+
                   </div>
                 </div>
               ))}
             </Slider>
+          </div>
+          <div className={classes.arrowNavigationEnd} style={{ marginLeft: "auto" }}>
+            <IconButton className={classes.button}
+              classes={{ label: classes.btnLabel }}
+              onClick={() => slider?.current?.slickPrev()}>
+              <i
+                className={clsx(
+                  "ri-arrow-left-line",
+                  classes.btnIcon
+                )}
+              />
+            </IconButton>
+            <IconButton className={classes.button}
+              classes={{ label: classes.btnLabel }}
+              onClick={() => slider?.current?.slickNext()}>
+              <i
+                className={clsx(
+                  "ri-arrow-right-line",
+                  classes.btnIcon
+                )}
+              />
+            </IconButton>
           </div>
         </div>
       </Container>

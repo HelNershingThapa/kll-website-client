@@ -176,8 +176,6 @@ export async function getStaticProps() {
   const res = await fetch(`${API_URL}/projects`);
   const projects = await res.json();
 
-  console.log("server projects", projects);
-
   return {
     props: {
       projects,

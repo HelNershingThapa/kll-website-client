@@ -37,6 +37,9 @@ const useStyles = makeStyles((theme) => ({
   partnerLogo: {
     mixBlendMode: "luminosity",
     maxHeight: "80px",
+    "&:hover": {
+      mixBlendMode: "normal",
+    },
     [theme.breakpoints.down("xs")]: {
       maxHeight: "40px",
     },
