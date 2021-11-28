@@ -9,6 +9,7 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 import FormControl from "@material-ui/core/FormControl";
 import Divider from "@material-ui/core/Divider";
 import { desktop } from "../../styles/theme";
+import NewsletterSubscribe from "./newsletter/NewsletterSubscribe";
 
 const groups = [
   {
@@ -331,21 +332,7 @@ function Footer() {
             <Typography className={classes.newsletterHeader}>
               Subscribe to our Newsletter
             </Typography>
-            <FilledInput
-              classes={{
-                root: classes.newsletterInput,
-                input: classes.placeholder,
-              }}
-              id="filled-basic"
-              placeholder="Enter your email"
-              variant="filled"
-              endAdornment={
-                <i
-                  className="ri-send-plane-line"
-                  style={{ color: "#CAD5E0", fontSize: "24px" }}
-                />
-              }
-            />
+            <NewsletterSubscribe />
             <div className={classes.contactDetails}>
               <Typography component="h6">Contact Details</Typography>
               <Typography className={classes.contactDetails} component="p">
