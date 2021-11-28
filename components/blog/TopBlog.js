@@ -101,7 +101,6 @@ const TopBlog = ({ featuredBlog }) => {
           layout="fill"
           objectFit="cover"
           alt="KLL Blog"
-          unoptimized
         />
       </div>
       <div className={classes.headerBlogOverlay}>

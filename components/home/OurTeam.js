@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
   numberCtr: {
     display: "flex",
     flexDirection: "column",
-    alignItems: "center",
+    // alignItems: "center",
     [theme.breakpoints.down("xs")]: {
       alignItems: "flex-start",
     },
@@ -79,9 +79,11 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 400,
     lineHeight: 1.6667,
     color: theme.palette.grey[700],
+    paddingLeft: "6px",
     [theme.breakpoints.down("xs")]: {
       fontSize: "1.111rem",
       lineHeight: 1.6,
+      paddingLeft: 0,
     },
   },
 }));

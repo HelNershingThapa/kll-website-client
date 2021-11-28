@@ -145,9 +145,9 @@ const renderers = {
   paragraph: MarkdownParagraph,
 };
 
-function WorkWithUs({ data, vacancies }) {
+function WorkWithUs({ data, vacancies, membersCount }) {
   const classes = useStyles();
-  const {API_URL} = process.env
+  const { API_URL } = process.env
 
   console.log(data);
   return (
@@ -211,24 +211,28 @@ function WorkWithUs({ data, vacancies }) {
       <Programs fellowships={data.fellowships} mentorships={data.mentorships} />
       <JoinOsmMovement joinOsmMovement={data.joinOsmMovement} />
       <Testimonials testimonials={data.testimonials} />
-      <JobListings vacancies={vacancies}/>
-      <OurTeam />
+      <JobListings vacancies={vacancies} />
+      <OurTeam membersCount={membersCount} />
     </>
   );
 }
 
 export async function getStaticProps() {
-  const {API_URL} = process.env
+  const { API_URL } = process.env
   const res = await fetch(`${API_URL}/work-with-us`);
   const data = await res.json();
 
   const vacanciesRes = await fetch(`${API_URL}/vacancies`);
   const vacancies = await vacanciesRes.json();
 
+  const membersRes = await fetch(`${API_URL}/members/count?isAlumnus=false`);
+  const membersCount = await membersRes.json();
+
   return {
     props: {
       data,
       vacancies,
+      membersCount,
     },
   };
 }

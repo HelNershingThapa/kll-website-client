@@ -113,7 +113,6 @@ const Documents = ({ documents }) => {
                 width={48}
                 height={48}
                 alt="excel icon"
-                unoptimized
               />
             </div>
             <div className={classes.links}>

@@ -23,6 +23,7 @@ const useStyles = makeStyles((theme) => ({
     padding: "80px 0px",
     [theme.breakpoints.down("xs")]: {
       padding: "48px 0px",
+      marginTop: theme.spacing(15),
     },
   },
   testimonialsCtr: {

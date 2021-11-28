@@ -337,7 +337,6 @@ function ProjectDetails({ projectDetail }) {
           layout="fill"
           objectFit="cover"
           alt=""
-          unoptimized
         />
         <div className={classes.headerImageOverlay} />
         <div className={classes.projectDescription}>

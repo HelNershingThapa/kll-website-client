@@ -28,6 +28,11 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 800,
     color: theme.palette.grey[800],
     marginBottom: theme.spacing(3),
+    [theme.breakpoints.down("xs")]: {
+      fontSize: "1.333rem",
+      lineHeight: 1.333,
+      marginBottom: theme.spacing(2),
+    }
   },
   paragraphs: {
     display: "flex",
@@ -39,10 +44,16 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 400,
     color: theme.palette.grey[700],
     marginBottom: "0.8889rem",
+    [theme.breakpoints.down("xs")]: {
+      marginBottom: "0.7778rem",
+    }
   },
   actionButtons: {
     display: "flex",
     gap: theme.spacing(4),
+    [theme.breakpoints.down("xs")]: {
+      marginTop: "10px",
+    }
   },
   btnRoot: {
     padding: "10px 20px",

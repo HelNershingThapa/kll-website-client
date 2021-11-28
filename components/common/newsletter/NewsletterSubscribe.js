@@ -5,8 +5,6 @@ const NewsletterSubscribe = () => {
 
   const MAILCHIMP_URL = process.env.NEXT_PUBLIC_MAILCHIMP_URL;
 
-  console.log("asdasd", MAILCHIMP_URL)
-
   return (
     <MailchimpSubscribe
       url={ MAILCHIMP_URL }

@@ -47,6 +47,9 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: "860px",
     marginLeft: "auto",
     marginRight: "auto",
+    [theme.breakpoints.down("xs")]: {
+      padding: "48px 0"
+    }
   },
   jobListingsHeader: {
     lineHeight: 1.25,

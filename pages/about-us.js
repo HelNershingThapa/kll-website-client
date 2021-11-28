@@ -191,11 +191,9 @@ const renderers = {
   paragraph: MarkdownParagraph,
 };
 
-function AboutUs({ data }) {
+function AboutUs({ data, membersCount }) {
   const classes = useStyles();
   const { API_URL } = process.env;
-
-  console.log("data", data);
 
   return (
     <>
@@ -267,7 +265,7 @@ function AboutUs({ data }) {
       <HowWeBegan data={data.howWeBegan} />
       <Values values={data.values} />
       <Mission missions={data.mission} />
-      <OurTeam />
+      <OurTeam membersCount={membersCount} />
     </>
   );
 }
@@ -276,9 +274,13 @@ export async function getStaticProps(context) {
   const { API_URL } = process.env
   const { data } = await axios.get(`${API_URL}/about-us`);
 
+  const membersRes = await fetch(`${API_URL}/members/count?isAlumnus=false`);
+  const membersCount = await membersRes.json();
+
   return {
     props: {
       data,
+      membersCount,
     },
   };
 }

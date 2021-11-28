@@ -112,7 +112,6 @@ const ProjectCard = ({ name, category, src, slug }) => {
           layout="fill"
           objectFit="cover"
           alt="KLL projects"
-          unoptimized
         />
       </div>
       <div className={classes.projectInfoOverlay}>
