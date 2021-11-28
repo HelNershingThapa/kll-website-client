@@ -86,7 +86,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const FeaturedIn = () => {
+const FeaturedIn = ({ membersCount }) => {
   const router = useRouter();
   const classes = useStyles();
 
@@ -100,7 +100,7 @@ const FeaturedIn = () => {
                 variant="h1"
                 className={clsx(classes.teamNumber, styles.teamCount)}
               >
-                16
+                {membersCount}
               </Typography>
               <Typography className={classes.subtitle}>
                 awesome people at KLL
@@ -111,7 +111,7 @@ const FeaturedIn = () => {
                 Our Team
               </Typography>
               <Typography variant="body1" className={classes.learnTeam}>
-              Get to know our awesome team at Kathmandu Living Labs
+                Get to know our awesome team at Kathmandu Living Labs
               </Typography>
               <Button
                 disableElevation

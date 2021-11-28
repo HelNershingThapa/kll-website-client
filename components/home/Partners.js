@@ -52,8 +52,10 @@ function range(start, end) {
     .map((_, idx) => start + idx);
 }
 
-const Partners = () => {
+const Partners = ({ partners }) => {
   const classes = useStyles();
+  const { API_URL } = process.env;
+  console.log("partners comp", partners);
 
   return (
     <Container fixed>
@@ -62,10 +64,10 @@ const Partners = () => {
           We’ve partnered with
         </Typography>
         <div className={classes.partners}>
-          {[...range(1, 11)].map((partner) => (
+          {partners.map((partner) => (
             <div key={uid(partner)}>
               <img
-                src={`/project-partner-${partner}.png`}
+                src={`${API_URL}${partner.partnerLogo.url}`}
                 className={classes.partnerLogo}
                 alt=""
               />

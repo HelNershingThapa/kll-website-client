@@ -88,8 +88,6 @@ const useStyles = makeStyles((theme) => ({
 const ProjectsGrid = ({ projects }) => {
   const classes = useStyles();
 
-  console.log("projects", projects);
-
   return (
     <div className={classes.projects}>
       <div className={classes.project1}>

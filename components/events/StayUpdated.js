@@ -99,15 +99,14 @@ function StayUpdated() {
         <Image src="/icons/bell.svg" layout="fill" objectFit="cover" alt="" />
       </div>
       <Typography variant="h6" className={classes.title}>
-        Stay up to date with our events
+      {`Stay up-to-date with our events`}
       </Typography>
       <Typography
         variant="subtitle1"
         color="textSecondary"
         className={classes.description}
       >
-        If you want to be notified about upcoming events from KLL, please enter
-        your contact details below.
+        If you want to be notified about our upcoming events, please enter your contact details below.
       </Typography>
       <div className={classes.form}>
         <div>

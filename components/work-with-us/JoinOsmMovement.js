@@ -78,6 +78,7 @@ const renderers = {
 function JoinOsmMovement({ joinOsmMovement }) {
   const router = useRouter();
   const classes = useStyles();
+  const { API_URL } = process.env;
 
   console.log("joinOsmMovement", joinOsmMovement);
 
@@ -87,7 +88,7 @@ function JoinOsmMovement({ joinOsmMovement }) {
     <Container fixed className={classes.container}>
       <div className={classes.imgFill}>
         <Image
-          src="/join-osm-movement.png"
+          src={`${API_URL}${image.url}`}
           layout="fill"
           objectFit="cover"
           alt="Join the OSM Movement"
@@ -105,7 +106,7 @@ function JoinOsmMovement({ joinOsmMovement }) {
             color="primary"
             classes={{ root: classes.btnRoot, label: classes.btnLabel }}
             onClick={() =>
-              window.open("https://www.openstreetmap.org/user/new")
+              window.open("https://www.openstreetmap.org/")
             }
           >
             Join OSM

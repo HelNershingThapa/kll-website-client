@@ -69,7 +69,7 @@ const useStyles = makeStyles((theme) => ({
   headerImgFill: {
     position: "relative",
     width: "100%",
-    height: "32vw",
+    height: "33vw",
     [theme.breakpoints.down("xs")]: {
       width: "100%",
       height: 121,

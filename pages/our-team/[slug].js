@@ -61,6 +61,10 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     alignItems: "center",
     gap: "11px",
+    [theme.breakpoints.down("xs")]: {
+      display: "flex",
+      justifyContent: "center",
+    },
   },
   gobackTitle: {
     fontWeight: 500,
@@ -78,33 +82,52 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   name: {
-    fontSize: "2.6667rem",
+    fontFamily: "Inter",
     fontWeight: 600,
     lineHeight: 1.25,
     color: theme.palette.grey[900],
     marginTop: theme.spacing(20),
+    [theme.breakpoints.down("xs")]: {
+      fontSize: "1.333rem",
+      lineHeight: 1.333,
+      marginTop: theme.spacing(6),
+    }
   },
   position: {
-    fontSize: "24px",
+    fontSize: "1.333rem",
     fontWeight: 400,
     lineHeight: 1,
     color: theme.palette.grey[600],
     marginTop: theme.spacing(2),
+    [theme.breakpoints.down("xs")]: {
+      fontSize: "1rem",
+      lineHeight: 1.5556,
+      marginTop: 0,
+    },
   },
   bio: {
     maxWidth: 660,
     display: "flex",
     flexDirection: "column",
     marginTop: theme.spacing(10),
-    height: "calc(100vh - 520px)",
+    maxHeight: "calc(100vh - 520px)",
     overflow: "auto",
     gap: theme.spacing(7),
     marginBottom: theme.spacing(12),
+    [theme.breakpoints.down("xs")]: {
+      marginTop: theme.spacing(3),
+      marginBottom: theme.spacing(8),
+      maxHeight: "100%",
+      gap: theme.spacing(6), // line height of text used for giving spaces between paragraphs
+    }
   },
   para: {
     fontWeight: 400,
     lineHeight: "28px",
     color: theme.palette.grey[900],
+    [theme.breakpoints.down("xs")]: {
+      lineHeight: 1.5
+    },
   },
   socialLinks: {
     // marginTop: "52.92px",
@@ -138,7 +161,7 @@ const renderers = {
 function MemberDetail({ allMembers, memberDetail }) {
   const router = useRouter();
   const classes = useStyles();
-  const {API_URL} = process.env
+  const { API_URL } = process.env
 
   const { slug, name, position, bio, image } = memberDetail;
 
@@ -200,8 +223,8 @@ function MemberDetail({ allMembers, memberDetail }) {
               </Typography>
             </a>
           </Link>
-          <Typography className={classes.name}>{name}</Typography>
-          <Typography variant="body1" className={classes.position}>
+          <Typography variant="h2" className={classes.name}>{name}</Typography>
+          <Typography className={classes.position}>
             {position}
           </Typography>
           <div className={classes.bio}>
@@ -230,7 +253,7 @@ function MemberDetail({ allMembers, memberDetail }) {
 
 export async function getServerSideProps(context) {
   const { slug } = context.query;
-  const {API_URL} = process.env
+  const { API_URL } = process.env
 
   const response = await fetch(`${API_URL}/members?slug=${slug}`);
   const memberDetail = await response.json();

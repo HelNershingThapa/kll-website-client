@@ -86,8 +86,7 @@ function YouCard() {
         </div>
 
         <Typography component="p" className={classes.description}>
-          We’re always on the look-out for talented people to join our awesome
-          group of people. Think you fit in at Kathmandu Living Labs?
+          {`We’re always on the look-out for passionate people to join our team. Think you fit in at Kathmandu Living Labs?`}
         </Typography>
       </CardContent>
       <CardActions className={classes.socialLinks}>

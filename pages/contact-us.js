@@ -125,8 +125,7 @@ export default function Home() {
               {`We’d love to hear from you`}
             </Typography>
             <Typography className={classes.subTitle} variant="body1">
-              {`We’d like to hear from you. Simply fill in the form below to reach
-              out.`}
+              {`To contact us, simply fill in the form below.`}
             </Typography>
             <div className={classes.form}>
               {textFields.map((textField) => (

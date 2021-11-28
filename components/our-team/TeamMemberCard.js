@@ -66,10 +66,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function TeamMemberCard({ memberData, key }) {
+function TeamMemberCard({ memberData }) {
   const classes = useStyles();
-  const {API_URL} = process.env
-  
+  const { API_URL } = process.env
+
 
   const { slug, name, bio, position, image } = memberData;
 
@@ -82,8 +82,7 @@ function TeamMemberCard({ memberData, key }) {
           objectFit="cover"
           sizes="33vw"
           alt=""
-          unoptimized
-        />  
+        />
       </div>
       <Typography variant="h5" className={classes.name}>
         {name}

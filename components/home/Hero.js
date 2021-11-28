@@ -192,7 +192,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Hero = () => {
+const Hero = ({ partners }) => {
   const router = useRouter();
   const classes = useStyles();
 

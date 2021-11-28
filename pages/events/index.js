@@ -93,9 +93,7 @@ function Events({ events }) {
           Kathmandu Living Labs
         </Typography>
         <Typography variant="body1" className={classes.pageDescription}>
-          We at Kathmandu Living Labs organize various events and workshops for
-          everyone to attend every month or so. Feel free to learn more about
-          our events and participate.
+          We, at Kathmandu Living Labs, organize various events and workshops for everyone to attend. Learn more about our events below.
         </Typography>
         <EventTabs value={value} setValue={setValue} />
 
@@ -133,7 +131,7 @@ function Events({ events }) {
 }
 
 export async function getStaticProps() {
-  const {API_URL} = process.env
+  const { API_URL } = process.env
   const res = await fetch(`${API_URL}/events`);
   const events = await res.json();
 

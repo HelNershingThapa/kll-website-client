@@ -124,7 +124,7 @@ const BlogList = ({ featuredBlog }) => {
         </Typography>
         <div className={classes.headerAction}>
           <Typography variant="body1" className={classes.pageDescription}>
-            See what we’re up to at Kathmandu Living Labs
+            See what we are up to at Kathmandu Living Labs
           </Typography>
           <OutlinedInput
             classes={{

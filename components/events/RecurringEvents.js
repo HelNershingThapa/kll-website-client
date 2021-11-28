@@ -90,9 +90,7 @@ function RecurringEvents() {
           Recurring Events at Kathmandu Living Labs
         </Typography>
         <Typography variant="body1" className={classes.recurringDescription}>
-          Every month, we organize some recurring events for the Mapping
-          Community. You’re welcome to join us during our monthly events to get
-          in touch with us and contribute to the Open Mapping Community
+          {`Every month, we organize select recurring events for the Mapping Community. You’re welcome to join us during our monthly events to get in touch with us and contribute to the Open Mapping Community.`}
         </Typography>
         <Divider className={classes.divider} />
         <div className={classes.recurringLinks}>

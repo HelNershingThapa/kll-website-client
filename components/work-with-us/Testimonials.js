@@ -237,7 +237,6 @@ function Testimonials({ testimonials }) {
                         </Typography>
                       </div>
                     </div>
-
                   </div>
                 </div>
               ))}

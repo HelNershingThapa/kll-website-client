@@ -27,24 +27,29 @@ const useStyles = makeStyles((theme) => ({
     flexWrap: "wrap",
     justifyContent: "space-around",
     marginTop: "30px",
-    gap: theme.spacing(2),
+    gap: "3rem",
     marginBottom: theme.spacing(30),
     [theme.breakpoints.down("xs")]: {
       marginTop: theme.spacing(6),
       marginBottom: theme.spacing(15),
+      gap: "1.5rem",
     },
   },
   logo: {
     maxHeight: "60px",
+    mixBlendMode: "luminosity",
     [theme.breakpoints.down("xs")]: {
       maxHeight: "32px",
     },
   },
 }));
 
-const FeaturedIn = () => {
+const FeaturedIn = ({ featuredIn }) => {
   const router = useRouter();
   const classes = useStyles();
+  const { API_URL } = process.env;
+
+  console.log("featuredIn", featuredIn);
 
   return (
     <div className={classes.featuredInCtr}>
@@ -57,11 +62,11 @@ const FeaturedIn = () => {
           We have been featured in
         </Typography>
         <div className={classes.feautredInLogos}>
-          {["", "", "", ""].map((logo) => (
+          {featuredIn.map((logo) => (
             <img
               key={uid(logo)}
               className={classes.logo}
-              src="/guardian-black.png"
+              src={`${API_URL}${logo.newspaperLogo.url}`}
               alt="Guardian logo"
             />
           ))}
