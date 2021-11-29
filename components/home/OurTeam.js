@@ -6,6 +6,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { Typography, Container, Button } from "@material-ui/core";
 import ProjectsGrid from "components/our-projects/ProjectsGrid";
 import styles from "../../styles/AboutUs.module.css";
+import { desktop, tablet } from "../../styles/theme";
 
 const useStyles = makeStyles((theme) => ({
   bgCtr: {
@@ -22,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
     gap: "67px",
     alignItems: "center",
-    [theme.breakpoints.down("xs")]: {
+    [theme.breakpoints.down(tablet)]: {
       flexDirection: "column",
       gap: theme.spacing(8),
       alignItems: "flex-start",

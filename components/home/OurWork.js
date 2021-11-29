@@ -55,21 +55,19 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Partners = ({ projects }) => {
+const Partners = ({ projects, data }) => {
   const router = useRouter();
   const classes = useStyles();
-
-  console.log("projects", projects);
 
   return (
     <div className={classes.container}>
       <Container fixed>
         <Typography variant="h3" className={classes.title}>
-          Our Work
+          {data.title}
         </Typography>
         <div className={classes.descCtr}>
           <Typography variant="h6" className={classes.description}>
-            {`We have worked on some amazing projects with our partners. Check out some of our featured work below:`}
+            {data.description}
           </Typography>
           <Hidden smDown>
             <Button

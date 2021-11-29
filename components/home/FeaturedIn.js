@@ -49,8 +49,6 @@ const FeaturedIn = ({ featuredIn }) => {
   const classes = useStyles();
   const { API_URL } = process.env;
 
-  console.log("featuredIn", featuredIn);
-
   return (
     <div className={classes.featuredInCtr}>
       <Container fixed>

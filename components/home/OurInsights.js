@@ -62,9 +62,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Partners = () => {
+const OurInsights = ({ blogs }) => {
   const router = useRouter();
   const classes = useStyles();
+
+  console.log(blogs);
 
   return (
     <>
@@ -81,8 +83,8 @@ const Partners = () => {
             Our Insights
           </Typography>
           <div className={classes.blogListContainer}>
-            {["", "", ""].map((blog) => (
-              <BlogListCard key={uid(blog)} />
+            {blogs.map((blog) => (
+              <BlogListCard key={uid(blog)} blog={blog} />
             ))}
           </div>
           <Button
@@ -99,4 +101,4 @@ const Partners = () => {
   );
 };
 
-export default Partners;
+export default OurInsights;

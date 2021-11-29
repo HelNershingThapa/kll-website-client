@@ -46,16 +46,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function range(start, end) {
-  return Array(end - start + 1)
-    .fill()
-    .map((_, idx) => start + idx);
-}
-
 const Partners = ({ partners }) => {
   const classes = useStyles();
   const { API_URL } = process.env;
-  console.log("partners comp", partners);
 
   return (
     <Container fixed>

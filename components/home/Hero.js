@@ -3,6 +3,7 @@ import clsx from "clsx";
 import Link from 'next/link';
 import { makeStyles } from "@material-ui/core/styles";
 import { Typography, Container, Button } from "@material-ui/core";
+import ReactMarkdown from "react-markdown";
 import { desktop, tablet } from "styles/theme";
 
 const useStyles = makeStyles((theme) => ({
@@ -57,30 +58,19 @@ const useStyles = makeStyles((theme) => ({
   heroTitle: {
     color: theme.palette.grey[900],
     fontFamily: "Manrope",
-    fontSize: "48px",
+    fontSize: "2.6667rem",
     fontWeight: 300,
-    lineHeight: "72px",
+    lineHeight: 1.5,
+    "& strong": {
+      fontWeight: 700,
+      color: theme.palette.primary.main,
+    },
     [theme.breakpoints.down("md")]: {
       fontSize: "40px",
       lineHeight: 1.5,
     },
     [theme.breakpoints.down(desktop)]: {
       fontSize: "36px",
-      lineHeight: 1.5,
-    },
-    [theme.breakpoints.down("xs")]: {
-      fontSize: "20px",
-      lineHeight: "32px",
-    },
-  },
-  heroTitleHighlight: {
-    fontWeight: 700,
-    [theme.breakpoints.down("md")]: {
-      fontSize: "40px",
-      lineHeight: 1.5,
-    },
-    [theme.breakpoints.down(desktop)]: {
-      fontSize: "40px",
       lineHeight: 1.5,
     },
     [theme.breakpoints.down("xs")]: {
@@ -192,28 +182,33 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Hero = ({ partners }) => {
+function MarkdownParagraph(props) {
+  const classes = useStyles();
+
+  return (
+    <Typography variant="subtitle1" className={classes.heroTitle}>
+      {props.children}
+    </Typography>
+  );
+}
+
+const renderers = {
+  paragraph: MarkdownParagraph,
+};
+
+const Hero = ({ title, image }) => {
   const router = useRouter();
   const classes = useStyles();
+
+  console.log("title", title);
 
   return (
     <div className={classes.root}>
       <div fixed className={classes.container}>
         <div className={classes.actionItemsWrapper}>
           <div className={classes.heroTitleContainer}>
-            <Typography variant="h2" className={classes.heroTitle}>
-              A{" "}
-              <Typography
-                className={classes.heroTitleHighlight}
-                variant="h2"
-                color="primary"
-                display="inline"
-              >
-                pioneer civic-tech enterprise
-              </Typography>{" "}
-              providing humane data and technology solutions to businessnes,
-              governments, development partners and the civil society
-            </Typography>
+            {/* eslint-disable-next-line react/no-children-prop */}
+            <ReactMarkdown children={title} renderers={renderers} />
           </div>
           <div className={classes.actionItems}>
             <Button

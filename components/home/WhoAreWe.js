@@ -1,47 +1,9 @@
-import withWidth from "@material-ui/core/withWidth";
-
 import { useRouter } from "next/router";
 import clsx from "clsx";
-import { uid } from "react-uid";
-import Image from "next/image";
+import ReactMarkdown from "react-markdown";
 import { makeStyles } from "@material-ui/core/styles";
 import { Typography, Container, Button, Chip } from "@material-ui/core";
 import { desktop, tablet } from "../../styles/theme";
-
-const stats = [
-  {
-    name: "Est",
-    value: "2013",
-  },
-  {
-    name: "Projects",
-    value: "600",
-  },
-  {
-    name: "People",
-    value: "16",
-  },
-  {
-    name: "Partners",
-    value: "06",
-  },
-  {
-    name: "Est",
-    value: "2013",
-  },
-  {
-    name: "Projects",
-    value: "600",
-  },
-  {
-    name: "People",
-    value: "16",
-  },
-  {
-    name: "Partners",
-    value: "06",
-  },
-];
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -131,7 +93,7 @@ const useStyles = makeStyles((theme) => ({
   paragraphs: {
     display: "flex",
     flexDirection: "column",
-    gap: "1.111rem",
+    gap: "1.7778rem",
     marginBottom: theme.spacing(15),
     "& p": {
       fontSize: "1.111rem",
@@ -141,7 +103,7 @@ const useStyles = makeStyles((theme) => ({
     },
     [theme.breakpoints.down(desktop)]: {
       marginBottom: theme.spacing(10),
-      gap: "0.8889rem",
+      gap: theme.spacing(6),
       "& p": {
         fontSize: "0.8889rem",
         lineHeight: 1.5,
@@ -149,7 +111,7 @@ const useStyles = makeStyles((theme) => ({
     },
     [theme.breakpoints.down("xs")]: {
       marginBottom: theme.spacing(5),
-      gap: "0.7778rem",
+      gap: theme.spacing(5),
       "& p": {
         fontSize: "0.778rem",
         lineHeight: 1.428,
@@ -266,11 +228,27 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Partners = ({ width }) => {
+function MarkdownParagraph(props) {
+  const classes = useStyles();
+
+  return (
+    <Typography variant="body1" component="p">
+      {props.children}
+    </Typography>
+  );
+}
+
+const renderers = {
+  paragraph: MarkdownParagraph,
+};
+
+const Partners = ({ data }) => {
   const router = useRouter();
   const classes = useStyles();
 
-  console.log(">>>", width);
+
+  console.log('DATA', data);
+
 
   return (
     <div className={classes.root}>
@@ -281,22 +259,11 @@ const Partners = ({ width }) => {
         <div className={classes.content}>
           <div>
             <Typography variant="h3" className={classes.title}>
-              {" "}
-              {`Who are we?`}
+              {data.title}
             </Typography>
             <div className={classes.paragraphs}>
-              <Typography variant="body1" component="p">
-                Kathmandu Living Labs is a pioneer civic-tech enterprise that provides data and technology solutions to businesses, governments, development partners, and civil society.
-              </Typography>
-              <Typography variant="body1" component="p">
-                KLL was established to challenge the status quo of knowledge production paradigm, in which a vast majority are excluded. It aims to bridge that gap and bring the voices and needs from the ground and resolve pressing issues using technological innovation and deep immersion in communities.
-              </Typography>
-              <Typography variant="body1" component="p">
-                So far, we have touched the lives of thousands of people across the globe through open mapping, disaster response, civic engagement, internships, skill-building, and community-based projects.
-              </Typography>
-              <Typography variant="body1" component="p">
-                Our team is a diverse mix of experts in areas of technology, civil society, social science, and finance - passionate about improving the society we live in through the power of technology.
-              </Typography>
+              {/* eslint-disable-next-line react/no-children-prop */}
+              <ReactMarkdown children={data.text} renderers={renderers} />
             </div>
             {/* <div className={classes.kllInNumbers}>
               <Typography variant="h5" className={classes.statTitleTypo}>
@@ -331,4 +298,4 @@ const Partners = ({ width }) => {
   );
 };
 
-export default withWidth()(Partners);
+export default Partners;

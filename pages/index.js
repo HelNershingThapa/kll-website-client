@@ -56,10 +56,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Home({ projects, partners, featuredIn, membersCount }) {
+export default function Home({ homeData, projects, partners, featuredIn, membersCount, blogs }) {
   const classes = useStyles();
-
-  console.log("MEMBERS COUNT", membersCount);
 
   return (
     <>
@@ -69,12 +67,12 @@ export default function Home({ projects, partners, featuredIn, membersCount }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div>
-        <Hero />
+        <Hero title={homeData.heroTitle} image={homeData.heroImage} />
         <Partners partners={partners} />
-        <WhoAreWe />
-        <OurWork projects={projects} />
-        <SdgCommitment />
-        {/* <OurInsights /> */}
+        <WhoAreWe data={homeData.whoAreWe} />
+        <OurWork projects={projects} data={homeData.ourWork} />
+        <SdgCommitment data={homeData.ourCommitment} />
+        <OurInsights blogs={blogs} />
         <FeaturedIn featuredIn={featuredIn} />
         <OurTeam membersCount={membersCount} />
       </div>
@@ -96,12 +94,20 @@ export async function getStaticProps() {
   const membersRes = await fetch(`${API_URL}/members/count?isAlumnus=false`);
   const membersCount = await membersRes.json();
 
+  const blogRes = await fetch(`${API_URL}/blogs?_limit=3`);
+  const blogs = await blogRes.json();
+
+  const homeDataRes = await fetch(`${API_URL}/home`);
+  const homeData = await homeDataRes.json();
+
   return {
     props: {
-      projects,
+      homeData,
       partners,
+      projects,
       featuredIn: inTheMedia.featuredInImages,
-      membersCount: membersCount,
+      blogs,
+      membersCount,
     },
   };
 }
