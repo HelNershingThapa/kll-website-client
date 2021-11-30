@@ -14,6 +14,7 @@ import {
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { desktop } from "../../styles/theme";
 
 const useStyles = makeStyles((theme) => ({
   testimonials: {
@@ -30,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
-    [theme.breakpoints.down(1280)]: {
+    [theme.breakpoints.down(desktop)]: {
       flexDirection: "column",
       alignItems: "flex-start",
       gap: theme.spacing(6),
@@ -64,7 +65,7 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "flex-end",
     gap: theme.spacing(7.5),
     marginTop: theme.spacing(10),
-    [theme.breakpoints.down(1280)]: {
+    [theme.breakpoints.down(desktop)]: {
       display: "none",
     },
   },
@@ -92,7 +93,7 @@ const useStyles = makeStyles((theme) => ({
     fontSize: "40px",
     color: theme.palette.grey[400],
     marginBottom: "10px",
-    [theme.breakpoints.down(1280)]: {
+    [theme.breakpoints.down(desktop)]: {
       fontSize: "32px",
       transform: "translateX(0px)",
     },
@@ -103,7 +104,7 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 300,
     lineHeight: 1.5,
     color: theme.palette.grey[700],
-    [theme.breakpoints.down(1280)]: {
+    [theme.breakpoints.down(desktop)]: {
       fontSize: "1.7778rem",
     },
     [theme.breakpoints.down("xs")]: {
@@ -144,7 +145,7 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "flex-end",
     gap: theme.spacing(7.5),
     marginTop: theme.spacing(10),
-    [theme.breakpoints.up(1280)]: {
+    [theme.breakpoints.up(desktop)]: {
       display: "none",
     },
   },

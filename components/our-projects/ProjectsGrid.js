@@ -32,7 +32,7 @@ const projects = [
 const useStyles = makeStyles((theme) => ({
   projects: {
     display: "grid",
-    gridTemplateColumns: "1fr 0.57fr 1.0384fr",
+    gridTemplateColumns: "repeat(12, 1fr)",
     gridTemplateRows: "620px 500px 500px",
     gridGap: theme.spacing(10),
     [theme.breakpoints.down("sm")]: {
@@ -42,13 +42,13 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   project1: {
-    gridColumn: "1 / 3",
+    gridColumn: "span 7",
     [theme.breakpoints.down("sm")]: {
       gridColumn: "auto",
     },
   },
   project2: {
-    gridColumn: "3/4",
+    gridColumn: "span 5",
     "& h4": {
       maxWidth: 489,
     },
@@ -57,7 +57,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   project3: {
-    gridColumn: "1/2",
+    gridColumn: "span 5",
     gridRow: "2/4",
     [theme.breakpoints.down("sm")]: {
       gridColumn: "auto",
@@ -65,7 +65,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   project4: {
-    gridColumn: "2/4",
+    gridColumn: "span 7",
     gridRow: "2/3",
     [theme.breakpoints.down("sm")]: {
       gridColumn: "auto",
@@ -73,7 +73,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   project5: {
-    gridColumn: "2/4",
+    gridColumn: "span 7",
     gridRow: "3/4",
     "& h4": {
       maxWidth: 423,

@@ -63,6 +63,14 @@ const useStyles = makeStyles((theme) => ({
   socialIcon: {
     fontSize: "24px",
     color: theme.palette.grey[600],
+    "&:hover": {
+      cursor: "pointer",
+    },
+  },
+  osmLogo: {
+    "&:hover": {
+      cursor: "pointer",
+    }
   },
 }));
 
@@ -71,7 +79,9 @@ function TeamMemberCard({ memberData }) {
   const { API_URL } = process.env
 
 
-  const { slug, name, bio, position, image } = memberData;
+  const { slug, name, bio, position, image, twitter, openStreetMap, linkedIn } = memberData;
+
+  console.log(twitter);
 
   return (
     <div>
@@ -103,18 +113,23 @@ function TeamMemberCard({ memberData }) {
         </Link>
       </Typography>
       <div className={classes.socialLinks}>
-        <i
+        {twitter && <i
           className={clsx("ri-twitter-fill", classes.socialIcon)}
           style={{ color: "#1DA1F2" }}
-        />
-        <i
+          onClick={() => window.open(twitter)}
+        />}
+        {/* <i
           className={clsx("ri-instagram-line", classes.socialIcon)}
           style={{ color: "#E1306C" }}
-        />
-        <i
+        /> */}
+        {
+          openStreetMap && <Image className={classes.osmLogo} src="/icons/osm-logo.png" height={24} width={24} onClick={() => window.open(openStreetMap)} alt="OpenStreetMap logo" />
+        }
+        {linkedIn && <i
           className={clsx("ri-linkedin-fill", classes.socialIcon)}
           style={{ color: "#0077B5" }}
-        />
+          onClick={() => window.open(linkedIn)}
+        />}
       </div>
     </div>
   );

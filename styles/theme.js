@@ -112,8 +112,8 @@ const theme = createTheme({
           paddingRight: spacing * 7.5,
         },
         [`@media (min-width:  ${desktop}px)`]: {
-          paddingLeft: spacing * 7.5,
-          paddingRight: spacing * 7.5,
+          paddingLeft: spacing * 25,
+          paddingRight: spacing * 25,
         },
         [`@media (min-width:  ${lg}px)`]: {
           paddingLeft: spacing * 7.5,

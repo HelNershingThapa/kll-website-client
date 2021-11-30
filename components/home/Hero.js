@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
     background: theme.palette.grey[100],
     justifyContent: "flex-end",
     [theme.breakpoints.down("md")]: {
-      gridTemplateColumns: "1fr 1220px 1fr",
+      gridTemplateColumns: "1fr 1080px 1fr",
     },
     [theme.breakpoints.down(desktop)]: {
       gridTemplateColumns: "1fr 932px 1fr",

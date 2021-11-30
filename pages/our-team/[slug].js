@@ -138,6 +138,14 @@ const useStyles = makeStyles((theme) => ({
   },
   socialIcon: {
     fontSize: "32px",
+    "&:hover": {
+      cursor: "pointer",
+    }
+  },
+  osmLogo: {
+    "&:hover": {
+      cursor: "pointer",
+    }
   },
   transparentButton: {
     background: "transparent",
@@ -163,7 +171,7 @@ function MemberDetail({ allMembers, memberDetail }) {
   const classes = useStyles();
   const { API_URL } = process.env
 
-  const { slug, name, position, bio, image } = memberDetail;
+  const { slug, name, position, bio, image, twitter, openStreetMap, linkedIn } = memberDetail;
 
   const arrayPosition = allMembers.map((e) => e.slug).indexOf(slug);
 
@@ -232,18 +240,19 @@ function MemberDetail({ allMembers, memberDetail }) {
             <ReactMarkdown children={bio} renderers={renderers} />
           </div>
           <div className={classes.socialLinks}>
-            <i
+            {twitter && <i
               className={clsx("ri-twitter-fill", classes.socialIcon)}
               style={{ color: "#1DA1F2" }}
-            />
-            <i
-              className={clsx("ri-instagram-line", classes.socialIcon)}
-              style={{ color: "#E1306C" }}
-            />
-            <i
+              onClick={() => window.open(twitter)}
+            />}
+            {
+              openStreetMap && <Image className={classes.osmLogo} src="/icons/osm-logo.png" height={32} width={32} onClick={() => window.open(openStreetMap)} alt="OpenStreetMap logo" />
+            }
+            {linkedIn && <i
               className={clsx("ri-linkedin-fill", classes.socialIcon)}
               style={{ color: "#0077B5" }}
-            />
+              onClick={() => window.open(linkedIn)}
+            />}
           </div>
         </div>
       </div>
@@ -262,8 +271,6 @@ export async function getServerSideProps(context) {
     `${API_URL}/members?_sort=name:ASC&isAlumnus=false`
   );
   const allMembers = await allMembersResponse.json();
-
-  console.log(memberDetail);
 
   return {
     props: {

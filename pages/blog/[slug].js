@@ -398,7 +398,7 @@ function BlogDetail({ blog }) {
           <Divider classes={{ root: classes.divider }} />
           <div className={clsx(classes.author, classes.footerMargin)}>
             <Avatar>
-              <Image src={`${API_URL}${blog.member.image.url}`} layout="fill" alt="DP" />
+              <Image src={`${API_URL}${blog.member.image.url}`} layout="fill" alt="DP" objectFit="cover" />
             </Avatar>
             <div className={classes.authorDetails}>
               <Typography variant="subtitle1" className={classes.authorName}>
