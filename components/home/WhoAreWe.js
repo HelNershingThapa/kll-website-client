@@ -246,13 +246,9 @@ const Partners = ({ data }) => {
   const router = useRouter();
   const classes = useStyles();
 
-
-  console.log('DATA', data);
-
-
   return (
     <div className={classes.root}>
-      <div fixed className={classes.container}>
+      <div className={classes.container}>
         <div className={classes.imgFill}>
           <img src="/whoarewe.png" className={classes.image} alt="" />
         </div>

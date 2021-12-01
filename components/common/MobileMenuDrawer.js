@@ -104,7 +104,7 @@ const MobileMenuDrawer = ({ open, onClose, menuItems }) => {
       variant="temporary"
       open={open}
       onClose={onClose}
-      anchor="up"
+      anchor="top"
       classes={{ paper: classes.paper }}
     >
       <Container fixed>

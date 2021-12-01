@@ -70,11 +70,10 @@ function Custom404() {
   return (
     <>
       <div className={styles.rootCtr}>
-        {/* <Image src="/Frame.png" layout="fill" objectFit="cover" objectPosition="top" alt="" style={{ mixBlendMode: "luminosity" }} /> */}
         <Container fixed className={classes.container}>
           <div className={classes.root}>
             <div className={classes.scavengerImgFill}>
-              <Image src="/not-found.png" layout="fill" objectFit="contain" />
+              <Image src="/not-found.png" layout="fill" objectFit="contain" alt="not found image"/>
             </div>
             <Typography variant="h1" className={classes.title} align="center">Page Not Found</Typography>
             <Typography variant="h5" className={classes.description} align="center">The page you’re looking for couldn’t be found on our server. Please check your link again for corrections.</Typography>

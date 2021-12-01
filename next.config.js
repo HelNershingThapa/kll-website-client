@@ -11,6 +11,7 @@ module.exports = {
       "localhost",
       "salty-bastion-86199.herokuapp.com",
       "167.71.225.119",
+      "api.kathmandulivinglabs.org",
     ],
   },
   webpack: (config) => {

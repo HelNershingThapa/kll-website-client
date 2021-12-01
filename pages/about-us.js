@@ -11,44 +11,7 @@ import Footprint from "components/about-us/Footprint";
 import Sdg from "components/about-us/Sdg";
 import Values from "components/about-us/Values";
 import Mission from "components/about-us/Mission";
-
-const stats = [
-  {
-    title: "Est",
-    value: "2013",
-  },
-  {
-    title: "Projects",
-    value: "600+",
-  },
-  {
-    title: "People",
-    value: "16",
-  },
-  {
-    title: "Partners",
-    value: "06",
-  },
-];
-
-const values = [
-  {
-    title: "Heavily Biased towards Action",
-    icon: "work1.svg",
-  },
-  {
-    title: "Excude Creative Confidence",
-    icon: "work2.svg",
-  },
-  {
-    title: "Co-Operativive & Collaborative",
-    icon: "work3.svg",
-  },
-  {
-    title: "Work Local, Talk Global",
-    icon: "work4.svg",
-  },
-];
+import { NextSeo } from "next-seo";
 
 const useStyles = makeStyles((theme) => ({
   pageTitle: {
@@ -191,15 +154,21 @@ const renderers = {
   paragraph: MarkdownParagraph,
 };
 
-function AboutUs({ data, membersCount }) {
+function AboutUs({ data, membersCount, sdgs }) {
   const classes = useStyles();
   const { API_URL } = process.env;
+
+  const SEO = {
+    title: "About Kathmandu Living Labs",
+    description: "How Kathmandu Living Labs started, footprint, SDG goals, values and mission"
+  }
 
   return (
     <>
       <Head>
         <title>About Us | Kathmandu Living Labs</title>
       </Head>
+      <NextSeo {...SEO} />
       <Container fixed className={classes.container}>
         <Typography variant="h4" className={classes.pageTitle}>
           About Us
@@ -259,7 +228,7 @@ function AboutUs({ data, membersCount }) {
             </div>
           </div>
           <Footprint />
-          <Sdg />
+          <Sdg sdgs={sdgs} />
         </div>
       </Container>
       <HowWeBegan data={data.howWeBegan} />
@@ -277,10 +246,14 @@ export async function getStaticProps(context) {
   const membersRes = await fetch(`${API_URL}/members/count?isAlumnus=false`);
   const membersCount = await membersRes.json();
 
+  const impactRes = await fetch(`${API_URL}/impact`);
+  const impact = await impactRes.json();
+
   return {
     props: {
       data,
       membersCount,
+      sdgs: impact.sdgs,
     },
     revalidate: 60,
   };

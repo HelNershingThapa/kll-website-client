@@ -56,7 +56,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Home({ homeData, projects, partners, featuredIn, membersCount, blogs }) {
+export default function Home({ homeData, projects, partners, featuredIn, membersCount, blogs, sdgs }) {
   const classes = useStyles();
 
   return (
@@ -71,7 +71,7 @@ export default function Home({ homeData, projects, partners, featuredIn, members
         <Partners partners={partners} />
         <WhoAreWe data={homeData.whoAreWe} />
         <OurWork projects={projects} data={homeData.ourWork} />
-        <SdgCommitment data={homeData.ourCommitment} />
+        <SdgCommitment data={homeData.ourCommitment} sdgs={sdgs}/>
         <OurInsights blogs={blogs} />
         <FeaturedIn featuredIn={featuredIn} />
         <OurTeam membersCount={membersCount} />
@@ -100,6 +100,9 @@ export async function getStaticProps() {
   const homeDataRes = await fetch(`${API_URL}/home`);
   const homeData = await homeDataRes.json();
 
+  const impactRes = await fetch(`${API_URL}/impact`);
+  const impact = await impactRes.json();
+
   return {
     props: {
       homeData,
@@ -108,6 +111,7 @@ export async function getStaticProps() {
       featuredIn: inTheMedia.featuredInImages,
       blogs,
       membersCount,
+      sdgs: impact.sdgs,
     },
     revalidate: 60,
   };

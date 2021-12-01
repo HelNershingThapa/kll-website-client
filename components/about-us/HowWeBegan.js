@@ -8,6 +8,9 @@ const useStyles = makeStyles((theme) => ({
     paddingBottom: "240px",
     marginBottom: "340px",
     background: theme.palette.grey[100],
+    [theme.breakpoints.down("sm")]: {
+      paddingBottom: "22.5vw",
+    },
     [theme.breakpoints.down("xs")]: {
       paddingTop: theme.spacing(12),
       marginBottom: "118px",

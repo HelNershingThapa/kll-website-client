@@ -204,7 +204,7 @@ const Hero = ({ title, image }) => {
 
   return (
     <div className={classes.root}>
-      <div fixed className={classes.container}>
+      <div className={classes.container}>
         <div className={classes.actionItemsWrapper}>
           <div className={classes.heroTitleContainer}>
             {/* eslint-disable-next-line react/no-children-prop */}

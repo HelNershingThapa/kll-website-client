@@ -1,4 +1,5 @@
 import Head from "next/head";
+import { BlogJsonLd } from 'next-seo';
 import moment from "moment";
 import { uid } from "react-uid";
 import clsx from "clsx";
@@ -350,11 +351,24 @@ function BlogDetail({ blog }) {
   const classes = useStyles();
   const { API_URL } = process.env;
 
+  console.log("blog", blog);
+
   return (
     <>
       <Head>
         <title>{`${blog.title} | Blog | Kathmandu Living Labs`}</title>
       </Head>
+      <BlogJsonLd
+        url="https://kathmandulivinglabs.org/blog"
+        title={blog.title}
+        images={[
+          blog.coverPhoto?.url
+        ]}
+        dateModified={blog.created_at}
+        datePublished={blog.published_at}
+        authorName={blog.member.name}
+        keywords={blog.tags.map(tag => tag.name).join(", ")}
+      />
       {blog.coverPhoto && <div className={classes.headerImageContainer}>
         <Image
           priority

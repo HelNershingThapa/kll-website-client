@@ -9,6 +9,9 @@ import Footer from "components/common/Footer";
 import { useRouter } from "next/router";
 import 'remixicon/fonts/remixicon.css'
 import "styles/globals.css";
+import { DefaultSeo } from "next-seo";
+
+import SEO from '../next-seo.config';
 
 export default function MyApp(props) {
   const { Component, pageProps } = props;
@@ -31,6 +34,7 @@ export default function MyApp(props) {
           content="minimum-scale=1, initial-scale=1, width=device-width"
         />
       </Head>
+      <DefaultSeo {...SEO} />
       <ThemeProvider theme={theme}>
         {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
         <CssBaseline />

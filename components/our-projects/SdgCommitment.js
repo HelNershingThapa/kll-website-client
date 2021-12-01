@@ -97,8 +97,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const SdgCommitment = () => {
+const SdgCommitment = ({ sdgs }) => {
   const classes = useStyles();
+
+  console.log("sdgs", sdgs);
+
+  const sdg = sdgs.map(sdg => sdg.goalNumber).sort((a, b) => a - b)
+
+  const formattedSdgNumber = sdg.map(n => n > 9 ? "" + n : "0" + n)
 
   return (
     <div className={classes.root}>
@@ -114,7 +120,7 @@ const SdgCommitment = () => {
             {`From our inception in 2012, Kathmandu Living Labs has been fully committed to the UN’s Sustainable Development Goals (SDGs). Our work, over the years, has contributed to the following SDGs.`}
           </Typography>
           <div className={classes.sdgIcons}>
-            {["01", "02", "03", "07", "08", "12", "13", "14"].map((icon) => (
+            {formattedSdgNumber.map((icon) => (
               <div key={uid(icon)} className={classes.imgFill}>
                 <Image
                   src={`/sdg/E-WEB-Goal-${icon}.png`}

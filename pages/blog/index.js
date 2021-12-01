@@ -194,7 +194,6 @@ export async function getServerSideProps() {
       featuredBlog: featuredBlog[0],
       // blogs,
     },
-    revalidate: 60,
   };
 }
 

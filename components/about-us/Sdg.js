@@ -60,6 +60,9 @@ const useStyles = makeStyles((theme) => ({
     width: 100,
     height: 100,
     mixBlendMode: "luminosity",
+    "&:hover": {
+      mixBlendMode: "normal",
+    },
     [theme.breakpoints.down("xs")]: {
       width: 69,
       height: 69,
@@ -67,8 +70,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Sdg = ({ name, category, src }) => {
+const Sdg = ({ sdgs }) => {
   const classes = useStyles();
+
+  const sdg = sdgs.map(sdg => sdg.goalNumber).sort((a, b) => a - b)
+
+  const formattedSdgNumber = sdg.map(n => n > 9 ? "" + n : "0" + n)
+
   return (
     <div className={classes.root}>
       <div className={classes.committment}>
@@ -76,19 +84,7 @@ const Sdg = ({ name, category, src }) => {
           <Image src="/icons/sdg.png" layout="fill" objectFit="cover" alt="" />
         </div>
         <div className={classes.sdgIcons}>
-          {[
-            "03",
-            "04",
-            "06",
-            "07",
-            "08",
-            "10",
-            "11",
-            "13",
-            "15",
-            "16",
-            "17",
-          ].map((icon) => (
+          {formattedSdgNumber.map((icon) => (
             <div key={uid(icon)} className={classes.sdgIconFill}>
               <Image
                 src={`/sdg/E-WEB-Goal-${icon}.png`}

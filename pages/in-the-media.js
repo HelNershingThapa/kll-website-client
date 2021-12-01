@@ -67,6 +67,9 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     justifyContent: "space-between",
     alignItems: "flex-end",
+    [theme.breakpoints.down("xs")]: {
+      padding: theme.spacing(4),
+    }
   },
   headerCoverageTitle: {
     width: "90%",
@@ -132,6 +135,9 @@ const useStyles = makeStyles((theme) => ({
   newspaperLogo: {
     maxHeight: "48px",
     width: "100%",
+    [theme.breakpoints.down("xs")]: {
+      maxHeight: "24px",
+    }
   },
 }));
 

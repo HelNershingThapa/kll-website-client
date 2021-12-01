@@ -16,6 +16,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { desktop } from "../../styles/theme";
 
+
 const useStyles = makeStyles((theme) => ({
   testimonials: {
     position: "relative",
@@ -170,6 +171,8 @@ function Testimonials({ testimonials }) {
   const { API_URL } = process.env
   const { title, description, testimonies } = testimonials;
 
+  console.log(testimonials);
+
   return (
     <div className={classes.testimonials}>
       <Container fixed>
@@ -216,7 +219,7 @@ function Testimonials({ testimonials }) {
                     <Typography className={classes.quote}>
                       {testimony.quote}
                     </Typography>
-                    <div className={classes.author}>
+                    {testimony.member && <div className={classes.author}>
                       <Avatar className={classes.avatar}>
                         <Image
                           src={`${API_URL}${testimony.member.image.url}`}
@@ -239,7 +242,7 @@ function Testimonials({ testimonials }) {
                           {testimony.member.position}
                         </Typography>
                       </div>
-                    </div>
+                    </div>}
                   </div>
                 </div>
               ))}

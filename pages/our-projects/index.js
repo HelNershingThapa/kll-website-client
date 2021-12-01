@@ -75,7 +75,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const OurProjects = ({ projects }) => {
+const OurProjects = ({ projects, sdgs }) => {
   const classes = useStyles();
 
   projects.sort(
@@ -109,7 +109,7 @@ const OurProjects = ({ projects }) => {
         <ProjectsGrid projects={projects.slice(0, 5)} />
       </Container>
       <div className={classes.sdgMargin}>
-        <SdgCommitment />
+        <SdgCommitment sdgs={sdgs} />
       </div>
       <Container fixed>
         <ProjectsGrid projects={projects.slice(5, 10)} />
@@ -121,14 +121,18 @@ const OurProjects = ({ projects }) => {
   );
 };
 
-export async function getStaticProps() {  
+export async function getStaticProps() {
   const { API_URL } = process.env
   const res = await fetch(`${API_URL}/projects`);
   const projects = await res.json();
 
+  const impactRes = await fetch(`${API_URL}/impact`);
+  const impact = await impactRes.json();
+
   return {
     props: {
       projects,
+      sdgs: impact.sdgs,
     },
     revalidate: 60,
   };
