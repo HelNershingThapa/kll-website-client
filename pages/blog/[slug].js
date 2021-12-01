@@ -17,11 +17,11 @@ const useStyles = makeStyles((theme) => ({
   blog: {
     position: "relative",
     margin: "auto",
-    marginTop: "1.78rem",
+    marginTop: theme.spacing(8),
     maxWidth: "800px",
-    [theme.breakpoints.down(860)]: {
-      paddingLeft: 16,
-      paddingRight: 16,
+    [theme.breakpoints.down("xs")]: {
+      marginTop: theme.spacing(4),
+      paddingBottom: theme.spacing(10),
     },
   },
   share: {
@@ -38,6 +38,11 @@ const useStyles = makeStyles((theme) => ({
   },
   headerImageContainer: {
     position: "relative",
+    width: "100%",
+    height: "66vh",
+    [theme.breakpoints.down("xs")]: {
+      height: "64vw",
+    }
   },
   headerImageOverlay: {
     position: "absolute",
@@ -50,10 +55,11 @@ const useStyles = makeStyles((theme) => ({
   },
   timestamp: {
     display: "flex",
-    gap: "1.78rem",
-    marginBottom: "0.67rem",
+    gap: theme.spacing(8),
+    marginBottom: theme.spacing(3),
     color: theme.palette.grey[700],
     [theme.breakpoints.down("xs")]: {
+      marginBottom: theme.spacing(2),
       "& h6": {
         fontSize: "14px",
       },
@@ -64,6 +70,9 @@ const useStyles = makeStyles((theme) => ({
     gap: theme.spacing(3),
     marginTop: theme.spacing(5),
     alignItems: "center",
+    [theme.breakpoints.down("xs")]: {
+      marginTop: theme.spacing(3),
+    }
   },
   content: {
     // display: "flex",
@@ -347,11 +356,11 @@ const renderers = {
   tableCell: MarkdownTableCell,
 };
 
-function BlogDetail({ blog }) {
+function BlogDetail({ blog, relatedBlogs }) {
   const classes = useStyles();
   const { API_URL } = process.env;
 
-  console.log("blog", blog);
+  console.log("RELATED BLOGS", relatedBlogs);
 
   return (
     <>
@@ -374,9 +383,7 @@ function BlogDetail({ blog }) {
           priority
           className={classes.headerImage}
           src={`${API_URL}${blog.coverPhoto.url}`}
-          layout="responsive"
-          width={1920}
-          height={722}
+          layout="fill"
           objectFit="cover"
           alt="Picture of the author"
         />
@@ -440,18 +447,18 @@ function BlogDetail({ blog }) {
         </div>
       </Container>
 
-      {/* <div className={classes.relatedPostsBgCtr}>
+      <div className={classes.relatedPostsBgCtr}>
         <Container fixed>
           <Typography className={classes.readMoreBlogsTitle}>
             Read More from our Blog
           </Typography>
           <div className={classes.blogListContainer}>
-            {["", "", ""].map((blog) => (
-              <BlogListCard key={uid(blog)} />
+            {relatedBlogs.map((blog) => (
+              <BlogListCard key={uid(blog)} blog={blog} />
             ))}
           </div>
         </Container>
-      </div> */}
+      </div>
     </>
   );
 }
@@ -473,9 +480,13 @@ export async function getStaticProps({ params }) {
   const res = await fetch(`${API_URL}/blogs?slug=${params.slug}`);
   const blog = await res.json();
 
+  const relatedBlogsRes = await fetch(`${API_URL}/blogs?category_eq=${blog[0].category}&slug_ne=${params.slug}&_limit=3`);
+  const relatedBlogs = await relatedBlogsRes.json();
+
   return {
     props: {
       blog: blog[0],
+      relatedBlogs,
     },
     revalidate: 60,
   };

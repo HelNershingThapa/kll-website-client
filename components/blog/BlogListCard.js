@@ -94,6 +94,8 @@ function BlogListCard({ blog }) {
   const classes = useStyles();
   const { API_URL } = process.env;
 
+  console.log("blog card", blog);
+
   return (
     <Card
       className={classes.root}
@@ -107,7 +109,7 @@ function BlogListCard({ blog }) {
       >
         <CardMedia
           className={classes.media}
-          image={`${API_URL}${blog.coverPhoto && blog.coverPhoto.url}`}
+          image={`${API_URL}${blog.coverPhoto?.url}`}
         />
         <Chip
           label={blog.category}
