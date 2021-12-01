@@ -38,8 +38,6 @@ const jobListings = [
   },
 ];
 
-
-
 const useStyles = makeStyles((theme) => ({
   jobListingsContainer: {
     paddingTop: theme.spacing(15),
@@ -97,8 +95,6 @@ const useStyles = makeStyles((theme) => ({
     borderBottom: "1px solid #CAD5E0",
   },
 }));
-
-
 
 function JobListings({ vacancies }) {
   const classes = useStyles();

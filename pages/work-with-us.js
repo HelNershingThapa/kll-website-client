@@ -149,6 +149,9 @@ function WorkWithUs({ data, vacancies, membersCount }) {
   const classes = useStyles();
   const { API_URL } = process.env
 
+
+  console.log("data", data);
+
   return (
     <>
       <Head>
@@ -200,7 +203,7 @@ function WorkWithUs({ data, vacancies, membersCount }) {
 
       <Container fixed>
         <div className={classes.content}>
-          <Traits />
+          <Traits traits={data.traits} />
           {/* eslint-disable-next-line react/no-children-prop */}
           <ReactMarkdown children={data.blurb} renderers={renderers} />
           <Benefits benefits={data.benefits} />

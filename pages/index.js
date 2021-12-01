@@ -56,7 +56,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Home({ homeData, projects, partners, featuredIn, membersCount, blogs, sdgs }) {
+export default function Home({ homeData, projects, partners, featuredIn, membersCount, blogs, impact }) {
   const classes = useStyles();
 
   return (
@@ -71,7 +71,7 @@ export default function Home({ homeData, projects, partners, featuredIn, members
         <Partners partners={partners} />
         <WhoAreWe data={homeData.whoAreWe} />
         <OurWork projects={projects} data={homeData.ourWork} />
-        <SdgCommitment data={homeData.ourCommitment} sdgs={sdgs}/>
+        <SdgCommitment data={homeData.ourCommitment} impact={impact}/>
         <OurInsights blogs={blogs} />
         <FeaturedIn featuredIn={featuredIn} />
         <OurTeam membersCount={membersCount} />
@@ -111,7 +111,7 @@ export async function getStaticProps() {
       featuredIn: inTheMedia.featuredInImages,
       blogs,
       membersCount,
-      sdgs: impact.sdgs,
+      impact,
     },
     revalidate: 60,
   };

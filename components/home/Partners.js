@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
   partners: {
     display: "flex",
     columnGap: "3rem",
-    rowGap: "40px",
+    rowGap: theme.spacing(8),
     flexWrap: "wrap",
     justifyContent: "space-between",
     alignItems: "center",

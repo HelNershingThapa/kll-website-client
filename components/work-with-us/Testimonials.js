@@ -222,7 +222,7 @@ function Testimonials({ testimonials }) {
                     {testimony.member && <div className={classes.author}>
                       <Avatar className={classes.avatar}>
                         <Image
-                          src={`${API_URL}${testimony.member.image.url}`}
+                          src={`${API_URL}${testimony.member.avatarImage ? testimony.member.avatarImage.url : testimony.member.image.url}`}
                           layout="fill"
                           objectFit="cover"
                           alt="DP"

@@ -360,8 +360,6 @@ function BlogDetail({ blog, relatedBlogs }) {
   const classes = useStyles();
   const { API_URL } = process.env;
 
-  console.log("RELATED BLOGS", relatedBlogs);
-
   return (
     <>
       <Head>

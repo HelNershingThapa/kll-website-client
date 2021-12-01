@@ -75,14 +75,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const OurProjects = ({ projects, sdgs }) => {
+const OurProjects = ({ projects, impact }) => {
   const classes = useStyles();
 
   projects.sort(
     (a, b) => parseFloat(a.displayOrder) - parseFloat(b.displayOrder)
   );
-
-  console.log("projects", projects);
 
   return (
     <>
@@ -109,7 +107,7 @@ const OurProjects = ({ projects, sdgs }) => {
         <ProjectsGrid projects={projects.slice(0, 5)} />
       </Container>
       <div className={classes.sdgMargin}>
-        <SdgCommitment sdgs={sdgs} />
+        <SdgCommitment impact={impact} />
       </div>
       <Container fixed>
         <ProjectsGrid projects={projects.slice(5, 10)} />
@@ -132,7 +130,7 @@ export async function getStaticProps() {
   return {
     props: {
       projects,
-      sdgs: impact.sdgs,
+      impact,
     },
     revalidate: 60,
   };

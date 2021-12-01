@@ -2,26 +2,7 @@ import { uid } from "react-uid";
 import { useRouter } from "next/router";
 import { makeStyles } from "@material-ui/core/styles";
 import Image from "next/image";
-import { Container, Typography, Button } from "@material-ui/core";
-
-const traits = [
-  {
-    title: "Heavily Biased towards Action",
-    icon: "work1.svg",
-  },
-  {
-    title: "Excude Creative Confidence",
-    icon: "work2.svg",
-  },
-  {
-    title: "Co-Operativive and Collaborative",
-    icon: "work3.svg",
-  },
-  {
-    title: "Work Local, Talk Global",
-    icon: "work4.svg",
-  },
-];
+import { Typography } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   traits: {
@@ -66,9 +47,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Traits() {
+function Traits({traits}) {
   const router = useRouter();
   const classes = useStyles();
+  const {API_URL} = process.env;
+
+  console.log(traits);
 
   return (
     <div className={classes.traits}>
@@ -76,7 +60,7 @@ function Traits() {
         <div key={uid(trait)} className={classes.trait}>
           <div className={classes.traitLogoFill}>
             <Image
-              src={`/icons/${trait.icon}`}
+              src={`${API_URL}${trait.icon.url}`}
               layout="fill"
               objectFit="cover"
               alt="KLL traits"
