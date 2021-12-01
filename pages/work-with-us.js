@@ -234,6 +234,7 @@ export async function getStaticProps() {
       vacancies,
       membersCount,
     },
+    revalidate: 60,
   };
 }
 

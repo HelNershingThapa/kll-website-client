@@ -221,6 +221,7 @@ function Testimonials({ testimonials }) {
                         <Image
                           src={`${API_URL}${testimony.member.image.url}`}
                           layout="fill"
+                          objectFit="cover"
                           alt="DP"
                         />
                       </Avatar>

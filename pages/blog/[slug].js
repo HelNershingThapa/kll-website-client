@@ -377,7 +377,7 @@ function BlogDetail({ blog }) {
           <Typography variant="h4">{blog.title}</Typography>
           <div className={classes.author}>
             <Avatar>
-              <Image priority src={`${API_URL}${blog.member.image.url}`} layout="fill" objectFit="cover" alt="DP" />
+              <Image priority src={`${API_URL}${blog.member.avatarImage ? blog.member.avatarImage.url : blog.member.image.url}`} layout="fill" objectFit="cover" alt="DP" />
             </Avatar>
             <div className={classes.authorDetails}>
               <Typography variant="subtitle1" className={classes.authorName}>
@@ -398,7 +398,7 @@ function BlogDetail({ blog }) {
           <Divider classes={{ root: classes.divider }} />
           <div className={clsx(classes.author, classes.footerMargin)}>
             <Avatar>
-              <Image src={`${API_URL}${blog.member.image.url}`} layout="fill" alt="DP" objectFit="cover" />
+              <Image src={`${API_URL}${blog.member.avatarImage ? blog.member.avatarImage.url : blog.member.image.url}`} layout="fill" alt="DP" objectFit="cover" />
             </Avatar>
             <div className={classes.authorDetails}>
               <Typography variant="subtitle1" className={classes.authorName}>
@@ -463,6 +463,7 @@ export async function getStaticProps({ params }) {
     props: {
       blog: blog[0],
     },
+    revalidate: 60,
   };
 }
 

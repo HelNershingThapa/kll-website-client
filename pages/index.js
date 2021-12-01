@@ -109,5 +109,6 @@ export async function getStaticProps() {
       blogs,
       membersCount,
     },
+    revalidate: 60,
   };
 }

@@ -438,6 +438,7 @@ export async function getStaticProps({ params }) {
     props: {
       projectDetail: projectDetail[0],
     },
+    revalidate: 60,
   };
 }
 

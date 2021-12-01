@@ -118,6 +118,7 @@ function Volunteering({ volunteering }) {
                   root: classes.volunteeringBtn,
                   label: classes.volunteeringBtnLabel,
                 }}
+                onClick={() => window.open("mailto:contact@kathmandulivinglabs.com")}
               >
                 Send us an Email
               </Button>

@@ -74,6 +74,7 @@ const useStyles = makeStyles((theme) => ({
   btnArrowIcon: {
     fontSize: "24px",
     color: "#fff",
+    lineHeight: 1,
   },
   bioCtr: {
     padding: theme.spacing(12, 15),

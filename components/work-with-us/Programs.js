@@ -102,6 +102,7 @@ function Programs({ fellowships, mentorships }) {
           <Button
             variant="outlined"
             classes={{ root: classes.btnRoot, label: classes.btnLabel }}
+            onClick={() => window.open("mailto:contact@kathmandulivinglabs.com")}
           >
             Send Us an Email
           </Button>
@@ -126,6 +127,7 @@ function Programs({ fellowships, mentorships }) {
           <Button
             variant="outlined"
             classes={{ root: classes.btnRoot, label: classes.btnLabel }}
+            onClick={() => window.open("mailto:contact@kathmandulivinglabs.com")}
           >
             Send Us an Email
           </Button>

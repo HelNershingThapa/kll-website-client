@@ -282,6 +282,7 @@ export async function getStaticProps(context) {
       data,
       membersCount,
     },
+    revalidate: 60,
   };
 }
 
