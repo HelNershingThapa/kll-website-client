@@ -72,19 +72,19 @@ const groups = [
     subGroups: [
       {
         title: "Facebook",
-        link: "/facebook",
+        link: "https://www.facebook.com/kathmandulivinglabs/",
       },
       {
         title: "Twitter",
-        link: "/twitter",
+        link: "https://twitter.com/ktmlivinglabs",
       },
       {
         title: "Instagram",
-        link: "/instagram",
+        link: "https://www.instagram.com/ktmlivinglabs/?hl=en",
       },
       {
         title: "YouTube",
-        link: "/youtube",
+        link: "https://www.youtube.com/channel/UCoUQGZ2u5k4oWr6f0ZQkwMQs",
       },
     ],
   },
@@ -353,7 +353,7 @@ function Footer() {
             src="/kll-logo-white.png"
             height="58px"
             width="53px"
-            alt="Picture of the author"
+            alt="KLL logo white"
           />
           <span className={classes.logoLine}></span>
         </div>

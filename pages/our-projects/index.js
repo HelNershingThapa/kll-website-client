@@ -1,11 +1,9 @@
 import Head from "next/head";
 import fetch from "isomorphic-unfetch";
 import clsx from "clsx";
+import ReactMarkdown from "react-markdown";
 import { makeStyles } from "@material-ui/core";
 import { Container, Typography } from "@material-ui/core";
-import { uid } from "react-uid";
-import Image from "next/image";
-import ProjectCard from "components/our-projects/ProjectCard";
 import ProjectsGrid from "components/our-projects/ProjectsGrid";
 import SdgCommitment from "components/our-projects/SdgCommitment";
 import MoreProjects from "components/our-projects/MoreProjects";
@@ -43,6 +41,10 @@ const useStyles = makeStyles((theme) => ({
     lineHeight: "72px",
     maxWidth: 891,
     marginBottom: theme.spacing(15),
+    "& strong": {
+      fontWeight: 700,
+      color: theme.palette.primary.main,
+    },
     [theme.breakpoints.down(desktop)]: {
       fontSize: "40px",
       fontWeight: 300,
@@ -75,6 +77,20 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+function MarkdownParagraph(props) {
+  const classes = useStyles();
+
+  return (
+    <Typography variant="subtitle1" className={classes.pageSubtitle}>
+      {props.children}
+    </Typography>
+  );
+}
+
+const renderers = {
+  paragraph: MarkdownParagraph,
+};
+
 const OurProjects = ({ projects, impact }) => {
   const classes = useStyles();
 
@@ -92,18 +108,8 @@ const OurProjects = ({ projects, impact }) => {
           Impact
         </Typography>
         <i className={clsx("ri-double-quotes-l", classes.quoteIcon)} />
-        <Typography className={classes.pageSubtitle}>
-          We’ve worked on some{" "}
-          <Typography
-            display="inline"
-            color="primary"
-            component="span"
-            className={clsx(classes.pageSubtitle, classes.subtitleHighlight)}
-          >
-            incredible initiatives
-          </Typography>
-          . Discover how we’ve made an impact
-        </Typography>
+         {/* eslint-disable-next-line react/no-children-prop */}
+         <ReactMarkdown children={impact.headerText} renderers={renderers} />
         <ProjectsGrid projects={projects.slice(0, 5)} />
       </Container>
       <div className={classes.sdgMargin}>
@@ -132,7 +138,7 @@ export async function getStaticProps() {
       projects,
       impact,
     },
-    revalidate: 60,
+    revalidate: 86400,
   };
 }
 

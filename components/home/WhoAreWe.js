@@ -59,6 +59,7 @@ const useStyles = makeStyles((theme) => ({
       width: "100vw",
       height: "80vw",
       marginLeft: "calc(-50vw + 50%)",
+      overflow: "hidden",
     },
   },
   image: {
@@ -93,7 +94,7 @@ const useStyles = makeStyles((theme) => ({
   paragraphs: {
     display: "flex",
     flexDirection: "column",
-    gap: "1.7778rem",
+    gap: "1.111rem",
     marginBottom: theme.spacing(15),
     "& p": {
       fontSize: "1.111rem",
@@ -103,7 +104,7 @@ const useStyles = makeStyles((theme) => ({
     },
     [theme.breakpoints.down(desktop)]: {
       marginBottom: theme.spacing(10),
-      gap: theme.spacing(6),
+      gap: "0.8889rem",
       "& p": {
         fontSize: "0.8889rem",
         lineHeight: 1.5,
@@ -111,9 +112,9 @@ const useStyles = makeStyles((theme) => ({
     },
     [theme.breakpoints.down("xs")]: {
       marginBottom: theme.spacing(5),
-      gap: theme.spacing(5),
+      gap: "0.7778rem",
       "& p": {
-        fontSize: "0.778rem",
+        fontSize: "0.7778rem",
         lineHeight: 1.428,
       },
     },
