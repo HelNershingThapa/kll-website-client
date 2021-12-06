@@ -1,5 +1,5 @@
 
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import { uid } from "react-uid";
 import clsx from "clsx";
 import PropTypes from "prop-types";
@@ -136,7 +136,6 @@ export default function SimpleTabs({ category, setCategory, setBlogs, loadFunc }
           value={category.value}
           {...a11yProps(index)}
         />)}
-
       </Tabs>
     </div>
   );
