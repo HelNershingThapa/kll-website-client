@@ -125,7 +125,7 @@ function MarkdownParagraph(props) {
 
 function MarkdownImage(props) {
   const classes = useStyles();
-  const {API_URL} = process.env
+  const { API_URL } = process.env
 
   return (
     <div className={classes.markdownImageFill}>
@@ -162,8 +162,7 @@ function EventDetail({ eventDetail }) {
       ? eventDetail.startDate
       : `${eventDetail.startDate} - ${eventDetail.endDate}`;
 
-
-
+  console.log("eventDetail", eventDetail);
 
   return (
     <>
@@ -196,7 +195,7 @@ function EventDetail({ eventDetail }) {
               <Typography variant="subtitle1" className={classes.rendezvouTypo}>
                 {eventDetail.startDate === eventDetail.endDate
                   ? formattedStartDate
-                  : `${formattedStartDate} - ${formattedEndDate}`}
+                  : `${formattedStartDate} ${eventDetail.isRecurring ? '' : '-'} ${eventDetail.isRecurring ? '' : formattedEndDate}`}
               </Typography>
             </div>
             <div className={classes.rendezvou}>

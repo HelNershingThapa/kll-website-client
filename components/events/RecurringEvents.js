@@ -71,10 +71,18 @@ const useStyles = makeStyles((theme) => ({
       fontSize: "16px",
     },
   },
+  linkCtr: {
+    "&:hover": {
+      cursor: "pointer",
+    }
+  }
 }));
 
-function RecurringEvents() {
+function RecurringEvents({ recurringEvents }) {
   const classes = useStyles();
+
+  console.log("recurringEvents OWn", recurringEvents);
+
   return (
     <>
       <div className={classes.recurringEventsContainer}>
@@ -94,26 +102,16 @@ function RecurringEvents() {
         </Typography>
         <Divider className={classes.divider} />
         <div className={classes.recurringLinks}>
-          <div>
+          {recurringEvents.map(event => <Link key={uid(event)} href={`/events/${event.slug}`} passHref><div className={classes.linkCtr}>
             <Typography
               variant="body1"
               color="primary"
               className={classes.linksTypo}
             >
-              Monthly Mapping Group
+              {event.title}
             </Typography>{" "}
             <i className={clsx("ri-arrow-right-line", classes.arrowIcon)} />
-          </div>
-          <div>
-            <Typography
-              variant="body1"
-              color="primary"
-              className={classes.linksTypo}
-            >
-              KLL Monthly News Event
-            </Typography>{" "}
-            <i className={clsx("ri-arrow-right-line", classes.arrowIcon)} />
-          </div>
+          </div></Link>)}
         </div>
       </div>
     </>

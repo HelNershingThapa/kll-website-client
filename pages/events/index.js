@@ -64,7 +64,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Events({ events }) {
+function Events({ events, recurringEvents }) {
   const classes = useStyles();
   const [value, setValue] = useState("Upcoming Events");
 
@@ -79,6 +79,8 @@ function Events({ events }) {
   const pastEvents = events.filter((event) =>
     moment(event.startDate).isBefore()
   );
+
+  console.log("recurringEvents", recurringEvents);
 
   return (
     <>
@@ -119,7 +121,7 @@ function Events({ events }) {
             </div>
           )}
           <div>
-            <RecurringEvents />
+            <RecurringEvents recurringEvents={recurringEvents} />
           </div>
           <div>
             <StayUpdated />
@@ -132,12 +134,16 @@ function Events({ events }) {
 
 export async function getStaticProps() {
   const { API_URL } = process.env
-  const res = await fetch(`${API_URL}/events`);
+  const res = await fetch(`${API_URL}/events?isRecurring=false`);
   const events = await res.json();
+
+  const recurringEventsRes = await fetch(`${API_URL}/events?isRecurring=true`);
+  const recurringEvents = await recurringEventsRes.json();
 
   return {
     props: {
       events,
+      recurringEvents
     },
   };
 }

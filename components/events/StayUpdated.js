@@ -1,7 +1,6 @@
-import { uid } from "react-uid";
-import clsx from "clsx";
+import { useState } from "react";
+import axios from "axios";
 import Image from "next/image";
-import Link from "next/link";
 import { makeStyles } from "@material-ui/styles";
 import { Typography, TextField, Button } from "@material-ui/core";
 
@@ -93,13 +92,28 @@ const useStyles = makeStyles((theme) => ({
 
 function StayUpdated() {
   const classes = useStyles();
+  const { API_URL } = process.env;
+  const [email, setEmail] = useState('')
+  const [response, setResponse] = useState()
+  const [error, setError] = useState()
+
+  const onSubmit = () => {
+    setError();
+    axios.post(`${API_URL}/event-subscribers`, { email }).then(response => setResponse(response)).catch(error => {
+      setError(error);
+    });
+  }
+
+  console.log("email", response);
+
+
   return (
     <div className={classes.container}>
       <div className={classes.imgFill}>
         <Image src="/icons/bell.svg" layout="fill" objectFit="cover" alt="" />
       </div>
       <Typography variant="h6" className={classes.title}>
-      {`Stay up-to-date with our events`}
+        {`Stay up-to-date with our events`}
       </Typography>
       <Typography
         variant="subtitle1"
@@ -114,6 +128,7 @@ function StayUpdated() {
             Your Email Address
           </Typography>
           <TextField
+            error={error}
             classes={{ root: classes.textFieldRoot }}
             InputProps={{
               classes: {
@@ -124,9 +139,11 @@ function StayUpdated() {
             id="outlined-secondary"
             variant="outlined"
             color="secondary"
+            helperText={error ? "Invalid entry." : response?.status === 200 && "Thank you for subscribing to our events. We'll send you an email when something is happening."}
+            onChange={e => setEmail(e.target.value)}
           />
         </div>
-        <div>
+        {/* <div>
           <Typography variant="subtitle2" className={classes.textfieldLabel}>
             Your Phone Number
           </Typography>
@@ -142,12 +159,13 @@ function StayUpdated() {
             variant="outlined"
             color="secondary"
           />
-        </div>
+        </div> */}
         <div>
           <Button
             variant="contained"
             color="primary"
             classes={{ root: classes.button, label: classes.label }}
+            onClick={() => onSubmit()}
           >
             Get Event Updates
           </Button>
