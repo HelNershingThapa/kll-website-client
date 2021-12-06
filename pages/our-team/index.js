@@ -118,7 +118,7 @@ function OurTeam({ members, headerStats }) {
 
   const { API_URL } = process.env;
 
-  console.log("header",headerStats);
+  console.log("header", headerStats);
 
   return (
     <>
@@ -157,7 +157,7 @@ function OurTeam({ members, headerStats }) {
         <div className={classes.membersContainer}>
           {members.map((member) => (
             <Fragment key={uid(member)}>
-            <TeamMemberCard  memberData={member} />
+              <TeamMemberCard memberData={member} />
             </Fragment>
           ))}
           <YouCard />
@@ -169,7 +169,7 @@ function OurTeam({ members, headerStats }) {
 }
 
 export async function getStaticProps() {
-  const {API_URL} = process.env
+  const { API_URL } = process.env
   const res = await fetch(`${API_URL}/our-team`);
   const headerStats = await res.json();
 
@@ -181,6 +181,7 @@ export async function getStaticProps() {
       members,
       headerStats: headerStats,
     },
+    revalidate: 86400,
   };
 }
 

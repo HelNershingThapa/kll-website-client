@@ -278,6 +278,7 @@ export async function getServerSideProps(context) {
       memberDetail: memberDetail[0],
       allMembers,
     },
+    revalidate: 86400,
   };
 }
 
