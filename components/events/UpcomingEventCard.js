@@ -25,8 +25,6 @@ const useStyles = makeStyles((theme) => ({
     margin: "auto",
     padding: theme.spacing(6),
     marginTop: "-100px",
-    // transform: "translateY(-50%)",
-    marginTop: "-100px",
     paddingBottom: 0,
     [theme.breakpoints.down(desktop)]: {
       width: "500px",
@@ -36,6 +34,7 @@ const useStyles = makeStyles((theme) => ({
       width: "100%",
       padding: 0,
       paddingTop: theme.spacing(3),
+      marginTop: 0,
     },
   },
   chipRoot: {
@@ -109,7 +108,7 @@ const useStyles = makeStyles((theme) => ({
 
 function Events({ event }) {
   const classes = useStyles();
-  const {API_URL} = process.env
+  const { API_URL } = process.env
 
   const formattedStartDate = moment(event.startDate, "YYYY-MM-DD").format("Do MMM YYYY");
   const formattedEndDate = moment(event.endDate, "YYYY-MM-DD").format("Do MMM YYYY");

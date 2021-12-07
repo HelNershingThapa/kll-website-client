@@ -182,6 +182,8 @@ function MemberDetail({ allMembers, memberDetail }) {
   const nextMemberSlug =
     allMembers[arrayPosition + 1] && allMembers[arrayPosition + 1].slug;
 
+    console.log(process.env.API_URL);
+
   return (
     <>
       <Head>
@@ -190,6 +192,7 @@ function MemberDetail({ allMembers, memberDetail }) {
       <div className={classes.root}>
         <div className={classes.imageContainer}>
           <Image
+          priority
             src={`${API_URL}${image.url}`}
             layout="fill"
             objectFit="cover"
@@ -261,11 +264,23 @@ function MemberDetail({ allMembers, memberDetail }) {
   );
 }
 
-export async function getServerSideProps(context) {
-  const { slug } = context.query;
+
+export async function getStaticPaths() {
+  const { API_URL } = process.env;
+  const res = await fetch(`${API_URL}/members`);
+  const members = await res.json();
+
+  const paths = members.map((member) => ({
+    params: { slug: member.slug },
+  }));
+
+  return { paths, fallback: false };
+}
+
+export async function getStaticProps({ params }) {
   const { API_URL } = process.env
 
-  const response = await fetch(`${API_URL}/members?slug=${slug}`);
+  const response = await fetch(`${API_URL}/members?slug=${params.slug}`);
   const memberDetail = await response.json();
 
   const allMembersResponse = await fetch(

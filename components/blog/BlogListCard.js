@@ -94,8 +94,6 @@ function BlogListCard({ blog }) {
   const classes = useStyles();
   const { API_URL } = process.env;
 
-  console.log("blog card", blog);
-
   return (
     <Card
       className={classes.root}
@@ -125,7 +123,7 @@ function BlogListCard({ blog }) {
             {blog.title}
           </Typography>
           <Typography variant="subtitle1" className={classes.description}>
-            {blog.content.substring(0, 127)}......
+            {blog.content.substring(0, 127)}...
           </Typography>
         </CardContent>
       </CardActionArea>

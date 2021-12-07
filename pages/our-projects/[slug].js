@@ -133,6 +133,16 @@ const useStyles = makeStyles((theme) => ({
     "& ul": {
       paddingLeft: "1.5rem",
     },
+    [theme.breakpoints.down("xs")]: {
+      paddingTop: theme.spacing(8),
+      paddingBottom: theme.spacing(10),
+      "& ol": {
+        paddingLeft: "1.333rem",
+      },
+      "& ul": {
+        paddingLeft: "1.333rem",
+      },
+    }
   },
   projectLink: {
     fontWeight: 600,
@@ -155,10 +165,7 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: theme.spacing(3),
     marginTop: theme.spacing(10),
   },
-  paragraph: {
-    color: theme.palette.grey[800],
-    marginBottom: '1rem',
-  },
+
   image: {
     padding: theme.spacing(10, 0),
   },
@@ -196,6 +203,22 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.grey[600],
     padding: 0,
   },
+  markdownListItem: {
+    color: theme.palette.grey[800],
+    [theme.breakpoints.down("xs")]: {
+      fontSize: "0.8889rem",
+      lineHeight: 1.5,
+    }
+  },
+  markdownParagraph: {
+    color: theme.palette.grey[800],
+    marginBottom: '1rem',
+    [theme.breakpoints.down("xs")]: {
+      fontSize: "0.8889rem",
+      marginBottom: '0.8889rem',
+      lineHeight: 1.5,
+    }
+  },
   markdownImageFill: {
     marginTop: theme.spacing(10),
     marginBottom: theme.spacing(10),
@@ -212,13 +235,12 @@ const useStyles = makeStyles((theme) => ({
     position: "relative !important",
     height: "unset !important",
   },
-
 }));
 
 function MarkdownParagraph(props) {
   const classes = useStyles();
 
-  return <Typography variant="body1" className={classes.paragraph} >{props.children}</Typography>
+  return <Typography variant="body1" className={classes.markdownParagraph}>{props.children}</Typography>
 }
 
 const MarkdownHeading = (({ ...props }) => {
@@ -246,15 +268,17 @@ const MarkdownHeading = (({ ...props }) => {
   return <Typography className={classes.header} gutterBottom variant={variant}>{props.children}</Typography>
 });
 
-// const MarkdownListItem = withStyles(styles)(({ classes, ...props }) => {
-//   return (
-//     <li className={classes.listItem}>
-//       <Typography component="span">{props.children}</Typography>
-//     </li>
-//   );
-// });
+const MarkdownListItem = (props) => {
+  const classes = useStyles();
 
-
+  return (
+    <li className={classes.markdownListItem}>
+      <Typography variant="body1" component="span" className={classes.markdownListItem}>
+        {props.children}
+      </Typography>
+    </li>
+  );
+};
 
 function MarkdownTable(props) {
   return (
@@ -284,8 +308,6 @@ function MarkdownImage(props) {
   const classes = useStyles();
   const { API_URL } = process.env;
 
-  console.log("props image", props);
-
   return (
     <div className={classes.markdownImageFill}>
       <Image
@@ -304,7 +326,7 @@ const renderers = {
   heading: MarkdownHeading,
   paragraph: MarkdownParagraph,
   link: Link,
-  // listItem: MarkdownListItem,
+  listItem: MarkdownListItem,
   image: MarkdownImage,
   table: MarkdownTable,
   tableHead: MarkdownTableHead,
@@ -319,7 +341,6 @@ function ProjectDetails({ projectDetail }) {
   const { API_URL } = process.env;
 
   console.log("projectDetail", projectDetail);
-
 
   const sdg = projectDetail.sdg.map(project => project.goalNumber).sort((a, b) => a - b)
 
@@ -438,7 +459,7 @@ export async function getStaticProps({ params }) {
     props: {
       projectDetail: projectDetail[0],
     },
-    revalidate: 60,
+    revalidate: 86400,
   };
 }
 

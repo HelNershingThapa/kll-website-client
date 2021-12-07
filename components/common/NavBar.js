@@ -172,17 +172,7 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down(desktop)]: {
       gap: theme.spacing(10),
     }
-  },
-  menuItemContainerMobile: {
-    display: "flex",
-    flexDirection: "column",
-    gap: "2.5rem",
-    alignItems: "center",
-  },
-  projectTitle: {
-    fontFamily: "'Baloo Bhaijaan', cursive",
-    fontWeight: 400,
-  },
+  },  
   activeLink: {
     color: primary,
     fontWeight: "600",
@@ -242,9 +232,10 @@ function NavBar({ }) {
         <Toolbar disableGutters>
           <Container fixed style={{ display: 'flex', justifyContent: "space-between" }}>
             <div className={classes.title}>
-              <Link href="/">
+              <Link href="/" passHref>
                 <div className={classes.imgFill}>
                   <Image
+                    priority
                     src="/kll-logos/kll-logo-default.svg"
                     layout="fill"
                     objectFit="cover"

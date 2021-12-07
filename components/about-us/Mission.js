@@ -44,6 +44,13 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
     gap: theme.spacing(12),
     maxWidth: 768,
+    "& ul": {
+      margin: 0,
+      paddingLeft: theme.spacing(9),
+      [theme.breakpoints.down("xs")]: {
+        paddingLeft: theme.spacing(6),
+      }
+    }
   },
   description: {
     fontFamily: "Inter",
@@ -61,7 +68,7 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 400,
     lineHeight: 1.6667,
     color: theme.palette.grey[200],
-    [theme.breakpoints.down("sm")]: {
+    [theme.breakpoints.down("xs")]: {
       fontSize: "0.8889rem",
       lineHeight: 1.6667,
     },
@@ -81,7 +88,7 @@ function Mission({ missions }) {
             </Typography>
           </div>
           <div className={classes.missions}>
-            <ul style={{ margin: 0 }}>
+            <ul>
               {missions.map((mission, index) => (
                 <div key={uid(mission, index)} className={classes.description}>
                   <li>

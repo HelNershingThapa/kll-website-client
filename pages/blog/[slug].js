@@ -83,6 +83,7 @@ const useStyles = makeStyles((theme) => ({
     },
     "& ul": {
       paddingLeft: "1.5rem",
+      lineHeight: "32px",
     },
   },
   authorDetails: {
@@ -236,6 +237,9 @@ const useStyles = makeStyles((theme) => ({
   },
   paragraph: {
     marginBottom: '1rem',
+    [theme.breakpoints.down("xs")]: {
+      marginBottom: '0.7778rem',
+    },
   },
   markdownImageFill: {
     marginTop: theme.spacing(10),
@@ -259,13 +263,16 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.grey[800],
     marginBottom: theme.spacing(3),
     marginTop: theme.spacing(10),
+    [theme.breakpoints.down("xs")]:{
+      marginTop: theme.spacing(8),
+    }
   },
 }));
 
 function MarkdownParagraph(props) {
   const classes = useStyles();
 
-  return <Typography variant="body1" className={classes.paragraph} >{props.children}</Typography>
+  return <Typography variant="body1" className={classes.paragraph}>{props.children}</Typography>
 }
 
 const MarkdownHeading = (({ ...props }) => {
@@ -293,13 +300,15 @@ const MarkdownHeading = (({ ...props }) => {
   return <Typography className={classes.header} gutterBottom variant={variant}>{props.children}</Typography>
 });
 
-// const MarkdownListItem = withStyles(styles)(({ classes, ...props }) => {
-//   return (
-//     <li className={classes.listItem}>
-//       <Typography component="span">{props.children}</Typography>
-//     </li>
-//   );
-// });
+const MarkdownListItem = props => {
+  const classes = useStyles();
+
+  return (
+    <li className={classes.listItem}>
+      <Typography variant="body1" component="span">{props.children}</Typography>
+    </li>
+  );
+};
 
 function MarkdownTable(props) {
   return (
@@ -347,7 +356,7 @@ const renderers = {
   heading: MarkdownHeading,
   paragraph: MarkdownParagraph,
   link: Link,
-  // listItem: MarkdownListItem,
+  listItem: MarkdownListItem,
   image: MarkdownImage,
   table: MarkdownTable,
   tableHead: MarkdownTableHead,

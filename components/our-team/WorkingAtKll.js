@@ -1,9 +1,14 @@
+import { useRef, useState } from "react";
 import { uid } from "react-uid";
 import clsx from "clsx";
 import { makeStyles } from "@material-ui/styles";
 import Image from "next/image";
 import PropTypes from "prop-types";
 import { Typography } from "@material-ui/core";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import "styles/AboutUs.module.css";
 
 const useStyles = makeStyles((theme) => ({
   workingContainer: {
@@ -34,36 +39,102 @@ const useStyles = makeStyles((theme) => ({
     width: 400,
     height: 400,
   },
+  sliderContainer: {
+    position: "relative",
+    "& .slick-prev": {
+      left: "10px",
+      zIndex: 1,
+    },
+    "& .slick-next": {
+      right: "10px",
+      zIndex: 1,
+    },
+  },
+  arrowLeftOverlay: {
+    position: 'absolute',
+    top: 0,
+    bottom: 0,
+    zIndex: 5,
+    color: "black",
+    background: "linear-gradient(90deg, #0D1829 0%, rgba(13, 24, 41, 0) 100%)",
+    width: 130,
+    "& :hover": {
+      cursor: "pointer",
+    }
+  },
+  arrowRightOverlay: {
+    position: 'absolute',
+    top: 0,
+    bottom: 0,
+    right: 0,
+    zIndex: 5,
+    color: "black",
+    background: "linear-gradient(90deg, #0D1829 0%, rgba(13, 24, 41, 0) 100%)",
+    width: 130,
+    "& :hover": {
+      cursor: "pointer",
+    }
+  },
+  overlayRoot: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    height: "calc(100% - 60px)",
+  },
+  arrowIcon: {
+    color: "white",
+    fontSize: "24px",
+    lineHeight: "24px",
+  },
 }));
 
 const WorkingAtKll = (props) => {
   const classes = useStyles();
+  const slider = useRef(null);
+  const [areArrowsShown, setAreArrowsShown] = useState(false);
+
+  const settings = {
+    className: classes.sliderContainer,
+    dots: false,
+    arrows: false,
+    centerMode: true,
+    infinite: true,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    variableWidth: true,
+    speed: 500,
+  };
 
   return (
     <div className={classes.workingContainer}>
       <Typography className={classes.workingTitle} align="center">
         Working at Kathmandu Living Labs
       </Typography>
-      <marquee>
-        <div className={classes.imagesContainer}>
-          {["", "", "", "", ""].map((image, index) => (
-            <div
-              key={uid(image, index)}
-              className={classes.imageFill}
-              style={{
-                marginTop: Math.floor(Math.random() * (0 - 60 + 1) + 60),
-              }}
-            >
-              <Image
-                src={`${index % 2 === 0 ? "/slide-1.png" : "/slide-2.png"}`}
-                layout="fill"
-                objectFit="cover"
-                alt="team members at KLL"
-              />
+      <div style={{ position: "relative" }} onMouseEnter={() => setAreArrowsShown(true)} onMouseLeave={() => setAreArrowsShown(false)}>
+        <Slider ref={slider} {...settings}>
+          {["", "", "", "", "", ""].map((image, index) => (
+            <div key={uid(image, index)}>
+              <div
+                className={classes.imageFill}
+                style={{
+                  marginTop: Math.floor(Math.random() * (0 - 60 + 1) + 60),
+                  marginLeft: "6px",
+                  marginRight: "6px",
+                }}
+              >
+                <Image
+                  src={`${index % 2 === 0 ? "/slide-1.png" : "/slide-2.png"}`}
+                  layout="fill"
+                  objectFit="cover"
+                  alt="team members at KLL"
+                />
+              </div>
             </div>
           ))}
-        </div>
-      </marquee>
+        </Slider>
+        {areArrowsShown && <><div className={classes.arrowLeftOverlay} onClick={() => slider?.current?.slickPrev()}><div className={classes.overlayRoot}><i className={clsx("ri-arrow-left-line", classes.arrowIcon)} /></div></div>
+          <div className={classes.arrowRightOverlay} onClick={() => slider?.current?.slickNext()}><div className={classes.overlayRoot}><i className={clsx("ri-arrow-right-line", classes.arrowIcon)} /></div></div></>}
+      </div>
     </div>
   );
 };

@@ -49,6 +49,7 @@ const useStyles = makeStyles((theme) => ({
     "& div": {
       display: "flex",
       justifyContent: "space-between",
+      alignItems: "center",
       "& p": {
         fontWeight: 500,
       },
@@ -67,6 +68,7 @@ const useStyles = makeStyles((theme) => ({
   arrowIcon: {
     fontSize: "18px",
     color: theme.palette.primary.main,
+    lineHeight: 1,
     [theme.breakpoints.down("xs")]: {
       fontSize: "16px",
     },

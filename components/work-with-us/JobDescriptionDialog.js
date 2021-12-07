@@ -14,30 +14,6 @@ import Typography from "@material-ui/core/Typography";
 import Slide from "@material-ui/core/Slide";
 import { Hidden } from "@material-ui/core";
 
-const job = {
-  position: "Data Engineer",
-  para1:
-    "At Kathmandu Living Labs, our mission is to be a role model technology company. We want to be trusted partners, world-class engineers, and creative innovators for our clients. We have built awesome software products across various verticals and take pride in our craftsmanship that has produced greater results in the software industry and the overall ecosystem.",
-  para2:
-    "As a Data Engineer, you will closely work with to build data processing, data warehousing infrastructure, and data visualization systems. You will be part of a learning culture where teamwork and collaboration are encouraged, excellence is rewarded, and diversity is respected and valued.",
-  qualities: [
-    "Follow software development best practices and industry standards to deliver a robust system",
-    "Write analytical queries based on business requirements.",
-    "Design database schema based on the product requirements.",
-    "Prepare flow diagram and technical documentation.",
-    "Work and collaborate independently or in a team.",
-  ],
-  requirements: [
-    "At least 4 years of experience in software development using relational databases & SQL (PL/SQL, T-SQL is preferred).",
-    "Well-versed and experienced with at least one of the programming languages (Preferred: Python, JavaScript, etc).",
-    "Strong knowledge of OLTP and OLAP database design, best practices, and database architecture with experience in Data Warehouse design and data analysis.",
-    "Must have hands-on experience in ETL, data transformation, functions, stored procedures, triggers, etc.",
-    "Strong computing foundation and fundamentals.",
-    "End to end understanding of software components and architectural layers - frontend, backend, REST APIs, OLTP, OLAP databases, etc.",
-    "Strong analytical and problem-solving skills and well-versed with fundamental programming concepts and/or data structures and algorithms.",
-  ],
-};
-
 const useStyles = makeStyles((theme) => ({
   appBar: {
     position: "relative",
@@ -63,7 +39,7 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: 920,
     marginLeft: "auto",
     [theme.breakpoints.down("sm")]: {
-      height: "calc(100vh - 92px)",
+      height: "calc(100vh - 64px)",
       marginTop: "auto",
       maxWidth: "100%",
     },
@@ -84,6 +60,9 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "space-between",
     alignItems: "center",
     marginTop: theme.spacing(25),
+    [theme.breakpoints.down("xs")]: {
+      marginTop: theme.spacing(10),
+    }
   },
   description: {
     flex: 2,
@@ -141,6 +120,7 @@ const useStyles = makeStyles((theme) => ({
   },
   closeDialogIcon: {
     fontSize: "32px",
+    lineHeight: 1,
   },
   applyNowBtnIcon: {
     fontSize: "16px !important",
@@ -157,6 +137,7 @@ const useStyles = makeStyles((theme) => ({
   btnIconArrowRight: {
     fontSize: "16px !important",
     color: theme.palette.grey[700],
+    lineHeight: 1,
   },
   // "@global": {
   //   "*::-webkit-scrollbar": {
@@ -171,9 +152,11 @@ const useStyles = makeStyles((theme) => ({
   //     borderRadius: "23px",
   //   },
   // },
-
   para: {
     marginBottom: "1rem",
+    [theme.breakpoints.down("xs")]: {
+      marginBottom: "0.7778rem",
+    },
   },
   description: {
     padding: "24px 40px",
@@ -181,6 +164,9 @@ const useStyles = makeStyles((theme) => ({
   },
   listItem: {
     color: theme.palette.grey[600],
+    [theme.breakpoints.down("xs")]: {
+      lineHeight: 1.428,
+    }
   },
   list: {
     margin: 0,
@@ -257,7 +243,7 @@ const renderers = {
   list: MarkdownList,
 };
 
-function FullScreenDialog({ description }) {
+function FullScreenDialog({ vacancy }) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
 
@@ -269,7 +255,7 @@ function FullScreenDialog({ description }) {
     setOpen(false);
   };
 
-  console.log("description", description);
+  console.log("vacancy", vacancy);
 
   return (
     <div>
@@ -314,7 +300,7 @@ function FullScreenDialog({ description }) {
           <div className={classes.fixated}>
             <div className={classes.positionContainer}>
               <Typography variant="h5" className={classes.position}>
-                Data Engineer
+                {vacancy.position}
               </Typography>
               <Button
                 className={classes.applyNowBtn}
@@ -349,38 +335,9 @@ function FullScreenDialog({ description }) {
             <Divider className={classes.divider} />
           </div>
 
-          {/* <div className={classes.description}>
-            <Typography variant="h6" className={classes.jobDescriptionTypo}>
-              Job Description
-            </Typography>
-            <div className={classes.paragraphs}>
-              <Typography variant="body1">{job.para1}</Typography>
-              <Typography variant="body1">{job.para2}</Typography>
-            </div>
-            <div className={classes.qualitiesCtr}>
-              {job.qualities.map((quality) => (
-                <Typography key={uid(quality)} variant="body1">
-                  &rarr;&nbsp;{quality}
-                </Typography>
-              ))}
-            </div>
-            <Typography variant="h5" className={classes.jobRequirementsTypo}>
-              Job Requirements
-            </Typography>
-            <div className={classes.requirementsCtr}>
-              <ul style={{ paddingLeft: "2rem" }}>
-                {job.requirements.map((requirement) => (
-                  <Typography key={uid(requirement)} variant="body1">
-                    <li>{requirement}</li>
-                  </Typography>
-                ))}
-              </ul>
-            </div>
-          </div> */}
-
           <div className={classes.description}>
             {/* eslint-disable-next-line react/no-children-prop */}
-            <ReactMarkdown children={description} renderers={renderers} />
+            <ReactMarkdown children={vacancy.description} renderers={renderers} />
           </div>
         </div>
       </Dialog>

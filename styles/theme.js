@@ -305,7 +305,7 @@ const theme = createTheme({
     body1: {
       fontSize: "1rem",
       fontWeight: "400",
-      lineHeight: 1.56,
+      lineHeight: 1.5556,
       [`@media (max-width:  ${sm}px)`]: {
         fontSize: "0.7778rem",
         lineHeight: 1.5,

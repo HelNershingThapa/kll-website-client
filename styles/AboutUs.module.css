@@ -7,3 +7,8 @@
   -webkit-text-fill-color: #3e64ff80;
   -webkit-font-smoothing: antialiased;
 }
+
+.slick-next {
+  right: 10px;
+  z-index: 1;
+}

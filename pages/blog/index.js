@@ -103,7 +103,6 @@ const BlogList = ({ featuredBlog }) => {
   }, [])
 
   async function loadFunc() {
-    console.log("searchQuery load", searchQuery);
     const countRes = await fetch(`${API_URL}/blogs/count?isFeatured=false${searchQuery === '' ? '' : `&title_contains=${searchQuery}`}${category === 'none' ? '' : `&category=${category}`}`);
     const resCount = await countRes.json();
     setBlogCount(resCount);

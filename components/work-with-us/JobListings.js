@@ -128,7 +128,7 @@ function JobListings({ vacancies }) {
                     </Typography>
                   </TableCell>
                   <TableCell align="right" className={classes.tableCell}>
-                    <JobDescriptionDialog description={vacancy.description} />
+                    <JobDescriptionDialog vacancy={vacancy} />
                   </TableCell>
                 </TableRow>
               ))}

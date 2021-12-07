@@ -16,6 +16,7 @@ import { Fragment } from "react";
 const useStyles = makeStyles((theme) => ({
   paper: {
     width: "100%",
+    height: "100vh",
   },
   navBar: {
     height: "80px",
@@ -105,7 +106,7 @@ const MobileMenuDrawer = ({ open, onClose, menuItems }) => {
       open={open}
       onClose={onClose}
       anchor="top"
-      classes={{ paper: classes.paper }}
+      classes={{ paper: classes.paper, modal: classes.modal }}
     >
       <Container fixed>
         <div className={classes.navBar}>
@@ -116,7 +117,7 @@ const MobileMenuDrawer = ({ open, onClose, menuItems }) => {
                 layout="fill"
                 objectFit="cover"
                 alt="KLL Logo"
-              />  
+              />
             </div>
           </Link>
           <IconButton

@@ -127,6 +127,8 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down("xs")]: {
       fontSize: "0.8889rem",
       lineHeight: 1.5,
+      marginBottom: "0.8889rem",
+
     },
   },
 }));
@@ -236,7 +238,7 @@ export async function getStaticProps() {
       vacancies,
       membersCount,
     },
-    revalidate: 60,
+    revalidate: 86400,
   };
 }
 

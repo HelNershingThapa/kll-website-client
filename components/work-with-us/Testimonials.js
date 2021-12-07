@@ -99,6 +99,12 @@ const useStyles = makeStyles((theme) => ({
       transform: "translateX(0px)",
     },
   },
+  quoteTypo: {
+    marginLeft: "40px",
+    [theme.breakpoints.down("xs")]: {
+      marginLeft: 0,
+    }
+  },
   quote: {
     marginTop: theme.spacing(2.5),
     fontSize: "40px",
@@ -148,6 +154,9 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(10),
     [theme.breakpoints.up(desktop)]: {
       display: "none",
+    },
+    [theme.breakpoints.down("xs")]: {
+      marginTop: theme.spacing(3),
     },
   },
   sliderCtr: {
@@ -215,7 +224,7 @@ function Testimonials({ testimonials }) {
                   <i
                     className={clsx("ri-double-quotes-l", classes.quoteIcon)}
                   />
-                  <div style={{ marginLeft: "40px" }}>
+                  <div className={classes.quoteTypo}>
                     <Typography className={classes.quote}>
                       {testimony.quote}
                     </Typography>

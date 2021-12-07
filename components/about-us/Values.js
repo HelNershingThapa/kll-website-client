@@ -14,6 +14,7 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down("sm")]: {
       flexDirection: "column",
       gap: theme.spacing(6),
+      paddingBottom: theme.spacing(15),
     },
   },
   title: {
@@ -69,7 +70,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Values({values}) {
+function Values({ values }) {
   const classes = useStyles();
 
   return (
