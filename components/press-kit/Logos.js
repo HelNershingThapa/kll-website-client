@@ -32,6 +32,9 @@ const logos = [
 const useStyles = makeStyles((theme) => ({
   root: {
     marginTop: theme.spacing(20),
+    [theme.breakpoints.down("xs")]: {
+      marginTop: theme.spacing(8),
+    }
   },
   title: {
     color: theme.palette.grey[900],
@@ -41,7 +44,7 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 400,
     lineHeight: "24px",
     color: theme.palette.grey[600],
-    width: 468,
+    maxWidth: 468,
     marginTop: theme.spacing(2),
   },
   logoFill: {
@@ -54,7 +57,8 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "space-between",
     alignItems: 'flex-end',
     marginTop: theme.spacing(6),
-    flexWrap: 'wrap'
+    flexWrap: 'wrap',
+    gap: theme.spacing(6),
   },
   logo: {
     display: "flex",
@@ -82,6 +86,9 @@ const useStyles = makeStyles((theme) => ({
     gap: theme.spacing(4),
     color: theme.palette.primary.main,
     marginTop: theme.spacing(2),
+    [theme.breakpoints.down("xs")]: {
+      marginTop: "3px",
+    }
   },
   pointer: {
     cursor: 'pointer'
@@ -105,18 +112,14 @@ const Logos = () => {
           <div key={uid(logo, index)} className={classes.logo}>
             <div
               style={{
-                background: `${
-                  logo.title === "Light Logo" && theme.palette.grey[900]
-                }`,
-                padding: `${
-                  logo.title === "Light Logo" && '20px'
-                }`,
-                borderRadius: `${
-                  logo.title === "Light Logo" && '12px'
-                }`,
-                height: `${
-                  logo.title === "Light Logo" && '120px'
-                }`,
+                background: `${logo.title === "Light Logo" && theme.palette.grey[900]
+                  }`,
+                padding: `${logo.title === "Light Logo" && '20px'
+                  }`,
+                borderRadius: `${logo.title === "Light Logo" && '12px'
+                  }`,
+                height: `${logo.title === "Light Logo" && '120px'
+                  }`,
               }}
             >
               <div className={classes.logoFill}>
@@ -124,9 +127,8 @@ const Logos = () => {
               </div>
             </div>
             <div className={classes.descriptionCtr} style={{
-              marginTop: `${
-                logo.title === "Light Logo" && '20px'
-              }`,
+              marginTop: `${logo.title === "Light Logo" && '20px'
+                }`,
             }}>
               <Typography variant="" className={classes.logoTitle}>
                 {logo.title}

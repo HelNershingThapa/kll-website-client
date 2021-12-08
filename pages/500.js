@@ -64,7 +64,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Custom404() {
+function Custom500() {
   const classes = useStyles();
 
   return (
@@ -87,4 +87,4 @@ function Custom404() {
   );
 }
 
-export default Custom404
+export default Custom500

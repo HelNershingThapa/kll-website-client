@@ -9,12 +9,15 @@ import Mosaic from "./Mosaic";
 const useStyles = makeStyles((theme) => ({
   container: {
     marginTop: theme.spacing(20),
+    [theme.breakpoints.down("xs")]: {
+      marginTop: theme.spacing(15),
+    }
   },
   title: {
     marginBottom: theme.spacing(2),
   },
   description: {
-    width: 468,
+    maxWidth: 468,
     marginBottom: theme.spacing(6),
   },
 }));

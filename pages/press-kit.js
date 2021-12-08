@@ -19,15 +19,20 @@ const useStyles = makeStyles((theme) => ({
   pageDescription: {
     marginTop: theme.spacing(3),
     marginBottom: theme.spacing(10),
-    width: 820,
+    maxWidth: 820,
     fontWeight: 400,
-    lineHeight: "28px",
+    lineHeight: 1.5556,
     color: theme.palette.grey[600],
+    [theme.breakpoints.down("xs")]: {
+      marginBottom: "1.444rem",
+      marginTop: theme.spacing(1),
+    }
   },
 }));
 
 const PressKit = () => {
   const classes = useStyles();
+
   return (
     <>
       <Head>

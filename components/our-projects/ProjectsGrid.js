@@ -35,6 +35,9 @@ const useStyles = makeStyles((theme) => ({
     gridTemplateColumns: "repeat(12, 1fr)",
     gridTemplateRows: "620px 500px 500px",
     gridGap: theme.spacing(10),
+    [theme.breakpoints.down("md")]: {
+      gridTemplateRows: "465px 375px 375px",
+    },
     [theme.breakpoints.down("sm")]: {
       gridTemplateColumns: "1fr",
       gridTemplateRows: "auto",

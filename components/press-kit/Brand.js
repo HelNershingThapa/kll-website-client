@@ -27,6 +27,9 @@ const colorModels = [
 const useStyles = makeStyles((theme) => ({
   container: {
     display: "flex",
+    [theme.breakpoints.down("sm")]: {
+      flexDirection: "column",
+    }
   },
   accentColorCtr: {
     flex: 1,
@@ -35,18 +38,29 @@ const useStyles = makeStyles((theme) => ({
     paddingBottom: theme.spacing(10),
     paddingLeft: theme.spacing(15),
     paddingRight: theme.spacing(15),
+    [theme.breakpoints.down("sm")]: {
+      padding: "24px",
+    }
   },
   title: {
     fontFamily: "Manrope",
-    fontSize: "60px",
+    fontSize: "3.333rem",
     fontWeight: 800,
-    lineHeight: "60px",
-    color: "#749CE9",
+    lineHeight: 1,
+    color: theme.palette.blue[400],
+    [theme.breakpoints.down("xs")]: {
+      fontSize: "1.7778rem",
+      lineHeight: 1.25,
+    }
   },
   colorDetails: {
     width: 416,
     padding: "80px 32px",
     background: theme.palette.grey[100],
+    [theme.breakpoints.down("sm")]: {
+      width: "100%",
+      padding: "40px 24px",
+    }
   },
   colorBlob: {
     height: 60,
@@ -54,6 +68,9 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.primary.main,
     borderRadius: "16px",
     marginBottom: theme.spacing(4),
+    [theme.breakpoints.down("xs")]: {
+      marginBottom: theme.spacing(2),
+    }
   },
   colorTitle: {
     fontFamily: "Manrope",
@@ -67,6 +84,10 @@ const useStyles = makeStyles((theme) => ({
     gap: theme.spacing(3),
     marginTop: theme.spacing(5),
     marginBottom: theme.spacing(10),
+    [theme.breakpoints.down("xs")]: {
+      marginTop: theme.spacing(6),
+      marginBottom: theme.spacing(8),
+    }
   },
   model: {
     display: "flex",
@@ -98,6 +119,9 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "column",
     justifyContent: "space-between",
+    [theme.breakpoints.down("sm")]: {
+      gap: theme.spacing(100),
+    }
   },
 }));
 
@@ -124,9 +148,8 @@ const Brand = () => {
                       background: theme.palette.blue[color],
                       borderRadius: "50%",
                       position: `${index === 0 ? "relative" : "absolute"}`,
-                      transform: `${
-                        index !== 0 ? `translate(${index * 50}%, 0px)` : ""
-                      }`,
+                      transform: `${index !== 0 ? `translate(${index * 50}%, 0px)` : ""
+                        }`,
                     }}
                   />
                 )}
@@ -154,7 +177,7 @@ const Brand = () => {
         </div>
         <Button
           fullWidth
-          className={classes.downloadBtn}          
+          className={classes.downloadBtn}
           variant="contained"
           color="primary"
           endIcon={

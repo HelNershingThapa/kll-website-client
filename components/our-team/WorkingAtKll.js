@@ -38,6 +38,9 @@ const useStyles = makeStyles((theme) => ({
     position: "relative",
     width: 400,
     height: 400,
+    marginTop: Math.floor(Math.random() * (0 - 60 + 1) + 60),
+    marginLeft: "6px",
+    marginRight: "6px",
   },
   sliderContainer: {
     position: "relative",
@@ -70,6 +73,7 @@ const useStyles = makeStyles((theme) => ({
     zIndex: 5,
     color: "black",
     background: "linear-gradient(90deg, #0D1829 0%, rgba(13, 24, 41, 0) 100%)",
+    transform: 'rotate(-180deg)',
     width: 130,
     "& :hover": {
       cursor: "pointer",
@@ -86,12 +90,33 @@ const useStyles = makeStyles((theme) => ({
     fontSize: "24px",
     lineHeight: "24px",
   },
+  sliderCtr: {
+    "& $arrowLeftOverlay": {
+      visibility: 'hidden',
+      opacity: 0,
+      transition: "visibility 0s, opacity 0.3s linear",
+    },
+    "& $arrowRightOverlay": {
+      visibility: 'hidden',
+      opacity: 0,
+      transition: "visibility 0s, opacity 0.3s linear",
+    },
+    "&:hover": {
+      "& $arrowLeftOverlay": {
+        visibility: 'visible',
+        opacity: 1,
+      },
+      "& $arrowRightOverlay": {
+        visibility: 'visible',
+        opacity: 1,
+      }
+    }
+  }
 }));
 
 const WorkingAtKll = (props) => {
   const classes = useStyles();
   const slider = useRef(null);
-  const [areArrowsShown, setAreArrowsShown] = useState(false);
 
   const settings = {
     className: classes.sliderContainer,
@@ -110,7 +135,7 @@ const WorkingAtKll = (props) => {
       <Typography className={classes.workingTitle} align="center">
         Working at Kathmandu Living Labs
       </Typography>
-      <div style={{ position: "relative" }} onMouseEnter={() => setAreArrowsShown(true)} onMouseLeave={() => setAreArrowsShown(false)}>
+      <div style={{ position: "relative" }} className={classes.sliderCtr}>
         <Slider ref={slider} {...settings}>
           {["", "", "", "", "", ""].map((image, index) => (
             <div key={uid(image, index)}>
@@ -132,8 +157,8 @@ const WorkingAtKll = (props) => {
             </div>
           ))}
         </Slider>
-        {areArrowsShown && <><div className={classes.arrowLeftOverlay} onClick={() => slider?.current?.slickPrev()}><div className={classes.overlayRoot}><i className={clsx("ri-arrow-left-line", classes.arrowIcon)} /></div></div>
-          <div className={classes.arrowRightOverlay} onClick={() => slider?.current?.slickNext()}><div className={classes.overlayRoot}><i className={clsx("ri-arrow-right-line", classes.arrowIcon)} /></div></div></>}
+        <div className={classes.arrowLeftOverlay} onClick={() => slider?.current?.slickPrev()}><div className={classes.overlayRoot}><i className={clsx("ri-arrow-left-line", classes.arrowIcon)} /></div></div>
+        <div className={classes.arrowRightOverlay} onClick={() => slider?.current?.slickNext()}><div className={classes.overlayRoot}><i className={clsx("ri-arrow-left-line", classes.arrowIcon)} /></div></div>
       </div>
     </div>
   );

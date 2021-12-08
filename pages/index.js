@@ -85,7 +85,7 @@ export async function getStaticProps() {
   const res = await fetch(`${API_URL}/projects`);
   const projects = await res.json();
 
-  const resPartners = await fetch(`${API_URL}/partners`);
+  const resPartners = await fetch(`${API_URL}/partners?_sort=displayOrder`);
   const partners = await resPartners.json();
 
   const response = await fetch(`${API_URL}/in-the-media`);

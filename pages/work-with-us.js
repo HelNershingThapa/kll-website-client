@@ -215,7 +215,7 @@ function WorkWithUs({ data, vacancies, membersCount }) {
       <Programs fellowships={data.fellowships} mentorships={data.mentorships} />
       <JoinOsmMovement joinOsmMovement={data.joinOsmMovement} />
       <Testimonials testimonials={data.testimonials} />
-      <JobListings vacancies={vacancies} />
+      {vacancies.length > 0 && <JobListings vacancies={vacancies} />}
       <OurTeam membersCount={membersCount} />
     </>
   );

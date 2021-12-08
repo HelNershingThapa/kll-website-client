@@ -110,6 +110,7 @@ const useStyles = makeStyles((theme) => ({
   },
   paragraph: {
     marginBottom: "1rem",
+    color: theme.palette.grey[800],
   },
 }));
 
