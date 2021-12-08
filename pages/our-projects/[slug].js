@@ -340,8 +340,6 @@ function ProjectDetails({ projectDetail }) {
 
   const { API_URL } = process.env;
 
-  console.log("projectDetail", projectDetail);
-
   const sdg = projectDetail.sdg.map(project => project.goalNumber).sort((a, b) => a - b)
 
   const formattedSdgNumber = sdg.map(n => n > 9 ? "" + n : "0" + n)

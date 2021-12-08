@@ -76,8 +76,6 @@ const Mosaic = () => {
   const classes = useStyles();
   const theme = useTheme();
 
-  console.log("theme", theme);
-
   return (
     <div className={classes.container}>
       {["", "", "", "", "", ""].map((image, index) => (

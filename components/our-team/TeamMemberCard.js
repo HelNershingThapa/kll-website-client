@@ -78,10 +78,7 @@ function TeamMemberCard({ memberData }) {
   const classes = useStyles();
   const { API_URL } = process.env
 
-
   const { slug, name, bio, position, image, twitter, openStreetMap, linkedIn } = memberData;
-
-  console.log(twitter);
 
   return (
     <div>

@@ -182,8 +182,6 @@ function MemberDetail({ allMembers, memberDetail }) {
   const nextMemberSlug =
     allMembers[arrayPosition + 1] && allMembers[arrayPosition + 1].slug;
 
-    console.log(process.env.API_URL);
-
   return (
     <>
       <Head>

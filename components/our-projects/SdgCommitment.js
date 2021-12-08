@@ -100,8 +100,6 @@ const useStyles = makeStyles((theme) => ({
 const SdgCommitment = ({ impact }) => {
   const classes = useStyles();
 
-  console.log("impact", impact);
-
   const sdg = impact.sdgs.map(sdg => sdg.goalNumber).sort((a, b) => a - b)
 
   const formattedSdgNumber = sdg.map(n => n > 9 ? "" + n : "0" + n)

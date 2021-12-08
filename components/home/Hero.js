@@ -200,8 +200,6 @@ const Hero = ({ title, image }) => {
   const router = useRouter();
   const classes = useStyles();
 
-  console.log("title", title);
-
   return (
     <div className={classes.root}>
       <div className={classes.container}>

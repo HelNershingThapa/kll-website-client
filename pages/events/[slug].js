@@ -163,8 +163,6 @@ function EventDetail({ eventDetail }) {
       ? eventDetail.startDate
       : `${eventDetail.startDate} - ${eventDetail.endDate}`;
 
-  console.log("eventDetail", eventDetail);
-
   return (
     <>
       <Head>

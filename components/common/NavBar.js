@@ -24,6 +24,7 @@ import logo from "public/kll-logo.svg";
 import RichTooltip from "./RichTooltip";
 import PopoverContent from "./PopoverContent";
 import MobileMenuDrawer from "./MobileMenuDrawer";
+import CollapseNavBar from './CollapseNavBar';
 
 const menuItems = [
   {
@@ -172,7 +173,7 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down(desktop)]: {
       gap: theme.spacing(10),
     }
-  },  
+  },
   activeLink: {
     color: primary,
     fontWeight: "600",
@@ -209,6 +210,8 @@ function NavBar({ }) {
   const [mobileMenuDrawerOpen, setOpen] = useState(false);
   const [openedPopoverId, setOpenedPopoverId] = useState(null);
   const [popoverOpen, setPopoverOpen] = useState(false);
+  const [checked, setChecked] = React.useState(false);
+
 
   const onClose = () => {
     setOpen(false);
@@ -224,6 +227,10 @@ function NavBar({ }) {
 
   const handlePopoverOpen = (popoverId) => {
     setOpenedPopoverId(popoverId);
+  };
+
+  const handleChange = () => {
+    setChecked((prev) => !prev);
   };
 
   return (
@@ -248,10 +255,10 @@ function NavBar({ }) {
             <Hidden mdUp>
               <IconButton
                 className={classes.menuButton}
-                onClick={() => setOpen(true)}
+                onClick={handleChange}
                 aria-label="Open Navigation"
               >
-                <i className={clsx("ri-menu-line", classes.menuIcon)}></i>
+                {checked ? <i className={clsx("ri-close-line", classes.menuIcon)} /> : <i className={clsx("ri-menu-line", classes.menuIcon)} />}
               </IconButton>
             </Hidden>
 
@@ -326,7 +333,8 @@ function NavBar({ }) {
           </Container>
         </Toolbar>
       </AppBar>
-      <MobileMenuDrawer open={mobileMenuDrawerOpen} onClose={onClose} menuItems={menuItems} />
+      {/* <MobileMenuDrawer open={mobileMenuDrawerOpen} onClose={onClose} menuItems={menuItems} /> */}
+      {checked && <CollapseNavBar checked={checked} menuItems={menuItems} />}
     </Fragment>
   );
 }

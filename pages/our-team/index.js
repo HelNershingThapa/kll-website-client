@@ -118,8 +118,6 @@ function OurTeam({ members, headerStats }) {
 
   const { API_URL } = process.env;
 
-  console.log("header", headerStats);
-
   return (
     <>
       <Head>

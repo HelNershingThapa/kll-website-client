@@ -129,8 +129,6 @@ const Brand = () => {
   const classes = useStyles();
   const theme = useTheme();
 
-  console.log("theme", theme);
-
   return (
     <div className={classes.container}>
       <div className={classes.accentColorCtr}>

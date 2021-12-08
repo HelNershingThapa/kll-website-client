@@ -54,7 +54,7 @@ const getInvolvedMenus = [
     link: "/resources",
     img: "/get-involved-2.png",
     description:
-      "We’re always on the lookout for new talents. See what opportunities we have for you.",
+      "Get involved in creating bottom-up inclusive mapdata and help put communities on the map.",
   },
 ];
 
@@ -99,19 +99,16 @@ const useStyles = makeStyles((theme) => ({
     gridTemplateColumns: "1fr",
   },
 }));
-340;
 
 function PopoverContent({ identifier }) {
   const classes = useStyles();
-
-  console.log(identifier);
 
   return (
     <>
       {identifier === "whoweare" && (
         <div style={{ display: "flex", gap: "20px" }}>
           {subMenus.map((page) => (
-            <Link key={uid(page)} href={page.link}>
+            <Link key={uid(page)} href={page.link} passHref>
               <div
                 className={classes.page}
                 key={uid(page)}
@@ -139,7 +136,7 @@ function PopoverContent({ identifier }) {
       {identifier === "insights" && (
         <div className={classes.insights}>
           {insightsMenus.map((page, index) => (
-            <Link key={uid(page, index)} href={page.link}>
+            <Link key={uid(page, index)} href={page.link} passHref>
               <div
                 key={uid(page)}
                 style={{
@@ -187,7 +184,7 @@ function PopoverContent({ identifier }) {
       {identifier === "get-involved" && (
         <div className={classes.getInvolved}>
           {getInvolvedMenus.map((page, index) => (
-            <Link key={uid(page, index)} href={page.link}>
+            <Link key={uid(page, index)} href={page.link} passHref>
               <div style={{ cursor: "pointer" }}>
                 <div
                   style={{

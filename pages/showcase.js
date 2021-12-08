@@ -148,10 +148,7 @@ function Showcase() {
     setShowcases(showcases.concat(blogRes));
   }
 
-  console.log("SHOWCASES", showcases);
-
   const renderShowcase = (showcase) => {
-    console.log("showcase", showcase);
     switch (showcase.category) {
       case "product":
         if (showcase.youtubeLink) {

@@ -26,8 +26,6 @@ const Images = () => {
   const classes = useStyles();
   const theme = useTheme();
 
-  console.log("theme", theme);
-
   return (
     <div className={classes.container}>
       <Typography variant="h5" className={classes.title}>

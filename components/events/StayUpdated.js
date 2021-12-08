@@ -104,9 +104,6 @@ function StayUpdated() {
     });
   }
 
-  console.log("email", response);
-
-
   return (
     <div className={classes.container}>
       <div className={classes.imgFill}>

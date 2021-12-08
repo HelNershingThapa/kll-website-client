@@ -28,6 +28,9 @@ const useStyles = makeStyles((theme) => ({
     position: "relative",
     width: "inherit",
     height: 320,
+    [theme.breakpoints.down("md")]: {
+      height: 240,
+    },
     [theme.breakpoints.down(desktop)]: {
       height: 275,
     },

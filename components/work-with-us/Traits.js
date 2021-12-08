@@ -52,8 +52,6 @@ function Traits({traits}) {
   const classes = useStyles();
   const {API_URL} = process.env;
 
-  console.log(traits);
-
   return (
     <div className={classes.traits}>
       {traits.map((trait) => (

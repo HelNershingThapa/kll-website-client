@@ -101,7 +101,6 @@ export default function SimpleTabs({ category, setCategory, setBlogs, loadFunc }
   }, [category])
 
   const handleChange = (event, newValue) => {
-    console.log("handleChange");
     setCategory(newValue);
   };
 

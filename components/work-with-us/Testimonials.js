@@ -180,8 +180,6 @@ function Testimonials({ testimonials }) {
   const { API_URL } = process.env
   const { title, description, testimonies } = testimonials;
 
-  console.log(testimonials);
-
   return (
     <div className={classes.testimonials}>
       <Container fixed>

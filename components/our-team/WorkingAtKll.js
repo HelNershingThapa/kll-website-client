@@ -3,7 +3,6 @@ import { uid } from "react-uid";
 import clsx from "clsx";
 import { makeStyles } from "@material-ui/styles";
 import Image from "next/image";
-import PropTypes from "prop-types";
 import { Typography } from "@material-ui/core";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";

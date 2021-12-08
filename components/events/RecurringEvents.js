@@ -83,8 +83,6 @@ const useStyles = makeStyles((theme) => ({
 function RecurringEvents({ recurringEvents }) {
   const classes = useStyles();
 
-  console.log("recurringEvents OWn", recurringEvents);
-
   return (
     <>
       <div className={classes.recurringEventsContainer}>

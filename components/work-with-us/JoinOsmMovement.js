@@ -91,8 +91,6 @@ function JoinOsmMovement({ joinOsmMovement }) {
   const classes = useStyles();
   const { API_URL } = process.env;
 
-  console.log("joinOsmMovement", joinOsmMovement);
-
   const { label, description, image } = joinOsmMovement;
 
   return (

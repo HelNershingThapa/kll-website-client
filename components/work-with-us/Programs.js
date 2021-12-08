@@ -77,7 +77,6 @@ const renderers = {
 function Programs({ fellowships, mentorships }) {
   const classes = useStyles();
   const { API_URL } = process.env;
-  console.log("mentorships", mentorships);
 
   return (
     <Container fixed>

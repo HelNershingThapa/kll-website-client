@@ -66,8 +66,6 @@ const OurInsights = ({ blogs }) => {
   const router = useRouter();
   const classes = useStyles();
 
-  console.log(blogs);
-
   return (
     <>
       <div className={classes.root}>

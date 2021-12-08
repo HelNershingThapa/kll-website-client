@@ -151,9 +151,6 @@ function WorkWithUs({ data, vacancies, membersCount }) {
   const classes = useStyles();
   const { API_URL } = process.env
 
-
-  console.log("data", data);
-
   return (
     <>
       <Head>

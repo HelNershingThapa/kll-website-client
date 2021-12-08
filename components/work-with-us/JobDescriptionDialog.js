@@ -255,8 +255,6 @@ function FullScreenDialog({ vacancy }) {
     setOpen(false);
   };
 
-  console.log("vacancy", vacancy);
-
   return (
     <div>
       <Hidden smDown>

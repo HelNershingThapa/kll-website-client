@@ -70,8 +70,6 @@ function Events({ events, recurringEvents }) {
 
   const date = "2010-12-02";
 
-  console.log(moment(date).isAfter());
-
   const upcomingEvents = events.filter((event) =>
     moment(event.startDate).isAfter()
   );
@@ -79,8 +77,6 @@ function Events({ events, recurringEvents }) {
   const pastEvents = events.filter((event) =>
     moment(event.startDate).isBefore()
   );
-
-  console.log("recurringEvents", recurringEvents);
 
   return (
     <>
