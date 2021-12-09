@@ -33,6 +33,21 @@ const categories = [
   },
 ];
 
+const searchCategories = [
+  {
+    label: "Relevant",
+    value: "relevant"
+  },
+  {
+    label: "Newest",
+    value: "newest"
+  },
+  {
+    label: "Oldest",
+    value: "oldest"
+  },
+];
+
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
 
@@ -70,6 +85,10 @@ const useStyles = makeStyles((theme) => ({
   root: {
     // flexGrow: 1,
     // backgroundColor: "white",
+    marginTop: theme.spacing(15),
+    [theme.breakpoints.down("xs")]: {
+      marginTop: theme.spacing(6),
+    },
   },
   wrapper: {
     // textTransform: "capitalize",
@@ -92,7 +111,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SimpleTabs({ category, setCategory, setBlogs, loadFunc }) {
+export default function SimpleTabs({ category, setCategory, setBlogs, loadFunc, searchQuery }) {
   const classes = useStyles();
 
   useEffect(() => {
@@ -103,6 +122,8 @@ export default function SimpleTabs({ category, setCategory, setBlogs, loadFunc }
   const handleChange = (event, newValue) => {
     setCategory(newValue);
   };
+
+  const activeCategories = searchQuery ? searchCategories : categories;
 
   return (
     <div className={classes.root}>
@@ -119,7 +140,7 @@ export default function SimpleTabs({ category, setCategory, setBlogs, loadFunc }
           },
         }}
       >
-        {categories.map((category, index) => <Tab
+        {activeCategories.map((category, index) => <Tab
           key={uid(category, index)}
           classes={{ wrapper: classes.wrapper, selected: classes.selected }}
           label={

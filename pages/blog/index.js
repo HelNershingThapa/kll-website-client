@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import Head from "next/head";
+import Image from "next/image";
 import { makeStyles } from "@material-ui/core/styles";
 import { uid } from "react-uid";
 import fetch from "isomorphic-unfetch";
@@ -16,6 +17,7 @@ import BlogTabs from "components/blog/BlogTabs";
 import TopBlog from "../../components/blog/TopBlog";
 import { tablet } from "../../styles/theme";
 import useIntersection from 'components/blog/useIntersection'
+import NoResultFound from "../../components/blog/NoResultFound";
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -34,6 +36,9 @@ const useStyles = makeStyles((theme) => ({
   },
   pageDescription: {
     color: "#445668",
+    "& b": {
+      fontWeight: 500,
+    },
     [theme.breakpoints.down("xs")]: {
       fontSize: "14px",
     },
@@ -103,11 +108,24 @@ const BlogList = ({ featuredBlog }) => {
   }, [])
 
   async function loadFunc() {
-    const countRes = await fetch(`${API_URL}/blogs/count?isFeatured=false${searchQuery === '' ? '' : `&title_contains=${searchQuery}`}${category === 'none' ? '' : `&category=${category}`}`);
+    let categoryQuery = ''
+    if (category === 'newest') {
+      categoryQuery = '&_sort=created_at:desc'
+    }
+    else if (category === 'oldest') {
+      categoryQuery = '&_sort=created_at'
+    }
+    else if (category === 'none' || category === 'relevant') {
+      categoryQuery = ''
+    }
+    else {
+      categoryQuery = `&category=${category}`
+    }
+    const countRes = await fetch(`${API_URL}/blogs/count?isFeatured=false${searchQuery === '' ? '' : `&title_contains=${searchQuery}`}${categoryQuery}`);
     const resCount = await countRes.json();
     setBlogCount(resCount);
 
-    const res = await fetch(`${API_URL}/blogs?_start=${blogs.length}&_limit=6&isFeatured=false${searchQuery === '' ? '' : `&title_contains=${searchQuery}`}${category === 'none' ? '' : `&category=${category}`}`);
+    const res = await fetch(`${API_URL}/blogs?_start=${blogs.length}&_limit=6&isFeatured=false${searchQuery === '' ? '' : `&title_contains=${searchQuery}`}${categoryQuery}`);
     const blogRes = await res.json();
     setBlogs(blogs.concat(blogRes));
   }
@@ -119,12 +137,14 @@ const BlogList = ({ featuredBlog }) => {
       </Head>
       <Container fixed className={classes.container}>
         <Typography variant="h4" className={classes.pageTitle}>
-          Our Blog
+          {searchQuery ? "Search Results" : "Our Blog"}
         </Typography>
         <div className={classes.headerAction}>
-          <Typography variant="body1" className={classes.pageDescription}>
+          {!searchQuery ? <Typography variant="body1" className={classes.pageDescription}>
             See what we are up to at Kathmandu Living Labs
-          </Typography>
+          </Typography> : <Typography variant="body1" className={classes.pageDescription}>
+            We found {blogCount} results for <b>"{searchQuery}"</b>
+          </Typography>}
           <OutlinedInput
             classes={{
               root: classes.search,
@@ -143,12 +163,14 @@ const BlogList = ({ featuredBlog }) => {
               setBlogs([]);
               setSearchQuery(e.target.value);
               loadFunc();
+              setCategory('relevant');
+              e.target.value === '' && setCategory('none');
             }}
           />
         </div>
-        <TopBlog featuredBlog={featuredBlog} />
+        {!searchQuery && <TopBlog featuredBlog={featuredBlog} />}
 
-        <BlogTabs category={category} setCategory={setCategory} loadFunc={loadFunc} setBlogs={setBlogs} />
+        {blogCount > 0 && <BlogTabs category={category} setCategory={setCategory} loadFunc={loadFunc} setBlogs={setBlogs} searchQuery={searchQuery} />}
 
         <InfiniteScroll
           pageStart={0}
@@ -174,6 +196,7 @@ const BlogList = ({ featuredBlog }) => {
             ))}
           </div>
         </InfiniteScroll>
+        {blogCount === 0 && <NoResultFound setCategory={setCategory} setSearchQuery={setSearchQuery} loadFunc={loadFunc} />}
       </Container>
     </>
   );

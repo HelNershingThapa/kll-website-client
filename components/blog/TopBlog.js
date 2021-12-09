@@ -8,10 +8,8 @@ const useStyles = makeStyles((theme) => ({
   headerImage: {
     position: "relative",
     marginTop: theme.spacing(8),
-    marginBottom: theme.spacing(15),
     [theme.breakpoints.down("xs")]: {
       marginTop: theme.spacing(6),
-      marginBottom: theme.spacing(10),
     },
   },
   headerBlogOverlay: {
@@ -105,7 +103,7 @@ const TopBlog = ({ featuredBlog }) => {
       </div>
       <div className={classes.headerBlogOverlay}>
         <div className={classes.mainBlogDescription}>
-          <div className={classes.descriptionHead}> 
+          <div className={classes.descriptionHead}>
             <Chip label="Featured" color="primary" />
             <Typography variant="subtitle1" className={classes.timeToRead}>
               {Math.ceil(featuredBlog.content.split(" ").length / 200)} min read
