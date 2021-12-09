@@ -50,31 +50,32 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-const Images = () => {
+const Images = ({ gallery, images }) => {
   const classes = useStyles();
   const theme = useTheme();
+
+  console.log(images);
 
   return (
     <>
       <div className={classes.container}>
         <div className={classes.blurbs}>
           <Typography variant="h5" className={classes.title}>
-            Images
+            {gallery.title}
           </Typography>
           <Typography
             className={classes.description}
             variant="subtitle1"
             color="textSecondary"
           >
-            A collection of images from Kathmandu Living Labs showcasing our office,
-            work and team. Feel free to use these in our press coverages!
+            {gallery.description}
           </Typography>
         </div>
         <div className={classes.btnContainer}>
           <Button variant="outlined" classes={{ root: classes.btnRoot, label: classes.btnLabel, endIcon: classes.endIcon, iconSizeMedium: classes.iconSizeMedium }} endIcon={<i class={clsx("ri-download-line", classes.btnIcon)} />}>Download All Photos</Button>
         </div>
       </div>
-      <Mosaic />
+      <Mosaic images={images} />
     </>
   );
 };

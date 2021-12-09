@@ -80,26 +80,31 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Mosaic = () => {
+const Mosaic = ({ images }) => {
+  const { API_URL } = process.env
   const classes = useStyles();
   const theme = useTheme();
 
+  console.log(">>>", images);
+
   return (
-    <div className={classes.container}>
-      {["", "", "", "", "", ""].map((image, index) => (
-        <div key={uid(image, index)} className={classes[`photo-${index + 1}`]}>
-          <div className={classes.imageFill}>
-            <Image
-              className={classes.image}
-              src={`/press-kit-${index + 1}.png`}
-              layout="fill"
-              objectFit="cover"
-              alt=""
-            />
+    <>
+      <div className={classes.container}>
+        {images.photo[0].image.map((image, index) => (
+          <div key={uid(image, index)} className={classes[`photo-${index + 1}`]}>
+            <div className={classes.imageFill}>
+              <Image
+                className={classes.image}
+                src={`${API_URL}${image.url}`}
+                layout="fill"
+                objectFit="cover"
+                alt=""
+              />
+            </div>
           </div>
-        </div>
-      ))}
-    </div>
+        ))}
+      </div>
+    </>
   );
 };
 

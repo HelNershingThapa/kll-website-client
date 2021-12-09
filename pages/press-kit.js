@@ -30,8 +30,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const PressKit = () => {
+const PressKit = ({ data }) => {
   const classes = useStyles();
+
+  const { header, gallery, images } = data;  
 
   return (
     <>
@@ -41,21 +43,32 @@ const PressKit = () => {
       <Container fixed className={classes.container}>
         <div className={classes.root}>
           <Typography variant="h4" className={classes.pageTitle}>
-            Press Kit
+            {header.title}
           </Typography>
           <Typography className={classes.pageDescription}>
-            The KLL Press Kit contains our official logos, colors, images and
-            product screenshots. Please feel free to reuse these materials as
-            you please. We appreciate any coverage! For press releases and news,
-            please contact press@kll.com
+            {header.description}
           </Typography>
         </div>
         <Brand />
         <Logos />
-        <Images />
+        <Images gallery={gallery} images={images} />
       </Container>
     </>
   );
 };
+
+export async function getStaticProps() {
+  const { API_URL } = process.env
+  const res = await fetch(`${API_URL}/press-kit`);
+  const data = await res.json();
+
+  return {
+    props: {
+      data,
+    },
+    revalidate: 84600,
+  };
+}
+
 
 export default PressKit;
