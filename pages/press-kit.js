@@ -33,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
 const PressKit = ({ data }) => {
   const classes = useStyles();
 
-  const { header, gallery, images } = data;  
+  const { header, gallery, galleria } = data;
 
   return (
     <>
@@ -51,7 +51,7 @@ const PressKit = ({ data }) => {
         </div>
         <Brand />
         <Logos />
-        <Images gallery={gallery} images={images} />
+        <Images gallery={gallery} galleria={galleria} />
       </Container>
     </>
   );

@@ -161,7 +161,7 @@ function OurTeam({ members, headerStats }) {
           <YouCard />
         </div>
       </Container>
-      <WorkingAtKll />
+      <WorkingAtKll headerStats={headerStats}/>
     </>
   );
 }

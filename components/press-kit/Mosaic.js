@@ -80,22 +80,22 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Mosaic = ({ images }) => {
+const Mosaic = ({ galleria }) => {
   const { API_URL } = process.env
   const classes = useStyles();
   const theme = useTheme();
 
-  console.log(">>>", images);
+  console.log(">>>", galleria);
 
   return (
     <>
       <div className={classes.container}>
-        {images.photo[0].image.map((image, index) => (
+        {galleria.imageRepeatable.map((image, index) => (
           <div key={uid(image, index)} className={classes[`photo-${index + 1}`]}>
             <div className={classes.imageFill}>
               <Image
                 className={classes.image}
-                src={`${API_URL}${image.url}`}
+                src={`${API_URL}${image.image.url}`}
                 layout="fill"
                 objectFit="cover"
                 alt=""

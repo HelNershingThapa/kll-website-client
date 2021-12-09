@@ -50,11 +50,9 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-const Images = ({ gallery, images }) => {
+const Images = ({ gallery, galleria }) => {
   const classes = useStyles();
   const theme = useTheme();
-
-  console.log(images);
 
   return (
     <>
@@ -75,7 +73,7 @@ const Images = ({ gallery, images }) => {
           <Button variant="outlined" classes={{ root: classes.btnRoot, label: classes.btnLabel, endIcon: classes.endIcon, iconSizeMedium: classes.iconSizeMedium }} endIcon={<i class={clsx("ri-download-line", classes.btnIcon)} />}>Download All Photos</Button>
         </div>
       </div>
-      <Mosaic images={images} />
+      <Mosaic galleria={galleria} />
     </>
   );
 };
