@@ -38,6 +38,9 @@ const useStyles = makeStyles((theme) => ({
     left: 0,
     bottom: 0,
     zIndex: 1300,
+    [theme.breakpoints.down("xs")]:{
+      top: 64,
+    }
   },
   container: {
     display: 'flex',

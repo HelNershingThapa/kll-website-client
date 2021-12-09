@@ -334,7 +334,7 @@ function NavBar({ }) {
         </Toolbar>
       </AppBar>
       {/* <MobileMenuDrawer open={mobileMenuDrawerOpen} onClose={onClose} menuItems={menuItems} /> */}
-      {checked && <CollapseNavBar checked={checked} menuItems={menuItems} />}
+      {checked && <CollapseNavBar checked={checked} menuItems={menuItems} handleChange={handleChange} />}
     </Fragment>
   );
 }
