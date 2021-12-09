@@ -113,7 +113,8 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const WorkingAtKll = (props) => {
+const WorkingAtKll = ({ headerStats }) => {
+  const { API_URL } = process.env;
   const classes = useStyles();
   const slider = useRef(null);
 
@@ -129,6 +130,9 @@ const WorkingAtKll = (props) => {
     speed: 500,
   };
 
+
+  console.log(headerStats);
+
   return (
     <div className={classes.workingContainer}>
       <Typography className={classes.workingTitle} align="center">
@@ -136,7 +140,7 @@ const WorkingAtKll = (props) => {
       </Typography>
       <div style={{ position: "relative" }} className={classes.sliderCtr}>
         <Slider ref={slider} {...settings}>
-          {["", "", "", "", "", ""].map((image, index) => (
+          {headerStats.workingAtKllImages.map((image, index) => (
             <div key={uid(image, index)}>
               <div
                 className={classes.imageFill}
@@ -147,7 +151,7 @@ const WorkingAtKll = (props) => {
                 }}
               >
                 <Image
-                  src={`${index % 2 === 0 ? "/slide-1.png" : "/slide-2.png"}`}
+                  src={`${API_URL}${image.image.url}`}
                   layout="fill"
                   objectFit="cover"
                   alt="team members at KLL"
