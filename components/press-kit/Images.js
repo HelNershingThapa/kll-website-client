@@ -70,7 +70,7 @@ const Images = ({ gallery, galleria }) => {
           </Typography>
         </div>
         <div className={classes.btnContainer}>
-          <Button variant="outlined" classes={{ root: classes.btnRoot, label: classes.btnLabel, endIcon: classes.endIcon, iconSizeMedium: classes.iconSizeMedium }} endIcon={<i class={clsx("ri-download-line", classes.btnIcon)} />}>Download All Photos</Button>
+          <Button variant="outlined" classes={{ root: classes.btnRoot, label: classes.btnLabel, endIcon: classes.endIcon, iconSizeMedium: classes.iconSizeMedium }} endIcon={<i className={clsx("ri-download-line", classes.btnIcon)} />}>Download All Photos</Button>
         </div>
       </div>
       <Mosaic galleria={galleria} />
