@@ -143,7 +143,7 @@ const BlogList = ({ featuredBlog }) => {
           {!searchQuery ? <Typography variant="body1" className={classes.pageDescription}>
             See what we are up to at Kathmandu Living Labs
           </Typography> : <Typography variant="body1" className={classes.pageDescription}>
-            We found {blogCount} results for <b>"{searchQuery}"</b>
+            We found {blogCount} results for <b>&quot;{searchQuery}&quot;</b>
           </Typography>}
           <OutlinedInput
             classes={{
