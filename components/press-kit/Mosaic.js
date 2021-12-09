@@ -14,61 +14,69 @@ const useStyles = makeStyles((theme) => ({
     gridGap: theme.spacing(5),
     [theme.breakpoints.down("sm")]: {
       gridTemplateColumns: "1fr",
-      gridAutoRows: 'minmax(min-content, max-content)'
-    }
-  },
-  "photo-1": {
-    gridRow: "1 / 2",
-    gridColumn: "1 / 2",
-    [theme.breakpoints.down("sm")]: {
-      gridColumn: "auto",
-      gridRow: "auto",
+      gridTemplateRows: "auto",
+    },
+    "& div:nth-of-type(1)": {
+      gridRow: "1 / 2",
+      gridColumn: "1 / 2", [theme.breakpoints.down("sm")]: {
+        gridRow: "auto",
+        gridColumn: "auto",
+      },
+    },
+    "& div:nth-of-type(2)": {
+      gridRow: "2/3",
+      gridColumn: "1/2", [theme.breakpoints.down("sm")]: {
+        gridRow: "auto",
+        gridColumn: "auto",
+      },
+    },
+    "& div:nth-of-type(3)": {
+      gridColumn: "2/3",
+      gridRow: "1/3", [theme.breakpoints.down("sm")]: {
+        gridRow: "auto",
+        gridColumn: "auto",
+      },
+    },
+    "& div:nth-of-type(4)": {
+      gridColumn: "3/4",
+      gridRow: "1/3", [theme.breakpoints.down("sm")]: {
+        gridRow: "auto",
+        gridColumn: "auto",
+      },
+    },
+    "& div:nth-of-type(5)": {
+      gridColumn: "1/2",
+      gridRow: "3/4", [theme.breakpoints.down("sm")]: {
+        gridRow: "auto",
+        gridColumn: "auto",
+      },
+    },
+    "& div:nth-of-type(6)": {
+      gridColumn: "2/4",
+      gridRow: "3/4", [theme.breakpoints.down("sm")]: {
+        gridRow: "auto",
+        gridColumn: "auto",
+      },
     },
   },
-  "photo-2": {
-    gridRow: "2/3",
-    gridColumn: "1/2",
-    [theme.breakpoints.down("sm")]: {
-      gridColumn: "auto",
-      gridRow: "auto",
-    },
-  },
-  "photo-3": {
-    gridColumn: "2/3",
-    gridRow: "1/3",
-    [theme.breakpoints.down("sm")]: {
-      gridColumn: "auto",
-      gridRow: "auto",
-    },
-  },
-  "photo-4": {
-    gridColumn: "3/4",
-    gridRow: "1/3",
-    [theme.breakpoints.down("sm")]: {
-      gridColumn: "auto",
-      gridRow: "auto",
-    },
-  },
-  "photo-5": {
-    gridColumn: "1/2",
-    gridRow: "3/4",
-    [theme.breakpoints.down("sm")]: {
-      gridColumn: "auto",
-      gridRow: "auto",
-    },
-  },
-  "photo-6": {
-    gridColumn: "2/4",
-    gridRow: "3/4",
-    [theme.breakpoints.down("sm")]: {
-      gridColumn: "auto",
-      gridRow: "auto",
-    },
-  },
-  imgFill: {
+  imageFill: {
     position: "relative",
-    height: "100%",
     width: "100%",
+    height: "100%",
+    [theme.breakpoints.down("sm")]: {
+      width: "100%",
+      "& div": {
+        position: "unset !important",
+      },
+    },
+  },
+  image: {
+    [theme.breakpoints.down("sm")]: {
+      objectFit: "cover",
+      width: "100% important",
+      position: "relative !important",
+      height: "unset !important",
+    },
   },
 }));
 
@@ -80,8 +88,9 @@ const Mosaic = () => {
     <div className={classes.container}>
       {["", "", "", "", "", ""].map((image, index) => (
         <div key={uid(image, index)} className={classes[`photo-${index + 1}`]}>
-          <div className={classes.imgFill}>
+          <div className={classes.imageFill}>
             <Image
+              className={classes.image}
               src={`/press-kit-${index + 1}.png`}
               layout="fill"
               objectFit="cover"

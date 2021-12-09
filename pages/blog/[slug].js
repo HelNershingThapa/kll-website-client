@@ -495,7 +495,7 @@ export async function getStaticProps({ params }) {
       blog: blog[0],
       relatedBlogs,
     },
-    revalidate: 60,
+    revalidate: 84600,
   };
 }
 

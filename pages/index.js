@@ -113,6 +113,6 @@ export async function getStaticProps() {
       membersCount,
       impact,
     },
-    revalidate: 60,
+    revalidate: 84600,
   };
 }

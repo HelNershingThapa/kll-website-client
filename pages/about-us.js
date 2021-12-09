@@ -255,7 +255,7 @@ export async function getStaticProps(context) {
       membersCount,
       sdgs: impact.sdgs,
     },
-    revalidate: 60,
+    revalidate: 84600,
   };
 }
 

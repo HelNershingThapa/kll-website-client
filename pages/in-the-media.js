@@ -143,6 +143,7 @@ const useStyles = makeStyles((theme) => ({
 
 const settings = {
   dots: false,
+  arrows: false,
   infinite: false,
   speed: 500,
   slidesToShow: 1,
@@ -295,6 +296,7 @@ export async function getStaticProps() {
       mediaCoverages,
       inTheMedia,
     },
+    revalidate: 84600,
   };
 }
 

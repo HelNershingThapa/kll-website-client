@@ -9,17 +9,45 @@ import Mosaic from "./Mosaic";
 const useStyles = makeStyles((theme) => ({
   container: {
     marginTop: theme.spacing(20),
+    display: 'flex',
+    justifyContent: "space-between",
+    alignItems: "flex-end",
+    [theme.breakpoints.down("sm")]: {
+      flexDirection: "column",
+      alignItems: "flex-start",
+      gap: theme.spacing(4),
+    },
     [theme.breakpoints.down("xs")]: {
       marginTop: theme.spacing(15),
     }
   },
+  // blurbs: {
+  //   marginBottom: theme.spacing(6),
+  // },
   title: {
     marginBottom: theme.spacing(2),
   },
   description: {
     maxWidth: 468,
-    marginBottom: theme.spacing(6),
   },
+  btnIcon: {
+    fontSize: "16px",
+    lineHeight: "16px",
+    color: theme.palette.grey[800],
+  },
+  btnLabel: {
+    color: theme.palette.grey[800],
+    whiteSpace: "nowrap"
+  },
+  endIcon: {
+    fontSize: "16px",
+  },
+  iconSizeMedium: {
+    "& > *:first-child": {
+      fontSize: 16,
+    }
+  }
+
 }));
 
 const Images = () => {
@@ -27,20 +55,27 @@ const Images = () => {
   const theme = useTheme();
 
   return (
-    <div className={classes.container}>
-      <Typography variant="h5" className={classes.title}>
-        Images
-      </Typography>
-      <Typography
-        className={classes.description}
-        variant="subtitle1"
-        color="textSecondary"
-      >
-        A collection of images from Kathmandu Living Labs showcasing our office,
-        work and team. Feel free to use these in our press coveraes!
-      </Typography>
+    <>
+      <div className={classes.container}>
+        <div className={classes.blurbs}>
+          <Typography variant="h5" className={classes.title}>
+            Images
+          </Typography>
+          <Typography
+            className={classes.description}
+            variant="subtitle1"
+            color="textSecondary"
+          >
+            A collection of images from Kathmandu Living Labs showcasing our office,
+            work and team. Feel free to use these in our press coverages!
+          </Typography>
+        </div>
+        <div className={classes.btnContainer}>
+          <Button variant="outlined" classes={{ root: classes.btnRoot, label: classes.btnLabel, endIcon: classes.endIcon, iconSizeMedium: classes.iconSizeMedium }} endIcon={<i class={clsx("ri-download-line", classes.btnIcon)} />}>Download All Photos</Button>
+        </div>
+      </div>
       <Mosaic />
-    </div>
+    </>
   );
 };
 

@@ -95,6 +95,7 @@ export async function getStaticProps() {
     props: {
       resources,
     },
+    revalidate: 84600,
   };
 }
 
