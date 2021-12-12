@@ -1,32 +1,7 @@
 import clsx from "clsx";
 import { uid } from "react-uid";
-import { useRouter } from "next/router";
 import { makeStyles } from "@material-ui/core/styles";
-import Image from "next/image";
-import { Container, Typography, Button } from "@material-ui/core";
-
-// const benefits = [
-//   {
-//     title: "Paid Leaves",
-//     icon: "/icons/benefit1.svg",
-//     desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
-//   },
-//   {
-//     title: "Monthly Outings",
-//     icon: "/icons/benefit2.svg",
-//     desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
-//   },
-//   {
-//     title: "Paid Leaves",
-//     icon: "/icons/benefit1.svg",
-//     desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
-//   },
-//   {
-//     title: "Monthly Outings",
-//     icon: "/icons/benefit2.svg",
-//     desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
-//   },
-// ];
+import { Typography } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   benefitsContainer: {

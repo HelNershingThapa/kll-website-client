@@ -82,6 +82,7 @@ const Partners = ({ partners }) => {
                 src={`${API_URL}${partner.partnerLogo.url}`}
                 layout="fill"
                 objectFit="content"
+                sizes="200px"
                 alt=""
               />
             </div>

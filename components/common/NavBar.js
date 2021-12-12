@@ -222,7 +222,6 @@ function NavBar({}) {
     const { API_URL } = process.env;
     axios.get(`${API_URL}/navigation-bar`).then((res) => {
       const menuRes = res.data.menu;
-      console.log("Asdasd", menuRes);
       setMenu(menuRes);
     });
   }, []);

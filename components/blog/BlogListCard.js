@@ -143,12 +143,16 @@ function BlogListCard({ blog }) {
         }}
       >
         <div className={classes.imageFill}>
-          <Image
-            className={classes.media}
-            src={`${API_URL}${blog.coverPhoto?.url}`}
-            layout="fill"
-            objectFit="cover"
-          />
+          {blog.coverPhoto?.url && (
+            <Image
+              className={classes.media}
+              src={`${API_URL}${blog.coverPhoto?.formats.small.url}`}
+              layout="fill"
+              objectFit="cover"
+              sizes="33vw"
+              alt=""
+            />
+          )}
         </div>
         <Chip
           label={blog.category}
