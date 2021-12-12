@@ -1,6 +1,7 @@
 import React, { useState, Fragment } from "react";
 import { useRouter } from "next/router";
 import clsx from "clsx";
+import axios from "axios";
 import { uid } from "react-uid";
 import Link from "next/link";
 import Image from "next/image";
@@ -24,7 +25,8 @@ import logo from "public/kll-logo.svg";
 import RichTooltip from "./RichTooltip";
 import PopoverContent from "./PopoverContent";
 import MobileMenuDrawer from "./MobileMenuDrawer";
-import CollapseNavBar from './CollapseNavBar';
+import CollapseNavBar from "./CollapseNavBar";
+import { useEffect } from "react";
 
 const menuItems = [
   {
@@ -93,7 +95,7 @@ const useStyles = makeStyles((theme) => ({
   appBar: {
     background: "#ffffff",
     height: "80px",
-    display: 'flex',
+    display: "flex",
     justifyContent: "center",
     [theme.breakpoints.down("xs")]: {
       height: "64px",
@@ -110,6 +112,8 @@ const useStyles = makeStyles((theme) => ({
     padding: "10px",
     background: theme.palette.grey[100],
     borderRadius: "12px",
+    height: 40,
+    width: 40,
   },
   title: {
     // flexGrow: 1,
@@ -147,7 +151,7 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.grey[900],
     [theme.breakpoints.down(desktop)]: {
       fontSize: "0.8889rem",
-    }
+    },
   },
   menuLink: {
     textDecoration: "none",
@@ -162,6 +166,7 @@ const useStyles = makeStyles((theme) => ({
   menuIcon: {
     fontSize: "20px",
     color: theme.palette.grey[600],
+    lineHeight: 1,
   },
   noDecoration: {
     textDecoration: "none",
@@ -172,7 +177,7 @@ const useStyles = makeStyles((theme) => ({
     gap: theme.spacing(15),
     [theme.breakpoints.down(desktop)]: {
       gap: theme.spacing(10),
-    }
+    },
   },
   activeLink: {
     color: primary,
@@ -203,14 +208,24 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function NavBar({ }) {
+function NavBar({}) {
   const classes = useStyles();
   const router = useRouter();
 
+  const [menu, setMenu] = useState([]);
   const [mobileMenuDrawerOpen, setOpen] = useState(false);
   const [openedPopoverId, setOpenedPopoverId] = useState(null);
   const [popoverOpen, setPopoverOpen] = useState(false);
   const [checked, setChecked] = React.useState(false);
+
+  useEffect(() => {
+    const { API_URL } = process.env;
+    axios.get(`${API_URL}/navigation-bar`).then((res) => {
+      const menuRes = res.data.menu;
+      console.log("Asdasd", menuRes);
+      setMenu(menuRes);
+    });
+  }, []);
 
   const onClose = () => {
     setOpen(false);
@@ -236,7 +251,10 @@ function NavBar({ }) {
     <Fragment>
       <AppBar position="sticky" elevation={0} className={classes.appBar}>
         <Toolbar disableGutters>
-          <Container fixed style={{ display: 'flex', justifyContent: "space-between" }}>
+          <Container
+            fixed
+            style={{ display: "flex", justifyContent: "space-between" }}
+          >
             <div className={classes.title}>
               <Link href="/" passHref>
                 <div className={classes.imgFill}>
@@ -246,6 +264,7 @@ function NavBar({ }) {
                     layout="fill"
                     objectFit="cover"
                     alt="KLL Logo"
+                    sizes="48px"
                   />
                 </div>
               </Link>
@@ -257,18 +276,25 @@ function NavBar({ }) {
                 onClick={handleChange}
                 aria-label="Open Navigation"
               >
-                {checked ? <i className={clsx("ri-close-line", classes.menuIcon)} /> : <i className={clsx("ri-menu-line", classes.menuIcon)} />}
+                {checked ? (
+                  <i className={clsx("ri-close-line", classes.menuIcon)} />
+                ) : (
+                  <i className={clsx("ri-menu-line", classes.menuIcon)} />
+                )}
               </IconButton>
             </Hidden>
 
             <Hidden smDown>
               <div className={classes.menuItemsContainer}>
-                {menuItems.map((menuItem, index) => (
+                {menu.map((menuItem, index) => (
                   <Fragment key={uid(menuItem, index)}>
-                    {menuItem.isSubMenuAvailable ? (
+                    {menuItem.subMenu.length > 0 ? (
                       <RichTooltip
                         content={
-                          <PopoverContent identifier={menuItem.identifier} />
+                          <PopoverContent
+                            identifier={menuItem.identifier}
+                            menu={menu}
+                          />
                         }
                         open={openedPopoverId === index}
                         placement="bottom-start"
@@ -294,14 +320,14 @@ function NavBar({ }) {
                             }}
                           >
                             {menuItem.name}
-                            {menuItem.isSubMenuAvailable && (
+                            {menuItem.subMenu.length > 0 && (
                               <i className="ri-arrow-down-s-line" />
                             )}
                           </Typography>
                         </div>
                       </RichTooltip>
                     ) : (
-                      <Link href={menuItem.link}>
+                      <Link href={menuItem.link} passHref>
                         <Typography
                           variant="body1"
                           className={classes.menuItem}
@@ -332,7 +358,13 @@ function NavBar({ }) {
         </Toolbar>
       </AppBar>
       {/* <MobileMenuDrawer open={mobileMenuDrawerOpen} onClose={onClose} menuItems={menuItems} /> */}
-      {checked && <CollapseNavBar checked={checked} menuItems={menuItems} handleChange={handleChange} />}
+      {checked && (
+        <CollapseNavBar
+          checked={checked}
+          menuItems={menuItems}
+          handleChange={handleChange}
+        />
+      )}
     </Fragment>
   );
 }

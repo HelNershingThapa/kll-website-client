@@ -4,60 +4,6 @@ import Image from "next/image";
 import { makeStyles } from "@material-ui/core/styles";
 import { Typography } from "@material-ui/core";
 
-const subMenus = [
-  {
-    title: "About Us",
-    link: "/about-us",
-    img: "/popover-img-1.png",
-    description: "Learn what we stand for and what we have done so far.",
-  },
-  {
-    title: "Our Team",
-    link: "/our-team",
-    img: "/popover-img-2.png",
-    description: "Take a look behind the scenes and get to know us better.",
-  },
-];
-
-const insightsMenus = [
-  {
-    title: "Our Blog",
-    link: "/blog",
-    img: "/icons/blog.svg",
-    description:
-      "We update our blog regularly. Learn what we are up to at Kathmandu Living Labs.",
-  },
-  {
-    title: "In the Media",
-    link: "/in-the-media",
-    img: "/icons/media.svg",
-    description: "We have been featured in mainstream media over the years.",
-  },
-  {
-    title: "Events",
-    link: "/events",
-    img: "/icons/events.svg",
-    description: "We organize various events at KLL where you can take part.",
-  },
-];
-
-const getInvolvedMenus = [
-  {
-    title: "Work with Us",
-    img: "/get-involved-1.png",
-    link: "/work-with-us",
-    description:
-      "We are always on the lookout for new talents. See what opportunities we have for you.",
-  },
-  {
-    title: "Join the OSM Movement",
-    link: "/resources",
-    img: "/get-involved-2.png",
-    description:
-      "Get involved in creating bottom-up inclusive mapdata and help put communities on the map.",
-  },
-];
-
 const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: "100%",
@@ -98,113 +44,124 @@ const useStyles = makeStyles((theme) => ({
     rowGap: "24px",
     gridTemplateColumns: "1fr",
   },
+  getInvolvedImgFill: {
+    position: "relative",
+    width: "100%",
+    height: 160,
+    marginBottom: "8px",
+  },
 }));
 
-function PopoverContent({ identifier }) {
+function PopoverContent({ identifier, menu }) {
+  const { API_URL } = process.env;
   const classes = useStyles();
 
   return (
     <>
       {identifier === "whoweare" && (
         <div style={{ display: "flex", gap: "20px" }}>
-          {subMenus.map((page) => (
-            <Link key={uid(page)} href={page.link} passHref>
-              <div
-                className={classes.page}
-                key={uid(page)}
-                style={{ width: 160, cursor: "pointer" }}
-              >
-                <div className={classes.imgFill}>
-                  <Image
-                    src={page.img}
-                    layout="fill"
-                    objectFit="cover"
-                    alt=""
-                  />
-                </div>
-                <Typography variant="body1" className={classes.pageName}>
-                  {page.title}
-                </Typography>
-                <Typography variant="subtitle2" className={classes.pageDesc}>
-                  {page.description}
-                </Typography>
-              </div>
-            </Link>
-          ))}
-        </div>
-      )}
-      {identifier === "insights" && (
-        <div className={classes.insights}>
-          {insightsMenus.map((page, index) => (
-            <Link key={uid(page, index)} href={page.link} passHref>
-              <div
-                key={uid(page)}
-                style={{
-                  gridArea: `${index === 0 ? "fw" : `hw${index}`}`,
-                  cursor: "pointer",
-                }}
-              >
+          {menu
+            .find((item) => item.identifier === "whoweare")
+            .subMenu.map((page) => (
+              <Link key={uid(page)} href={page.link} passHref>
                 <div
-                  style={{
-                    background: `${index === 0 ? "#185ADB" : "#E8EFFC"}`,
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    height: 160,
-                    marginBottom: "8px",
-                  }}
+                  className={classes.page}
+                  key={uid(page)}
+                  style={{ width: 160, cursor: "pointer" }}
                 >
-                  <div
-                    style={{
-                      position: "relative",
-                      height: index === 0 ? 80 : 60,
-                      width: index === 0 ? 80 : 60,
-                    }}
-                  >
-                    <img
-                      src={page.img}
+                  <div className={classes.imgFill}>
+                    <Image
+                      src={`${API_URL}${page.image.url}`}
                       layout="fill"
                       objectFit="cover"
                       alt=""
                     />
                   </div>
+                  <Typography variant="body1" className={classes.pageName}>
+                    {page.name}
+                  </Typography>
+                  <Typography variant="subtitle2" className={classes.pageDesc}>
+                    {page.description}
+                  </Typography>
                 </div>
-                <Typography variant="body1" className={classes.pageName}>
-                  {page.title}
-                </Typography>
-                <Typography variant="subtitle2" className={classes.pageDesc}>
-                  {page.description}
-                </Typography>
-              </div>
-            </Link>
-          ))}
+              </Link>
+            ))}
+        </div>
+      )}
+      {identifier === "insights" && (
+        <div className={classes.insights}>
+          {menu
+            .find((item) => item.identifier === "insights")
+            .subMenu.map((page, index) => (
+              <Link key={uid(page, index)} href={page.link} passHref>
+                <div
+                  key={uid(page)}
+                  style={{
+                    gridArea: `${index === 0 ? "fw" : `hw${index}`}`,
+                    cursor: "pointer",
+                  }}
+                >
+                  <div
+                    style={{
+                      background: `${index === 0 ? "#185ADB" : "#E8EFFC"}`,
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      height: 160,
+                      marginBottom: "8px",
+                    }}
+                  >
+                    <div
+                      style={{
+                        position: "relative",
+                        height: index === 0 ? 80 : 60,
+                        width: index === 0 ? 80 : 60,
+                      }}
+                    >
+                      <img
+                        src={page.imageFile}
+                        layout="fill"
+                        objectFit="cover"
+                        alt=""
+                      />
+                    </div>
+                  </div>
+                  <Typography variant="body1" className={classes.pageName}>
+                    {page.name}
+                  </Typography>
+                  <Typography variant="subtitle2" className={classes.pageDesc}>
+                    {page.description}
+                  </Typography>
+                </div>
+              </Link>
+            ))}
         </div>
       )}
 
       {identifier === "get-involved" && (
         <div className={classes.getInvolved}>
-          {getInvolvedMenus.map((page, index) => (
-            <Link key={uid(page, index)} href={page.link} passHref>
-              <div style={{ cursor: "pointer" }}>
-                <div
-                  style={{
-                    position: "relative",
-                    width: "100%",
-                    height: 160,
-                    marginBottom: "8px",
-                  }}
-                >
-                  <img src={page.img} layout="fill" objectFit="cover" alt="" />
+          {menu
+            .find((item) => item.identifier === "get-involved")
+            .subMenu.map((page, index) => (
+              <Link key={uid(page, index)} href={page.link} passHref>
+                <div style={{ cursor: "pointer" }}>
+                  <div className={classes.getInvolvedImgFill}>
+                    <Image
+                      src={`${API_URL}${page.image.url}`}
+                      layout="fill"
+                      objectFit="cover"
+                      alt=""
+                    />
+                  </div>
+                  <Typography variant="body1" className={classes.pageName}>
+                    {page.name}
+                  </Typography>
+                  <Typography variant="subtitle2" className={classes.pageDesc}>
+                    {page.description}
+                  </Typography>
                 </div>
-                <Typography variant="body1" className={classes.pageName}>
-                  {page.title}
-                </Typography>
-                <Typography variant="subtitle2" className={classes.pageDesc}>
-                  {page.description}
-                </Typography>
-              </div>
-            </Link>
-          ))}
+              </Link>
+            ))}
         </div>
       )}
     </>

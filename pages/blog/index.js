@@ -217,7 +217,7 @@ const BlogList = ({ featuredBlog }) => {
               blogs.map((blog) => <BlogListCard key={uid(blog)} blog={blog} />)}
           </div>
         </InfiniteScroll>
-        {blogCount === 0 && (
+        {blogCount === 0 && searchQuery && (
           <NoResultFound
             setCategory={setCategory}
             setSearchQuery={setSearchQuery}

@@ -127,7 +127,7 @@ const OurProjects = ({ projects, impact }) => {
 
 export async function getStaticProps() {
   const { API_URL } = process.env
-  const res = await fetch(`${API_URL}/projects`);
+  const res = await fetch(`${API_URL}/projects?_sort=displayOrder`);
   const projects = await res.json();
 
   const impactRes = await fetch(`${API_URL}/impact`);

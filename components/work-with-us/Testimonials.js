@@ -182,8 +182,6 @@ function Testimonials({ testimonials }) {
     setCurrentSlide(e);
   };
 
-  console.log(slider.current);
-
   const settings = {
     dots: false,
     infinite: true,
