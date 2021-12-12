@@ -18,42 +18,48 @@ const useStyles = makeStyles((theme) => ({
     },
     "& div:nth-of-type(1)": {
       gridRow: "1 / 2",
-      gridColumn: "1 / 2", [theme.breakpoints.down("sm")]: {
+      gridColumn: "1 / 2",
+      [theme.breakpoints.down("sm")]: {
         gridRow: "auto",
         gridColumn: "auto",
       },
     },
     "& div:nth-of-type(2)": {
       gridRow: "2/3",
-      gridColumn: "1/2", [theme.breakpoints.down("sm")]: {
+      gridColumn: "1/2",
+      [theme.breakpoints.down("sm")]: {
         gridRow: "auto",
         gridColumn: "auto",
       },
     },
     "& div:nth-of-type(3)": {
       gridColumn: "2/3",
-      gridRow: "1/3", [theme.breakpoints.down("sm")]: {
+      gridRow: "1/3",
+      [theme.breakpoints.down("sm")]: {
         gridRow: "auto",
         gridColumn: "auto",
       },
     },
     "& div:nth-of-type(4)": {
       gridColumn: "3/4",
-      gridRow: "1/3", [theme.breakpoints.down("sm")]: {
+      gridRow: "1/3",
+      [theme.breakpoints.down("sm")]: {
         gridRow: "auto",
         gridColumn: "auto",
       },
     },
     "& div:nth-of-type(5)": {
       gridColumn: "1/2",
-      gridRow: "3/4", [theme.breakpoints.down("sm")]: {
+      gridRow: "3/4",
+      [theme.breakpoints.down("sm")]: {
         gridRow: "auto",
         gridColumn: "auto",
       },
     },
     "& div:nth-of-type(6)": {
       gridColumn: "2/4",
-      gridRow: "3/4", [theme.breakpoints.down("sm")]: {
+      gridRow: "3/4",
+      [theme.breakpoints.down("sm")]: {
         gridRow: "auto",
         gridColumn: "auto",
       },
@@ -81,7 +87,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Mosaic = ({ galleria }) => {
-  const { API_URL } = process.env
+  const { API_URL } = process.env;
   const classes = useStyles();
   const theme = useTheme();
 
@@ -91,7 +97,10 @@ const Mosaic = ({ galleria }) => {
     <>
       <div className={classes.container}>
         {galleria.imageRepeatable.map((image, index) => (
-          <div key={uid(image, index)} className={classes[`photo-${index + 1}`]}>
+          <div
+            key={uid(image, index)}
+            className={classes[`photo-${index + 1}`]}
+          >
             <div className={classes.imageFill}>
               <Image
                 className={classes.image}

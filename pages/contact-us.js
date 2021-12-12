@@ -1,5 +1,7 @@
+import { useState } from 'react';
 import Head from "next/head";
 import { uid } from "react-uid";
+import axios from 'axios';
 import Image from "next/image";
 import { makeStyles } from "@material-ui/styles";
 import { Container, Typography, TextField, Button } from "@material-ui/core";
@@ -7,29 +9,37 @@ import { Container, Typography, TextField, Button } from "@material-ui/core";
 const textFields = [
   {
     label: "Your Full Name*",
+    identifier: "fullName"
   },
   {
     label: "Your Email Address*",
+    identifier: "email"
   },
   {
     label: "Company",
+    identifier: "company"
   },
   {
     label: "Message",
+    identifier: "message",
     rows: 4,
   },
 ];
 
 const useStyles = makeStyles((theme) => ({
+  root: {
+    marginTop: theme.spacing(25),
+    [theme.breakpoints.down("xs")]: {
+      marginTop: theme.spacing(4),
+    },
+  },
   mainContainer: {
     display: "grid",
     gridTemplateColumns: "34% 52%",
     justifyContent: "space-between",
-    marginTop: theme.spacing(25),
     marginBottom: theme.spacing(30),
     [theme.breakpoints.down("xs")]: {
       gridTemplateColumns: "100%",
-      marginTop: theme.spacing(4),
       marginBottom: theme.spacing(10),
     },
   },
@@ -109,24 +119,67 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "8px",
     color: theme.palette.grey[600],
   },
+  successMessageCtr: {
+    padding: "0.5rem",
+    border: `1px solid ${theme.palette.primary.main}`,
+    margin: "auto",
+  }
 }));
 
 export default function Home() {
   const classes = useStyles();
+  const [response, setResponse] = useState()
+  const [error, setError] = useState()
+
+  const [inputValues, setInputValues] = useState({})
+
+  const handleInputChange = ({ target: { name, value } }) => {
+    setInputValues({ ...inputValues, [name]: value })
+  }
+
+  console.log("inputValues", inputValues);
+
+  const validateEmail = () => {
+    let isValid = true;
+    var pattern = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
+
+    if (!pattern.test(inputValues.email)) {
+      isValid = false;
+      setError("Please enter valid email address.")
+    }
+    return isValid;
+  }
+
+  const handleSubmit = () => {
+    const { API_URL } = process.env;
+    setError();
+    validateEmail();
+    const { fullName, email, company, message } = inputValues;
+    axios.post(`${API_URL}/messages`, { fullName, email, company, message }).then(response => setResponse(response)).catch(error => {
+      console.log("error", error);
+      setError(error);
+    });
+  }
+
+  console.log("error>>>", error);
+  console.log("response>>>", response);
+
   return (
-    <div>
+    <>
       <Head>
         <title>Contact Us | Kathmandu Living Labs</title>
       </Head>
       <Container fixed>
+        <div className={classes.root}>
+          <Typography variant="h4" className={classes.title}>
+            {`We’d love to hear from you`}
+          </Typography>
+          <Typography className={classes.subTitle} variant="body1">
+            {`To contact us, simply fill in the form below.`}
+          </Typography>
+        </div>
         <div className={classes.mainContainer}>
-          <div className={classes.hearFromUs}>
-            <Typography variant="h4" className={classes.title}>
-              {`We’d love to hear from you`}
-            </Typography>
-            <Typography className={classes.subTitle} variant="body1">
-              {`To contact us, simply fill in the form below.`}
-            </Typography>
+          {response?.status !== 200 && <div className={classes.hearFromUs}>
             <div className={classes.form}>
               {textFields.map((textField) => (
                 <div key={uid(textField)} className={classes.textFields}>
@@ -141,6 +194,7 @@ export default function Home() {
                       root: classes.textfieldRoot,
                       notchedOutline: classes.notchedOutline,
                     }}
+                    name={textField.identifier}
                     variant="outlined"
                     multiline={textField.rows}
                     rows={textField.rows}
@@ -151,6 +205,7 @@ export default function Home() {
                         paddingLeft: "0.5rem",
                       },
                     }}
+                    onChange={handleInputChange}
                   />
                 </div>
               ))}
@@ -163,10 +218,13 @@ export default function Home() {
               variant="contained"
               color="primary"
               style={{ textTransform: "none" }}
+              onClick={handleSubmit}
             >
               Send Message
             </Button>
-          </div>
+            {error && <Typography variant="subtitle2" align="center" style={{ marginTop: "0.5rem", color: "#E24C56" }}>{`Invalid input. Fill in the form with valid inputs and submit your message again.`}</Typography>}
+          </div>}
+          {response?.status === 200 && <div className={classes.successMessageCtr}>{`Thanks for getting in touch with us. We'll get back to you shortly.`}</div>}
           <div className={classes.mapInfo}>
             <div className={classes.mapImgFill}>
               <Image
@@ -210,6 +268,6 @@ export default function Home() {
           </div>
         </div>
       </Container>
-    </div>
+    </>
   );
 }

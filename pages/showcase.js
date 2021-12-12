@@ -5,7 +5,7 @@ import Head from "next/head";
 import Image from "next/image";
 import { makeStyles } from "@material-ui/styles";
 import { Container, Typography, Button, Icon } from "@material-ui/core";
-import ReactPlayer from 'react-player'
+import ReactPlayer from "react-player";
 
 const useStyles = makeStyles((theme) => ({
   mainContainer: {
@@ -29,44 +29,89 @@ const useStyles = makeStyles((theme) => ({
     gridTemplateColumns: "repeat(12, 1fr)",
     gridTemplateRows: "420px 120px 160px 260px 208px 492px",
     gap: theme.spacing(6),
-    "& div:nth-of-type(1)": {
+    [theme.breakpoints.down("sm")]: {
+      gridTemplateRows: "none",
+      gridTemplateColumns: "1fr",
+      gridAutoRows: "auto",
+    },
+    "& > div:nth-of-type(1)": {
       gridColumn: "span 3",
       gridRow: "span 2",
+      [theme.breakpoints.down("sm")]: {
+        gridColumn: "auto",
+        gridRow: "auto",
+      },
     },
-    "& div:nth-of-type(2)": {
+    "&  > div:nth-of-type(2)": {
       gridColumn: "span 6",
       gridRow: "span 3",
+      [theme.breakpoints.down("sm")]: {
+        gridColumn: "auto",
+        gridRow: "auto",
+      },
     },
-    "& div:nth-of-type(3)": {
+    "& >  >  div:nth-of-type(3)": {
       gridColumn: "span 3",
       gridRow: "span 1",
+      [theme.breakpoints.down("sm")]: {
+        gridColumn: "auto",
+        gridRow: "auto",
+      },
     },
-    "& div:nth-of-type(4)": {
+    "&  > div:nth-of-type(4)": {
       gridColumn: "span 3",
       gridRow: "span 2",
+      [theme.breakpoints.down("sm")]: {
+        gridColumn: "auto",
+        gridRow: "auto",
+      },
     },
-    "& div:nth-of-type(5)": {
+    "&  > div:nth-of-type(5)": {
       gridColumn: "span 3",
       gridRow: "span 2",
+      [theme.breakpoints.down("sm")]: {
+        gridColumn: "auto",
+        gridRow: "auto",
+      },
     },
-    "& div:nth-of-type(6)": {
+    "&  > div:nth-of-type(6)": {
       gridColumn: "span 3",
       gridRow: "span 2",
+      [theme.breakpoints.down("sm")]: {
+        gridColumn: "auto",
+        gridRow: "auto",
+      },
     },
     "& div:nth-of-type(7)": {
       gridColumn: "span 6",
       gridRow: "span 2",
+      [theme.breakpoints.down("sm")]: {
+        gridColumn: "auto",
+        gridRow: "auto",
+      },
     },
-    "& div:nth-of-type(8)": {
+    "&  > div:nth-of-type(8)": {
       gridColumn: "span 3",
+      [theme.breakpoints.down("sm")]: {
+        gridColumn: "auto",
+        gridRow: "auto",
+      },
     },
-    "& div:nth-of-type(9)": {
+    "&  > div:nth-of-type(9)": {
       gridColumn: "span 6",
+      [theme.breakpoints.down("sm")]: {
+        gridColumn: "auto",
+        gridRow: "auto",
+      },
     },
-    "& div:nth-of-type(10)": {
+    "&  > div:nth-of-type(10)": {
       gridColumn: "span 3",
+      [theme.breakpoints.down("sm")]: {
+        gridColumn: "auto",
+        gridRow: "auto",
+      },
     },
-    "& div:nth-of-type(11)": {
+    "&  > div:nth-of-type(11)": {
       gridColumn: "span 3",
     },
     "& div:nth-of-type(2), & div:nth-of-type(7), & div:nth-of-type(9)": {
@@ -83,7 +128,8 @@ const useStyles = makeStyles((theme) => ({
         marginBottom: theme.spacing(8),
       },
     },
-    "& div:not(:nth-of-type(2)), & div:not(:nth-of-type(7)), & div:not(:nth-of-type(9)),": {
+    "& div:not(:nth-of-type(2)), & div:not(:nth-of-type(7)), & div:not(:nth-of-type(9)),":
+    {
       "& h5": {
         fontFamily: "Manrope",
         fontSize: "1.111rem",
@@ -127,23 +173,29 @@ const useStyles = makeStyles((theme) => ({
 function Showcase() {
   const classes = useStyles();
 
-  const [category, setCategory] = useState('none')
-  const [showcases, setShowcases] = useState([])
+  const [category, setCategory] = useState("none");
+  const [showcases, setShowcases] = useState([]);
   const [blogCount, setShowcaseCount] = useState(0);
   const { API_URL } = process.env;
 
-  const hasMore = showcases.length < blogCount
+  const hasMore = showcases.length < blogCount;
 
   useEffect(() => {
     loadFunc();
-  }, [])
+  }, []);
 
   async function loadFunc() {
-    const countRes = await fetch(`${API_URL}/showcases/count?${category === 'none' ? '' : `category=${category}`}`);
+    const countRes = await fetch(
+      `${API_URL}/showcases/count?${category === "none" ? "" : `category=${category}`
+      }`
+    );
     const resCount = await countRes.json();
     setShowcaseCount(resCount);
 
-    const res = await fetch(`${API_URL}/showcases?${category === 'none' ? '' : `category=${category}`}`);
+    const res = await fetch(
+      `${API_URL}/showcases?${category === "none" ? "" : `category=${category}`
+      }`
+    );
     const blogRes = await res.json();
     setShowcases(showcases.concat(blogRes));
   }
@@ -152,34 +204,72 @@ function Showcase() {
     switch (showcase.category) {
       case "product":
         if (showcase.youtubeLink) {
-          return <ReactPlayer url={showcase.youtubeLink} width="100%" height="100%" />
+          return (
+            <ReactPlayer
+              url={showcase.youtubeLink}
+              width="100%"
+              height="100%"
+            />
+          );
         }
-        return <>{!showcase.youtubeLink && <div className={classes.imgFill}>
-          {showcase.thumbnail.url && <Image src={`${API_URL}${showcase.thumbnail.url}`} layout="fill" objectFit="cover" alt="" />}
-        </div>
-        }</>
+        return (
+          <>
+            {!showcase.youtubeLink && (
+              <div className={classes.imgFill}>
+                {showcase.thumbnail.url && (
+                  <Image
+                    src={`${API_URL}${showcase.thumbnail.url}`}
+                    layout="fill"
+                    objectFit="cover"
+                    alt=""
+                  />
+                )}
+              </div>
+            )}
+          </>
+        );
         break;
       case "web_app":
         return (
           <div className={classes.blueBg}>
             <Typography component="h5">{showcase.title}</Typography>
             <Typography component="p">{showcase.description}</Typography>
-            <Button classes={{ root: classes.btnRoot, label: classes.btnLabel }} className={classes.readButton} variant="contained" endIcon={<i className={clsx("ri-arrow-right-line", classes.btnIcon)} />}>Read Case Study</Button>
+            <Button
+              classes={{ root: classes.btnRoot, label: classes.btnLabel }}
+              className={classes.readButton}
+              variant="contained"
+              endIcon={
+                <i className={clsx("ri-arrow-right-line", classes.btnIcon)} />
+              }
+            >
+              Read Case Study
+            </Button>
           </div>
-        )
+        );
         break;
       case "mobile_app":
-        return (<div className={classes.blueBg}>
-          <Typography component="h5">{showcase.title}</Typography>
-          <Typography component="p">{showcase.description}</Typography>
-          <div>
-            <Button classes={{ root: classes.btnRoot, label: classes.btnLabel }} className={classes.readButton} variant="contained" endIcon={<i className={clsx("ri-arrow-right-line", classes.btnIcon)} />}>Read Case Study</Button>
+        return (
+          <div className={classes.blueBg}>
+            <Typography component="h5">{showcase.title}</Typography>
+            <Typography component="p">{showcase.description}</Typography>
+            <div>
+              <Button
+                classes={{ root: classes.btnRoot, label: classes.btnLabel }}
+                className={classes.readButton}
+                variant="contained"
+                endIcon={
+                  <i className={clsx("ri-arrow-right-line", classes.btnIcon)} />
+                }
+              >
+                Read Case Study
+              </Button>
+            </div>
           </div>
-        </div>)
+        );
       default:
-        return
+        return;
     }
-  }
+  };
 
   return (
     <>
@@ -196,14 +286,15 @@ function Showcase() {
             all in one place.
           </Typography>
           <div className={classes.showcaseCtr}>
-            {showcases.map(showcase => <div key={uid(showcase)}>
-              {renderShowcase(showcase)}
-              {/* {!showcase.youtubeLink && <div className={classes.imgFill}>
+            {showcases.map((showcase) => (
+              <div key={uid(showcase)} className={classes.showcase}>
+                {renderShowcase(showcase)}
+                {/* {!showcase.youtubeLink && <div className={classes.imgFill}>
                 <Image src={`${API_URL}${showcase.thumbnail.url}`} layout="fill" objectFit="cover" alt="" />
               </div>}
               {showcase.youtubeLink && <ReactPlayer url={showcase.youtubeLink} width="100%" height="100%" />} */}
-            </div>
-            )}
+              </div>
+            ))}
           </div>
         </div>
       </Container>

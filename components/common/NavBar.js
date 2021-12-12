@@ -25,7 +25,6 @@ import RichTooltip from "./RichTooltip";
 import PopoverContent from "./PopoverContent";
 import MobileMenuDrawer from "./MobileMenuDrawer";
 import CollapseNavBar from './CollapseNavBar';
-import { useEffect } from "react";
 
 const menuItems = [
   {
@@ -213,11 +212,6 @@ function NavBar({ }) {
   const [popoverOpen, setPopoverOpen] = useState(false);
   const [checked, setChecked] = React.useState(false);
 
-  useEffect(() => {
-
-  }, [checked])
-
-
   const onClose = () => {
     setOpen(false);
   };
@@ -234,8 +228,7 @@ function NavBar({ }) {
     setOpenedPopoverId(popoverId);
   };
 
-  const handleChange = (e) => {
-    e.preventDefault();
+  const handleChange = () => {
     setChecked((prev) => !prev);
   };
 
@@ -327,7 +320,6 @@ function NavBar({ }) {
                 ))}
                 <Button
                   className={classes.contactUs}
-                  disableElevation
                   variant="contained"
                   color="primary"
                   onClick={() => router.push("/contact-us")}

@@ -247,21 +247,18 @@ const theme = createTheme({
       fontSize: "0.89rem",
     },
     h1: {
-      // color: 'rgba(255,255,255)',
       fontFamily: "Manrope",
       fontSize: "3.75rem",
       fontWeight: "700",
       lineHeight: "4rem",
     },
     h2: {
-      // color: 'rgba(255,255,255)',
       fontFamily: "Manrope",
       fontSize: "2.667rem",
       fontWeight: "700",
       lineHeight: 1.125,
     },
     h3: {
-      // color: 'rgba(255,255,255)',
       fontFamily: "Manrope",
       fontSize: "2.222rem",
       fontWeight: "700",
