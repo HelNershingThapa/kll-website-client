@@ -1,4 +1,5 @@
 import { useRouter } from "next/router";
+import Image from "next/image";
 import clsx from "clsx";
 import Link from 'next/link';
 import { makeStyles } from "@material-ui/core/styles";
@@ -79,6 +80,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   imgFill: {
+    position: "relative",
     width: 620,
     height: 708,
     flexShrink: "0",
@@ -241,7 +243,7 @@ const Hero = ({ title, image }) => {
           </div>
         </div>
         <div className={classes.imgFill}>
-          <img src="/hero-img.png" className={classes.image} alt="" />
+          <Image src="/hero-img.png" layout="fill" objectFit="cover" className={classes.image} alt="" />
         </div>
       </div>
     </div>

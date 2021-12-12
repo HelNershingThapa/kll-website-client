@@ -44,11 +44,32 @@ const useStyles = makeStyles((theme) => ({
       maxHeight: "32px",
     },
   },
+  imageFill: {
+    position: "relative",
+    width: "auto",
+    height: "60px",
+    "& div": {
+      position: "unset !important",
+    },
+  },
+  image: {
+    objectFit: "cover",
+    width: "unset !important",
+    position: "relative !important",
+    height: "60px !important",
+    mixBlendMode: "luminosity",
+    [theme.breakpoints.down("sm")]: {
+      height: "42px !important",
+    },
+    [theme.breakpoints.down("xs")]: {
+      height: "32px !important",
+    },
+  },
 }));
 
 function FeaturedIn({ featuredInImages }) {
   const classes = useStyles();
-  const { API_URL } = process.env
+  const { API_URL } = process.env;
 
   return (
     <div className={classes.featuredInCtr}>
@@ -61,12 +82,15 @@ function FeaturedIn({ featuredInImages }) {
       </Typography>
       <div className={classes.feautredInLogos}>
         {featuredInImages.map((logo) => (
-          <img
-            key={uid(logo)}
-            src={`${API_URL}${logo.newspaperLogo.url}`}
-            className={classes.img}
-            alt={logo.caption}
-          />
+          <div key={uid(logo)} className={classes.imageFill}>
+            <Image
+              src={`${API_URL}${logo.newspaperLogo.url}`}
+              className={classes.image}
+              layout="fill"
+              objectFit="content"
+              alt={logo.caption}
+            />
+          </div>
         ))}
       </div>
     </div>

@@ -42,6 +42,27 @@ const useStyles = makeStyles((theme) => ({
       maxHeight: "32px",
     },
   },
+  imageFill: {
+    position: "relative",
+    width: "auto",
+    height: "60px",
+    "& div": {
+      position: "unset !important",
+    },
+  },
+  image: {
+    objectFit: "cover",
+    width: "unset !important",
+    position: "relative !important",
+    height: "60px !important",
+    mixBlendMode: "luminosity",
+    [theme.breakpoints.down("sm")]: {
+      height: "42px !important",
+    },
+    [theme.breakpoints.down("xs")]: {
+      height: "32px !important",
+    },
+  },
 }));
 
 const FeaturedIn = ({ featuredIn }) => {
@@ -61,12 +82,15 @@ const FeaturedIn = ({ featuredIn }) => {
         </Typography>
         <div className={classes.feautredInLogos}>
           {featuredIn.map((logo) => (
-            <img
-              key={uid(logo)}
-              className={classes.logo}
-              src={`${API_URL}${logo.newspaperLogo.url}`}
-              alt="Guardian logo"
-            />
+            <div key={uid(logo)} className={classes.imageFill}>
+              <Image
+                className={classes.image}
+                src={`${API_URL}${logo.newspaperLogo.url}`}
+                layout="fill"
+                objectFit="content"
+                alt="Guardian logo"
+              />
+            </div>
           ))}
         </div>
       </Container>

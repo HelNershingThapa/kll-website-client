@@ -1,5 +1,6 @@
 import React from "react";
 import moment from "moment";
+import Image from "next/image";
 import { useRouter } from "next/router";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
@@ -103,6 +104,26 @@ const useStyles = makeStyles((theme) => ({
   focusCard: {
     background: "none",
   },
+  imageFill: {
+    position: "relative",
+    width: "inherit",
+    height: 320,
+    [theme.breakpoints.down("md")]: {
+      height: 240,
+    },
+    [theme.breakpoints.down(desktop)]: {
+      height: 275,
+    },
+    [theme.breakpoints.down("sm")]: {
+      height: 195,
+    },
+    [theme.breakpoints.down(tablet)]: {
+      height: 170,
+    },
+    [theme.breakpoints.down("xs")]: {
+      height: "62vw",
+    },
+  },
 }));
 
 function BlogListCard({ blog }) {
@@ -121,10 +142,14 @@ function BlogListCard({ blog }) {
           focusHighlight: classes.focusCard,
         }}
       >
-        <CardMedia
-          className={classes.media}
-          image={`${API_URL}${blog.coverPhoto?.url}`}
-        />
+        <div className={classes.imageFill}>
+          <Image
+            className={classes.media}
+            src={`${API_URL}${blog.coverPhoto?.url}`}
+            layout="fill"
+            objectFit="cover"
+          />
+        </div>
         <Chip
           label={blog.category}
           color="primary"

@@ -1,5 +1,6 @@
 import { useRouter } from "next/router";
 import clsx from "clsx";
+import Image from "next/image";
 import ReactMarkdown from "react-markdown";
 import { makeStyles } from "@material-ui/core/styles";
 import { Typography, Container, Button, Chip } from "@material-ui/core";
@@ -48,6 +49,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   imgFill: {
+    position: "relative",
     width: 600,
     height: "100%",
     flexShrink: "0",
@@ -251,7 +253,7 @@ const Partners = ({ data }) => {
     <div className={classes.root}>
       <div className={classes.container}>
         <div className={classes.imgFill}>
-          <img src="/whoarewe.png" className={classes.image} alt="" />
+          <Image src="/whoarewe.png" layout="fill" objectFit="cover" alt="" />
         </div>
         <div className={classes.content}>
           <div>

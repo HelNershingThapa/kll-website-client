@@ -34,16 +34,34 @@ const useStyles = makeStyles((theme) => ({
       justifyContent: "center",
     },
   },
-  partnerLogo: {
+  imageFill: {
+    position: "relative",
+    width: "auto",
+    height: "80px",
+    "& div": {
+      position: "unset !important",
+    },
+  },
+  image: {
+    objectFit: "cover",
+    width: "unset !important",
+    position: "relative !important",
+    height: "80px !important",
     mixBlendMode: "luminosity",
-    maxHeight: "80px",
     "&:hover": {
       mixBlendMode: "normal",
     },
-    [theme.breakpoints.down("xs")]: {
-      maxHeight: "40px",
-    },
   },
+  // partnerLogo: {
+  //   mixBlendMode: "luminosity",
+  //   maxHeight: "80px",
+  //   "&:hover": {
+  //     mixBlendMode: "normal",
+  //   },
+  //   [theme.breakpoints.down("xs")]: {
+  //     maxHeight: "40px",
+  //   },
+  // },
 }));
 
 const Partners = ({ partners }) => {
@@ -54,14 +72,16 @@ const Partners = ({ partners }) => {
     <Container fixed>
       <div className={classes.container}>
         <Typography variant="body1" align="center" className={classes.title}>
-          We’ve partnered with
+          We have partnered with
         </Typography>
         <div className={classes.partners}>
           {partners.map((partner) => (
-            <div key={uid(partner)}>
-              <img
+            <div key={uid(partner)} className={classes.imageFill}>
+              <Image
+                className={classes.image}
                 src={`${API_URL}${partner.partnerLogo.url}`}
-                className={classes.partnerLogo}
+                layout="fill"
+                objectFit="content"
                 alt=""
               />
             </div>
