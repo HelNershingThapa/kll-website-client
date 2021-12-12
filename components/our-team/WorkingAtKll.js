@@ -3,7 +3,7 @@ import { uid } from "react-uid";
 import clsx from "clsx";
 import { makeStyles } from "@material-ui/styles";
 import Image from "next/image";
-import { Typography } from "@material-ui/core";
+import { Container, Typography, Hidden } from "@material-ui/core";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -40,6 +40,12 @@ const useStyles = makeStyles((theme) => ({
     marginTop: Math.floor(Math.random() * (0 - 60 + 1) + 60),
     marginLeft: "6px",
     marginRight: "6px",
+    [theme.breakpoints.down("xs")]: {
+      width: "100%",
+      height: "calc(100vw - 32px)",
+      margin: 0,
+      marginBottom: theme.spacing(2),
+    },
   },
   sliderContainer: {
     position: "relative",
@@ -53,7 +59,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   arrowLeftOverlay: {
-    position: 'absolute',
+    position: "absolute",
     top: 0,
     bottom: 0,
     zIndex: 5,
@@ -62,21 +68,21 @@ const useStyles = makeStyles((theme) => ({
     width: 130,
     "& :hover": {
       cursor: "pointer",
-    }
+    },
   },
   arrowRightOverlay: {
-    position: 'absolute',
+    position: "absolute",
     top: 0,
     bottom: 0,
     right: 0,
     zIndex: 5,
     color: "black",
     background: "linear-gradient(90deg, #0D1829 0%, rgba(13, 24, 41, 0) 100%)",
-    transform: 'rotate(-180deg)',
+    transform: "rotate(-180deg)",
     width: 130,
     "& :hover": {
       cursor: "pointer",
-    }
+    },
   },
   overlayRoot: {
     display: "flex",
@@ -91,26 +97,26 @@ const useStyles = makeStyles((theme) => ({
   },
   sliderCtr: {
     "& $arrowLeftOverlay": {
-      visibility: 'hidden',
+      visibility: "hidden",
       opacity: 0,
       transition: "visibility 0s, opacity 0.3s linear",
     },
     "& $arrowRightOverlay": {
-      visibility: 'hidden',
+      visibility: "hidden",
       opacity: 0,
       transition: "visibility 0s, opacity 0.3s linear",
     },
     "&:hover": {
       "& $arrowLeftOverlay": {
-        visibility: 'visible',
+        visibility: "visible",
         opacity: 1,
       },
       "& $arrowRightOverlay": {
-        visibility: 'visible',
+        visibility: "visible",
         opacity: 1,
-      }
-    }
-  }
+      },
+    },
+  },
 }));
 
 const WorkingAtKll = ({ headerStats }) => {
@@ -130,7 +136,6 @@ const WorkingAtKll = ({ headerStats }) => {
     speed: 500,
   };
 
-
   console.log(headerStats);
 
   return (
@@ -138,31 +143,61 @@ const WorkingAtKll = ({ headerStats }) => {
       <Typography className={classes.workingTitle} align="center">
         Working at Kathmandu Living Labs
       </Typography>
-      <div style={{ position: "relative" }} className={classes.sliderCtr}>
-        <Slider ref={slider} {...settings}>
-          {headerStats.workingAtKllImages.map((image, index) => (
-            <div key={uid(image, index)}>
-              <div
-                className={classes.imageFill}
-                style={{
-                  marginTop: Math.floor(Math.random() * (0 - 60 + 1) + 60),
-                  marginLeft: "6px",
-                  marginRight: "6px",
-                }}
-              >
-                <Image
-                  src={`${API_URL}${image.image.url}`}
-                  layout="fill"
-                  objectFit="cover"
-                  alt="team members at KLL"
-                />
+      <Hidden xsDown>
+        <div style={{ position: "relative" }} className={classes.sliderCtr}>
+          <Slider ref={slider} {...settings}>
+            {headerStats.workingAtKllImages.map((image, index) => (
+              <div key={uid(image, index)}>
+                <div
+                  className={classes.imageFill}
+                  style={{
+                    marginTop: Math.floor(Math.random() * (0 - 60 + 1) + 60),
+                    marginLeft: "6px",
+                    marginRight: "6px",
+                  }}
+                >
+                  <Image
+                    src={`${API_URL}${image.image.url}`}
+                    layout="fill"
+                    objectFit="cover"
+                    alt="team members at KLL"
+                  />
+                </div>
               </div>
+            ))}
+          </Slider>
+          <div
+            className={classes.arrowLeftOverlay}
+            onClick={() => slider?.current?.slickPrev()}
+          >
+            <div className={classes.overlayRoot}>
+              <i className={clsx("ri-arrow-left-line", classes.arrowIcon)} />
+            </div>
+          </div>
+          <div
+            className={classes.arrowRightOverlay}
+            onClick={() => slider?.current?.slickNext()}
+          >
+            <div className={classes.overlayRoot}>
+              <i className={clsx("ri-arrow-left-line", classes.arrowIcon)} />
+            </div>
+          </div>
+        </div>
+      </Hidden>
+      <Hidden smUp>
+        <Container fixed>
+          {headerStats.workingAtKllImages.map((image, index) => (
+            <div className={classes.imageFill} key={uid(image, index)}>
+              <Image
+                src={`${API_URL}${image.image.url}`}
+                layout="fill"
+                objectFit="cover"
+                alt="team members at KLL"
+              />
             </div>
           ))}
-        </Slider>
-        <div className={classes.arrowLeftOverlay} onClick={() => slider?.current?.slickPrev()}><div className={classes.overlayRoot}><i className={clsx("ri-arrow-left-line", classes.arrowIcon)} /></div></div>
-        <div className={classes.arrowRightOverlay} onClick={() => slider?.current?.slickNext()}><div className={classes.overlayRoot}><i className={clsx("ri-arrow-left-line", classes.arrowIcon)} /></div></div>
-      </div>
+        </Container>
+      </Hidden>
     </div>
   );
 };

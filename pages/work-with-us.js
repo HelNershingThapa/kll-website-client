@@ -183,7 +183,7 @@ function WorkWithUs({ data, vacancies, membersCount }) {
           src={`${API_URL}${data.headerImage.url}`}
           layout="fill"
           objectFit="cover"
-          alt="People working at KLL"
+          alt=""
           priority
         />
       </div>

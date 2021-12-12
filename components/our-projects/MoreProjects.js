@@ -153,6 +153,15 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const label = {
+  "disaster_preparedness": "Disaster Preparedness",
+  "disaster_response": "Disaster Response",
+  "governance": "Governance",
+  "openstreetmap": "OpenStreetMap",
+  "civic_engagement": "Civic Engagement",
+  "climate_change_and_sustainability": "Climate Change and Sustainability",
+}
+
 const MoreProjects = ({ projects }) => {
   const classes = useStyles();
   return (
@@ -163,17 +172,9 @@ const MoreProjects = ({ projects }) => {
       <div className={classes.projectsCtr}>
         {projects.map((project) => (
           <div key={uid(project)} className={classes.project}>
-            {/* <Chip
-                label={project.category}
-                color="primary"
-                classes={{
-                  root: classes.chipRoot,
-                  label: classes.chipLabel,
-                }}
-              /> */}
             <div>
               <Chip
-                label="Mapping"
+                label={label[project.category]}
                 color="primary"
                 classes={{ root: classes.chipRoot, label: classes.chipLabel }}
               />

@@ -58,7 +58,7 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down("sm")]: {
       width: "100vw",
       height: "80vw",
-      marginLeft: "calc(-50vw + 50%) - 9px",
+      marginLeft: "calc(-50vw + 50% - 9px)",
       overflow: "hidden",
     },
   },

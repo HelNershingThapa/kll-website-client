@@ -179,7 +179,7 @@ function AboutUs({ data, membersCount, sdgs }) {
           priority
           src={`${API_URL}${data.headerImage.url}`}
           layout="fill"
-          objectFit="cover"
+          objectFit="cover"          
           alt=""
         />
         <div className={classes.statsOverlay}>

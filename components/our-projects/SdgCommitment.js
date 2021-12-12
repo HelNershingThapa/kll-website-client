@@ -125,6 +125,7 @@ const SdgCommitment = ({ impact }) => {
                   layout="fill"
                   objectFit="cover"
                   alt="SDG icons"
+                  sizes="100px"
                 />
               </div>
             ))} 

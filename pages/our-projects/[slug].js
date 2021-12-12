@@ -40,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
     // marginRight: "auto",
     paddingBottom: theme.spacing(12),
     [theme.breakpoints.down("xs")]: {
-      paddingBottom: theme.spacing(4),
+      paddingBottom: theme.spacing(12),
     }
   },
   headerGrid: {
@@ -56,6 +56,7 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "space-between",
     alignItems: "flex-end",
     [theme.breakpoints.down("sm")]: {
+      position: "relative",
       gridColumn: "1 / -1",
     }
   },
@@ -63,7 +64,10 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     gap: theme.spacing(3),
     [theme.breakpoints.down("sm")]: {
-      display: "none"
+      position: "absolute",
+      bottom: "-48px",
+      right: 0,
+      transform: "translateY(50%)"
     }
   },
   sdgIcon: {
@@ -110,6 +114,7 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down("xs")]: {
       fontSize: "1rem",
       lineHeight: 1.5556,
+      marginTop: theme.spacing(2),
     }
   },
   headerImageOverlay: {

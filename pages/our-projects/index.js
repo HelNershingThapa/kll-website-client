@@ -119,7 +119,7 @@ const OurProjects = ({ projects, impact }) => {
         <ProjectsGrid projects={projects.slice(5, 10)} />
       </Container>
       <Container fixed>
-        <MoreProjects projects={projects.slice(5)} />
+        <MoreProjects projects={projects.slice(10)} />
       </Container>
     </>
   );

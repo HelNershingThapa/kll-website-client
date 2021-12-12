@@ -82,7 +82,7 @@ export default function Home({ homeData, projects, partners, featuredIn, members
 
 export async function getStaticProps() {
   const { API_URL } = process.env
-  const res = await fetch(`${API_URL}/projects`);
+  const res = await fetch(`${API_URL}/projects?_limit=5&_sort=displayOrder`);
   const projects = await res.json();
 
   const resPartners = await fetch(`${API_URL}/partners?_sort=displayOrder`);
