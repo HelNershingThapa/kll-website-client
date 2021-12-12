@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useState, useRef } from "react";
 import clsx from "clsx";
 import { uid } from "react-uid";
 import { makeStyles } from "@material-ui/core/styles";
@@ -15,7 +15,6 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { desktop } from "../../styles/theme";
-
 
 const useStyles = makeStyles((theme) => ({
   testimonials: {
@@ -77,6 +76,9 @@ const useStyles = makeStyles((theme) => ({
       background: theme.palette.primary.main,
     },
   },
+  iconButtonTransparent: {
+    background: "transparent !important",
+  },
   btnLabel: {
     height: "24px", // label had some 2px streched, so mentioned this height
   },
@@ -103,7 +105,7 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: "40px",
     [theme.breakpoints.down("xs")]: {
       marginLeft: 0,
-    }
+    },
   },
   quote: {
     marginTop: theme.spacing(2.5),
@@ -162,23 +164,35 @@ const useStyles = makeStyles((theme) => ({
   sliderCtr: {
     "& .slick-slider": {
       maxWidth: 792,
-    }
-  }
+    },
+  },
+  blackColorIcon: {
+    color: theme.palette.grey[800],
+  },
 }));
 
-const settings = {
-  dots: false,
-  infinite: true,
-  arrows: false,
-  speed: 500,
-  slidesToShow: 1,
-  slidesToScroll: 1,
-};
 function Testimonials({ testimonials }) {
   const classes = useStyles();
   const slider = useRef(null);
-  const { API_URL } = process.env
+  const { API_URL } = process.env;
   const { title, description, testimonies } = testimonials;
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  const nextClick = (e) => {
+    setCurrentSlide(e);
+  };
+
+  console.log(slider.current);
+
+  const settings = {
+    dots: false,
+    infinite: true,
+    arrows: false,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    afterChange: nextClick,
+  };
 
   return (
     <div className={classes.testimonials}>
@@ -197,19 +211,40 @@ function Testimonials({ testimonials }) {
             <Hidden xsDown>
               <div className={classes.arrowNavigation}>
                 <IconButton
-                  className={classes.button}
+                  disabled={currentSlide === 0}
+                  className={clsx(
+                    classes.button,
+                    currentSlide === 0 && classes.iconButtonTransparent
+                  )}
                   classes={{ label: classes.btnLabel }}
                   onClick={() => slider?.current?.slickPrev()}
                 >
-                  <i className={clsx("ri-arrow-left-line", classes.btnIcon)} />
+                  <i
+                    className={clsx(
+                      "ri-arrow-left-line",
+                      classes.btnIcon,
+                      currentSlide === 0 && classes.blackColorIcon
+                    )}
+                  />
                 </IconButton>
                 <IconButton
-                  className={classes.button}
+                  disabled={currentSlide === testimonies.length - 1}
+                  className={clsx(
+                    classes.button,
+                    currentSlide === testimonies.length - 1 &&
+                      classes.iconButtonTransparent
+                  )}
                   classes={{ label: classes.btnLabel }}
-
                   onClick={() => slider?.current?.slickNext()}
                 >
-                  <i className={clsx("ri-arrow-right-line", classes.btnIcon)} />
+                  <i
+                    className={clsx(
+                      "ri-arrow-right-line",
+                      classes.btnIcon,
+                      currentSlide === testimonies.length - 1 &&
+                        classes.blackColorIcon
+                    )}
+                  />
                 </IconButton>
               </div>
             </Hidden>
@@ -226,53 +261,78 @@ function Testimonials({ testimonials }) {
                     <Typography className={classes.quote}>
                       {testimony.quote}
                     </Typography>
-                    {testimony.member && <div className={classes.author}>
-                      <Avatar className={classes.avatar}>
-                        <Image
-                          src={`${API_URL}${testimony.member.avatarImage ? testimony.member.avatarImage.url : testimony.member.image.url}`}
-                          layout="fill"
-                          objectFit="cover"
-                          alt="DP"
-                        />
-                      </Avatar>
-                      <div className={classes.authorDetails}>
-                        <Typography
-                          variant="subtitle1"
-                          className={classes.authorName}
-                        >
-                          {testimony.member.name}
-                        </Typography>
-                        <Typography
-                          variant="subtitle2"
-                          className={classes.authorTitle}
-                        >
-                          {testimony.member.position}
-                        </Typography>
+                    {testimony.member && (
+                      <div className={classes.author}>
+                        <Avatar className={classes.avatar}>
+                          <Image
+                            src={`${API_URL}${
+                              testimony.member.avatarImage
+                                ? testimony.member.avatarImage.url
+                                : testimony.member.image.url
+                            }`}
+                            layout="fill"
+                            objectFit="cover"
+                            alt="DP"
+                          />
+                        </Avatar>
+                        <div className={classes.authorDetails}>
+                          <Typography
+                            variant="subtitle1"
+                            className={classes.authorName}
+                          >
+                            {testimony.member.name}
+                          </Typography>
+                          <Typography
+                            variant="subtitle2"
+                            className={classes.authorTitle}
+                          >
+                            {testimony.member.position}
+                          </Typography>
+                        </div>
                       </div>
-                    </div>}
+                    )}
                   </div>
                 </div>
               ))}
             </Slider>
           </div>
-          <div className={classes.arrowNavigationEnd} style={{ marginLeft: "auto" }}>
-            <IconButton className={classes.button}
+          <div
+            className={classes.arrowNavigationEnd}
+            style={{ marginLeft: "auto" }}
+          >
+            <IconButton
+              disabled={currentSlide === 0}
+              className={clsx(
+                classes.button,
+                currentSlide === 0 && classes.iconButtonTransparent
+              )}
               classes={{ label: classes.btnLabel }}
-              onClick={() => slider?.current?.slickPrev()}>
+              onClick={() => slider?.current?.slickPrev()}
+            >
               <i
                 className={clsx(
                   "ri-arrow-left-line",
-                  classes.btnIcon
+                  classes.btnIcon,
+                  currentSlide === 0 && classes.blackColorIcon
                 )}
               />
             </IconButton>
-            <IconButton className={classes.button}
+            <IconButton
+              disabled={currentSlide === testimonies.length - 1}
+              className={clsx(
+                classes.button,
+                currentSlide === testimonies.length - 1 &&
+                  classes.iconButtonTransparent
+              )}
               classes={{ label: classes.btnLabel }}
-              onClick={() => slider?.current?.slickNext()}>
+              onClick={() => slider?.current?.slickNext()}
+            >
               <i
                 className={clsx(
                   "ri-arrow-right-line",
-                  classes.btnIcon
+                  classes.btnIcon,
+                  currentSlide === testimonies.length - 1 &&
+                    classes.blackColorIcon
                 )}
               />
             </IconButton>

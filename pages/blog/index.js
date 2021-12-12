@@ -11,12 +11,12 @@ import {
   CircularProgress,
   InputAdornment,
 } from "@material-ui/core";
-import InfiniteScroll from 'react-infinite-scroller';
+import InfiniteScroll from "react-infinite-scroller";
 import BlogListCard from "components/blog/BlogListCard";
 import BlogTabs from "components/blog/BlogTabs";
 import TopBlog from "../../components/blog/TopBlog";
 import { tablet } from "../../styles/theme";
-import useIntersection from 'components/blog/useIntersection'
+import useIntersection from "components/blog/useIntersection";
 import NoResultFound from "../../components/blog/NoResultFound";
 
 const useStyles = makeStyles((theme) => ({
@@ -95,37 +95,42 @@ const useStyles = makeStyles((theme) => ({
 
 const BlogList = ({ featuredBlog }) => {
   const classes = useStyles();
-  const [category, setCategory] = useState('none')
-  const [blogs, setBlogs] = useState([])
+  const [category, setCategory] = useState("none");
+  const [blogs, setBlogs] = useState([]);
   const [blogCount, setBlogCount] = useState(0);
-  const [searchQuery, setSearchQuery] = useState('')
+  const [searchQuery, setSearchQuery] = useState("");
   const { API_URL } = process.env;
 
-  const hasMore = blogs.length < blogCount
+  const hasMore = blogs.length < blogCount;
 
   useEffect(() => {
     loadFunc();
-  }, [])
+  }, []);
 
   async function loadFunc() {
-    let categoryQuery = ''
-    if (category === 'newest') {
-      categoryQuery = '&_sort=created_at:desc'
+    let categoryQuery = "";
+    if (category === "newest") {
+      categoryQuery = "&_sort=created_at:desc";
+    } else if (category === "oldest") {
+      categoryQuery = "&_sort=created_at";
+    } else if (category === "none" || category === "relevant") {
+      categoryQuery = "";
+    } else {
+      categoryQuery = `&category=${category}`;
     }
-    else if (category === 'oldest') {
-      categoryQuery = '&_sort=created_at'
-    }
-    else if (category === 'none' || category === 'relevant') {
-      categoryQuery = ''
-    }
-    else {
-      categoryQuery = `&category=${category}`
-    }
-    const countRes = await fetch(`${API_URL}/blogs/count?isFeatured=false${searchQuery === '' ? '' : `&title_contains=${searchQuery}`}${categoryQuery}`);
+    const countRes = await fetch(
+      `${API_URL}/blogs/count?isFeatured=false${
+        searchQuery === "" ? "" : `&title_contains=${searchQuery}`
+      }${categoryQuery}`
+    );
     const resCount = await countRes.json();
     setBlogCount(resCount);
 
-    const res = await fetch(`${API_URL}/blogs?_start=${blogs.length}&_limit=6&isFeatured=false${searchQuery === '' ? '' : `&title_contains=${searchQuery}`}${categoryQuery}`);
+    const res = await fetch(
+      `${API_URL}/blogs?_start=${blogs.length}&_limit=6&isFeatured=false${
+        searchQuery === "" ? "" : `&title_contains=${searchQuery}`
+      }${categoryQuery}`
+    );
     const blogRes = await res.json();
     setBlogs(blogs.concat(blogRes));
   }
@@ -140,11 +145,15 @@ const BlogList = ({ featuredBlog }) => {
           {searchQuery ? "Search Results" : "Our Blog"}
         </Typography>
         <div className={classes.headerAction}>
-          {!searchQuery ? <Typography variant="body1" className={classes.pageDescription}>
-            See what we are up to at Kathmandu Living Labs
-          </Typography> : <Typography variant="body1" className={classes.pageDescription}>
-            We found {blogCount} results for <b>&quot;{searchQuery}&quot;</b>
-          </Typography>}
+          {!searchQuery ? (
+            <Typography variant="body1" className={classes.pageDescription}>
+              Read what we have been upto at KLL.
+            </Typography>
+          ) : (
+            <Typography variant="body1" className={classes.pageDescription}>
+              We found {blogCount} results for <b>&quot;{searchQuery}&quot;</b>
+            </Typography>
+          )}
           <OutlinedInput
             classes={{
               root: classes.search,
@@ -156,47 +165,65 @@ const BlogList = ({ featuredBlog }) => {
             value={searchQuery}
             startAdornment={
               <InputAdornment position="start">
-                <i className="ri-search-2-line" style={{ fontSize: '16px' }}></i>
+                <i
+                  className="ri-search-2-line"
+                  style={{ fontSize: "16px" }}
+                ></i>
               </InputAdornment>
             }
             onChange={(e) => {
               setBlogs([]);
               setSearchQuery(e.target.value);
               loadFunc();
-              setCategory('relevant');
-              e.target.value === '' && setCategory('none');
+              setCategory("relevant");
+              e.target.value === "" && setCategory("none");
             }}
           />
         </div>
         {!searchQuery && <TopBlog featuredBlog={featuredBlog} />}
 
-        {blogCount > 0 && <BlogTabs category={category} setCategory={setCategory} loadFunc={loadFunc} setBlogs={setBlogs} searchQuery={searchQuery} />}
+        {blogCount > 0 && (
+          <BlogTabs
+            category={category}
+            setCategory={setCategory}
+            loadFunc={loadFunc}
+            setBlogs={setBlogs}
+            searchQuery={searchQuery}
+          />
+        )}
 
         <InfiniteScroll
           pageStart={0}
           loadMore={loadFunc}
           hasMore={hasMore}
-          loader={<div
-            style={{
-              display: "grid",
-              placeContent: "center",
-              marginTop: "44px",
-            }}
-          >
-            <CircularProgress
-              color="secondary"
-              style={{ color: "#61758A" }}
-              size={24}
-            />
-          </div>}
+          loader={
+            <div
+              style={{
+                display: "grid",
+                placeContent: "center",
+                marginTop: "44px",
+              }}
+            >
+              <CircularProgress
+                color="secondary"
+                style={{ color: "#61758A" }}
+                size={24}
+              />
+            </div>
+          }
         >
           <div className={classes.blogListContainer}>
-            {blogs && blogs.map((blog) => (
-              <BlogListCard key={uid(blog)} blog={blog} />
-            ))}
+            {blogs &&
+              blogs.map((blog) => <BlogListCard key={uid(blog)} blog={blog} />)}
           </div>
         </InfiniteScroll>
-        {blogCount === 0 && <NoResultFound setCategory={setCategory} setSearchQuery={setSearchQuery} loadFunc={loadFunc} />}
+        {blogCount === 0 && (
+          <NoResultFound
+            setCategory={setCategory}
+            setSearchQuery={setSearchQuery}
+            loadFunc={loadFunc}
+          />
+        )}
       </Container>
     </>
   );

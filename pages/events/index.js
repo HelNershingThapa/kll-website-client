@@ -91,7 +91,7 @@ function Events({ events, recurringEvents }) {
           Kathmandu Living Labs
         </Typography>
         <Typography variant="body1" className={classes.pageDescription}>
-          We, at Kathmandu Living Labs, organize various events and workshops for everyone to attend. Learn more about our events below.
+          {`KLL values civic engagement and public participation. We organize events and workshops to foster public integration and mutual learning. Learn more about our events below.`}
         </Typography>
         <EventTabs value={value} setValue={setValue} />
 
@@ -129,7 +129,7 @@ function Events({ events, recurringEvents }) {
 }
 
 export async function getStaticProps() {
-  const { API_URL } = process.env
+  const { API_URL } = process.env;
   const res = await fetch(`${API_URL}/events?isRecurring=false`);
   const events = await res.json();
 
@@ -139,7 +139,7 @@ export async function getStaticProps() {
   return {
     props: {
       events,
-      recurringEvents
+      recurringEvents,
     },
   };
 }

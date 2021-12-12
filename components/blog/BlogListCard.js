@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
       height: 195,
     },
     [theme.breakpoints.down(tablet)]: {
-      height: 372,
+      height: 170,
     },
     [theme.breakpoints.down("xs")]: {
       height: "62vw",
@@ -48,6 +48,11 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     gap: theme.spacing(8),
     color: theme.palette.grey[600],
+    [theme.breakpoints.down("sm")]: {
+      "& h6": {
+        fontSize: "14px",
+      },
+    },
     [theme.breakpoints.down("xs")]: {
       "& h6": {
         fontSize: "14px",
@@ -62,6 +67,14 @@ const useStyles = makeStyles((theme) => ({
     color: "#304254",
     fontWeight: 800,
     marginTop: theme.spacing(1),
+    [theme.breakpoints.down("sm")]: {
+      fontSize: "1.111rem",
+      lineHeight: "1.5",
+    },
+    [theme.breakpoints.down("xs")]: {
+      fontSize: "1rem",
+      lineHeight: "1.5556",
+    },
   },
   description: {
     marginTop: theme.spacing(4),
@@ -119,8 +132,12 @@ function BlogListCard({ blog }) {
         />
         <CardContent className={classes.content}>
           <div className={classes.timestamp}>
-            <Typography variant="subtitle1">{moment(blog.published_at).format('MMM DD YYYY')}</Typography>
-            <Typography variant="subtitle1">{Math.ceil(blog.content.split(" ").length / 200)} min read</Typography>
+            <Typography variant="subtitle1">
+              {moment(blog.published_at).format("MMM DD YYYY")}
+            </Typography>
+            <Typography variant="subtitle1">
+              {Math.ceil(blog.content.split(" ").length / 200)} min read
+            </Typography>
           </div>
           <Typography className={classes.title} variant="h5">
             {blog.title}
@@ -134,4 +151,4 @@ function BlogListCard({ blog }) {
   );
 }
 
-export default BlogListCard
+export default BlogListCard;

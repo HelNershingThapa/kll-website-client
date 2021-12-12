@@ -26,6 +26,9 @@ import { desktop, tablet } from "../styles/theme";
 const useStyles = makeStyles((theme) => ({
   pageCtr: {
     marginTop: theme.spacing(12),
+    [theme.breakpoints.down("xs")]: {
+      marginTop: theme.spacing(4),
+    },
   },
   pageTitle: {
     maxWidth: "358px",
@@ -33,6 +36,7 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: theme.spacing(8),
     [theme.breakpoints.down("xs")]: {
       maxWidth: "224px",
+      marginBottom: theme.spacing(6),
     },
   },
   headerCoveragesCtr: {
@@ -69,7 +73,7 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "flex-end",
     [theme.breakpoints.down("xs")]: {
       padding: theme.spacing(4),
-    }
+    },
   },
   headerCoverageTitle: {
     width: "90%",
@@ -137,7 +141,7 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
     [theme.breakpoints.down("xs")]: {
       maxHeight: "24px",
-    }
+    },
   },
 }));
 
@@ -168,7 +172,7 @@ const renderers = {
 function InTheMedia({ mediaCoverages, inTheMedia }) {
   const classes = useStyles();
   const slider = useRef(null);
-  const { API_URL } = process.env
+  const { API_URL } = process.env;
 
   const headerCoverages = mediaCoverages.filter(
     (coverage) => coverage.isTopCoverage
@@ -236,7 +240,7 @@ function InTheMedia({ mediaCoverages, inTheMedia }) {
                           className={clsx(
                             classes.iconButton,
                             index === headerCoverages.length - 1 &&
-                            classes.iconButtonTransparent
+                              classes.iconButtonTransparent
                           )}
                           onClick={() => slider?.current?.slickNext()}
                         >
@@ -284,7 +288,7 @@ function InTheMedia({ mediaCoverages, inTheMedia }) {
 }
 
 export async function getStaticProps() {
-  const { API_URL } = process.env
+  const { API_URL } = process.env;
   const res = await fetch(`${API_URL}/media-coverages`);
   const mediaCoverages = await res.json();
 

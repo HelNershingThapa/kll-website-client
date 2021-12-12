@@ -51,7 +51,7 @@ export default function MoreCoverages({ coverages }) {
             <CoverageCard key={uid(coverage)} coverage={coverage} />
           ))}
         </div>
-        <div
+        {/* <div
           style={{
             display: "grid",
             placeContent: "center",
@@ -63,7 +63,7 @@ export default function MoreCoverages({ coverages }) {
             style={{ color: "#61758A" }}
             size={24}
           />
-        </div>
+        </div> */}
       </Container>
     </div>
   );

@@ -18,6 +18,7 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down("xs")]: {
       gridTemplateColumns: "1fr",
       gap: theme.spacing(8),
+      marginTop: theme.spacing(8),
     },
   },
   imgFill: {
