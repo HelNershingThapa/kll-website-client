@@ -2,6 +2,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Image from "next/image";
 import { Container, Typography, Button } from "@material-ui/core";
 import { tablet } from "styles/theme";
+import { KLL_EMAIL } from "../../constants";
 
 const useStyles = makeStyles((theme) => ({
   backgroundCtr: {
@@ -118,7 +119,7 @@ function Volunteering({ volunteering }) {
                   root: classes.volunteeringBtn,
                   label: classes.volunteeringBtnLabel,
                 }}
-                onClick={() => window.open("mailto:contact@kathmandulivinglabs.com")}
+                onClick={() => window.open(`mailto:${KLL_EMAIL}`)}
               >
                 Send us an Email
               </Button>

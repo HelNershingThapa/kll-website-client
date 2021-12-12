@@ -3,6 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Image from "next/image";
 import ReactMarkdown from "react-markdown";
 import { Container, Typography, Button } from "@material-ui/core";
+import { KLL_EMAIL } from "../../constants";
 
 const useStyles = makeStyles((theme) => ({
   programsCtr: {
@@ -101,7 +102,7 @@ function Programs({ fellowships, mentorships }) {
           <Button
             variant="outlined"
             classes={{ root: classes.btnRoot, label: classes.btnLabel }}
-            onClick={() => window.open("mailto:contact@kathmandulivinglabs.com")}
+            onClick={() => window.open(`mailto:${KLL_EMAIL}`)}
           >
             Send Us an Email
           </Button>
@@ -126,7 +127,7 @@ function Programs({ fellowships, mentorships }) {
           <Button
             variant="outlined"
             classes={{ root: classes.btnRoot, label: classes.btnLabel }}
-            onClick={() => window.open("mailto:contact@kathmandulivinglabs.com")}
+            onClick={() => window.open(`mailto:${KLL_EMAIL}`)}
           >
             Send Us an Email
           </Button>

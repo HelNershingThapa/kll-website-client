@@ -27,19 +27,16 @@ const textFields = [
 ];
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    marginTop: theme.spacing(25),
-    [theme.breakpoints.down("xs")]: {
-      marginTop: theme.spacing(4),
-    },
-  },
   mainContainer: {
     display: "grid",
     gridTemplateColumns: "34% 52%",
     justifyContent: "space-between",
+    marginTop: theme.spacing(25),
+
     marginBottom: theme.spacing(30),
     [theme.breakpoints.down("xs")]: {
       gridTemplateColumns: "100%",
+      marginTop: theme.spacing(4),
       marginBottom: theme.spacing(10),
     },
   },
@@ -121,8 +118,8 @@ const useStyles = makeStyles((theme) => ({
   },
   successMessageCtr: {
     padding: "0.5rem",
-    border: `1px solid ${theme.palette.primary.main}`,
-    margin: "auto",
+    border: `3px solid ${theme.palette.primary.main}`,
+    marginTop: "4rem",
   }
 }));
 
@@ -170,61 +167,61 @@ export default function Home() {
         <title>Contact Us | Kathmandu Living Labs</title>
       </Head>
       <Container fixed>
-        <div className={classes.root}>
-          <Typography variant="h4" className={classes.title}>
-            {`We’d love to hear from you`}
-          </Typography>
-          <Typography className={classes.subTitle} variant="body1">
-            {`To contact us, simply fill in the form below.`}
-          </Typography>
-        </div>
         <div className={classes.mainContainer}>
-          {response?.status !== 200 && <div className={classes.hearFromUs}>
-            <div className={classes.form}>
-              {textFields.map((textField) => (
-                <div key={uid(textField)} className={classes.textFields}>
-                  <Typography
-                    variant="subtitle2"
-                    className={classes.textFieldLabel}
-                  >
-                    {textField.label}
-                  </Typography>
-                  <TextField
-                    classes={{
-                      root: classes.textfieldRoot,
-                      notchedOutline: classes.notchedOutline,
-                    }}
-                    name={textField.identifier}
-                    variant="outlined"
-                    multiline={textField.rows}
-                    rows={textField.rows}
-                    inputProps={{
-                      style: {
-                        height: "40px",
-                        padding: 0,
-                        paddingLeft: "0.5rem",
-                      },
-                    }}
-                    onChange={handleInputChange}
-                  />
-                </div>
-              ))}
-            </div>
-            <Button
-              className={classes.button}
-              classes={{ label: classes.buttonLabel }}
-              fullWidth
-              disableElevation
-              variant="contained"
-              color="primary"
-              style={{ textTransform: "none" }}
-              onClick={handleSubmit}
-            >
-              Send Message
-            </Button>
-            {error && <Typography variant="subtitle2" align="center" style={{ marginTop: "0.5rem", color: "#E24C56" }}>{`Invalid input. Fill in the form with valid inputs and submit your message again.`}</Typography>}
-          </div>}
-          {response?.status === 200 && <div className={classes.successMessageCtr}>{`Thanks for getting in touch with us. We'll get back to you shortly.`}</div>}
+          <div>
+            <Typography variant="h4" className={classes.title}>
+              {`We’d love to hear from you`}
+            </Typography>
+            <Typography className={classes.subTitle} variant="body1">
+              {`To contact us, simply fill in the form below.`}
+            </Typography>
+            {response?.status !== 200 && <div className={classes.hearFromUs}>
+              <div className={classes.form}>
+                {textFields.map((textField) => (
+                  <div key={uid(textField)} className={classes.textFields}>
+                    <Typography
+                      variant="subtitle2"
+                      className={classes.textFieldLabel}
+                    >
+                      {textField.label}
+                    </Typography>
+                    <TextField
+                      classes={{
+                        root: classes.textfieldRoot,
+                        notchedOutline: classes.notchedOutline,
+                      }}
+                      name={textField.identifier}
+                      variant="outlined"
+                      multiline={textField.rows}
+                      rows={textField.rows}
+                      inputProps={{
+                        style: {
+                          height: "40px",
+                          padding: 0,
+                          paddingLeft: "0.5rem",
+                        },
+                      }}
+                      onChange={handleInputChange}
+                    />
+                  </div>
+                ))}
+              </div>
+              <Button
+                className={classes.button}
+                classes={{ label: classes.buttonLabel }}
+                fullWidth
+                disableElevation
+                variant="contained"
+                color="primary"
+                style={{ textTransform: "none" }}
+                onClick={handleSubmit}
+              >
+                Send Message
+              </Button>
+              {error && <Typography variant="subtitle2" align="center" style={{ marginTop: "0.5rem", color: "#E24C56" }}>{`Invalid input. Fill in the form with valid inputs and submit your message again.`}</Typography>}
+            </div>}
+            {response?.status === 200 && <div className={classes.successMessageCtr}>{`Thanks for getting in touch with us. We'll get back to you shortly.`}</div>}
+          </div>
           <div className={classes.mapInfo}>
             <div className={classes.mapImgFill}>
               <Image

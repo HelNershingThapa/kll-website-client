@@ -15,7 +15,7 @@ const subMenus = [
     title: "Our Team",
     link: "/our-team",
     img: "/popover-img-2.png",
-    description: "Take a look behind the scenes and get to know us better",
+    description: "Take a look behind the scenes and get to know us better.",
   },
 ];
 
@@ -25,13 +25,13 @@ const insightsMenus = [
     link: "/blog",
     img: "/icons/blog.svg",
     description:
-      "We update our Blog on a weekly basis. Learn what we’re up to at Kathmandu Living Labs",
+      "We update our blog regularly. Learn what we are up to at Kathmandu Living Labs.",
   },
   {
     title: "In the Media",
     link: "/in-the-media",
     img: "/icons/media.svg",
-    description: "We’ve been featured in mainstream media over the years.",
+    description: "We have been featured in mainstream media over the years.",
   },
   {
     title: "Events",
@@ -47,7 +47,7 @@ const getInvolvedMenus = [
     img: "/get-involved-1.png",
     link: "/work-with-us",
     description:
-      "We’re always on the lookout for new talents. See what opportunities we have for you.",
+      "We are always on the lookout for new talents. See what opportunities we have for you.",
   },
   {
     title: "Join the OSM Movement",

@@ -10,6 +10,7 @@ import FormControl from "@material-ui/core/FormControl";
 import Divider from "@material-ui/core/Divider";
 import { desktop } from "../../styles/theme";
 import NewsletterSubscribe from "./newsletter/NewsletterSubscribe";
+import { KLL_EMAIL } from "../../constants";
 
 const groups = [
   {
@@ -307,7 +308,7 @@ function Footer() {
             >
               Schedule a Meeting
             </Button>
-            <Button variant="outlined" className={classes.sendEmailBtn}>
+            <Button variant="outlined" className={classes.sendEmailBtn} onClick={() => window.open(`mailto:${KLL_EMAIL}`)}>
               Send Us an Email
             </Button>
           </div>
@@ -342,7 +343,7 @@ function Footer() {
                 +977 01472 0137{" "}
               </Typography>
               <Typography className={classes.contactDetails} component="p">
-                contact@kathmandulivinglabs.com{" "}
+                {KLL_EMAIL}
               </Typography>
             </div>
           </div>

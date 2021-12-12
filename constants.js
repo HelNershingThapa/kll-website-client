@@ -1,0 +1,1 @@
+export const KLL_EMAIL = 'contact@kathmandulivinglabs.org'

@@ -12,27 +12,38 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(20),
     marginBottom: theme.spacing(21),
     color: theme.palette.grey[100],
+    [theme.breakpoints.down("xs")]: {
+      marginTop: theme.spacing(4),
+      marginBottom: theme.spacing(10),
+    }
   },
   title: {
-    fontFamily: "Manrope",
     fontWeight: "600",
-    fontSize: "32px",
     color: "#0D1829",
   },
   subTitle: {
-    marginTop: theme.spacing(3),
     color: "#445668",
+    marginTop: theme.spacing(3),
     marginBottom: theme.spacing(10),
+    [theme.breakpoints.down("xs")]: {
+      marginTop: theme.spacing(1),
+      marginBottom: theme.spacing(4),
+    }
   },
   showcaseCtr: {
     display: "grid",
     gridTemplateColumns: "repeat(12, 1fr)",
     gridTemplateRows: "420px 120px 160px 260px 208px 492px",
     gap: theme.spacing(6),
+    "& > div":{
+      maxWidth: "100%",
+    },
     [theme.breakpoints.down("sm")]: {
-      gridTemplateRows: "none",
-      gridTemplateColumns: "1fr",
-      gridAutoRows: "auto",
+      // gridTemplateRows: "none",
+      // gridTemplateColumns: "1fr",
+      // gridAutoRows: "auto",
+      display: "flex",
+      flexDirection: "column",
     },
     "& > div:nth-of-type(1)": {
       gridColumn: "span 3",
@@ -42,7 +53,7 @@ const useStyles = makeStyles((theme) => ({
         gridRow: "auto",
       },
     },
-    "&  > div:nth-of-type(2)": {
+    "& > div:nth-of-type(2)": {
       gridColumn: "span 6",
       gridRow: "span 3",
       [theme.breakpoints.down("sm")]: {
@@ -50,7 +61,7 @@ const useStyles = makeStyles((theme) => ({
         gridRow: "auto",
       },
     },
-    "& >  >  div:nth-of-type(3)": {
+    "& > div:nth-of-type(3)": {
       gridColumn: "span 3",
       gridRow: "span 1",
       [theme.breakpoints.down("sm")]: {
@@ -58,7 +69,7 @@ const useStyles = makeStyles((theme) => ({
         gridRow: "auto",
       },
     },
-    "&  > div:nth-of-type(4)": {
+    "& > div:nth-of-type(4)": {
       gridColumn: "span 3",
       gridRow: "span 2",
       [theme.breakpoints.down("sm")]: {
@@ -66,7 +77,7 @@ const useStyles = makeStyles((theme) => ({
         gridRow: "auto",
       },
     },
-    "&  > div:nth-of-type(5)": {
+    "& > div:nth-of-type(5)": {
       gridColumn: "span 3",
       gridRow: "span 2",
       [theme.breakpoints.down("sm")]: {
@@ -74,7 +85,7 @@ const useStyles = makeStyles((theme) => ({
         gridRow: "auto",
       },
     },
-    "&  > div:nth-of-type(6)": {
+    "& > div:nth-of-type(6)": {
       gridColumn: "span 3",
       gridRow: "span 2",
       [theme.breakpoints.down("sm")]: {
@@ -90,28 +101,28 @@ const useStyles = makeStyles((theme) => ({
         gridRow: "auto",
       },
     },
-    "&  > div:nth-of-type(8)": {
+    "& > div:nth-of-type(8)": {
       gridColumn: "span 3",
       [theme.breakpoints.down("sm")]: {
         gridColumn: "auto",
         gridRow: "auto",
       },
     },
-    "&  > div:nth-of-type(9)": {
+    "& > div:nth-of-type(9)": {
       gridColumn: "span 6",
       [theme.breakpoints.down("sm")]: {
         gridColumn: "auto",
         gridRow: "auto",
       },
     },
-    "&  > div:nth-of-type(10)": {
+    "& > div:nth-of-type(10)": {
       gridColumn: "span 3",
       [theme.breakpoints.down("sm")]: {
         gridColumn: "auto",
         gridRow: "auto",
       },
     },
-    "&  > div:nth-of-type(11)": {
+    "& > div:nth-of-type(11)": {
       gridColumn: "span 3",
     },
     "& div:nth-of-type(2), & div:nth-of-type(7), & div:nth-of-type(9)": {
@@ -146,8 +157,22 @@ const useStyles = makeStyles((theme) => ({
   },
   imgFill: {
     position: "relative",
-    height: "100%",
     width: "100%",
+    height: "100%",
+    [theme.breakpoints.down("sm")]: {
+      width: "100%",
+      "& div": {
+        position: "unset !important",
+      },
+    },
+  },
+  image: {
+    [theme.breakpoints.down("sm")]: {
+      objectFit: "cover",
+      width: "100% important",
+      position: "relative !important",
+      height: "unset !important",
+    },
   },
   blueBg: {
     background: theme.palette.primary.main,
@@ -218,6 +243,7 @@ function Showcase() {
               <div className={classes.imgFill}>
                 {showcase.thumbnail.url && (
                   <Image
+                    className={classes.image}
                     src={`${API_URL}${showcase.thumbnail.url}`}
                     layout="fill"
                     objectFit="cover"
