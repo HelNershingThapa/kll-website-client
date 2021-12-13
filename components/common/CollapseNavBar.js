@@ -1,9 +1,9 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Switch from '@material-ui/core/Switch';
-import Paper from '@material-ui/core/Paper';
-import Collapse from '@material-ui/core/Collapse';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
+import React from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import Switch from "@material-ui/core/Switch";
+import Paper from "@material-ui/core/Paper";
+import Collapse from "@material-ui/core/Collapse";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
 import clsx from "clsx";
 import Image from "next/image";
 import { uid } from "react-uid";
@@ -18,15 +18,15 @@ import {
   Backdrop,
 } from "@material-ui/core";
 import { Fragment } from "react";
-
+import { useEffect } from "react";
 
 const useStyles = makeStyles((theme) => ({
   backdrop: {
     zIndex: theme.zIndex.drawer + 1,
-    color: '#fff',
+    color: "#fff",
   },
   drawer: {
-    position: 'fixed',
+    position: "fixed",
     zIndex: "1300",
     inset: "0px",
   },
@@ -38,12 +38,13 @@ const useStyles = makeStyles((theme) => ({
     left: 0,
     bottom: 0,
     zIndex: 1300,
-    [theme.breakpoints.down("xs")]:{
+    overflowY: "scroll",
+    [theme.breakpoints.down("xs")]: {
       top: 64,
-    }
+    },
   },
   container: {
-    display: 'flex',
+    display: "flex",
   },
   paper: {
     // margin: theme.spacing(1),
@@ -118,8 +119,28 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SimpleCollapse({ checked, handleChange, setChecked, menuItems }) {
+export default function SimpleCollapse({
+  checked,
+  handleChange,
+  setChecked,
+  menuItems,
+}) {
   const classes = useStyles();
+
+  useEffect(() => {
+    console.log("checked", checked);
+    if (checked) {
+      document.body.style.overflowY = "hidden";
+    } else {
+      document.body.style.overflowY = "visible";
+    }
+  }, [checked]);
+
+  useEffect(() => {
+    return () => {
+      document.body.style.overflowY = "visible";
+    };
+  });
 
   return (
     <div className={classes.root}>
