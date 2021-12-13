@@ -132,8 +132,9 @@ function WorkWithUs({ data, vacancies, membersCount }) {
   useEffect(() => {
     if (router.asPath === "/work-with-us#joblistings") {
       var elmnt = document.getElementById("helllo");
-      elmnt.scrollIntoView();
+      elmnt.scrollIntoView({ behavior: "smooth", block: "center" });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

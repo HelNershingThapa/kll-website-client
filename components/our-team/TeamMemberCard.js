@@ -70,15 +70,16 @@ const useStyles = makeStyles((theme) => ({
   osmLogo: {
     "&:hover": {
       cursor: "pointer",
-    }
+    },
   },
 }));
 
 function TeamMemberCard({ memberData }) {
   const classes = useStyles();
-  const { API_URL } = process.env
+  const { API_URL } = process.env;
 
-  const { slug, name, bio, position, image, twitter, openStreetMap, linkedIn } = memberData;
+  const { slug, name, bio, position, image, twitter, openStreetMap, linkedIn } =
+    memberData;
 
   return (
     <div>
@@ -104,29 +105,41 @@ function TeamMemberCard({ memberData }) {
             className={classes.readMore}
             display="inline"
             color="primary"
+            component="span"
           >
             Read More
           </Typography>
         </Link>
       </Typography>
       <div className={classes.socialLinks}>
-        {twitter && <i
-          className={clsx("ri-twitter-fill", classes.socialIcon)}
-          style={{ color: "#1DA1F2" }}
-          onClick={() => window.open(twitter)}
-        />}
+        {twitter && (
+          <i
+            className={clsx("ri-twitter-fill", classes.socialIcon)}
+            style={{ color: "#1DA1F2" }}
+            onClick={() => window.open(twitter)}
+          />
+        )}
         {/* <i
           className={clsx("ri-instagram-line", classes.socialIcon)}
           style={{ color: "#E1306C" }}
         /> */}
-        {
-          openStreetMap && <Image className={classes.osmLogo} src="/icons/osm-logo.png" height={24} width={24} onClick={() => window.open(openStreetMap)} alt="OpenStreetMap logo" />
-        }
-        {linkedIn && <i
-          className={clsx("ri-linkedin-fill", classes.socialIcon)}
-          style={{ color: "#0077B5" }}
-          onClick={() => window.open(linkedIn)}
-        />}
+        {openStreetMap && (
+          <Image
+            className={classes.osmLogo}
+            src="/icons/osm-logo.png"
+            height={24}
+            width={24}
+            onClick={() => window.open(openStreetMap)}
+            alt="OpenStreetMap logo"
+          />
+        )}
+        {linkedIn && (
+          <i
+            className={clsx("ri-linkedin-fill", classes.socialIcon)}
+            style={{ color: "#0077B5" }}
+            onClick={() => window.open(linkedIn)}
+          />
+        )}
       </div>
     </div>
   );

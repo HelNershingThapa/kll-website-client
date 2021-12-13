@@ -1,6 +1,5 @@
 import { useRouter } from "next/router";
 import clsx from "clsx";
-import { uid } from "react-uid";
 import Head from "next/head";
 import Link from "next/link";
 import Image from "next/image";
@@ -8,11 +7,6 @@ import ReactMarkdown from "react-markdown";
 import { makeStyles } from "@material-ui/styles";
 import { Typography, IconButton } from "@material-ui/core";
 import fetch from "isomorphic-unfetch";
-
-const member = {
-  name: "Arogya Koirala",
-  position: "Tech & Innovation Lead",
-};
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -92,7 +86,7 @@ const useStyles = makeStyles((theme) => ({
       fontSize: "1.333rem",
       lineHeight: 1.333,
       marginTop: theme.spacing(6),
-    }
+    },
   },
   position: {
     fontSize: "1.333rem",
@@ -115,19 +109,31 @@ const useStyles = makeStyles((theme) => ({
     overflow: "auto",
     gap: theme.spacing(7),
     marginBottom: theme.spacing(12),
+    "&::-webkit-scrollbar": {
+      width: "8px",
+      paddingLeft: "16px",
+    },
+    "&::-webkit-scrollbar-track": {
+      "-webkit-box-shadow": "inset 0 0 6px rgba(0,0,0,0.00)",
+      borderRadius: "23px",
+    },
+    "&::-webkit-scrollbar-thumb": {
+      backgroundColor: theme.palette.grey[300],
+      borderRadius: "23px",
+    },
     [theme.breakpoints.down("xs")]: {
       marginTop: theme.spacing(3),
       marginBottom: theme.spacing(8),
       maxHeight: "100%",
       gap: theme.spacing(6), // line height of text used for giving spaces between paragraphs
-    }
+    },
   },
   para: {
     fontWeight: 400,
     lineHeight: "28px",
     color: theme.palette.grey[900],
     [theme.breakpoints.down("xs")]: {
-      lineHeight: 1.5
+      lineHeight: 1.5,
     },
   },
   socialLinks: {
@@ -141,12 +147,12 @@ const useStyles = makeStyles((theme) => ({
     fontSize: "32px",
     "&:hover": {
       cursor: "pointer",
-    }
+    },
   },
   osmLogo: {
     "&:hover": {
       cursor: "pointer",
-    }
+    },
   },
   transparentButton: {
     background: "transparent",
@@ -170,9 +176,10 @@ const renderers = {
 function MemberDetail({ allMembers, memberDetail }) {
   const router = useRouter();
   const classes = useStyles();
-  const { API_URL } = process.env
+  const { API_URL } = process.env;
 
-  const { slug, name, position, bio, image, twitter, openStreetMap, linkedIn } = memberDetail;
+  const { slug, name, position, bio, image, twitter, openStreetMap, linkedIn } =
+    memberDetail;
 
   const arrayPosition = allMembers.map((e) => e.slug).indexOf(slug);
 
@@ -190,11 +197,11 @@ function MemberDetail({ allMembers, memberDetail }) {
       <div className={classes.root}>
         <div className={classes.imageContainer}>
           <Image
-          priority
+            priority
             src={`${API_URL}${image.url}`}
             layout="fill"
             objectFit="cover"
-            alt="KLL member"
+            alt={`photo of ${name}`}
             sizes="50vw"
           />
           <div className={classes.navArrowsCtr}>
@@ -233,35 +240,45 @@ function MemberDetail({ allMembers, memberDetail }) {
               </Typography>
             </a>
           </Link>
-          <Typography variant="h2" className={classes.name}>{name}</Typography>
-          <Typography className={classes.position}>
-            {position}
+          <Typography variant="h2" className={classes.name}>
+            {name}
           </Typography>
+          <Typography className={classes.position}>{position}</Typography>
           <div className={classes.bio}>
             {/* eslint-disable-next-line react/no-children-prop */}
             <ReactMarkdown children={bio} renderers={renderers} />
           </div>
           <div className={classes.socialLinks}>
-            {twitter && <i
-              className={clsx("ri-twitter-fill", classes.socialIcon)}
-              style={{ color: "#1DA1F2" }}
-              onClick={() => window.open(twitter)}
-            />}
-            {
-              openStreetMap && <Image className={classes.osmLogo} src="/icons/osm-logo.png" height={32} width={32} onClick={() => window.open(openStreetMap)} alt="OpenStreetMap logo" />
-            }
-            {linkedIn && <i
-              className={clsx("ri-linkedin-fill", classes.socialIcon)}
-              style={{ color: "#0077B5" }}
-              onClick={() => window.open(linkedIn)}
-            />}
+            {twitter && (
+              <i
+                className={clsx("ri-twitter-fill", classes.socialIcon)}
+                style={{ color: "#1DA1F2" }}
+                onClick={() => window.open(twitter)}
+              />
+            )}
+            {openStreetMap && (
+              <Image
+                className={classes.osmLogo}
+                src="/icons/osm-logo.png"
+                height={32}
+                width={32}
+                onClick={() => window.open(openStreetMap)}
+                alt="OpenStreetMap logo"
+              />
+            )}
+            {linkedIn && (
+              <i
+                className={clsx("ri-linkedin-fill", classes.socialIcon)}
+                style={{ color: "#0077B5" }}
+                onClick={() => window.open(linkedIn)}
+              />
+            )}
           </div>
         </div>
       </div>
     </>
   );
 }
-
 
 export async function getStaticPaths() {
   const { API_URL } = process.env;
@@ -276,7 +293,7 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  const { API_URL } = process.env
+  const { API_URL } = process.env;
 
   const response = await fetch(`${API_URL}/members?slug=${params.slug}`);
   const memberDetail = await response.json();

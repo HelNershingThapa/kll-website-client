@@ -1,4 +1,4 @@
-import Image from "next/image";
+import clsx from "clsx";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
@@ -65,8 +65,14 @@ const useStyles = makeStyles((theme) => ({
     lineHeight: "20px",
     color: theme.palette.grey[700],
   },
+  iconSizeMedium: {
+    "& > *:first-child": {
+      fontSize: 16,
+      lineHeight: 1,
+    },
+  },
   startIcon: {
-    marginRight: "5.33px",
+    marginRight: theme.spacing(1),
   },
 }));
 
@@ -91,18 +97,12 @@ function YouCard() {
         <Button
           variant="outlined"
           fullWidth
-          startIcon={
-            <Image
-              src="/icons/check-out.svg"
-              width={13.33}
-              height={13.33}
-              alt="check-out"
-            />
-          }
+          startIcon={<i className={clsx("ri-eye-2-line", classes.btnIcon)} />}
           classes={{
             root: classes.btnRoot,
             label: classes.btnLabel,
             startIcon: classes.startIcon,
+            iconSizeMedium: classes.iconSizeMedium,
           }}
           onClick={() =>
             router.push({

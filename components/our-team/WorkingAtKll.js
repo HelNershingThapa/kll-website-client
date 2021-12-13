@@ -136,8 +136,6 @@ const WorkingAtKll = ({ headerStats }) => {
     speed: 500,
   };
 
-  console.log(headerStats);
-
   return (
     <div className={classes.workingContainer}>
       <Typography className={classes.workingTitle} align="center">
