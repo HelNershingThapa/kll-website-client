@@ -35,10 +35,15 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   description: {
+    fontFamily: "Inter",
     lineHeight: 1.6,
     fontWeight: 400,
     color: theme.palette.grey[300],
     width: 633,
+    [theme.breakpoints.down("xs")]: {
+      fontSize: "0.7778rem",
+      lineHeight: 1.428,
+    },
   },
   btnRoot: {
     padding: "14px 32px",
@@ -95,7 +100,5 @@ const Partners = ({ projects, data }) => {
     </div>
   );
 };
-
-
 
 export default Partners;

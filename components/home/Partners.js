@@ -41,6 +41,12 @@ const useStyles = makeStyles((theme) => ({
     "& div": {
       position: "unset !important",
     },
+    [theme.breakpoints.down("sm")]: {
+      height: "55px !important",
+    },
+    [theme.breakpoints.down("xs")]: {
+      height: "40px !important",
+    },
   },
   image: {
     objectFit: "cover",
@@ -50,6 +56,12 @@ const useStyles = makeStyles((theme) => ({
     mixBlendMode: "luminosity",
     "&:hover": {
       mixBlendMode: "normal",
+    },
+    [theme.breakpoints.down("sm")]: {
+      maxHeight: "55px !important",
+    },
+    [theme.breakpoints.down("xs")]: {
+      maxHeight: "40px !important",
     },
   },
   // partnerLogo: {

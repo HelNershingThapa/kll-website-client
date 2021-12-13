@@ -14,32 +14,8 @@ import Programs from "../components/work-with-us/Programs";
 import Testimonials from "../components/work-with-us/Testimonials";
 import JobListings from "../components/work-with-us/JobListings";
 import Volunteering from "../components/work-with-us/Volunteering";
-
-const stats = [
-  {
-    title: "Vacancies",
-    value: "04",
-  },
-  {
-    title: "Working hrs",
-    value: "07",
-  },
-  {
-    title: "Alumini",
-    value: "56",
-  },
-];
-
-const valuesAndMission = [
-  {
-    title: "Our Values",
-    desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-  },
-  {
-    title: "Our Mission",
-    desc: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-  },
-];
+import { useRouter } from "next/router";
+import { useEffect } from "react";
 
 const useStyles = makeStyles((theme) => ({
   pageHeader: {
@@ -128,7 +104,6 @@ const useStyles = makeStyles((theme) => ({
       fontSize: "0.8889rem",
       lineHeight: 1.5,
       marginBottom: "0.8889rem",
-
     },
   },
 }));
@@ -149,7 +124,17 @@ const renderers = {
 
 function WorkWithUs({ data, vacancies, membersCount }) {
   const classes = useStyles();
-  const { API_URL } = process.env
+  const { API_URL } = process.env;
+  const router = useRouter();
+
+  console.log("router", router);
+
+  useEffect(() => {
+    if (router.asPath === "/work-with-us#joblistings") {
+      var elmnt = document.getElementById("helllo");
+      elmnt.scrollIntoView();
+    }
+  }, []);
 
   return (
     <>
@@ -219,7 +204,7 @@ function WorkWithUs({ data, vacancies, membersCount }) {
 }
 
 export async function getStaticProps() {
-  const { API_URL } = process.env
+  const { API_URL } = process.env;
   const res = await fetch(`${API_URL}/work-with-us`);
   const data = await res.json();
 

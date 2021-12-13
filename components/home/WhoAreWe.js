@@ -46,6 +46,7 @@ const useStyles = makeStyles((theme) => ({
     },
     [theme.breakpoints.down("xs")]: {
       gap: theme.spacing(0),
+      paddingTop: 0,
     },
   },
   imgFill: {

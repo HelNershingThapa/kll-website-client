@@ -91,6 +91,11 @@ const useStyles = makeStyles((theme) => ({
   adornedStart: {
     paddingLeft: theme.spacing(5),
   },
+  centerLoader: {
+    display: "grid",
+    placeContent: "center",
+    marginTop: "44px",
+  },
 }));
 
 const BlogList = ({ featuredBlog }) => {
@@ -105,7 +110,7 @@ const BlogList = ({ featuredBlog }) => {
 
   useEffect(() => {
     loadFunc();
-  }, []);
+  }, [searchQuery]);
 
   async function loadFunc() {
     let categoryQuery = "";
@@ -118,20 +123,34 @@ const BlogList = ({ featuredBlog }) => {
     } else {
       categoryQuery = `&category=${category}`;
     }
-    const countRes = await fetch(
-      `${API_URL}/blogs/count?isFeatured=false${
-        searchQuery === "" ? "" : `&title_contains=${searchQuery}`
-      }${categoryQuery}`
-    );
-    const resCount = await countRes.json();
+
+    const [resCount, blogRes] = await Promise.all([
+      fetch(
+        `${API_URL}/blogs/count?isFeatured=false${
+          searchQuery === "" ? "" : `&title_contains=${searchQuery}`
+        }${categoryQuery}`
+      ).then((r) => r.json()),
+      fetch(
+        `${API_URL}/blogs?_start=${blogs.length}&_limit=6&isFeatured=false${
+          searchQuery === "" ? "" : `&title_contains=${searchQuery}`
+        }${categoryQuery}`
+      ).then((r) => r.json()),
+    ]);
+
+    // const countRes = await fetch(
+    //   `${API_URL}/blogs/count?isFeatured=false${
+    //     searchQuery === "" ? "" : `&title_contains=${searchQuery}`
+    //   }${categoryQuery}`
+    // );
+    // const resCount = await countRes.json();
     setBlogCount(resCount);
 
-    const res = await fetch(
-      `${API_URL}/blogs?_start=${blogs.length}&_limit=6&isFeatured=false${
-        searchQuery === "" ? "" : `&title_contains=${searchQuery}`
-      }${categoryQuery}`
-    );
-    const blogRes = await res.json();
+    // const res = await fetch(
+    //   `${API_URL}/blogs?_start=${blogs.length}&_limit=6&isFeatured=false${
+    //     searchQuery === "" ? "" : `&title_contains=${searchQuery}`
+    //   }${categoryQuery}`
+    // );
+    // const blogRes = await res.json();
     setBlogs(blogs.concat(blogRes));
   }
 
@@ -167,16 +186,16 @@ const BlogList = ({ featuredBlog }) => {
               <InputAdornment position="start">
                 <i
                   className="ri-search-2-line"
-                  style={{ fontSize: "16px" }}
+                  style={{ fontSize: "16px", lineHeight: 1 }}
                 ></i>
               </InputAdornment>
             }
             onChange={(e) => {
               setBlogs([]);
+              e.target.value === ""
+                ? setCategory("none")
+                : setCategory("relevant");
               setSearchQuery(e.target.value);
-              loadFunc();
-              setCategory("relevant");
-              e.target.value === "" && setCategory("none");
             }}
           />
         </div>
@@ -197,13 +216,7 @@ const BlogList = ({ featuredBlog }) => {
           loadMore={loadFunc}
           hasMore={hasMore}
           loader={
-            <div
-              style={{
-                display: "grid",
-                placeContent: "center",
-                marginTop: "44px",
-              }}
-            >
+            <div className={classes.centerLoader}>
               <CircularProgress
                 color="secondary"
                 style={{ color: "#61758A" }}

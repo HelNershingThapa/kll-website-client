@@ -5,6 +5,7 @@ import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
+import { useRouter } from "next/router";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -12,14 +13,14 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: 0,
   },
   blueBackground: {
-    width: '100%',
+    width: "100%",
     height: 0,
-    paddingBottom: '100%',
+    paddingBottom: "100%",
     background: theme.palette.primary.main,
     position: "relative",
     [theme.breakpoints.down("xs")]: {
-      height: 'calc(100vw - 32px)',
-    }
+      height: "calc(100vw - 32px)",
+    },
   },
   you: {
     position: "absolute",
@@ -52,11 +53,11 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.grey[50],
     [theme.breakpoints.down("xs")]: {
       fontSize: "2.485rem",
-    }
+    },
   },
   btnRoot: {
     paddingTop: "10px",
-    paddingBottom: '10px'
+    paddingBottom: "10px",
   },
   btnLabel: {
     fontSize: "14px",
@@ -65,26 +66,25 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.grey[700],
   },
   startIcon: {
-    marginRight: '5.33px'
-  }
+    marginRight: "5.33px",
+  },
 }));
 
 function YouCard() {
   const classes = useStyles();
+  const router = useRouter();
 
   return (
     <Card className={classes.root} elevation={0}>
       <CardContent className={classes.content}>
         <div className={classes.blueBackground}>
           <div className={classes.you}>
-            <Typography className={classes.youText}>
-              you.
-            </Typography>
+            <Typography className={classes.youText}>you.</Typography>
           </div>
         </div>
 
         <Typography component="p" className={classes.description}>
-          {`We’re always on the look-out for passionate people to join our team. Think you fit in at Kathmandu Living Labs?`}
+          {`We are always on the look-out for passionate people to join our team. Think you fit in at Kathmandu Living Labs?`}
         </Typography>
       </CardContent>
       <CardActions className={classes.socialLinks}>
@@ -99,7 +99,17 @@ function YouCard() {
               alt="check-out"
             />
           }
-          classes={{ root: classes.btnRoot, label: classes.btnLabel, startIcon: classes.startIcon }}
+          classes={{
+            root: classes.btnRoot,
+            label: classes.btnLabel,
+            startIcon: classes.startIcon,
+          }}
+          onClick={() =>
+            router.push({
+              pathname: "/work-with-us",
+              hash: "joblistings",
+            })
+          }
         >
           Check-Out Open Positions
         </Button>

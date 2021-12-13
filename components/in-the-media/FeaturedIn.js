@@ -34,16 +34,6 @@ const useStyles = makeStyles((theme) => ({
       marginBottom: theme.spacing(12),
     },
   },
-  img: {
-    maxHeight: "60px",
-    mixBlendMode: "luminosity",
-    [theme.breakpoints.down("sm")]: {
-      maxHeight: "42px",
-    },
-    [theme.breakpoints.down("xs")]: {
-      maxHeight: "32px",
-    },
-  },
   imageFill: {
     position: "relative",
     width: "auto",
