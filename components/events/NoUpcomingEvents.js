@@ -8,17 +8,22 @@ import { Typography, Button } from "@material-ui/core";
 const useStyles = makeStyles((theme) => ({
   noUpcomingEventsContainer: {
     maxWidth: "522px",
-    marginTop: theme.spacing(10),
+    marginTop: theme.spacing(30),
     marginLeft: "auto",
     marginRight: "auto",
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
+    marginBottom: theme.spacing(35),
   },
   calendarCrossFill: {
     position: "relative",
     width: 80,
     height: 80,
+    [theme.breakpoints.down("xs")]: {
+      width: 60,
+      height: 60,
+    },
   },
   nullEventsTitle: {
     marginTop: theme.spacing(10),
@@ -30,22 +35,30 @@ const useStyles = makeStyles((theme) => ({
   },
   nullEventsDescription: {
     marginTop: theme.spacing(2),
-    fontSize: "18px",
-    fontWeight: 400,
-    lineHeight: "28px",
     color: theme.palette.grey[600],
+    [theme.breakpoints.down("xs")]: {
+      lineHeight: 1.428,
+    },
   },
   pastEventsBtn: {
-    padding: theme.spacing(3, 6),
-    background: theme.palette.grey[100],
+    padding: theme.spacing(2.5, 11.5),
     marginTop: theme.spacing(8),
     borderRadius: 4,
   },
   pastEventsBtnLabel: {
-    fontSize: "16px",
+    fontSize: "0.7778rem",
     fontWeight: 500,
-    lineHeight: "16px",
+    lineHeight: 1.428,
     color: theme.palette.grey[700],
+  },
+  startIcon: {
+    marginRight: theme.spacing(1),
+  },
+  iconSizeMedium: {
+    "& > *:first-child": {
+      fontSize: 16,
+      lineHeight: 1,
+    },
   },
 }));
 
@@ -75,10 +88,14 @@ function NoUpcomingEvents({ setValue }) {
         explore our past events.
       </Typography>
       <Button
+        variant="outlined"
         classes={{
           root: classes.pastEventsBtn,
           label: classes.pastEventsBtnLabel,
+          startIcon: classes.startIcon,
+          iconSizeMedium: classes.iconSizeMedium,
         }}
+        startIcon={<i className={clsx("ri-eye-2-line", classes.btnIcon)} />}
         onClick={() => setValue("Past Events")}
       >
         Check Out Past Events

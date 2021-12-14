@@ -102,7 +102,6 @@ function VerticalTabs({ width, value, setValue }) {
         className={classes.tabs}
         classes={{
           indicator: classes.indicator,
-
           flexContainer: classes.tabsFlexContainer,
         }}
         textColor="primary"

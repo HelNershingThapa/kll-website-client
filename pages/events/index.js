@@ -40,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: 800,
     [theme.breakpoints.down("xs")]: {
       marginTop: theme.spacing(1),
-      marginBottom: theme.spacing(6),
+      marginBottom: theme.spacing(4),
       fontSize: "0.7778rem",
       lineHeight: 1.428,
     },

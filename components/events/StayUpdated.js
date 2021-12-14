@@ -10,7 +10,7 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(10),
     [theme.breakpoints.down("xs")]: {
       padding: theme.spacing(10, 4),
-      width: "100vw",
+      width: "calc(100vw - 12px)",
       marginLeft: "-16px",
     },
   },

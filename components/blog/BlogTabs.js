@@ -1,4 +1,3 @@
-
 import React, { useEffect } from "react";
 import { uid } from "react-uid";
 import clsx from "clsx";
@@ -13,38 +12,38 @@ import Box from "@material-ui/core/Box";
 const categories = [
   {
     label: "Recent Posts",
-    value: "none"
+    value: "none",
   },
   {
     label: "Sustainability",
-    value: "sustainability"
+    value: "sustainability",
   },
   {
     label: "Disaster",
-    value: "disaster"
+    value: "disaster",
   },
   {
     label: "Community",
-    value: "community"
+    value: "community",
   },
   {
     label: "Governance",
-    value: "governance"
+    value: "governance",
   },
 ];
 
 const searchCategories = [
   {
     label: "Relevant",
-    value: "relevant"
+    value: "relevant",
   },
   {
     label: "Newest",
-    value: "newest"
+    value: "newest",
   },
   {
     label: "Oldest",
-    value: "oldest"
+    value: "oldest",
   },
 ];
 
@@ -82,42 +81,38 @@ function a11yProps(index) {
 }
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    // flexGrow: 1,
-    // backgroundColor: "white",
+  root: {    
     marginTop: theme.spacing(15),
     [theme.breakpoints.down("xs")]: {
       marginTop: theme.spacing(6),
     },
   },
-  wrapper: {
-    // textTransform: "capitalize",
-    // color: "#61758A",
-    // fontSize: "0.89rem",
-    // lineHeight: "0.89rem",
-    // padding: 0,
-  },
-  tabLabel: {
-    padding: 0,
+  tabRoot: {
+    color: theme.palette.grey[500],
     textTransform: "capitalize",
-    color: "#61758A",
-    fontSize: "0.89rem",
-    lineHeight: "0.89rem",
-    padding: 0,
+    fontSize: "0.8889rem",
+    lineHeight: "0.8889rem",
+    fontWeight: 500,
   },
   selected: {
     fontWeight: 600,
-    color: "#2D4CDB",
+    color: theme.palette.primary.main,
   },
 }));
 
-export default function SimpleTabs({ category, setCategory, setBlogs, loadFunc, searchQuery }) {
+export default function SimpleTabs({
+  category,
+  setCategory,
+  setBlogs,
+  loadFunc,
+  searchQuery,
+}) {
   const classes = useStyles();
 
   useEffect(() => {
-    setBlogs([])
+    setBlogs([]);
     loadFunc();
-  }, [category])
+  }, [category]);
 
   const handleChange = (event, newValue) => {
     setCategory(newValue);
@@ -140,22 +135,18 @@ export default function SimpleTabs({ category, setCategory, setBlogs, loadFunc, 
           },
         }}
       >
-        {activeCategories.map((category, index) => <Tab
-          key={uid(category, index)}
-          classes={{ wrapper: classes.wrapper, selected: classes.selected }}
-          label={
-            <span
-              className={clsx(
-                classes.tabLabel,
-                category === category.value && classes.selected
-              )}
-            >
-              {category.label}
-            </span>
-          }
-          value={category.value}
-          {...a11yProps(index)}
-        />)}
+        {activeCategories.map((category, index) => (
+          <Tab
+            key={uid(category, index)}
+            classes={{
+              root: classes.tabRoot,
+              selected: classes.selected,
+            }}
+            label={category.label}
+            value={category.value}
+            {...a11yProps(index)}
+          />
+        ))}
       </Tabs>
     </div>
   );

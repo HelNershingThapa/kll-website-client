@@ -28,6 +28,10 @@ const useStyles = makeStyles((theme) => ({
     flexWrap: "wrap",
     justifyContent: "space-between",
     alignItems: "center",
+    // "&::after": {
+    //   content: "",
+    //   flex: "auto",
+    // },
     [theme.breakpoints.down("xs")]: {
       columnGap: theme.spacing(3),
       rowGap: theme.spacing(3),

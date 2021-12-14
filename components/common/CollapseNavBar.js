@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
     left: 0,
     bottom: 0,
     zIndex: 1300,
-    overflowY: "scroll",
+    overflowY: "auto",
     [theme.breakpoints.down("xs")]: {
       top: 64,
     },

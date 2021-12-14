@@ -3,6 +3,7 @@ import moment from "moment";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { makeStyles } from "@material-ui/core/styles";
+import ReactMarkdown from "react-markdown";
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import CardActions from "@material-ui/core/CardActions";
@@ -39,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
       height: 195,
     },
     [theme.breakpoints.down(tablet)]: {
-      height: 170,
+      height: 220,
     },
     [theme.breakpoints.down("xs")]: {
       height: "62vw",
@@ -118,7 +119,7 @@ const useStyles = makeStyles((theme) => ({
       height: 195,
     },
     [theme.breakpoints.down(tablet)]: {
-      height: 170,
+      height: 280,
     },
     [theme.breakpoints.down("xs")]: {
       height: "62vw",
@@ -126,10 +127,46 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+function MarkdownParagraph(props) {
+  const classes = useStyles();
+  
+  return (
+    <Typography variant="subtitle1" className={classes.description}>
+      {props.children}
+      {`...`}
+    </Typography>
+  );
+}
+
+function MarkdownImage(props) {
+  const classes = useStyles();
+  const { API_URL } = process.env;
+
+  return <></>;
+}
+
+const renderers = {
+  paragraph: MarkdownParagraph,
+  image: MarkdownImage,
+};
+
 function BlogListCard({ blog }) {
   const router = useRouter();
   const classes = useStyles();
   const { API_URL } = process.env;
+
+  const trimString = (string) => {
+    var maxLength = 150;
+
+    var trimmedString = string.substr(0, maxLength);
+
+    trimmedString = trimmedString.substr(
+      0,
+      Math.min(trimmedString.length, trimmedString.lastIndexOf(" "))
+    );
+
+    return trimmedString;
+  };
 
   return (
     <Card
@@ -146,10 +183,10 @@ function BlogListCard({ blog }) {
           {blog.coverPhoto?.url && (
             <Image
               className={classes.media}
-              src={`${API_URL}${blog.coverPhoto?.formats.small.url}`}
+              src={`${API_URL}${blog.coverPhoto?.formats.medium.url}`}
               layout="fill"
               objectFit="cover"
-              sizes="33vw"
+              sizes="540px"
               alt=""
             />
           )}
@@ -171,9 +208,15 @@ function BlogListCard({ blog }) {
           <Typography className={classes.title} variant="h5">
             {blog.title}
           </Typography>
-          <Typography variant="subtitle1" className={classes.description}>
-            {blog.content.substring(0, 127)}...
-          </Typography>
+          {/* <Typography variant="subtitle1" className={classes.description}> */}
+          {/* {trimString(blog.content)}... */}
+          {/* eslint-disable react/no-children-prop */}
+          <ReactMarkdown
+            children={trimString(blog.content)}
+            escapeHtml={false}
+            renderers={renderers}
+          />
+          {/* </Typography> */}
         </CardContent>
       </CardActionArea>
     </Card>
