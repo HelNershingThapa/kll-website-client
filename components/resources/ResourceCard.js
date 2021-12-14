@@ -76,6 +76,7 @@ function Resource({ resource }) {
           src={`${API_URL}${image.url}`}
           layout="fill"
           objectFit="cover"
+          sizes="60px"
           alt=""
         />
       </div>

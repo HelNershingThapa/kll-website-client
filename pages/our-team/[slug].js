@@ -81,7 +81,7 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 600,
     lineHeight: 1.25,
     color: theme.palette.grey[900],
-    marginTop: theme.spacing(20),
+    marginTop: "7vh",
     [theme.breakpoints.down("xs")]: {
       fontSize: "1.333rem",
       lineHeight: 1.333,
@@ -102,12 +102,11 @@ const useStyles = makeStyles((theme) => ({
   },
   bio: {
     maxWidth: 660,
-    display: "flex",
-    flexDirection: "column",
+    // display: "flex",
+    // flexDirection: "column",
     marginTop: theme.spacing(10),
     maxHeight: "calc(100vh - 520px)",
     overflow: "auto",
-    gap: theme.spacing(7),
     marginBottom: theme.spacing(12),
     "&::-webkit-scrollbar": {
       width: "8px",
@@ -124,14 +123,14 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down("xs")]: {
       marginTop: theme.spacing(3),
       marginBottom: theme.spacing(8),
-      maxHeight: "100%",
-      gap: theme.spacing(6), // line height of text used for giving spaces between paragraphs
+      maxHeight: "100%",      
     },
   },
   para: {
     fontWeight: 400,
     lineHeight: "28px",
     color: theme.palette.grey[900],
+    marginBottom: "1em",
     [theme.breakpoints.down("xs")]: {
       lineHeight: 1.5,
     },

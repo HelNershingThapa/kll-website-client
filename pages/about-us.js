@@ -89,7 +89,7 @@ const useStyles = makeStyles((theme) => ({
     fontSize: "1.111rem",
     lineHeight: 1.6,
     color: theme.palette.grey[800],
-    marginBottom: "1.111rem", // giving same size as the font size
+    marginBottom: "1em", // giving same size as the font size
     [theme.breakpoints.down("xs")]: {
       fontSize: "0.8889rem",
       lineHeight: 1.5,
@@ -103,11 +103,16 @@ const useStyles = makeStyles((theme) => ({
     height: 500,
     [theme.breakpoints.down("sm")]: {
       height: "46vw",
+      marginTop: theme.spacing(8),
+      marginBottom: theme.spacing(2),
     },
   },
   imgsCtr: {
     display: "flex",
     gap: theme.spacing(5),
+    [theme.breakpoints.down("xs")]: {
+      gap: theme.spacing(2),
+    },
   },
   img2: {
     position: "relative",
@@ -158,10 +163,13 @@ function AboutUs({ data, membersCount, sdgs }) {
   const classes = useStyles();
   const { API_URL } = process.env;
 
+  console.log("data", data);
+
   const SEO = {
     title: "About Kathmandu Living Labs",
-    description: "How Kathmandu Living Labs started, footprint, SDG goals, values and mission"
-  }
+    description:
+      "How Kathmandu Living Labs started, footprint, SDG goals, values and mission",
+  };
 
   return (
     <>
@@ -179,7 +187,7 @@ function AboutUs({ data, membersCount, sdgs }) {
           priority
           src={`${API_URL}${data.headerImage.url}`}
           layout="fill"
-          objectFit="cover"          
+          objectFit="cover"
           alt=""
         />
         <div className={classes.statsOverlay}>
@@ -227,7 +235,7 @@ function AboutUs({ data, membersCount, sdgs }) {
               </div>
             </div>
           </div>
-          <Footprint />
+          <Footprint footprints={data.footprints}/>
           <Sdg sdgs={sdgs} />
         </div>
       </Container>
@@ -240,7 +248,7 @@ function AboutUs({ data, membersCount, sdgs }) {
 }
 
 export async function getStaticProps(context) {
-  const { API_URL } = process.env
+  const { API_URL } = process.env;
   const { data } = await axios.get(`${API_URL}/about-us`);
 
   const membersRes = await fetch(`${API_URL}/members/count?isAlumnus=false`);

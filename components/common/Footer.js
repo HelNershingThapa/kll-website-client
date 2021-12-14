@@ -132,13 +132,13 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down("sm")]: {
       display: "grid",
       gridTemplateColumns: "1fr 1fr 1fr 1fr",
-      gap: theme.spacing(10)
+      gap: theme.spacing(10),
     },
     [theme.breakpoints.down("xs")]: {
       display: "grid",
       gridTemplateColumns: "1fr 1fr",
-      gap: theme.spacing(10)
-    }
+      gap: theme.spacing(10),
+    },
   },
   groupTitle: {
     fontWeight: 600,
@@ -178,11 +178,14 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   logoCtr: {
-    marginTop: "48px",
+    marginTop: theme.spacing(12),
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
     gap: theme.spacing(10),
+    [theme.breakpoints.down("xs")]: {
+      gap: theme.spacing(3),
+    },
   },
   copyright: {
     marginTop: theme.spacing(5),
@@ -246,7 +249,7 @@ const useStyles = makeStyles((theme) => ({
     background: theme.palette.grey[800],
     [theme.breakpoints.down("sm")]: {
       width: "100%",
-    }
+    },
   },
   placeholder: {
     padding: "15px 16px",
@@ -278,6 +281,14 @@ const useStyles = makeStyles((theme) => ({
       marginTop: theme.spacing(5),
     },
   },
+  logo: {
+    width: 60,
+    height: 60,
+    [theme.breakpoints.down("xs")]: {
+      width: 48,
+      height: 48,
+    },
+  },
 }));
 
 function Footer() {
@@ -298,7 +309,9 @@ function Footer() {
               classes={{ endIcon: classes.endIcon }}
               variant="contained"
               color="primary"
-              onClick={() => window.open("https://calendly.com/helnershingthapa")}
+              onClick={() =>
+                window.open("https://calendly.com/helnershingthapa")
+              }
               endIcon={
                 <i
                   style={{ fontSize: "16px" }}
@@ -308,7 +321,11 @@ function Footer() {
             >
               Schedule a Meeting
             </Button>
-            <Button variant="outlined" className={classes.sendEmailBtn} onClick={() => window.open(`mailto:${KLL_EMAIL}`)}>
+            <Button
+              variant="outlined"
+              className={classes.sendEmailBtn}
+              onClick={() => window.open(`mailto:${KLL_EMAIL}`)}
+            >
               Send Us an Email
             </Button>
           </div>
@@ -351,9 +368,8 @@ function Footer() {
         <div className={classes.logoCtr}>
           <span className={classes.logoLine}></span>
           <img
+            className={classes.logo}
             src="/kll-logo-white.png"
-            height="58px"
-            width="53px"
             alt="KLL logo white"
           />
           <span className={classes.logoLine}></span>

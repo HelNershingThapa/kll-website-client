@@ -74,6 +74,7 @@ function PopoverContent({ identifier, menu }) {
                       src={`${API_URL}${page.image.url}`}
                       layout="fill"
                       objectFit="cover"
+                      sizes="160px"
                       alt=""
                     />
                   </div>
@@ -122,6 +123,7 @@ function PopoverContent({ identifier, menu }) {
                         src={page.imageFile}
                         layout="fill"
                         objectFit="cover"
+                        sizes="80px"
                         alt=""
                       />
                     </div>
@@ -150,6 +152,7 @@ function PopoverContent({ identifier, menu }) {
                       src={`${API_URL}${page.image.url}`}
                       layout="fill"
                       objectFit="cover"
+                      sizes="305px"
                       alt=""
                     />
                   </div>

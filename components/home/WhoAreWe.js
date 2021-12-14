@@ -249,12 +249,20 @@ const renderers = {
 const Partners = ({ data }) => {
   const router = useRouter();
   const classes = useStyles();
+  const { API_URL } = process.env;
+
+  console.log("data who we are", data);
 
   return (
     <div className={classes.root}>
       <div className={classes.container}>
         <div className={classes.imgFill}>
-          <Image src="/whoarewe.png" layout="fill" objectFit="cover" alt="" />
+          <Image
+            src={`${API_URL}${data.image.url}`}
+            layout="fill"
+            objectFit="cover"
+            alt=""
+          />
         </div>
         <div className={classes.content}>
           <div>

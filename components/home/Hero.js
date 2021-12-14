@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import Image from "next/image";
 import clsx from "clsx";
-import Link from 'next/link';
+import Link from "next/link";
 import { makeStyles } from "@material-ui/core/styles";
 import { Typography, Container, Button } from "@material-ui/core";
 import ReactMarkdown from "react-markdown";
@@ -91,7 +91,7 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down("sm")]: {
       width: "100vw",
       height: "80vw",
-      marginLeft: "calc(-50vw + 50% - 9px)"
+      marginLeft: "calc(-50vw + 50% - 9px)",
     },
   },
   image: {
@@ -243,7 +243,14 @@ const Hero = ({ title, image }) => {
           </div>
         </div>
         <div className={classes.imgFill}>
-          <Image src="/hero-img.png" layout="fill" objectFit="cover" className={classes.image} alt="" />
+          <Image
+            src="/hero-img.png"
+            layout="fill"
+            objectFit="cover"
+            className={classes.image}
+            alt=""
+            sizes="620px"
+          />
         </div>
       </div>
     </div>

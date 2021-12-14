@@ -112,14 +112,15 @@ const useStyles = makeStyles((theme) => ({
   label: {
     fontWeight: 500,
     color: theme.palette.grey[600],
-    [theme.breakpoints.down("xs")]:{
+    [theme.breakpoints.down("xs")]: {
       lineHeight: 1,
-    }
+    },
   },
 }));
 
-function Footprint() {
+function Footprint({ footprints }) {
   const classes = useStyles();
+  console.log(footprints);
 
   return (
     <>
@@ -135,11 +136,11 @@ function Footprint() {
       </div>
       <div className={classes.impactsCtr}>
         <div className={classes.impacts}>
-          {impacts.map((impact) => (
+          {footprints.map((impact) => (
             <div key={uid(impact)} className={classes.impact}>
               <div className={classes.imgFill}>
                 <Image
-                  src={impact.icon}
+                  src={impact.image}
                   layout="fill"
                   objectFit="cover"
                   alt=""
@@ -147,7 +148,7 @@ function Footprint() {
               </div>
               <div>
                 <Typography variant="h3" className={classes.value}>
-                  {impact.value}
+                  {impact.number}
                 </Typography>
                 <Typography variant="body1" className={classes.label}>
                   {impact.label}

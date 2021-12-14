@@ -5,14 +5,23 @@ import clsx from "clsx";
 import Image from "next/image";
 // import Link from "next/link";
 import { makeStyles } from "@material-ui/styles";
-import Link from '@material-ui/core/Link';
+import Link from "@material-ui/core/Link";
 import Table from "@material-ui/core/Table";
 import TableContainer from "@material-ui/core/TableContainer";
 import Paper from "@material-ui/core/Paper";
-import { Typography, Container, Divider, Chip, TableHead, TableRow, TableCell, TableBody } from "@material-ui/core";
+import {
+  Typography,
+  Container,
+  Divider,
+  Chip,
+  TableHead,
+  TableRow,
+  TableCell,
+  TableBody,
+} from "@material-ui/core";
 import ProjectPartners from "../../components/our-projects/ProjectPartners";
 import Documents from "../../components/our-projects/Documents";
-import { desktop } from 'styles/theme';
+import { desktop } from "styles/theme";
 
 const project = {
   title: "National Housing Reconstruction Programme",
@@ -28,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
     height: 620,
     [theme.breakpoints.down("xs")]: {
       height: "320px",
-    }
+    },
   },
   projectDescription: {
     position: "absolute",
@@ -41,14 +50,14 @@ const useStyles = makeStyles((theme) => ({
     paddingBottom: theme.spacing(12),
     [theme.breakpoints.down("xs")]: {
       paddingBottom: theme.spacing(12),
-    }
+    },
   },
   headerGrid: {
     display: "grid",
     gridTemplateColumns: "1fr 800px 1fr",
     [theme.breakpoints.down("sm")]: {
       gridTemplateColumns: "1fr",
-    }
+    },
   },
   primaryCtr: {
     gridColumn: "2 / -1",
@@ -58,7 +67,7 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down("sm")]: {
       position: "relative",
       gridColumn: "1 / -1",
-    }
+    },
   },
   sdgIconsCtr: {
     display: "flex",
@@ -67,8 +76,8 @@ const useStyles = makeStyles((theme) => ({
       position: "absolute",
       bottom: "-48px",
       right: 0,
-      transform: "translateY(50%)"
-    }
+      transform: "translateY(50%)",
+    },
   },
   sdgIcon: {
     width: 80,
@@ -76,7 +85,7 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down("sm")]: {
       width: 60,
       height: 60,
-    }
+    },
   },
   titleStatus: {
     maxWidth: 800,
@@ -115,7 +124,7 @@ const useStyles = makeStyles((theme) => ({
       fontSize: "1rem",
       lineHeight: 1.5556,
       marginTop: theme.spacing(2),
-    }
+    },
   },
   headerImageOverlay: {
     position: "absolute",
@@ -147,12 +156,15 @@ const useStyles = makeStyles((theme) => ({
       "& ul": {
         paddingLeft: "1.333rem",
       },
-    }
+    },
   },
   projectLink: {
     fontWeight: 600,
     lineHeight: "20px",
     color: theme.palette.grey[500],
+    [theme.breakpoints.down("xs")]: {
+      marginTop: "30px",
+    },
   },
   link: {
     fontWeight: 600,
@@ -161,7 +173,7 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: theme.spacing(10),
     "&:hover": {
       cursor: "pointer",
-    }
+    },
   },
   header: {
     fontWeight: 700,
@@ -186,7 +198,7 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
     [theme.breakpoints.down("xs")]: {
       // alignItems: "flex-start",
-    }
+    },
   },
   tagsTypo: {
     fontWeight: 600,
@@ -213,16 +225,16 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down("xs")]: {
       fontSize: "0.8889rem",
       lineHeight: 1.5,
-    }
+    },
   },
   markdownParagraph: {
     color: theme.palette.grey[800],
-    marginBottom: '1rem',
+    marginBottom: "1rem",
     [theme.breakpoints.down("xs")]: {
       fontSize: "0.8889rem",
-      marginBottom: '0.8889rem',
+      marginBottom: "0.8889rem",
       lineHeight: 1.5,
-    }
+    },
   },
   markdownImageFill: {
     marginTop: theme.spacing(10),
@@ -245,10 +257,14 @@ const useStyles = makeStyles((theme) => ({
 function MarkdownParagraph(props) {
   const classes = useStyles();
 
-  return <Typography variant="body1" className={classes.markdownParagraph}>{props.children}</Typography>
+  return (
+    <Typography variant="body1" className={classes.markdownParagraph}>
+      {props.children}
+    </Typography>
+  );
 }
 
-const MarkdownHeading = (({ ...props }) => {
+const MarkdownHeading = ({ ...props }) => {
   const classes = useStyles();
 
   let variant;
@@ -270,15 +286,23 @@ const MarkdownHeading = (({ ...props }) => {
       break;
   }
 
-  return <Typography className={classes.header} gutterBottom variant={variant}>{props.children}</Typography>
-});
+  return (
+    <Typography className={classes.header} gutterBottom variant={variant}>
+      {props.children}
+    </Typography>
+  );
+};
 
 const MarkdownListItem = (props) => {
   const classes = useStyles();
 
   return (
     <li className={classes.markdownListItem}>
-      <Typography variant="body1" component="span" className={classes.markdownListItem}>
+      <Typography
+        variant="body1"
+        component="span"
+        className={classes.markdownListItem}
+      >
         {props.children}
       </Typography>
     </li>
@@ -288,25 +312,31 @@ const MarkdownListItem = (props) => {
 function MarkdownTable(props) {
   return (
     <TableContainer component={Paper} elevation={0}>
-      <Table size="small" aria-label="a dense table">{props.children}</Table>
+      <Table size="small" aria-label="a dense table">
+        {props.children}
+      </Table>
     </TableContainer>
   );
 }
 
 function MarkdownTableCell(props) {
-  return <TableCell><Typography>{props.children}</Typography></TableCell>
+  return (
+    <TableCell>
+      <Typography>{props.children}</Typography>
+    </TableCell>
+  );
 }
 
 function MarkdownTableRow(props) {
-  return <TableRow>{props.children}</TableRow>
+  return <TableRow>{props.children}</TableRow>;
 }
 
 function MarkdownTableBody(props) {
-  return <TableBody>{props.children}</TableBody>
+  return <TableBody>{props.children}</TableBody>;
 }
 
 function MarkdownTableHead(props) {
-  return <TableHead>{props.children}</TableHead>
+  return <TableHead>{props.children}</TableHead>;
 }
 
 function MarkdownImage(props) {
@@ -345,9 +375,11 @@ function ProjectDetails({ projectDetail }) {
 
   const { API_URL } = process.env;
 
-  const sdg = projectDetail.sdg.map(project => project.goalNumber).sort((a, b) => a - b)
+  const sdg = projectDetail.sdg
+    .map((project) => project.goalNumber)
+    .sort((a, b) => a - b);
 
-  const formattedSdgNumber = sdg.map(n => n > 9 ? "" + n : "0" + n)
+  const formattedSdgNumber = sdg.map((n) => (n > 9 ? "" + n : "0" + n));
 
   return (
     <>
@@ -370,7 +402,10 @@ function ProjectDetails({ projectDetail }) {
                 <div className={classes.titleStatus}>
                   <Chip
                     label={
-                      <Typography variant="subtitle1" className={classes.chipLabel}>
+                      <Typography
+                        variant="subtitle1"
+                        className={classes.chipLabel}
+                      >
                         {projectDetail.status}
                       </Typography>
                     }
@@ -399,41 +434,51 @@ function ProjectDetails({ projectDetail }) {
 
       <Container fixed>
         <div className={classes.content}>
-          {projectDetail.projectLink && <><Typography variant="subtitle2" className={classes.projectLink}>
-            Project Link
-          </Typography>
-            <Typography
-              variant="body1"
-              className={classes.link}
-              color="primary"
-              onClick={() => window.open(projectDetail.projectLink)}
-            >
-              {projectDetail.projectLink}
-            </Typography></>
-          }
+          {projectDetail.projectLink && (
+            <>
+              <Typography variant="subtitle2" className={classes.projectLink}>
+                Project Link
+              </Typography>
+              <Typography
+                variant="body1"
+                className={classes.link}
+                color="primary"
+                onClick={() => window.open(projectDetail.projectLink)}
+              >
+                {projectDetail.projectLink}
+              </Typography>
+            </>
+          )}
 
           {/* eslint-disable react/no-children-prop */}
           <ReactMarkdown
             children={projectDetail.description}
-            escapeHtml={false} renderers={renderers}
+            escapeHtml={false}
+            renderers={renderers}
           />
 
-          {projectDetail.partners.length > 0 && <ProjectPartners partners={projectDetail.partners} />}
-          {projectDetail.documents.length > 0 && <Documents documents={projectDetail.documents} />}
-          {projectDetail.tags.length > 0 && <div className={classes.tagsCtr}>
-            <Typography variant="subtitle1" className={classes.tagsTypo}>
-              Tags
-            </Typography>
-            <div className={classes.tags}>
-              {projectDetail.tags.map((tag) => (
-                <Chip
-                  key={uid(tag)}
-                  label={tag.tag}
-                  classes={{ root: classes.tagRoot, label: classes.tagLabel }}
-                />
-              ))}
+          {projectDetail.partners.length > 0 && (
+            <ProjectPartners partners={projectDetail.partners} />
+          )}
+          {projectDetail.documents.length > 0 && (
+            <Documents documents={projectDetail.documents} />
+          )}
+          {projectDetail.tags.length > 0 && (
+            <div className={classes.tagsCtr}>
+              <Typography variant="subtitle1" className={classes.tagsTypo}>
+                Tags
+              </Typography>
+              <div className={classes.tags}>
+                {projectDetail.tags.map((tag) => (
+                  <Chip
+                    key={uid(tag)}
+                    label={tag.tag}
+                    classes={{ root: classes.tagRoot, label: classes.tagLabel }}
+                  />
+                ))}
+              </div>
             </div>
-          </div>}
+          )}
         </div>
       </Container>
     </>
@@ -441,7 +486,7 @@ function ProjectDetails({ projectDetail }) {
 }
 
 export async function getStaticPaths() {
-  const { API_URL } = process.env
+  const { API_URL } = process.env;
   const res = await fetch(`${API_URL}/projects`);
   const projects = await res.json();
 
@@ -453,7 +498,7 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  const { API_URL } = process.env
+  const { API_URL } = process.env;
 
   const res = await fetch(`${API_URL}/projects?slug=${params.slug}`);
   const projectDetail = await res.json();

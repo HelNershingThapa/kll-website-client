@@ -295,6 +295,12 @@ export async function getStaticProps() {
   const response = await fetch(`${API_URL}/in-the-media`);
   const inTheMedia = await response.json();
 
+  if (!mediaCoverages || !inTheMedia) {
+    return {
+      notFound: true,
+    }
+  }
+
   return {
     props: {
       mediaCoverages,

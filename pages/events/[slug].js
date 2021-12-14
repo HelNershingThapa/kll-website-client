@@ -109,7 +109,7 @@ const useStyles = makeStyles((theme) => ({
     height: "unset !important",
   },
   paragraph: {
-    marginBottom: "1rem",
+    marginBottom: "1em",
     color: theme.palette.grey[800],
   },
 }));
@@ -126,7 +126,7 @@ function MarkdownParagraph(props) {
 
 function MarkdownImage(props) {
   const classes = useStyles();
-  const { API_URL } = process.env
+  const { API_URL } = process.env;
 
   return (
     <div className={classes.markdownImageFill}>
@@ -163,6 +163,24 @@ function EventDetail({ eventDetail }) {
       ? eventDetail.startDate
       : `${eventDetail.startDate} - ${eventDetail.endDate}`;
 
+  const getRecurringDate = () => {
+    const date = moment(eventDetail.startDate);
+    const dayOfWeek = date.day();
+    const nextDate = moment().day(dayOfWeek).toDate();
+    return moment(nextDate, "YYYY-MM-DD").format("LL");
+  };
+
+  const getRecurringInfo = () => {
+    const date = moment(eventDetail.startDate);
+    const dayOfWeek = date.day();
+    const nextDate = moment().day(dayOfWeek).toDate();
+    if (eventDetail.recurringType === "weekly") {
+      return ` (Every ${moment(nextDate, "YYYY-MM-DD").format("dddd")})`;
+    }
+  };
+
+  console.log("eventDetail", eventDetail);
+
   return (
     <>
       <Head>
@@ -193,8 +211,13 @@ function EventDetail({ eventDetail }) {
               <i className={clsx("ri-calendar-event-fill", classes.icon)} />
               <Typography variant="subtitle1" className={classes.rendezvouTypo}>
                 {eventDetail.startDate === eventDetail.endDate
-                  ? formattedStartDate
-                  : `${formattedStartDate} ${eventDetail.isRecurring ? '' : '-'} ${eventDetail.isRecurring ? '' : formattedEndDate}`}
+                  ? eventDetail.isRecurring
+                    ? getRecurringDate()
+                    : formattedStartDate
+                  : `${formattedStartDate} ${
+                      eventDetail.isRecurring ? "" : "-"
+                    } ${eventDetail.isRecurring ? "" : formattedEndDate}`}
+                {eventDetail.isRecurring && getRecurringInfo()}
               </Typography>
             </div>
             <div className={classes.rendezvou}>
