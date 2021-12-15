@@ -5,7 +5,7 @@ import Hero from "components/home/Hero";
 import Partners from "components/home/Partners";
 import WhoAreWe from "components/home/WhoAreWe";
 import OurWork from "components/home/OurWork";
-import SdgCommitment from "components/our-projects/SdgCommitment";
+import SdgCommitment from "components/our-work/SdgCommitment";
 import OurInsights from "components/home/OurInsights";
 import FeaturedIn from "components/home/FeaturedIn";
 import OurTeam from "components/home/OurTeam";

@@ -223,7 +223,7 @@ const Hero = ({ title, image }) => {
                   )}
                 />
               }
-              onClick={() => router.push("/our-projects")}
+              onClick={() => router.push("/our-work")}
             >
               <div className={classes.buttonTitleCtr}>
                 <Typography className={classes.buttonTitle}>

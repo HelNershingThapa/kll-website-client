@@ -179,7 +179,7 @@ const MoreProjects = ({ projects }) => {
                 classes={{ root: classes.chipRoot, label: classes.chipLabel }}
               />
             </div>
-            <Link href={`/our-projects/${project.slug}`} passHref>
+            <Link href={`/our-work/${project.slug}`} passHref>
               <Typography variant="h5" className={classes.name}>
                 {project.name}
               </Typography>

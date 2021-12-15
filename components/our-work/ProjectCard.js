@@ -101,7 +101,7 @@ const ProjectCard = ({ name, category, src, slug, coverImagePosition }) => {
   return (
     <div
       className={classes.root}
-      onClick={() => router.push(`/our-projects/${slug}`)}
+      onClick={() => router.push(`/our-work/${slug}`)}
     >
       <div className={classes.imageFill}>
         <Image

@@ -381,7 +381,7 @@ function NavBar({}) {
       {checked && (
         <CollapseNavBar
           checked={checked}
-          menuItems={menuItems}
+          menuItems={menu}
           handleChange={handleChange}
         />
       )}

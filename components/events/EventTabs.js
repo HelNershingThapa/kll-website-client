@@ -67,9 +67,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SimpleTabs({value, setValue}) {
+export default function SimpleTabs({ value, setValue }) {
   const classes = useStyles();
-  
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -78,6 +77,7 @@ export default function SimpleTabs({value, setValue}) {
   return (
     <div className={classes.root}>
       <Tabs
+        variant="scrollable"
         value={value}
         onChange={handleChange}
         aria-label="simple tabs example"

@@ -19,8 +19,8 @@ import {
   TableCell,
   TableBody,
 } from "@material-ui/core";
-import ProjectPartners from "../../components/our-projects/ProjectPartners";
-import Documents from "../../components/our-projects/Documents";
+import ProjectPartners from "../../components/our-work/ProjectPartners";
+import Documents from "../../components/our-work/Documents";
 import { desktop } from "styles/theme";
 
 const project = {

@@ -135,7 +135,6 @@ function OurTeam({ members, headerStats }) {
           layout="fill"
           objectFit="cover"
           alt="People working at KLL"
-          sizes="100vw"
         />
         <div className={classes.statsOverlay}>
           {headerStats.headerStat.map((stat) => (

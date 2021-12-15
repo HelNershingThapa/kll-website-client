@@ -153,7 +153,7 @@ export default function SimpleCollapse({
             <div className={classes.menuItemContainerMobile}>
               {menuItems.map((menuItem) => (
                 <Fragment key={uid(menuItem)}>
-                  {menuItem.isSubMenuAvailable ? (
+                  {menuItem.subMenu.length > 0 ? (
                     <div className={classes.subMenuCtr}>
                       <Typography variant="h6" className={classes.menuItem}>
                         {menuItem.name}

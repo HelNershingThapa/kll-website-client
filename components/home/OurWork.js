@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import { makeStyles } from "@material-ui/core/styles";
 import { Typography, Container, Button, Hidden } from "@material-ui/core";
-import ProjectsGrid from "components/our-projects/ProjectsGrid";
+import ProjectsGrid from "components/our-work/ProjectsGrid";
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -75,7 +75,7 @@ const Partners = ({ projects, data }) => {
             <Button
               variant="outlined"
               classes={{ root: classes.btnRoot, label: classes.btnLabel }}
-              onClick={() => router.push("/our-projects")}
+              onClick={() => router.push("/our-work")}
             >
               {`Check Out Our Work`}
             </Button>
@@ -87,7 +87,7 @@ const Partners = ({ projects, data }) => {
             <Button
               variant="outlined"
               classes={{ root: classes.btnRoot, label: classes.btnLabel }}
-              onClick={() => router.push("/our-projects")}
+              onClick={() => router.push("/our-work")}
             >
               {`Check Out All Our Work`}
             </Button>

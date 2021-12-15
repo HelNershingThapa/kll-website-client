@@ -130,7 +130,9 @@ function Events({ events, recurringEvents }) {
 
 export async function getStaticProps() {
   const { API_URL } = process.env;
-  const res = await fetch(`${API_URL}/events?isRecurring=false`);
+  const res = await fetch(
+    `${API_URL}/events?_where[isRecurring_null]=true&_where[_or][isRecurring_eq]=false`
+  );
   const events = await res.json();
 
   const recurringEventsRes = await fetch(`${API_URL}/events?isRecurring=true`);
@@ -141,6 +143,7 @@ export async function getStaticProps() {
       events,
       recurringEvents,
     },
+    revalidate: 86400,
   };
 }
 

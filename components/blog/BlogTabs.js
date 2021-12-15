@@ -81,7 +81,7 @@ function a11yProps(index) {
 }
 
 const useStyles = makeStyles((theme) => ({
-  root: {    
+  root: {
     marginTop: theme.spacing(15),
     [theme.breakpoints.down("xs")]: {
       marginTop: theme.spacing(6),
@@ -123,6 +123,7 @@ export default function SimpleTabs({
   return (
     <div className={classes.root}>
       <Tabs
+        variant="scrollable"
         value={category}
         onChange={handleChange}
         aria-label="simple tabs example"

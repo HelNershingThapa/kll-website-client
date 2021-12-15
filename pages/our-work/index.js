@@ -4,9 +4,9 @@ import clsx from "clsx";
 import ReactMarkdown from "react-markdown";
 import { makeStyles } from "@material-ui/core";
 import { Container, Typography } from "@material-ui/core";
-import ProjectsGrid from "components/our-projects/ProjectsGrid";
-import SdgCommitment from "components/our-projects/SdgCommitment";
-import MoreProjects from "components/our-projects/MoreProjects";
+import ProjectsGrid from "components/our-work/ProjectsGrid";
+import SdgCommitment from "components/our-work/SdgCommitment";
+import MoreProjects from "components/our-work/MoreProjects";
 import { desktop, tablet } from "styles/theme";
 
 const useStyles = makeStyles((theme) => ({
@@ -101,11 +101,11 @@ const OurProjects = ({ projects, impact }) => {
   return (
     <>
       <Head>
-        <title>Our Projects | Kathmandu Living Labs</title>
+        <title>Our Work | Kathmandu Living Labs</title>
       </Head>
       <Container fixed className={classes.root}>
         <Typography variant="h4" className={classes.pageTitle}>
-          Impact
+          Our Work
         </Typography>
         <i className={clsx("ri-double-quotes-l", classes.quoteIcon)} />
          {/* eslint-disable-next-line react/no-children-prop */}

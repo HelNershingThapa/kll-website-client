@@ -95,6 +95,7 @@ function VerticalTabs({ width, value, setValue }) {
   return (
     <div className={classes.root}>
       <Tabs
+        variant="scrollable"
         orientation={tabOrientation}
         value={value}
         onChange={handleChange}
