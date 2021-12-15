@@ -228,6 +228,7 @@ export default function Home() {
                 src="/Rectangle7.png"
                 layout="fill"
                 objectFit="cover"
+                sizes="720px"
                 alt=""
               />
             </div>
@@ -258,7 +259,7 @@ export default function Home() {
                   variant="subtitle1"
                   className={classes.contactInfoDesc}
                 >
-                  +977 01472 0136
+                  +977-01-4720136
                 </Typography>
               </div>
             </div>

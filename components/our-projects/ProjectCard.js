@@ -84,15 +84,15 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const label = {
-  "disaster_preparedness": "Disaster Preparedness",
-  "disaster_response": "Disaster Response",
-  "governance": "Governance",
-  "openstreetmap": "OpenStreetMap",
-  "civic_engagement": "Civic Engagement",
-  "climate_change_and_sustainability": "Climate Change and Sustainability",
-}
+  disaster_preparedness: "Disaster Preparedness",
+  disaster_response: "Disaster Response",
+  governance: "Governance",
+  openstreetmap: "OpenStreetMap",
+  civic_engagement: "Civic Engagement",
+  climate_change_and_sustainability: "Climate Change and Sustainability",
+};
 
-const ProjectCard = ({ name, category, src, slug }) => {
+const ProjectCard = ({ name, category, src, slug, coverImagePosition }) => {
   const router = useRouter();
   const classes = useStyles();
 
@@ -101,9 +101,7 @@ const ProjectCard = ({ name, category, src, slug }) => {
   return (
     <div
       className={classes.root}
-      onClick={() =>
-        router.push(`/our-projects/${slug}`)
-      }
+      onClick={() => router.push(`/our-projects/${slug}`)}
     >
       <div className={classes.imageFill}>
         <Image
@@ -111,6 +109,8 @@ const ProjectCard = ({ name, category, src, slug }) => {
           className={classes.image}
           layout="fill"
           objectFit="cover"
+          objectPosition={`${coverImagePosition && coverImagePosition}`}
+          sizes="900px"
           alt="KLL projects"
         />
       </div>

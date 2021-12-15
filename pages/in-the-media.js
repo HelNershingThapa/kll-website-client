@@ -203,8 +203,9 @@ function InTheMedia({ mediaCoverages, inTheMedia }) {
                         priority
                         src={`${API_URL}${coverage.image.url}`}
                         layout="fill"
-                        alt="KLL in media"
                         objectFit="cover"
+                        sizes="750px"
+                        alt="KLL in media"
                       />
                     </div>
                     <div className={classes.headerImgOverlay}>
@@ -298,7 +299,7 @@ export async function getStaticProps() {
   if (!mediaCoverages || !inTheMedia) {
     return {
       notFound: true,
-    }
+    };
   }
 
   return {

@@ -91,6 +91,7 @@ function RecurringEvents({ recurringEvents }) {
             src="/icons/calendar.svg"
             layout="fill"
             objectFit="cover"
+            sizes="80px"
             alt="calender"
           />
         </div>

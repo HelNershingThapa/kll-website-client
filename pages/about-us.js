@@ -214,15 +214,17 @@ function AboutUs({ data, membersCount, sdgs }) {
                 alt="asdasd"
                 layout="fill"
                 objectFit="cover"
+                sizes="972px"
               />
             </div>
             <div className={classes.imgsCtr}>
               <div className={classes.img2}>
                 <Image
                   src={`${API_URL}${data.image2.url}`}
-                  alt=""
                   layout="fill"
                   objectFit="cover"
+                  sizes="486px"
+                  alt=""
                 />
               </div>
               <div className={classes.img2}>
@@ -230,12 +232,13 @@ function AboutUs({ data, membersCount, sdgs }) {
                   src={`${API_URL}${data.image3.url}`}
                   layout="fill"
                   objectFit="cover"
+                  sizes="486px"
                   alt=""
                 />
               </div>
             </div>
           </div>
-          <Footprint footprints={data.footprints}/>
+          <Footprint footprints={data.footprints} />
           <Sdg sdgs={sdgs} />
         </div>
       </Container>

@@ -143,6 +143,7 @@ function Footprint({ footprints }) {
                   src={impact.image}
                   layout="fill"
                   objectFit="cover"
+                  sizes="60px"
                   alt=""
                 />
               </div>

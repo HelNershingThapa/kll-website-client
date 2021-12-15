@@ -47,10 +47,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Traits({traits}) {
+function Traits({ traits }) {
   const router = useRouter();
   const classes = useStyles();
-  const {API_URL} = process.env;
+  const { API_URL } = process.env;
 
   return (
     <div className={classes.traits}>
@@ -61,7 +61,8 @@ function Traits({traits}) {
               src={`${API_URL}${trait.icon.url}`}
               layout="fill"
               objectFit="cover"
-              alt="KLL traits"
+              sizes="100px"
+              alt="KLL traits logo"
             />
           </div>
           <Typography align="center" className={classes.traitTitle}>

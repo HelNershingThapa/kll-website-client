@@ -62,7 +62,6 @@ function HowWeBegan(props) {
   const classes = useStyles();
   const { API_URL } = process.env;
 
-
   return (
     <div className={classes.historyContainer}>
       <Container fixed>
@@ -79,7 +78,8 @@ function HowWeBegan(props) {
                 src={`${API_URL}${props.data.image.url}`}
                 layout="fill"
                 objectFit="cover"
-                alt="KLL history"
+                sizes="972px"
+                alt="mapping"
               />
             </div>
           </div>

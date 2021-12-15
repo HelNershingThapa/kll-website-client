@@ -93,21 +93,30 @@ const useStyles = makeStyles((theme) => ({
 function StayUpdated() {
   const classes = useStyles();
   const { API_URL } = process.env;
-  const [email, setEmail] = useState('')
-  const [response, setResponse] = useState()
-  const [error, setError] = useState()
+  const [email, setEmail] = useState("");
+  const [response, setResponse] = useState();
+  const [error, setError] = useState();
 
   const onSubmit = () => {
     setError();
-    axios.post(`${API_URL}/event-subscribers`, { email }).then(response => setResponse(response)).catch(error => {
-      setError(error);
-    });
-  }
+    axios
+      .post(`${API_URL}/event-subscribers`, { email })
+      .then((response) => setResponse(response))
+      .catch((error) => {
+        setError(error);
+      });
+  };
 
   return (
     <div className={classes.container}>
       <div className={classes.imgFill}>
-        <Image src="/icons/bell.svg" layout="fill" objectFit="cover" alt="" />
+        <Image
+          src="/icons/bell.svg"
+          layout="fill"
+          objectFit="cover"
+          sizes="60px"
+          alt=""
+        />
       </div>
       <Typography variant="h6" className={classes.title}>
         {`Stay up-to-date with our events`}
@@ -117,7 +126,8 @@ function StayUpdated() {
         color="textSecondary"
         className={classes.description}
       >
-        If you want to be notified about our upcoming events, please enter your contact details below.
+        If you want to be notified about our upcoming events, please enter your
+        contact details below.
       </Typography>
       <div className={classes.form}>
         <div>
@@ -136,8 +146,13 @@ function StayUpdated() {
             id="outlined-secondary"
             variant="outlined"
             color="secondary"
-            helperText={error ? "Invalid entry." : response?.status === 200 && "Thank you for subscribing to our events. We'll send you an email when something is happening."}
-            onChange={e => setEmail(e.target.value)}
+            helperText={
+              error
+                ? "Invalid entry."
+                : response?.status === 200 &&
+                  "Thank you for subscribing to our events. We'll send you an email when something is happening."
+            }
+            onChange={(e) => setEmail(e.target.value)}
           />
         </div>
         {/* <div>

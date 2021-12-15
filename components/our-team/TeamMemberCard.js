@@ -88,7 +88,7 @@ function TeamMemberCard({ memberData }) {
           src={`${API_URL}${image.url}`}
           layout="fill"
           objectFit="cover"
-          sizes="33vw"
+          sizes="460px"
           alt=""
         />
       </div>

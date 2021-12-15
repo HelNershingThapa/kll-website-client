@@ -1,4 +1,4 @@
-import { useRouter } from 'next/router'
+import { useRouter } from "next/router";
 import Image from "next/image";
 import { makeStyles } from "@material-ui/core/styles";
 import { Chip, Typography, IconButton, Hidden } from "@material-ui/core";
@@ -72,7 +72,7 @@ const useStyles = makeStyles((theme) => ({
     position: "relative",
     width: "100%",
     height: 572,
-    [theme.breakpoints.down(' ')]: {
+    [theme.breakpoints.down(" ")]: {
       height: 502,
     },
     [theme.breakpoints.down(desktop)]: {
@@ -86,8 +86,8 @@ const useStyles = makeStyles((theme) => ({
 
 const TopBlog = ({ featuredBlog }) => {
   const classes = useStyles();
-  const router = useRouter()
-  const { API_URL } = process.env
+  const router = useRouter();
+  const { API_URL } = process.env;
 
   return (
     <div className={classes.headerImage}>
@@ -98,6 +98,7 @@ const TopBlog = ({ featuredBlog }) => {
           src={`${API_URL}${featuredBlog.coverPhoto.url}`}
           layout="fill"
           objectFit="cover"
+          sizes="1440px"
           alt="KLL Blog"
         />
       </div>
@@ -124,7 +125,10 @@ const TopBlog = ({ featuredBlog }) => {
               className={classes.iconButton}
               onClick={() => router.push(`/blog/${featuredBlog.slug}`)}
             >
-              <i className="ri-arrow-right-line" style={{ fontSize: "24px", color: "white" }} />
+              <i
+                className="ri-arrow-right-line"
+                style={{ fontSize: "24px", color: "white" }}
+              />
             </IconButton>
           </div>
         </Hidden>

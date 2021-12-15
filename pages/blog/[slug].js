@@ -1,5 +1,5 @@
 import Head from "next/head";
-import { BlogJsonLd } from 'next-seo';
+import { BlogJsonLd } from "next-seo";
 import moment from "moment";
 import { uid } from "react-uid";
 import clsx from "clsx";
@@ -7,7 +7,20 @@ import fetch from "isomorphic-unfetch";
 import ReactMarkdown from "react-markdown";
 import { makeStyles } from "@material-ui/core/styles";
 import Image from "next/image";
-import { Typography, Divider, Avatar, Container, Hidden, TableContainer, Table, TableHead, TableRow, TableCell, TableBody, Link } from "@material-ui/core";
+import {
+  Typography,
+  Divider,
+  Avatar,
+  Container,
+  Hidden,
+  TableContainer,
+  Table,
+  TableHead,
+  TableRow,
+  TableCell,
+  TableBody,
+  Link,
+} from "@material-ui/core";
 import BlogListCard from "components/blog/BlogListCard";
 import Tags from "components/blog/Tags";
 import Share from "components/blog/Share";
@@ -32,8 +45,8 @@ const useStyles = makeStyles((theme) => ({
   },
   shareMobileView: {
     marginTop: theme.spacing(10),
-    display: 'flex',
-    flexDirection: 'column',
+    display: "flex",
+    flexDirection: "column",
     alignItems: "center",
   },
   headerImageContainer: {
@@ -42,7 +55,7 @@ const useStyles = makeStyles((theme) => ({
     height: "66vh",
     [theme.breakpoints.down("xs")]: {
       height: "64vw",
-    }
+    },
   },
   headerImageOverlay: {
     position: "absolute",
@@ -72,7 +85,7 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
     [theme.breakpoints.down("xs")]: {
       marginTop: theme.spacing(3),
-    }
+    },
   },
   content: {
     // display: "flex",
@@ -236,9 +249,9 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   paragraph: {
-    marginBottom: '1rem',
+    marginBottom: "1rem",
     [theme.breakpoints.down("xs")]: {
-      marginBottom: '0.7778rem',
+      marginBottom: "0.7778rem",
     },
   },
   markdownImageFill: {
@@ -263,19 +276,23 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.grey[800],
     marginBottom: theme.spacing(3),
     marginTop: theme.spacing(10),
-    [theme.breakpoints.down("xs")]:{
+    [theme.breakpoints.down("xs")]: {
       marginTop: theme.spacing(8),
-    }
+    },
   },
 }));
 
 function MarkdownParagraph(props) {
   const classes = useStyles();
 
-  return <Typography variant="body1" className={classes.paragraph}>{props.children}</Typography>
+  return (
+    <Typography variant="body1" className={classes.paragraph}>
+      {props.children}
+    </Typography>
+  );
 }
 
-const MarkdownHeading = (({ ...props }) => {
+const MarkdownHeading = ({ ...props }) => {
   const classes = useStyles();
 
   let variant;
@@ -297,15 +314,21 @@ const MarkdownHeading = (({ ...props }) => {
       break;
   }
 
-  return <Typography className={classes.header} gutterBottom variant={variant}>{props.children}</Typography>
-});
+  return (
+    <Typography className={classes.header} gutterBottom variant={variant}>
+      {props.children}
+    </Typography>
+  );
+};
 
-const MarkdownListItem = props => {
+const MarkdownListItem = (props) => {
   const classes = useStyles();
 
   return (
     <li className={classes.listItem}>
-      <Typography variant="body1" component="span">{props.children}</Typography>
+      <Typography variant="body1" component="span">
+        {props.children}
+      </Typography>
     </li>
   );
 };
@@ -313,25 +336,31 @@ const MarkdownListItem = props => {
 function MarkdownTable(props) {
   return (
     <TableContainer component={Paper} elevation={0}>
-      <Table size="small" aria-label="a dense table">{props.children}</Table>
+      <Table size="small" aria-label="a dense table">
+        {props.children}
+      </Table>
     </TableContainer>
   );
 }
 
 function MarkdownTableCell(props) {
-  return <TableCell><Typography>{props.children}</Typography></TableCell>
+  return (
+    <TableCell>
+      <Typography>{props.children}</Typography>
+    </TableCell>
+  );
 }
 
 function MarkdownTableRow(props) {
-  return <TableRow>{props.children}</TableRow>
+  return <TableRow>{props.children}</TableRow>;
 }
 
 function MarkdownTableBody(props) {
-  return <TableBody>{props.children}</TableBody>
+  return <TableBody>{props.children}</TableBody>;
 }
 
 function MarkdownTableHead(props) {
-  return <TableHead>{props.children}</TableHead>
+  return <TableHead>{props.children}</TableHead>;
 }
 
 function MarkdownImage(props) {
@@ -377,35 +406,50 @@ function BlogDetail({ blog, relatedBlogs }) {
       <BlogJsonLd
         url="https://kathmandulivinglabs.org/blog"
         title={blog.title}
-        images={[
-          blog.coverPhoto?.url
-        ]}
+        images={[blog.coverPhoto?.url]}
         dateModified={blog.created_at}
         datePublished={blog.published_at}
         authorName={blog.member.name}
-        keywords={blog.tags.map(tag => tag.name).join(", ")}
+        keywords={blog.tags.map((tag) => tag.name).join(", ")}
       />
-      {blog.coverPhoto && <div className={classes.headerImageContainer}>
-        <Image
-          priority
-          className={classes.headerImage}
-          src={`${API_URL}${blog.coverPhoto.url}`}
-          layout="fill"
-          objectFit="cover"
-          alt="Picture of the author"
-        />
-        <div className={classes.headerImageOverlay} />
-      </div>}
+      {blog.coverPhoto && (
+        <div className={classes.headerImageContainer}>
+          <Image
+            priority
+            className={classes.headerImage}
+            src={`${API_URL}${blog.coverPhoto.url}`}
+            layout="fill"
+            objectFit="cover"
+            alt="Picture of the author"
+          />
+          <div className={classes.headerImageOverlay} />
+        </div>
+      )}
       <Container fixed>
         <div className={classes.blog}>
           <div className={classes.timestamp}>
-            <Typography variant="subtitle2">{moment(blog.updated_at).format('ll')}</Typography>
-            <Typography variant="subtitle2">{Math.ceil(blog.content.split(" ").length / 200)} min read</Typography>
+            <Typography variant="subtitle2">
+              {moment(blog.updated_at).format("ll")}
+            </Typography>
+            <Typography variant="subtitle2">
+              {Math.ceil(blog.content.split(" ").length / 200)} min read
+            </Typography>
           </div>
           <Typography variant="h4">{blog.title}</Typography>
           <div className={classes.author}>
             <Avatar>
-              <Image priority src={`${API_URL}${blog.member.avatarImage ? blog.member.avatarImage.url : blog.member.image.url}`} layout="fill" objectFit="cover" alt="DP" />
+              <Image
+                priority
+                src={`${API_URL}${
+                  blog.member.avatarImage
+                    ? blog.member.avatarImage.url
+                    : blog.member.image.url
+                }`}
+                layout="fill"
+                objectFit="cover"
+                sizes="40px"
+                alt="DP"
+              />
             </Avatar>
             <div className={classes.authorDetails}>
               <Typography variant="subtitle1" className={classes.authorName}>
@@ -420,13 +464,24 @@ function BlogDetail({ blog, relatedBlogs }) {
             {/* eslint-disable react/no-children-prop */}
             <ReactMarkdown
               children={blog.content}
-              escapeHtml={false} renderers={renderers}
+              escapeHtml={false}
+              renderers={renderers}
             />
           </div>
           <Divider classes={{ root: classes.divider }} />
           <div className={clsx(classes.author, classes.footerMargin)}>
             <Avatar>
-              <Image src={`${API_URL}${blog.member.avatarImage ? blog.member.avatarImage.url : blog.member.image.url}`} layout="fill" alt="DP" objectFit="cover" />
+              <Image
+                src={`${API_URL}${
+                  blog.member.avatarImage
+                    ? blog.member.avatarImage.url
+                    : blog.member.image.url
+                }`}
+                layout="fill"
+                alt="DP"
+                sizes="40px"
+                objectFit="cover"
+              />
             </Avatar>
             <div className={classes.authorDetails}>
               <Typography variant="subtitle1" className={classes.authorName}>
@@ -438,7 +493,7 @@ function BlogDetail({ blog, relatedBlogs }) {
             </div>
           </div>
           <Typography variant="subtitle1" className={classes.authorBio}>
-            {blog.member.bio.split('\n\n')[0]}
+            {blog.member.bio.split("\n\n")[0]}
           </Typography>
           {blog.tags.length > 0 && <Tags tags={blog.tags} />}
           <Hidden smUp>
@@ -487,7 +542,9 @@ export async function getStaticProps({ params }) {
   const res = await fetch(`${API_URL}/blogs?slug=${params.slug}`);
   const blog = await res.json();
 
-  const relatedBlogsRes = await fetch(`${API_URL}/blogs?category_eq=${blog[0].category}&slug_ne=${params.slug}&_limit=3`);
+  const relatedBlogsRes = await fetch(
+    `${API_URL}/blogs?category_eq=${blog[0].category}&slug_ne=${params.slug}&_limit=3`
+  );
   const relatedBlogs = await relatedBlogsRes.json();
 
   return {

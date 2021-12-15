@@ -99,6 +99,7 @@ const ProjectsGrid = ({ projects }) => {
           category={projects[0].category}
           src={projects[0].coverImage.image.url}
           slug={projects[0].slug}
+          coverImagePosition={projects[0].coverImagePosition}
         />
       </div>
       <div className={classes.project2}>
@@ -106,6 +107,7 @@ const ProjectsGrid = ({ projects }) => {
           name={projects[1].name}
           category={projects[1].category}
           src={projects[1].coverImage.image.url}
+          coverImagePosition={projects[1].coverImagePosition}
           slug={projects[1].slug}
         />
       </div>
@@ -113,6 +115,7 @@ const ProjectsGrid = ({ projects }) => {
         <ProjectCard
           name={projects[2].name}
           category={projects[2].category}
+          coverImagePosition={projects[2].coverImagePosition}
           src={projects[2].coverImage.image.url}
           slug={projects[2].slug}
         />
@@ -121,6 +124,7 @@ const ProjectsGrid = ({ projects }) => {
         <ProjectCard
           name={projects[3].name}
           category={projects[3].category}
+          coverImagePosition={projects[3].coverImagePosition}
           src={projects[3].coverImage.image.url}
           slug={projects[3].slug}
         />
@@ -129,6 +133,7 @@ const ProjectsGrid = ({ projects }) => {
         <ProjectCard
           name={projects[4].name}
           category={projects[4].category}
+          coverImagePosition={projects[4].coverImagePosition}
           src={projects[4].coverImage.image.url}
           slug={projects[4].slug}
         />

@@ -119,7 +119,7 @@ function PopoverContent({ identifier, menu }) {
                         width: index === 0 ? 80 : 60,
                       }}
                     >
-                      <img
+                      <Image
                         src={page.imageFile}
                         layout="fill"
                         objectFit="cover"

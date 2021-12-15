@@ -89,6 +89,7 @@ function Programs({ fellowships, mentorships }) {
               src={`${API_URL}${fellowships.image.url}`}
               layout="fill"
               objectFit="cover"
+              sizes="450px"
               alt="fellowships at KLL"
             />
           </div>
@@ -114,6 +115,7 @@ function Programs({ fellowships, mentorships }) {
               src={`${API_URL}${mentorships.image.url}`}
               layout="fill"
               objectFit="cover"
+              sizes="450px"
               alt="mentorships at KLL"
             />
           </div>

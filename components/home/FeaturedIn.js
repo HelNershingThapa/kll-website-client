@@ -1,10 +1,8 @@
 import { useRouter } from "next/router";
-import clsx from "clsx";
 import { uid } from "react-uid";
 import Image from "next/image";
 import { makeStyles } from "@material-ui/core/styles";
-import { Typography, Container, Button } from "@material-ui/core";
-import ProjectsGrid from "components/our-projects/ProjectsGrid";
+import { Typography, Container } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   featuredInCtr: {

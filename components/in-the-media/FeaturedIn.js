@@ -78,6 +78,7 @@ function FeaturedIn({ featuredInImages }) {
               className={classes.image}
               layout="fill"
               objectFit="content"
+              sizes="500px"
               alt={logo.caption}
             />
           </div>

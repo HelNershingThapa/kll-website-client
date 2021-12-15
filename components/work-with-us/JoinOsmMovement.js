@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
       fontSize: "1.333rem",
       lineHeight: 1.333,
       marginBottom: theme.spacing(2),
-    }
+    },
   },
   paragraphs: {
     display: "flex",
@@ -46,14 +46,14 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: "0.8889rem",
     [theme.breakpoints.down("xs")]: {
       marginBottom: "0.7778rem",
-    }
+    },
   },
   actionButtons: {
     display: "flex",
     gap: theme.spacing(4),
     [theme.breakpoints.down("xs")]: {
       marginTop: "10px",
-    }
+    },
   },
   btnRoot: {
     padding: "10px 20px",
@@ -100,6 +100,7 @@ function JoinOsmMovement({ joinOsmMovement }) {
           src={`${API_URL}${image.url}`}
           layout="fill"
           objectFit="cover"
+          sizes="710px"
           alt="Join the OSM Movement"
         />
       </div>
@@ -114,9 +115,7 @@ function JoinOsmMovement({ joinOsmMovement }) {
             variant="contained"
             color="primary"
             classes={{ root: classes.btnRoot, label: classes.btnLabel }}
-            onClick={() =>
-              window.open("https://www.openstreetmap.org/")
-            }
+            onClick={() => window.open("https://www.openstreetmap.org/")}
           >
             Join OSM
           </Button>

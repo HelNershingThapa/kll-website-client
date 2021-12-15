@@ -73,15 +73,21 @@ const useStyles = makeStyles((theme) => ({
 const Sdg = ({ sdgs }) => {
   const classes = useStyles();
 
-  const sdg = sdgs.map(sdg => sdg.goalNumber).sort((a, b) => a - b)
+  const sdg = sdgs.map((sdg) => sdg.goalNumber).sort((a, b) => a - b);
 
-  const formattedSdgNumber = sdg.map(n => n > 9 ? "" + n : "0" + n)
+  const formattedSdgNumber = sdg.map((n) => (n > 9 ? "" + n : "0" + n));
 
   return (
     <div className={classes.root}>
       <div className={classes.committment}>
         <div className={classes.iconFill}>
-          <Image src="/icons/sdg.png" layout="fill" objectFit="cover" alt="" />
+          <Image
+            src="/icons/sdg.png"
+            layout="fill"
+            objectFit="cover"
+            sizes="200px"
+            alt=""
+          />
         </div>
         <div className={classes.sdgIcons}>
           {formattedSdgNumber.map((icon) => (
@@ -90,6 +96,7 @@ const Sdg = ({ sdgs }) => {
                 src={`/sdg/E-WEB-Goal-${icon}.png`}
                 layout="fill"
                 objectFit="cover"
+                sizes="100px"
                 alt="SDG icon"
               />
             </div>

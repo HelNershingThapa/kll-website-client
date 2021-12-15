@@ -18,6 +18,7 @@ import IconButton from "@material-ui/core/IconButton";
 import Hidden from "@material-ui/core/Hidden";
 import { Drawer } from "@material-ui/core";
 import Tooltip from "@material-ui/core/Tooltip";
+import useScrollTrigger from "@material-ui/core/useScrollTrigger";
 import { desktop, primary } from "../../styles/theme";
 import logo from "public/kll-logo.svg";
 // import { FormattedMessage } from 'react-intl';
@@ -206,6 +207,14 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: "12px",
     padding: "24px 20px",
   },
+  appBarScrolled: {
+    // backgroundColor: "#211A5A",
+    borderBottom: "1px solid #ededed",
+    transition: theme.transitions.create(["background-color"], {
+      easing: theme.transitions.easing.easeOut,
+      duration: theme.transitions.duration.standard,
+    }),
+  },
 }));
 
 function NavBar({}) {
@@ -217,6 +226,11 @@ function NavBar({}) {
   const [openedPopoverId, setOpenedPopoverId] = useState(null);
   const [popoverOpen, setPopoverOpen] = useState(false);
   const [checked, setChecked] = React.useState(false);
+
+  const trigger = useScrollTrigger({
+    disableHysteresis: true,
+    threshold: 100,
+  });
 
   useEffect(() => {
     const { API_URL } = process.env;
@@ -248,7 +262,14 @@ function NavBar({}) {
 
   return (
     <Fragment>
-      <AppBar position="sticky" elevation={0} className={classes.appBar}>
+      <AppBar
+        position="sticky"
+        elevation={0}
+        className={clsx(
+          classes.appBar,
+          trigger === false ? "" : classes.appBarScrolled
+        )}
+      >
         <Toolbar disableGutters>
           <Container
             fixed

@@ -108,10 +108,14 @@ const useStyles = makeStyles((theme) => ({
 
 function Events({ event }) {
   const classes = useStyles();
-  const { API_URL } = process.env
+  const { API_URL } = process.env;
 
-  const formattedStartDate = moment(event.startDate, "YYYY-MM-DD").format("Do MMM YYYY");
-  const formattedEndDate = moment(event.endDate, "YYYY-MM-DD").format("Do MMM YYYY");
+  const formattedStartDate = moment(event.startDate, "YYYY-MM-DD").format(
+    "Do MMM YYYY"
+  );
+  const formattedEndDate = moment(event.endDate, "YYYY-MM-DD").format(
+    "Do MMM YYYY"
+  );
 
   const date =
     event.startDate === event.endDate
@@ -125,6 +129,7 @@ function Events({ event }) {
           src={`${API_URL}${event.coverPhoto.url}`}
           layout="fill"
           objectFit="cover"
+          sizes="960px"
           alt="event at KLL"
         />
         <Chip

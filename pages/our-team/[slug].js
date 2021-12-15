@@ -123,7 +123,7 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down("xs")]: {
       marginTop: theme.spacing(3),
       marginBottom: theme.spacing(8),
-      maxHeight: "100%",      
+      maxHeight: "100%",
     },
   },
   para: {
@@ -202,6 +202,8 @@ function MemberDetail({ allMembers, memberDetail }) {
             objectFit="cover"
             alt={`photo of ${name}`}
             sizes="50vw"
+            placeholder="blur"
+            blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkMHtZDwAC/QGgRXmBqQAAAABJRU5ErkJggg=="
           />
           <div className={classes.navArrowsCtr}>
             <div className={classes.arrows}>

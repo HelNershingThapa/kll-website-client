@@ -81,7 +81,7 @@ const useStyles = makeStyles((theme) => ({
 
 function Volunteering({ volunteering }) {
   const classes = useStyles();
-  const {API_URL} = process.env
+  const { API_URL } = process.env;
 
   const { label, description, image } = volunteering;
 
@@ -95,6 +95,7 @@ function Volunteering({ volunteering }) {
                 src={`${API_URL}${image.url}`}
                 layout="fill"
                 objectFit="contain"
+                sizes="600px"
                 alt="volunteering"
               />
             </div>

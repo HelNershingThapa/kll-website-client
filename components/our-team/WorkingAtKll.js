@@ -190,6 +190,7 @@ const WorkingAtKll = ({ headerStats }) => {
                 src={`${API_URL}${image.image.url}`}
                 layout="fill"
                 objectFit="cover"
+                sizes="600px"
                 alt="team members at KLL"
               />
             </div>

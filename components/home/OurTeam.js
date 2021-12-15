@@ -1,12 +1,9 @@
 import { useRouter } from "next/router";
 import clsx from "clsx";
-import { uid } from "react-uid";
-import Image from "next/image";
 import { makeStyles } from "@material-ui/core/styles";
 import { Typography, Container, Button } from "@material-ui/core";
-import ProjectsGrid from "components/our-projects/ProjectsGrid";
 import styles from "../../styles/AboutUs.module.css";
-import { desktop, tablet } from "../../styles/theme";
+import { tablet } from "../../styles/theme";
 
 const useStyles = makeStyles((theme) => ({
   bgCtr: {

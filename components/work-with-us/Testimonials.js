@@ -270,6 +270,7 @@ function Testimonials({ testimonials }) {
                             }`}
                             layout="fill"
                             objectFit="cover"
+                            sizes="48px"
                             alt="DP"
                           />
                         </Avatar>

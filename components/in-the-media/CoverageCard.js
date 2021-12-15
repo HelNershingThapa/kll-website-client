@@ -104,6 +104,7 @@ function CoverageCard({ coverage }) {
             src={`${API_URL}${coverage.image.url}`}
             layout="fill"
             objectFit="cover"
+            sizes="480px"
             alt="kll"
           />
         </div>

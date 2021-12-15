@@ -166,11 +166,11 @@ function WorkWithUs({ data, vacancies, membersCount }) {
 
       <div className={classes.headerImgFill}>
         <Image
+          priority
           src={`${API_URL}${data.headerImage.url}`}
           layout="fill"
           objectFit="cover"
           alt=""
-          priority
         />
       </div>
       <div className={classes.statsOverlay}>

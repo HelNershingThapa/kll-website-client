@@ -1,9 +1,8 @@
 import { useRouter } from "next/router";
-import clsx from "clsx";
 import Image from "next/image";
 import ReactMarkdown from "react-markdown";
 import { makeStyles } from "@material-ui/core/styles";
-import { Typography, Container, Button, Chip } from "@material-ui/core";
+import { Typography, Button } from "@material-ui/core";
 import { desktop, tablet } from "../../styles/theme";
 
 const useStyles = makeStyles((theme) => ({
