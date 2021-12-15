@@ -248,8 +248,8 @@ const Hero = ({ title, image }) => {
             layout="fill"
             objectFit="cover"
             className={classes.image}
-            alt=""
             sizes="620px"
+            alt=""
           />
         </div>
       </div>

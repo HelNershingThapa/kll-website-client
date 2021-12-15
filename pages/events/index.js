@@ -50,6 +50,7 @@ const useStyles = makeStyles((theme) => ({
     gridTemplateColumns: "2.18fr 1fr",
     gap: theme.spacing(10),
     marginTop: theme.spacing(8),
+    alignItems: "flex-start",
     [theme.breakpoints.down("sm")]: {
       gridTemplateColumns: "100%",
     },
@@ -116,9 +117,7 @@ function Events({ events, recurringEvents }) {
                 ))}
             </div>
           )}
-          <div>
-            <RecurringEvents recurringEvents={recurringEvents} />
-          </div>
+          <RecurringEvents recurringEvents={recurringEvents} />
           <div>
             <StayUpdated />
           </div>
@@ -131,7 +130,7 @@ function Events({ events, recurringEvents }) {
 export async function getStaticProps() {
   const { API_URL } = process.env;
   const res = await fetch(
-    `${API_URL}/events?_where[isRecurring_null]=true&_where[_or][isRecurring_eq]=false`
+    `${API_URL}/events?_where[_or][0][isRecurring_null]=true&_where[_or][1][isRecurring]=false`
   );
   const events = await res.json();
 

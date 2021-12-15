@@ -392,6 +392,9 @@ function ProjectDetails({ projectDetail }) {
           src={`${API_URL}${projectDetail.coverImage.image.url}`}
           layout="fill"
           objectFit="cover"
+          objectPosition={`${
+            projectDetail.coverImagePosition && projectDetail.coverImagePosition
+          }`}
           alt=""
         />
         <div className={classes.headerImageOverlay} />

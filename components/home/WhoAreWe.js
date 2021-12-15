@@ -250,8 +250,6 @@ const Partners = ({ data }) => {
   const classes = useStyles();
   const { API_URL } = process.env;
 
-  console.log("data who we are", data);
-
   return (
     <div className={classes.root}>
       <div className={classes.container}>

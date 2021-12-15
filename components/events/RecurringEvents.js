@@ -10,6 +10,11 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(6),
     background: "#F3F6FD",
     borderRadius: 8,
+    position: "sticky",
+    top: "100px",
+    [theme.breakpoints.down("sm")]: {
+      position: "static",
+    },
   },
   iconFill: {
     position: "relative",
@@ -76,8 +81,8 @@ const useStyles = makeStyles((theme) => ({
   linkCtr: {
     "&:hover": {
       cursor: "pointer",
-    }
-  }
+    },
+  },
 }));
 
 function RecurringEvents({ recurringEvents }) {
@@ -103,16 +108,20 @@ function RecurringEvents({ recurringEvents }) {
         </Typography>
         <Divider className={classes.divider} />
         <div className={classes.recurringLinks}>
-          {recurringEvents.map(event => <Link key={uid(event)} href={`/events/${event.slug}`} passHref><div className={classes.linkCtr}>
-            <Typography
-              variant="body1"
-              color="primary"
-              className={classes.linksTypo}
-            >
-              {event.title}
-            </Typography>{" "}
-            <i className={clsx("ri-arrow-right-line", classes.arrowIcon)} />
-          </div></Link>)}
+          {recurringEvents.map((event) => (
+            <Link key={uid(event)} href={`/events/${event.slug}`} passHref>
+              <div className={classes.linkCtr}>
+                <Typography
+                  variant="body1"
+                  color="primary"
+                  className={classes.linksTypo}
+                >
+                  {event.title}
+                </Typography>{" "}
+                <i className={clsx("ri-arrow-right-line", classes.arrowIcon)} />
+              </div>
+            </Link>
+          ))}
         </div>
       </div>
     </>
