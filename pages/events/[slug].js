@@ -188,44 +188,61 @@ function EventDetail({ eventDetail }) {
       </Head>
       <div className={classes.imageFullWidth}>
         <div className={classes.headerImgFill}>
-          <Image
-            src={`${API_URL}${eventDetail.coverPhoto.url}`}
-            layout="fill"
-            objectFit="cover"
-            alt="People working at KLL"
-          />
+          {eventDetail.coverPhoto && (
+            <Image
+              src={`${API_URL}${eventDetail.coverPhoto.url}`}
+              layout="fill"
+              objectFit="cover"
+              alt="People working at KLL"
+            />
+          )}
         </div>
         <div className={classes.statsOverlay}>
           <Typography variant="h6" className={classes.title}>
             {eventDetail.title}
           </Typography>
           <div className={classes.rendezvouCtr}>
-            <div className={classes.rendezvou}>
-              <i className={clsx("ri-time-line", classes.icon)} />
-              <Typography variant="subtitle1" className={classes.rendezvouTypo}>
-                {eventDetail.startTime.substring(0, 5)} -{" "}
-                {eventDetail.endTime.substring(0, 5)}
-              </Typography>
-            </div>
-            <div className={classes.rendezvou}>
-              <i className={clsx("ri-calendar-event-fill", classes.icon)} />
-              <Typography variant="subtitle1" className={classes.rendezvouTypo}>
-                {eventDetail.startDate === eventDetail.endDate
-                  ? eventDetail.isRecurring
-                    ? getRecurringDate()
-                    : formattedStartDate
-                  : `${formattedStartDate} ${
-                      eventDetail.isRecurring ? "" : "-"
-                    } ${eventDetail.isRecurring ? "" : formattedEndDate}`}
-                {eventDetail.isRecurring && getRecurringInfo()}
-              </Typography>
-            </div>
-            <div className={classes.rendezvou}>
-              <i className={clsx("ri-map-pin-user-line", classes.icon)} />
-              <Typography variant="subtitle1" className={classes.rendezvouTypo}>
-                {eventDetail.venue}
-              </Typography>
-            </div>
+            {eventDetail.startTime && (
+              <div className={classes.rendezvou}>
+                <i className={clsx("ri-time-line", classes.icon)} />
+                <Typography
+                  variant="subtitle1"
+                  className={classes.rendezvouTypo}
+                >
+                  {eventDetail.startTime.substring(0, 5)} -{" "}
+                  {eventDetail.endTime.substring(0, 5)}
+                </Typography>
+              </div>
+            )}
+            {eventDetail.startDate && (
+              <div className={classes.rendezvou}>
+                <i className={clsx("ri-calendar-event-fill", classes.icon)} />
+                <Typography
+                  variant="subtitle1"
+                  className={classes.rendezvouTypo}
+                >
+                  {eventDetail.startDate === eventDetail.endDate
+                    ? eventDetail.isRecurring
+                      ? getRecurringDate()
+                      : formattedStartDate
+                    : `${formattedStartDate} ${
+                        eventDetail.isRecurring ? "" : "-"
+                      } ${eventDetail.isRecurring ? "" : formattedEndDate}`}
+                  {eventDetail.isRecurring && getRecurringInfo()}
+                </Typography>
+              </div>
+            )}
+            {eventDetail.venue && (
+              <div className={classes.rendezvou}>
+                <i className={clsx("ri-map-pin-user-line", classes.icon)} />
+                <Typography
+                  variant="subtitle1"
+                  className={classes.rendezvouTypo}
+                >
+                  {eventDetail.venue}
+                </Typography>
+              </div>
+            )}
           </div>
         </div>
         <Container fixed>

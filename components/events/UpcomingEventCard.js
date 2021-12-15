@@ -125,13 +125,15 @@ function Events({ event }) {
   return (
     <div className={classes.root}>
       <div className={classes.imgFill}>
-        <Image
-          src={`${API_URL}${event.coverPhoto.url}`}
-          layout="fill"
-          objectFit="cover"
-          sizes="960px"
-          alt="event at KLL"
-        />
+        {event.coverPhoto && (
+          <Image
+            src={`${API_URL}${event.coverPhoto.url}`}
+            layout="fill"
+            objectFit="cover"
+            sizes="960px"
+            alt="event at KLL"
+          />
+        )}
         <Chip
           label={
             event.startDate === event.endDate
@@ -151,19 +153,29 @@ function Events({ event }) {
         </Typography>
         <div className={classes.moreInfo}>
           <div className={classes.rendezvous}>
-            <div className={classes.rendezvou}>
-              <i className={clsx("ri-time-line", classes.icon)} />
-              <Typography variant="subtitle1" className={classes.rendezvouTypo}>
-                {event.startTime.substring(0, 5)} -{" "}
-                {event.endTime.substring(0, 5)}
-              </Typography>
-            </div>
-            <div className={classes.rendezvou}>
-              <i className={clsx("ri-map-pin-user-line", classes.icon)} />
-              <Typography variant="subtitle1" className={classes.rendezvouTypo}>
-                {event.venue}
-              </Typography>
-            </div>
+            {event.startTime && (
+              <div className={classes.rendezvou}>
+                <i className={clsx("ri-time-line", classes.icon)} />
+                <Typography
+                  variant="subtitle1"
+                  className={classes.rendezvouTypo}
+                >
+                  {event.startTime?.substring(0, 5)} -{" "}
+                  {event.endTime?.substring(0, 5)}
+                </Typography>
+              </div>
+            )}
+            {event.venue && (
+              <div className={classes.rendezvou}>
+                <i className={clsx("ri-map-pin-user-line", classes.icon)} />
+                <Typography
+                  variant="subtitle1"
+                  className={classes.rendezvouTypo}
+                >
+                  {event.venue}
+                </Typography>
+              </div>
+            )}
           </div>
           <Link href={`/events/${event.slug}`} passHref>
             <Button
