@@ -7,7 +7,7 @@ import { KLL_EMAIL } from "../../constants";
 const useStyles = makeStyles((theme) => ({
   backgroundCtr: {
     background: theme.palette.grey[900],
-    // height: 432,
+    height: 432,
     marginTop: theme.spacing(46),
     [theme.breakpoints.down(tablet)]: {
       height: "100%",
@@ -25,12 +25,14 @@ const useStyles = makeStyles((theme) => ({
   },
   imgFill: {
     position: "relative",
-    height: 432,
+    height: 600,
     width: 400,
-    transform: "scale(1.3889)",
+    // marginTop: "-82px",
+    transform: "translateY(0px)",
     [theme.breakpoints.down(tablet)]: {
       width: "100%",
       height: "357px",
+      marginTop: 0,
       transform: "translateY(-50%)",
     },
   },
@@ -38,6 +40,8 @@ const useStyles = makeStyles((theme) => ({
     display: "grid",
     gridTemplateColumns: "1fr 1fr",
     gridGap: theme.spacing(10),
+    placeContent: "center",
+    height: 432,
     [theme.breakpoints.down(tablet)]: {
       gridGap: theme.spacing(5),
       gridTemplateColumns: "1fr",
@@ -85,6 +89,8 @@ function Volunteering({ volunteering }) {
 
   const { label, description, image } = volunteering;
 
+  console.log("image", image);
+
   return (
     <div className={classes.backgroundCtr}>
       <Container fixed>
@@ -94,7 +100,7 @@ function Volunteering({ volunteering }) {
               <Image
                 src={`${API_URL}${image.url}`}
                 layout="fill"
-                objectFit="contain"
+                objectFit="cover"
                 sizes="600px"
                 alt="volunteering"
               />

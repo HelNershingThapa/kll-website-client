@@ -1,18 +1,18 @@
 import React from "react";
 import clsx from "clsx";
-import { uid } from "react-uid";
 import { makeStyles } from "@material-ui/core/styles";
 import ReactMarkdown from "react-markdown";
 import Image from "next/image";
-import Button from "@material-ui/core/Button";
-import Dialog from "@material-ui/core/Dialog";
-import Divider from "@material-ui/core/Divider";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import IconButton from "@material-ui/core/IconButton";
-import Typography from "@material-ui/core/Typography";
-import Slide from "@material-ui/core/Slide";
-import { Hidden } from "@material-ui/core";
+import {
+  Button,
+  Dialog,
+  Divider,
+  IconButton,
+  Typography,
+  Slide,
+  Hidden,
+} from "@material-ui/core";
+import { KLL_EMAIL } from "../../constants";
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
@@ -62,7 +62,7 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(25),
     [theme.breakpoints.down("xs")]: {
       marginTop: theme.spacing(10),
-    }
+    },
   },
   description: {
     flex: 2,
@@ -166,7 +166,7 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.grey[600],
     [theme.breakpoints.down("xs")]: {
       lineHeight: 1.428,
-    }
+    },
   },
   list: {
     margin: 0,
@@ -310,14 +310,15 @@ function FullScreenDialog({ vacancy }) {
                       "ri-file-copy-2-line",
                       classes.applyNowBtnIcon
                     )}
-                  ></i>
+                  />
                 }
+                onClick={() => window.open(`mailto:${KLL_EMAIL}`)}
               >
                 Apply Now
               </Button>
               <Hidden smDown>
                 <IconButton
-                  aria-label="delete"
+                  aria-label="close"
                   className={classes.closeBtn}
                   onClick={() => handleClose()}
                 >
@@ -334,8 +335,11 @@ function FullScreenDialog({ vacancy }) {
           </div>
 
           <div className={classes.description}>
-            {/* eslint-disable-next-line react/no-children-prop */}
-            <ReactMarkdown children={vacancy.description} renderers={renderers} />
+            {/* eslint-disable react/no-children-prop */}
+            <ReactMarkdown
+              children={vacancy.description}
+              renderers={renderers}
+            />
           </div>
         </div>
       </Dialog>
