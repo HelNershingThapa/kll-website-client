@@ -1,6 +1,6 @@
 import { makeStyles } from "@material-ui/core/styles";
-import { useState } from 'react';
-import { decode } from 'html-entities';
+import { useState } from "react";
+import { decode } from "html-entities";
 import { FilledInput, Typography } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
@@ -11,7 +11,7 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down("sm")]: {
       maxWidth: "100%",
       width: "100%",
-    }
+    },
   },
   placeholder: {
     padding: "15px 16px",
@@ -39,11 +39,10 @@ const NewsletterForm = ({ status, message, onValidated }) => {
    * @return {{value}|*|boolean|null}
    */
   const handleFormSubmit = () => {
-
     setError(null);
 
     if (!email) {
-      setError('Please enter a valid email address');
+      setError("Please enter a valid email address");
       return null;
     }
 
@@ -51,7 +50,7 @@ const NewsletterForm = ({ status, message, onValidated }) => {
 
     // On success return true
     return email && email.indexOf("@") > -1 && isFormValidated;
-  }
+  };
 
   /**
    * Handle Input Key Event.
@@ -67,7 +66,7 @@ const NewsletterForm = ({ status, message, onValidated }) => {
       // Trigger the button element with a click
       handleFormSubmit();
     }
-  }
+  };
 
   /**
    * Extract message from string.
@@ -79,13 +78,13 @@ const NewsletterForm = ({ status, message, onValidated }) => {
     if (!message) {
       return null;
     }
-    const result = message?.split('-') ?? null;
+    const result = message?.split("-") ?? null;
     if ("0" !== result?.[0]?.trim()) {
       return decode(message);
     }
     const formattedMessage = result?.[1]?.trim() ?? null;
     return formattedMessage ? decode(formattedMessage) : null;
-  }
+  };
 
   return (
     <>
@@ -99,7 +98,7 @@ const NewsletterForm = ({ status, message, onValidated }) => {
         placeholder="Enter your email"
         variant="filled"
         onKeyUp={(event) => handleInputKeyEvent(event)}
-        onChange={(event) => setEmail(event?.target?.value ?? '')}
+        onChange={(event) => setEmail(event?.target?.value ?? "")}
         endAdornment={
           <i
             className="ri-send-plane-line"
@@ -109,8 +108,14 @@ const NewsletterForm = ({ status, message, onValidated }) => {
         }
       />
       <div className="newsletter-form-info">
-        {status === "sending" && <Typography
-          variant="subtitle2" style={{ color: "white", maxWidth: "360px" }}>Sending...</Typography>}
+        {status === "sending" && (
+          <Typography
+            variant="subtitle2"
+            style={{ color: "white", maxWidth: "360px" }}
+          >
+            Sending...
+          </Typography>
+        )}
         {status === "error" || error ? (
           <Typography
             variant="subtitle2"
@@ -121,11 +126,14 @@ const NewsletterForm = ({ status, message, onValidated }) => {
         ) : null}
         {status === "success" && status !== "error" && !error && (
           <Typography
-            variant="subtitle2" style={{ color: "#1F8130", maxWidth: "360px" }} dangerouslySetInnerHTML={{ __html: decode(message) }} />
+            variant="subtitle2"
+            style={{ color: "#1F8130", maxWidth: "360px" }}
+            dangerouslySetInnerHTML={{ __html: decode(message) }}
+          />
         )}
       </div>
     </>
   );
-}
+};
 
-export default NewsletterForm
+export default NewsletterForm;
