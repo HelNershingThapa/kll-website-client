@@ -259,7 +259,7 @@ export default function Home() {
                   variant="subtitle1"
                   className={classes.contactInfoDesc}
                 >
-                  +977-01-4720136
+                  +977-1-4720136
                 </Typography>
               </div>
             </div>

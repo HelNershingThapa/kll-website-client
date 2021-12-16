@@ -357,7 +357,7 @@ function Footer() {
                 1474 Lamtangin Marg, Chundevi{" "}
               </Typography>
               <Typography className={classes.contactDetails} component="p">
-                +977 01472 0137{" "}
+                +977-1-4720136
               </Typography>
               <Typography className={classes.contactDetails} component="p">
                 {KLL_EMAIL}
