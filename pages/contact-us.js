@@ -1,23 +1,24 @@
-import { useState } from 'react';
+import { useState } from "react";
 import Head from "next/head";
 import { uid } from "react-uid";
-import axios from 'axios';
+import axios from "axios";
 import Image from "next/image";
 import { makeStyles } from "@material-ui/styles";
 import { Container, Typography, TextField, Button } from "@material-ui/core";
+import Map from "../components/contact-us/Map";
 
 const textFields = [
   {
     label: "Your Full Name*",
-    identifier: "fullName"
+    identifier: "fullName",
   },
   {
     label: "Your Email Address*",
-    identifier: "email"
+    identifier: "email",
   },
   {
     label: "Company",
-    identifier: "company"
+    identifier: "company",
   },
   {
     label: "Message",
@@ -100,7 +101,7 @@ const useStyles = makeStyles((theme) => ({
     position: "relative",
     width: "100%",
     height: 500,
-    mixBlendMode: 'luminosity',
+    mixBlendMode: "luminosity",
     [theme.breakpoints.down("xs")]: {
       height: "80vw",
     },
@@ -120,43 +121,48 @@ const useStyles = makeStyles((theme) => ({
     padding: "0.5rem",
     border: `3px solid ${theme.palette.primary.main}`,
     marginTop: "4rem",
-  }
+  },
 }));
 
 export default function Home() {
   const classes = useStyles();
-  const [response, setResponse] = useState()
-  const [error, setError] = useState()
+  const [response, setResponse] = useState();
+  const [error, setError] = useState();
 
-  const [inputValues, setInputValues] = useState({})
+  const [inputValues, setInputValues] = useState({});
 
   const handleInputChange = ({ target: { name, value } }) => {
-    setInputValues({ ...inputValues, [name]: value })
-  }
+    setInputValues({ ...inputValues, [name]: value });
+  };
 
   console.log("inputValues", inputValues);
 
   const validateEmail = () => {
     let isValid = true;
-    var pattern = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
+    var pattern = new RegExp(
+      /^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i
+    );
 
     if (!pattern.test(inputValues.email)) {
       isValid = false;
-      setError("Please enter valid email address.")
+      setError("Please enter valid email address.");
     }
     return isValid;
-  }
+  };
 
   const handleSubmit = () => {
     const { API_URL } = process.env;
     setError();
     validateEmail();
     const { fullName, email, company, message } = inputValues;
-    axios.post(`${API_URL}/messages`, { fullName, email, company, message }).then(response => setResponse(response)).catch(error => {
-      console.log("error", error);
-      setError(error);
-    });
-  }
+    axios
+      .post(`${API_URL}/messages`, { fullName, email, company, message })
+      .then((response) => setResponse(response))
+      .catch((error) => {
+        console.log("error", error);
+        setError(error);
+      });
+  };
 
   console.log("error>>>", error);
   console.log("response>>>", response);
@@ -175,63 +181,76 @@ export default function Home() {
             <Typography className={classes.subTitle} variant="body1">
               {`To contact us, simply fill in the form below.`}
             </Typography>
-            {response?.status !== 200 && <div className={classes.hearFromUs}>
-              <div className={classes.form}>
-                {textFields.map((textField) => (
-                  <div key={uid(textField)} className={classes.textFields}>
-                    <Typography
-                      variant="subtitle2"
-                      className={classes.textFieldLabel}
-                    >
-                      {textField.label}
-                    </Typography>
-                    <TextField
-                      classes={{
-                        root: classes.textfieldRoot,
-                        notchedOutline: classes.notchedOutline,
-                      }}
-                      name={textField.identifier}
-                      variant="outlined"
-                      multiline={textField.rows}
-                      rows={textField.rows}
-                      inputProps={{
-                        style: {
-                          height: "40px",
-                          padding: 0,
-                          paddingLeft: "0.5rem",
-                        },
-                      }}
-                      onChange={handleInputChange}
-                    />
-                  </div>
-                ))}
+            {response?.status !== 200 && (
+              <div className={classes.hearFromUs}>
+                <div className={classes.form}>
+                  {textFields.map((textField) => (
+                    <div key={uid(textField)} className={classes.textFields}>
+                      <Typography
+                        variant="subtitle2"
+                        className={classes.textFieldLabel}
+                      >
+                        {textField.label}
+                      </Typography>
+                      <TextField
+                        classes={{
+                          root: classes.textfieldRoot,
+                          notchedOutline: classes.notchedOutline,
+                        }}
+                        name={textField.identifier}
+                        variant="outlined"
+                        multiline={textField.rows}
+                        rows={textField.rows}
+                        inputProps={{
+                          style: {
+                            height: "40px",
+                            padding: 0,
+                            paddingLeft: "0.5rem",
+                          },
+                        }}
+                        onChange={handleInputChange}
+                      />
+                    </div>
+                  ))}
+                </div>
+                <Button
+                  className={classes.button}
+                  classes={{ label: classes.buttonLabel }}
+                  fullWidth
+                  disableElevation
+                  variant="contained"
+                  color="primary"
+                  style={{ textTransform: "none" }}
+                  onClick={handleSubmit}
+                >
+                  Send Message
+                </Button>
+                {error && (
+                  <Typography
+                    variant="subtitle2"
+                    align="center"
+                    style={{ marginTop: "0.5rem", color: "#E24C56" }}
+                  >{`Invalid input. Fill in the form with valid inputs and submit your message again.`}</Typography>
+                )}
               </div>
-              <Button
-                className={classes.button}
-                classes={{ label: classes.buttonLabel }}
-                fullWidth
-                disableElevation
-                variant="contained"
-                color="primary"
-                style={{ textTransform: "none" }}
-                onClick={handleSubmit}
-              >
-                Send Message
-              </Button>
-              {error && <Typography variant="subtitle2" align="center" style={{ marginTop: "0.5rem", color: "#E24C56" }}>{`Invalid input. Fill in the form with valid inputs and submit your message again.`}</Typography>}
-            </div>}
-            {response?.status === 200 && <div className={classes.successMessageCtr}>{`Thanks for getting in touch with us. We'll get back to you shortly.`}</div>}
+            )}
+            {response?.status === 200 && (
+              <div
+                className={classes.successMessageCtr}
+              >{`Thanks for getting in touch with us. We'll get back to you shortly.`}</div>
+            )}
           </div>
           <div className={classes.mapInfo}>
-            <div className={classes.mapImgFill}>
-              <Image
+            {/* <div className={classes.mapImgFill}> */}
+              {/* <Image
                 src="/Rectangle7.png"
                 layout="fill"
                 objectFit="cover"
                 sizes="720px"
                 alt=""
-              />
-            </div>
+              /> */}
+              <Map />
+            {/* </div> */}
             <div className={classes.contactInfo}>
               <div className={classes.location}>
                 <Typography
