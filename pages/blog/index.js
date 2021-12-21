@@ -109,6 +109,7 @@ const BlogList = ({ featuredBlog }) => {
   const hasMore = blogs.length < blogCount;
 
   useEffect(() => {
+    console.log("use effect");
     loadFunc();
   }, [searchQuery]);
 
@@ -126,33 +127,23 @@ const BlogList = ({ featuredBlog }) => {
 
     const [resCount, blogRes] = await Promise.all([
       fetch(
-        `${API_URL}/blogs/count?isFeatured=false${
+        `${API_URL}/blogs/count?isFeatured=false&_where[_or][0][isFeatured_null]=true&_where[_or][1][isFeatured]=false${
           searchQuery === "" ? "" : `&title_contains=${searchQuery}`
         }${categoryQuery}`
       ).then((r) => r.json()),
       fetch(
-        `${API_URL}/blogs?_start=${blogs.length}&_limit=6&isFeatured=false${
+        `${API_URL}/blogs?_start=${
+          blogs.length
+        }&_limit=6&_where[_or][0][isFeatured_null]=true&_where[_or][1][isFeatured]=false${
           searchQuery === "" ? "" : `&title_contains=${searchQuery}`
         }${categoryQuery}`
       ).then((r) => r.json()),
     ]);
-
-    // const countRes = await fetch(
-    //   `${API_URL}/blogs/count?isFeatured=false${
-    //     searchQuery === "" ? "" : `&title_contains=${searchQuery}`
-    //   }${categoryQuery}`
-    // );
-    // const resCount = await countRes.json();
     setBlogCount(resCount);
-
-    // const res = await fetch(
-    //   `${API_URL}/blogs?_start=${blogs.length}&_limit=6&isFeatured=false${
-    //     searchQuery === "" ? "" : `&title_contains=${searchQuery}`
-    //   }${categoryQuery}`
-    // );
-    // const blogRes = await res.json();
     setBlogs(blogs.concat(blogRes));
   }
+
+  console.log("blogs", blogs);
 
   return (
     <>
@@ -248,7 +239,7 @@ export async function getServerSideProps() {
   const response = await fetch(`${API_URL}/blogs?isFeatured=true`);
   const featuredBlog = await response.json();
 
-  // const res = await fetch(`${API_URL}/blogs?isFeatured=false`);
+  // const res = await fetch(`${API_URL}/blogs`);
   // const blogs = await res.json();
 
   return {

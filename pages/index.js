@@ -28,16 +28,14 @@ export default function Home({
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div>
-        <Hero title={homeData.heroTitle} image={homeData.heroImage} />
-        <Partners partners={partners} />
-        <WhoAreWe data={homeData.whoAreWe} />
-        <OurWork projects={projects} data={homeData.ourWork} />
-        <SdgCommitment data={homeData.ourCommitment} impact={impact} />
-        <OurInsights blogs={blogs} />
-        <FeaturedIn featuredIn={featuredIn} />
-        <OurTeam membersCount={membersCount} />
-      </div>
+      <Hero title={homeData.heroTitle} image={homeData.heroImage} />
+      <Partners partners={partners} />
+      <WhoAreWe data={homeData.whoAreWe} />
+      <OurWork projects={projects} data={homeData.ourWork} />
+      <SdgCommitment data={homeData.ourCommitment} impact={impact} />
+      <OurInsights blogs={blogs} />
+      <FeaturedIn featuredIn={featuredIn} />
+      <OurTeam membersCount={membersCount} />
     </>
   );
 }

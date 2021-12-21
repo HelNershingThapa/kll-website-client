@@ -371,7 +371,7 @@ function MarkdownImage(props) {
     <div className={classes.markdownImageFill}>
       <Image
         className={classes.markdownImage}
-        src={`${API_URL}${props.src}`}
+        src={`${props.src}`}
         layout="fill"
         objectFit="cover"
         alt={props.alt}

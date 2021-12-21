@@ -1,11 +1,7 @@
 import React from "react";
-import { makeStyles } from "@material-ui/styles";
-
 import mapboxgl from "mapbox-gl/dist/mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 import { Container, Typography, TextField, Button } from "@material-ui/core";
-
-const useStyles = makeStyles((theme) => ({}));
 
 const tileLayerUrl =
   "https://api.baato.io/api/v1/styles/breeze?key=bpk.vEXF2Aj-xkyk-xBSu2Z_w1N8JFss7z-Dzxygnj9I0vBE";
@@ -50,11 +46,27 @@ class Map extends React.Component {
   }
 
   render() {
+    const { classes } = this.props;
     return (
       <div
         ref={(node) => (this.node = node)}
-        style={{ height: "500px", width: "100%" }}
-      ></div>
+        style={{ position: "relative", height: "500px", width: "100%" }}
+      >
+        <a href="https://baato.io/" target="_blank" rel="noreferrer">
+          <img
+            src="baato-logo.png"
+            width="30"
+            height="37"
+            alt=""
+            style={{
+              position: "absolute",
+              left: 10,
+              bottom: 10,
+              zIndex: 100,
+            }}
+          />
+        </a>
+      </div>
     );
   }
 }

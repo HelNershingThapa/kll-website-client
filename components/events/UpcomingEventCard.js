@@ -131,7 +131,7 @@ function Events({ event }) {
             layout="fill"
             objectFit="cover"
             sizes="960px"
-            alt="event at KLL"
+            alt=""
           />
         )}
         <Chip
@@ -149,7 +149,7 @@ function Events({ event }) {
           {event.title}
         </Typography>
         <Typography variant="subtitle1" className={classes.description}>
-          {event.description.substring(0, 180)} ...
+          {event.description?.substring(0, 180)} ...
         </Typography>
         <div className={classes.moreInfo}>
           <div className={classes.rendezvous}>
