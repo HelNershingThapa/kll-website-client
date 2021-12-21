@@ -2,7 +2,6 @@ import React from "react";
 import clsx from "clsx";
 import { makeStyles } from "@material-ui/core/styles";
 import ReactMarkdown from "react-markdown";
-import Image from "next/image";
 import {
   Button,
   Dialog,

@@ -112,6 +112,7 @@ export default function SimpleTabs({
   useEffect(() => {
     setBlogs([]);
     loadFunc();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [category]);
 
   const handleChange = (event, newValue) => {

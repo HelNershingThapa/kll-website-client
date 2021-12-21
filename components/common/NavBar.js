@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from "react";
+import React, { useState, Fragment, useEffect } from "react";
 import { useRouter } from "next/router";
 import clsx from "clsx";
 import axios from "axios";
@@ -7,90 +7,17 @@ import Link from "next/link";
 import Image from "next/image";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
-import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
 import Container from "@material-ui/core/Container";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
 import Hidden from "@material-ui/core/Hidden";
-import { Drawer } from "@material-ui/core";
-import Tooltip from "@material-ui/core/Tooltip";
 import useScrollTrigger from "@material-ui/core/useScrollTrigger";
 import { desktop, primary } from "../../styles/theme";
-import logo from "public/kll-logo.svg";
-// import { FormattedMessage } from 'react-intl';
-// import messages from './messages';
 import RichTooltip from "./RichTooltip";
 import PopoverContent from "./PopoverContent";
-import MobileMenuDrawer from "./MobileMenuDrawer";
 import CollapseNavBar from "./CollapseNavBar";
-import { useEffect } from "react";
-
-const menuItems = [
-  {
-    name: "Who we are",
-    link: "/whoweare",
-    isSubMenuAvailable: true,
-    identifier: "whoweare",
-    subMenu: [
-      {
-        name: "About Us",
-        link: "/about-us",
-      },
-      {
-        name: "Our Team",
-        link: "/our-team",
-      },
-    ],
-  },
-  {
-    name: "Impact",
-    link: "/our-projects",
-  },
-  {
-    name: "Showcase",
-    link: "/showcase",
-  },
-  {
-    name: "Insights",
-    link: "/insights",
-    isSubMenuAvailable: true,
-    identifier: "insights",
-    subMenu: [
-      {
-        name: "Blog",
-        link: "/blog",
-      },
-      {
-        name: "In the Media",
-        link: "/in-the-media",
-      },
-      {
-        name: "Events",
-        link: "/events",
-      },
-    ],
-  },
-  {
-    name: "Get Involved",
-    link: "/get-involved",
-    isSubMenuAvailable: true,
-    identifier: "get-involved",
-    subMenu: [
-      {
-        name: "Work with Us",
-        link: "/work-with-us",
-      },
-      {
-        name: "Join the OSM Movement",
-        link: "/resources",
-      },
-    ],
-  },
-];
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
@@ -222,11 +149,11 @@ function NavBar({}) {
   const router = useRouter();
 
   const [menu, setMenu] = useState([]);
-  const [mobileMenuDrawerOpen, setOpen] = useState(false);
   const [openedPopoverId, setOpenedPopoverId] = useState(null);
   const [popoverOpen, setPopoverOpen] = useState(false);
   const [checked, setChecked] = React.useState(false);
 
+  // triggered when scroll is not at the top
   const trigger = useScrollTrigger({
     disableHysteresis: true,
     threshold: 100,
@@ -239,18 +166,6 @@ function NavBar({}) {
       setMenu(menuRes);
     });
   }, []);
-
-  const onClose = () => {
-    setOpen(false);
-  };
-  const isHomePage = router.pathname === "/";
-
-  const isActiveLink = (url) => {
-    const splitLocation = router.pathname.split("/");
-    const splitUrl = url.split("/");
-    if (splitLocation[1] === splitUrl[1]) return true;
-    return false;
-  };
 
   const handlePopoverOpen = (popoverId) => {
     setOpenedPopoverId(popoverId);
@@ -267,7 +182,7 @@ function NavBar({}) {
         elevation={0}
         className={clsx(
           classes.appBar,
-          trigger === false ? "" : classes.appBarScrolled
+          trigger === false || checked ? "" : classes.appBarScrolled
         )}
       >
         <Toolbar disableGutters>
@@ -277,7 +192,11 @@ function NavBar({}) {
           >
             <div className={classes.title}>
               <Link href="/" passHref>
-                <div className={classes.imgFill}>
+                <div
+                  className={classes.imgFill}
+                  role="button"
+                  onClick={() => setChecked(false)}
+                >
                   <Image
                     priority
                     src="/kll-logos/kll-logo-default.svg"
@@ -378,13 +297,11 @@ function NavBar({}) {
         </Toolbar>
       </AppBar>
       {/* <MobileMenuDrawer open={mobileMenuDrawerOpen} onClose={onClose} menuItems={menuItems} /> */}
-      {checked && (
-        <CollapseNavBar
-          checked={checked}
-          menuItems={menu}
-          handleChange={handleChange}
-        />
-      )}
+      <CollapseNavBar
+        checked={checked}
+        menuItems={menu}
+        handleChange={handleChange}
+      />
     </Fragment>
   );
 }

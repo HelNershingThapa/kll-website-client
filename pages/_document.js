@@ -14,7 +14,7 @@ export default class MyDocument extends Document {
           {/* eslint-disable-next-line react/no-unknown-property */}
           <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin /> 
           <link
-            href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Manrope:wght@300;600;700;800&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Manrope:wght@200;300;600;700;800&display=swap"
             rel="stylesheet"
           />
         </Head>

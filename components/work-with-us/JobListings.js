@@ -1,42 +1,15 @@
 import { uid } from "react-uid";
 import { makeStyles } from "@material-ui/core/styles";
-import Image from "next/image";
 import {
-  Button,
   Container,
   Typography,
-  Grid,
   TableContainer,
   Table,
   TableBody,
   TableRow,
   TableCell,
-  Box,
 } from "@material-ui/core";
 import JobDescriptionDialog from "components/work-with-us/JobDescriptionDialog";
-
-const jobListings = [
-  {
-    title: "Full Stack Developer",
-    level: "Mid Level",
-    deadline: "Sep 15 2021",
-  },
-  {
-    title: "UIUX Designer",
-    level: "Mid Level",
-    deadline: "Sep 15 2021",
-  },
-  {
-    title: "Business Development",
-    level: "Senior Level",
-    deadline: "Sep 15 2021",
-  },
-  {
-    title: "Python Engineer",
-    level: "Mid Level",
-    deadline: "Sep 15 2021",
-  },
-];
 
 const useStyles = makeStyles((theme) => ({
   jobListingsContainer: {
@@ -100,7 +73,7 @@ function JobListings({ vacancies }) {
   const classes = useStyles();
 
   return (
-    <Container fixed id="helllo">
+    <Container fixed id="jobListingRoot">
       <div className={classes.jobListingsContainer}>
         <Typography variant="h4" className={classes.jobListingsHeader}>
           Job Listings

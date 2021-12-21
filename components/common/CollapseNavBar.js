@@ -5,18 +5,9 @@ import Paper from "@material-ui/core/Paper";
 import Collapse from "@material-ui/core/Collapse";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import clsx from "clsx";
-import Image from "next/image";
 import { uid } from "react-uid";
 import Link from "next/link";
-import {
-  Drawer,
-  Container,
-  Toolbar,
-  List,
-  IconButton,
-  Typography,
-  Backdrop,
-} from "@material-ui/core";
+import { Container, Typography, Button } from "@material-ui/core";
 import { Fragment } from "react";
 import { useEffect } from "react";
 
@@ -51,6 +42,7 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
     zIndex: 1200,
     height: "100vh",
+    borderRadius: 0,
   },
   svg: {
     width: 100,
@@ -62,10 +54,13 @@ const useStyles = makeStyles((theme) => ({
     strokeWidth: 1,
   },
   title: {
+    fontFamily: "Manrope",
+    fontSize: "1.7778rem",
     fontWeight: 200,
     lineHeight: 1.25,
     color: theme.palette.grey[600],
     marginBottom: theme.spacing(8),
+    paddingTop: theme.spacing(5),
   },
   noDecoration: {
     textDecoration: "none",
@@ -86,6 +81,7 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.grey[600],
   },
   menuItem: {
+    fontSize: "1.111rem",
     fontWeight: 600,
     lineHeight: 1.6,
   },
@@ -103,6 +99,8 @@ const useStyles = makeStyles((theme) => ({
   },
   subMenuItemTypo: {
     fontFamily: "Manrope",
+    fontSize: "1rem",
+    lineHeight: 1.5556,
     fontWeight: 500,
     color: theme.palette.grey[500],
     margin: theme.spacing(0, 8),
@@ -116,6 +114,9 @@ const useStyles = makeStyles((theme) => ({
     "&:hover": {
       cursor: "pointer",
     },
+  },
+  contactUsBtn: {
+    marginTop: theme.spacing(10),
   },
 }));
 
@@ -147,9 +148,7 @@ export default function SimpleCollapse({
       <Collapse in={checked}>
         <Paper elevation={0} className={classes.paper}>
           <Container fixed>
-            <Typography variant="h4" className={classes.title}>
-              Website Menu
-            </Typography>
+            <Typography className={classes.title}>Website Menu</Typography>
             <div className={classes.menuItemContainerMobile}>
               {menuItems.map((menuItem) => (
                 <Fragment key={uid(menuItem)}>
@@ -199,7 +198,7 @@ export default function SimpleCollapse({
                     >
                       <Typography
                         variant="h6"
-                        className={classes.menuItemLink}
+                        className={classes.menuItem}
                         onClick={handleChange}
                       >
                         {menuItem.name}
@@ -208,6 +207,14 @@ export default function SimpleCollapse({
                   )}
                 </Fragment>
               ))}
+              <Button
+                className={classes.contactUsBtn}
+                variant="contained"
+                color="primary"
+                onClick={() => router.push("/contact-us")}
+              >
+                Contact Us
+              </Button>
             </div>
           </Container>
         </Paper>

@@ -87,7 +87,7 @@ function Events({ recurringEvents }) {
         `${API_URL}/events/count?_where[_or][0][isRecurring_null]=true&_where[_or][1][isRecurring]=false`
       ).then((r) => r.json()),
       fetch(
-        `${API_URL}/events?_start=${events.length}&_limit=6&_where[_or][0][isRecurring_null]=true&_where[_or][1][isRecurring]=false`
+        `${API_URL}/events?_start=${events.length}&_limit=6&_where[_or][0][isRecurring_null]=true&_where[_or][1][isRecurring]=false&_sort=startDate:DESC`
       ).then((r) => r.json()),
     ]);
     setEventCount(resCount);
@@ -159,17 +159,11 @@ function Events({ recurringEvents }) {
 
 export async function getStaticProps() {
   const { API_URL } = process.env;
-  const res = await fetch(
-    `${API_URL}/events?_where[_or][0][isRecurring_null]=true&_where[_or][1][isRecurring]=false`
-  );
-  const events = await res.json();
-
   const recurringEventsRes = await fetch(`${API_URL}/events?isRecurring=true`);
   const recurringEvents = await recurringEventsRes.json();
 
   return {
     props: {
-      events,
       recurringEvents,
     },
     revalidate: 86400,

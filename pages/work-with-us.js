@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import fetch from "isomorphic-unfetch";
 import Head from "next/head";
 import { uid } from "react-uid";
@@ -15,7 +16,6 @@ import Testimonials from "../components/work-with-us/Testimonials";
 import JobListings from "../components/work-with-us/JobListings";
 import Volunteering from "../components/work-with-us/Volunteering";
 import { useRouter } from "next/router";
-import { useEffect } from "react";
 
 const useStyles = makeStyles((theme) => ({
   pageHeader: {
@@ -127,11 +127,9 @@ function WorkWithUs({ data, vacancies, membersCount }) {
   const { API_URL } = process.env;
   const router = useRouter();
 
-  console.log("router", router);
-
   useEffect(() => {
     if (router.asPath === "/work-with-us#joblistings") {
-      var elmnt = document.getElementById("helllo");
+      var elmnt = document.getElementById("jobListingRoot");
       elmnt.scrollIntoView({ behavior: "smooth", block: "center" });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
