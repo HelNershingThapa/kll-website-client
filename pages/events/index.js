@@ -94,6 +94,10 @@ function Events({ recurringEvents }) {
     setEvents(events.concat(eventRes));
   }
 
+  console.log("events", events);
+
+  console.log("hasMore", hasMore, eventCount)
+
   return (
     <>
       <Head>

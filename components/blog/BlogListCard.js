@@ -183,7 +183,7 @@ function BlogListCard({ blog }) {
           {blog.coverPhoto?.url && (
             <Image
               className={classes.media}
-              src={`${API_URL}${blog.coverPhoto?.formats.medium.url}`}
+              src={`${API_URL}${blog.coverPhoto?.url}`}
               layout="fill"
               objectFit="cover"
               sizes="540px"

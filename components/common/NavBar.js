@@ -5,6 +5,7 @@ import axios from "axios";
 import { uid } from "react-uid";
 import Link from "next/link";
 import Image from "next/image";
+import dynamic from "next/dynamic";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import Container from "@material-ui/core/Container";
@@ -15,9 +16,9 @@ import IconButton from "@material-ui/core/IconButton";
 import Hidden from "@material-ui/core/Hidden";
 import useScrollTrigger from "@material-ui/core/useScrollTrigger";
 import { desktop, primary } from "../../styles/theme";
-import RichTooltip from "./RichTooltip";
-import PopoverContent from "./PopoverContent";
-import CollapseNavBar from "./CollapseNavBar";
+const RichTooltip = dynamic(() => import("./RichTooltip"));
+const PopoverContent = dynamic(() => import("./PopoverContent"));
+const CollapseNavBar = dynamic(() => import("./CollapseNavBar"));
 
 const useStyles = makeStyles((theme) => ({
   appBar: {

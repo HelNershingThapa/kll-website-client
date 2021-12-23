@@ -71,7 +71,7 @@ function PopoverContent({ identifier, menu }) {
                 >
                   <div className={classes.imgFill}>
                     <Image
-                      src={`${API_URL}${page.image.url}`}
+                      src={`${API_URL}${page.image.formats.small.url}`}
                       layout="fill"
                       objectFit="cover"
                       sizes="160px"
@@ -149,7 +149,7 @@ function PopoverContent({ identifier, menu }) {
                 <div style={{ cursor: "pointer" }}>
                   <div className={classes.getInvolvedImgFill}>
                     <Image
-                      src={`${API_URL}${page.image.url}`}
+                      src={`${API_URL}${page.image.formats.small.url}`}
                       layout="fill"
                       objectFit="cover"
                       sizes="305px"

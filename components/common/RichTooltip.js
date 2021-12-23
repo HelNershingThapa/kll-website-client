@@ -86,6 +86,11 @@ const useStyles = makeStyles((theme) => {
         transform: "rotate(45deg)",
       },
     },
+    fadeCtr: {
+      background: "transparent",
+      marginTop: "-1rem",
+      paddingTop: "2rem",
+    },
   };
 });
 
@@ -129,11 +134,7 @@ const RichTooltip = ({
       >
         {({ TransitionProps }) => (
           <div
-            style={{
-              background: "transparent",
-              marginTop: "-1rem",
-              paddingTop: "2rem",
-            }}
+            className={classes.fadeCtr}
             onMouseOver={() => handlePopoverOpen(index)}
             onMouseOut={() => setOpenedPopoverId(null)}
           >

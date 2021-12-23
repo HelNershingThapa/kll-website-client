@@ -127,7 +127,7 @@ const BlogList = ({ featuredBlog }) => {
 
     const [resCount, blogRes] = await Promise.all([
       fetch(
-        `${API_URL}/blogs/count?isFeatured=false&_where[_or][0][isFeatured_null]=true&_where[_or][1][isFeatured]=false${
+        `${API_URL}/blogs/count?_where[_or][0][isFeatured_null]=true&_where[_or][1][isFeatured]=false${
           searchQuery === "" ? "" : `&title_contains=${searchQuery}`
         }${categoryQuery}`
       ).then((r) => r.json()),
@@ -144,6 +144,8 @@ const BlogList = ({ featuredBlog }) => {
   }
 
   console.log("blogs", blogs);
+
+  console.log("hasMore", hasMore, blogCount);
 
   return (
     <>

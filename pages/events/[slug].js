@@ -210,7 +210,7 @@ function EventDetail({ eventDetail }) {
                   className={classes.rendezvouTypo}
                 >
                   {eventDetail.startTime.substring(0, 5)} -{" "}
-                  {eventDetail.endTime.substring(0, 5)}
+                  {eventDetail.endTime?.substring(0, 5)}
                 </Typography>
               </div>
             )}

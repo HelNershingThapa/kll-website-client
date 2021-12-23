@@ -1,9 +1,7 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import Switch from "@material-ui/core/Switch";
 import Paper from "@material-ui/core/Paper";
 import Collapse from "@material-ui/core/Collapse";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
 import clsx from "clsx";
 import { uid } from "react-uid";
 import Link from "next/link";
@@ -22,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
     inset: "0px",
   },
   root: {
-    height: "100vh",
+    minHeight: "100vh",
     position: "fixed",
     top: 80,
     right: 0,
@@ -41,7 +39,7 @@ const useStyles = makeStyles((theme) => ({
     // margin: theme.spacing(1),
     width: "100%",
     zIndex: 1200,
-    height: "100vh",
+    minHeight: "100vh",
     borderRadius: 0,
   },
   svg: {
@@ -129,7 +127,6 @@ export default function SimpleCollapse({
   const classes = useStyles();
 
   useEffect(() => {
-    console.log("checked", checked);
     if (checked) {
       document.body.style.overflowY = "hidden";
     } else {
@@ -144,7 +141,10 @@ export default function SimpleCollapse({
   });
 
   return (
-    <div className={classes.root}>
+    <div
+      className={classes.root}
+      style={{ display: `${!checked ? "none" : "block"}` }}
+    >
       <Collapse in={checked}>
         <Paper elevation={0} className={classes.paper}>
           <Container fixed>
