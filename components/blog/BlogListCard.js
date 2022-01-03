@@ -129,6 +129,7 @@ const useStyles = makeStyles((theme) => ({
 
 function MarkdownParagraph(props) {
   const classes = useStyles();
+
   
   return (
     <Typography variant="subtitle1" className={classes.description}>
@@ -154,6 +155,8 @@ function BlogListCard({ blog }) {
   const router = useRouter();
   const classes = useStyles();
   const { API_URL } = process.env;
+  const { IMAGE_URL } = process.env;
+
 
   const trimString = (string) => {
     var maxLength = 150;
@@ -183,7 +186,7 @@ function BlogListCard({ blog }) {
           {blog.coverPhoto?.url && (
             <Image
               className={classes.media}
-              src={`${API_URL}${blog.coverPhoto?.url}`}
+              src={`${IMAGE_URL}${blog.coverPhoto?.url}`}
               layout="fill"
               objectFit="cover"
               sizes="540px"

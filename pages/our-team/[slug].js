@@ -197,7 +197,7 @@ function MemberDetail({ allMembers, memberDetail }) {
         <div className={classes.imageContainer}>
           <Image
             priority
-            src={`${API_URL}${image.url}`}
+            src={`https://kllsites.sgp1.cdn.digitaloceanspaces.com${image.url}`}
             layout="fill"
             objectFit="cover"
             alt={`photo of ${name}`}

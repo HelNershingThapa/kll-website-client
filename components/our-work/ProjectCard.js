@@ -96,7 +96,7 @@ const ProjectCard = ({ name, category, src, slug, coverImagePosition }) => {
   const router = useRouter();
   const classes = useStyles();
 
-  const { API_URL } = process.env;
+  const { IMAGE_URL } = process.env;
 
   return (
     <div
@@ -105,7 +105,7 @@ const ProjectCard = ({ name, category, src, slug, coverImagePosition }) => {
     >
       <div className={classes.imageFill}>
         <Image
-          src={`${API_URL}${src}`}
+          src={`${IMAGE_URL}${src}`}
           className={classes.image}
           layout="fill"
           objectFit="cover"

@@ -67,6 +67,7 @@ const FeaturedIn = ({ featuredIn }) => {
   const router = useRouter();
   const classes = useStyles();
   const { API_URL } = process.env;
+  const { IMAGE_URL } = process.env;
 
   return (
     <div className={classes.featuredInCtr}>
@@ -83,7 +84,7 @@ const FeaturedIn = ({ featuredIn }) => {
             <div key={uid(logo)} className={classes.imageFill}>
               <Image
                 className={classes.image}
-                src={`${API_URL}${logo.newspaperLogo.url}`}
+                src={`${IMAGE_URL}${logo.newspaperLogo.url}`}
                 layout="fill"
                 objectFit="content"
                 alt="Guardian logo"

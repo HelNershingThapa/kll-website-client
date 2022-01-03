@@ -82,6 +82,9 @@ const useStyles = makeStyles((theme) => ({
 const Partners = ({ partners }) => {
   const classes = useStyles();
   const { API_URL } = process.env;
+  const { IMAGE_URL } = process.env;
+
+  console.log("IMAGE_URL", IMAGE_URL);
 
   return (
     <Container fixed>
@@ -94,7 +97,7 @@ const Partners = ({ partners }) => {
             <div key={uid(partner)} className={classes.imageFill}>
               <Image
                 className={classes.image}
-                src={`${API_URL}${partner.partnerLogo.url}`}
+                src={`${IMAGE_URL}${partner.partnerLogo.url}`}
                 layout="fill"
                 objectFit="content"
                 sizes="200px"

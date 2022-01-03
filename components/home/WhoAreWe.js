@@ -249,13 +249,14 @@ const Partners = ({ data }) => {
   const router = useRouter();
   const classes = useStyles();
   const { API_URL } = process.env;
+  const { IMAGE_URL } = process.env;
 
   return (
     <div className={classes.root}>
       <div className={classes.container}>
         <div className={classes.imgFill}>
           <Image
-            src={`${API_URL}${data.image.url}`}
+            src={`${IMAGE_URL}${data.image.url}`}
             layout="fill"
             objectFit="cover"
             alt=""
