@@ -108,7 +108,7 @@ const useStyles = makeStyles((theme) => ({
 
 function Events({ event }) {
   const classes = useStyles();
-  const { API_URL } = process.env;
+  const { IMAGE_URL } = process.env;
 
   const formattedStartDate = moment(event.startDate, "YYYY-MM-DD").format(
     "Do MMM YYYY"
@@ -127,7 +127,7 @@ function Events({ event }) {
       <div className={classes.imgFill}>
         {event.coverPhoto && (
           <Image
-            src={`${API_URL}${event.coverPhoto.url}`}
+            src={`${IMAGE_URL}${event.coverPhoto.url}`}
             layout="fill"
             objectFit="cover"
             sizes="960px"

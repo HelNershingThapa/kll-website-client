@@ -65,7 +65,7 @@ const renderers = {
 
 function Resource({ resource }) {
   const classes = useStyles();
-  const { API_URL } = process.env
+  const { IMAGE_URL } = process.env
 
   const { title, description, link, image } = resource;
 
@@ -73,7 +73,7 @@ function Resource({ resource }) {
     <div className={classes.root}>
       <div className={classes.logoFill}>
         <Image
-          src={`${API_URL}${image.url}`}
+          src={`${IMAGE_URL}${image.url}`}
           layout="fill"
           objectFit="cover"
           sizes="60px"

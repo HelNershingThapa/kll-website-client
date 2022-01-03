@@ -202,6 +202,8 @@ function Showcase() {
   const [showcases, setShowcases] = useState([]);
   const [blogCount, setShowcaseCount] = useState(0);
   const { API_URL } = process.env;
+  const { IMAGE_URL } = process.env;
+
 
   const hasMore = showcases.length < blogCount;
 
@@ -244,7 +246,7 @@ function Showcase() {
                 {showcase.thumbnail.url && (
                   <Image
                     className={classes.image}
-                    src={`${API_URL}${showcase.thumbnail.url}`}
+                    src={`${IMAGE_URL}${showcase.thumbnail.url}`}
                     layout="fill"
                     objectFit="cover"
                     alt=""

@@ -115,8 +115,7 @@ const useStyles = makeStyles((theme) => ({
 
 function OurTeam({ members, headerStats }) {
   const classes = useStyles();
-
-  const { API_URL } = process.env;
+  const { IMAGE_URL } = process.env;
 
   return (
     <>
@@ -131,7 +130,7 @@ function OurTeam({ members, headerStats }) {
       <div className={classes.headerImgFill}>
         <Image
           priority
-          src={`${API_URL}${headerStats.headerImage.url}`}
+          src={`${IMAGE_URL}${headerStats.headerImage.url}`}
           layout="fill"
           objectFit="cover"
           alt="People working at KLL"
@@ -160,17 +159,19 @@ function OurTeam({ members, headerStats }) {
           <YouCard />
         </div>
       </Container>
-      <WorkingAtKll headerStats={headerStats}/>
+      <WorkingAtKll headerStats={headerStats} />
     </>
   );
 }
 
 export async function getStaticProps() {
-  const { API_URL } = process.env
+  const { API_URL } = process.env;
   const res = await fetch(`${API_URL}/our-team`);
   const headerStats = await res.json();
 
-  const response = await fetch(`${API_URL}/members?_sort=name:ASC&isAlumnus=false`);
+  const response = await fetch(
+    `${API_URL}/members?_sort=name:ASC&isAlumnus=false`
+  );
   const members = await response.json();
 
   return {

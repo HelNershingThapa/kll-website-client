@@ -60,7 +60,7 @@ const useStyles = makeStyles((theme) => ({
 
 function HowWeBegan(props) {
   const classes = useStyles();
-  const { API_URL } = process.env;
+  const { IMAGE_URL } = process.env;
 
   return (
     <div className={classes.historyContainer}>
@@ -75,7 +75,7 @@ function HowWeBegan(props) {
           <div className={classes.imgOverlay}>
             <div className={classes.imgFill}>
               <Image
-                src={`${API_URL}${props.data.image.url}`}
+                src={`${IMAGE_URL}${props.data.image.url}`}
                 layout="fill"
                 objectFit="cover"
                 sizes="972px"

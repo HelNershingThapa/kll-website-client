@@ -94,6 +94,8 @@ const renderers = {
 function CoverageCard({ coverage }) {
   const classes = useStyles();
   const { API_URL } = process.env;
+  const { IMAGE_URL } = process.env;
+
 
 
   return (
@@ -101,7 +103,7 @@ function CoverageCard({ coverage }) {
       <div className={classes.imgContainer}>
         <div className={classes.imgFill}>
           <Image
-            src={`${API_URL}${coverage.image.url}`}
+            src={`${IMAGE_URL}${coverage.image.url}`}
             layout="fill"
             objectFit="cover"
             sizes="480px"
@@ -113,7 +115,7 @@ function CoverageCard({ coverage }) {
             {coverage.layoverNewspaperLogo && (
               <img
                 className={classes.newspaperLogo}
-                src={`${API_URL}${coverage.layoverNewspaperLogo.url}`}
+                src={`${IMAGE_URL}${coverage.layoverNewspaperLogo.url}`}
                 alt="asdasd"
               />
             )}

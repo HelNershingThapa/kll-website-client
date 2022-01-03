@@ -40,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
 
 const ProjectPartners = ({ partners }) => {
   const classes = useStyles();
-  const { API_URL } = process.env;
+  const { IMAGE_URL } = process.env;
 
   return (
     <div className={classes.partnersCtr}>
@@ -48,14 +48,16 @@ const ProjectPartners = ({ partners }) => {
         {`Our Partners`}
       </Typography>
       <div className={classes.partnersLogos}>
-        {partners.map(partner => <div className={classes.unsetImg} key={uid(partner)}>
-          <Image
-            src={`${API_URL}${partner.image.url}`}
-            className={classes.custom}
-            layout="fill"
-            alt=""
-          />
-        </div>)}
+        {partners.map((partner) => (
+          <div className={classes.unsetImg} key={uid(partner)}>
+            <Image
+              src={`${IMAGE_URL}${partner.image.url}`}
+              className={classes.custom}
+              layout="fill"
+              alt=""
+            />
+          </div>
+        ))}
       </div>
     </div>
   );

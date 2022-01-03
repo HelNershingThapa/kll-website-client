@@ -161,7 +161,7 @@ const renderers = {
 
 function AboutUs({ data, membersCount, sdgs }) {
   const classes = useStyles();
-  const { API_URL } = process.env;
+  const { IMAGE_URL } = process.env;
 
   console.log("data", data);
 
@@ -185,7 +185,7 @@ function AboutUs({ data, membersCount, sdgs }) {
       <div className={classes.headerImgFill}>
         <Image
           priority
-          src={`${API_URL}${data.headerImage.url}`}
+          src={`${IMAGE_URL}${data.headerImage.url}`}
           layout="fill"
           objectFit="cover"
           alt=""
@@ -210,7 +210,7 @@ function AboutUs({ data, membersCount, sdgs }) {
           <div className={classes.imgContainer}>
             <div className={classes.img1}>
               <Image
-                src={`${API_URL}${data.image1.url}`}
+                src={`${IMAGE_URL}${data.image1.url}`}
                 alt="asdasd"
                 layout="fill"
                 objectFit="cover"
@@ -220,7 +220,7 @@ function AboutUs({ data, membersCount, sdgs }) {
             <div className={classes.imgsCtr}>
               <div className={classes.img2}>
                 <Image
-                  src={`${API_URL}${data.image2.url}`}
+                  src={`${IMAGE_URL}${data.image2.url}`}
                   layout="fill"
                   objectFit="cover"
                   sizes="486px"
@@ -229,7 +229,7 @@ function AboutUs({ data, membersCount, sdgs }) {
               </div>
               <div className={classes.img2}>
                 <Image
-                  src={`${API_URL}${data.image3.url}`}
+                  src={`${IMAGE_URL}${data.image3.url}`}
                   layout="fill"
                   objectFit="cover"
                   sizes="486px"

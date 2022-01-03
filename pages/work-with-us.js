@@ -124,7 +124,7 @@ const renderers = {
 
 function WorkWithUs({ data, vacancies, membersCount }) {
   const classes = useStyles();
-  const { API_URL } = process.env;
+  const { IMAGE_URL } = process.env;
   const router = useRouter();
 
   useEffect(() => {
@@ -165,7 +165,7 @@ function WorkWithUs({ data, vacancies, membersCount }) {
       <div className={classes.headerImgFill}>
         <Image
           priority
-          src={`${API_URL}${data.headerImage.url}`}
+          src={`${IMAGE_URL}${data.headerImage.url}`}
           layout="fill"
           objectFit="cover"
           alt=""
