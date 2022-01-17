@@ -125,6 +125,15 @@ const BlogList = ({ featuredBlog }) => {
       categoryQuery = `&category=${category}`;
     }
 
+    console.log(
+      category,
+      `${API_URL}/blogs?_start=${
+        blogs.length
+      }&_limit=6&_where[_or][0][isFeatured_null]=true&_where[_or][1][isFeatured]=false${
+        searchQuery === "" ? "" : `&title_contains=${searchQuery}`
+      }${categoryQuery}`
+    );
+
     const [resCount, blogRes] = await Promise.all([
       fetch(
         `${API_URL}/blogs/count?_where[_or][0][isFeatured_null]=true&_where[_or][1][isFeatured]=false${
@@ -136,16 +145,12 @@ const BlogList = ({ featuredBlog }) => {
           blogs.length
         }&_limit=6&_where[_or][0][isFeatured_null]=true&_where[_or][1][isFeatured]=false${
           searchQuery === "" ? "" : `&title_contains=${searchQuery}`
-        }${categoryQuery}`
+        }${categoryQuery}&_sort=created_at:desc`
       ).then((r) => r.json()),
     ]);
     setBlogCount(resCount);
     setBlogs(blogs.concat(blogRes));
   }
-
-  console.log("blogs", blogs);
-
-  console.log("hasMore", hasMore, blogCount);
 
   return (
     <>

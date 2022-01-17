@@ -25,6 +25,7 @@ import BlogListCard from "components/blog/BlogListCard";
 import Tags from "components/blog/Tags";
 import Share from "components/blog/Share";
 import { tablet } from "../../styles/theme";
+import AuthorAvatar from "../../components/blog/AuthorAvatar";
 
 const useStyles = makeStyles((theme) => ({
   blog: {
@@ -87,6 +88,14 @@ const useStyles = makeStyles((theme) => ({
       marginTop: theme.spacing(3),
     },
   },
+  avatar: {
+    backgroundColor: theme.palette.grey[200],
+    color: theme.palette.grey[700],
+  },
+  guestAvatar: {
+    fontSize: "20px",
+    lineHeight: 1,
+  },
   content: {
     // display: "flex",
     // flexDirection: "column",
@@ -110,6 +119,7 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: theme.spacing(1),
   },
   authorTitle: {
+    lineHeight: 1,
     fontWeight: 400,
     color: "#445668",
   },
@@ -398,12 +408,21 @@ function BlogDetail({ blog, relatedBlogs }) {
   const classes = useStyles();
   const { API_URL } = process.env;
 
+  console.log("blog", blog);
+
+  const guest = {
+    name: "John Doe",
+    description: "this is a description",
+    blurb:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In mattis nibh nec orci fringilla, eu euismod orci fringilla. Nam bibendum finibus augue, ut gravida lectus tincidunt at. Nulla diam enim, sodales quis nulla eget, blandit venenatis nibh. Aliquam erat volutpat. Nam at elit est. Etiam dignissim metus velit, et convallis magna vulputate sed. Proin in imperdiet dolor, in rutrum neque. Morbi neque libero, sollicitudin lacinia placerat et, tincidunt vel ipsum. Nulla molestie laoreet mauris ac accumsan. Donec finibus ante vel ligula consectetur vulputate. ",
+  };
+
   return (
     <>
       <Head>
         <title>{`${blog.title} | Blog | Kathmandu Living Labs`}</title>
       </Head>
-      <BlogJsonLd
+      {/* <BlogJsonLd
         url="https://kathmandulivinglabs.org/blog"
         title={blog.title}
         images={[blog.coverPhoto?.url]}
@@ -411,7 +430,7 @@ function BlogDetail({ blog, relatedBlogs }) {
         datePublished={blog.published_at}
         authorName={blog.member.name}
         keywords={blog.tags.map((tag) => tag.name).join(", ")}
-      />
+      /> */}
       {blog.coverPhoto && (
         <div className={classes.headerImageContainer}>
           <Image
@@ -436,30 +455,9 @@ function BlogDetail({ blog, relatedBlogs }) {
             </Typography>
           </div>
           <Typography variant="h4">{blog.title}</Typography>
-          <div className={classes.author}>
-            <Avatar>
-              <Image
-                priority
-                src={`${API_URL}${
-                  blog.member.avatarImage
-                    ? blog.member.avatarImage.url
-                    : blog.member.image.url
-                }`}
-                layout="fill"
-                objectFit="cover"
-                sizes="40px"
-                alt="DP"
-              />
-            </Avatar>
-            <div className={classes.authorDetails}>
-              <Typography variant="subtitle1" className={classes.authorName}>
-                {blog.member.name}
-              </Typography>
-              <Typography variant="subtitle2" className={classes.authorTitle}>
-                {blog.member.position}
-              </Typography>
-            </div>
-          </div>
+          {(blog.member || blog.guestAuthor) && (
+            <AuthorAvatar member={blog.member} guestAuthor={blog.guestAuthor} />
+          )}
           <div className={classes.content}>
             {/* eslint-disable react/no-children-prop */}
             <ReactMarkdown
@@ -525,25 +523,25 @@ function BlogDetail({ blog, relatedBlogs }) {
   );
 }
 
-export async function getStaticPaths() {
-  const { API_URL } = process.env;
-  const res = await fetch(`${API_URL}/blogs`);
-  const blogs = await res.json();
+// export async function getStaticPaths() {
+//   const { API_URL } = process.env;
+//   const res = await fetch(`${API_URL}/blogs`);
+//   const blogs = await res.json();
 
-  const paths = blogs.map((project) => ({
-    params: { slug: project.slug },
-  }));
+//   const paths = blogs.map((project) => ({
+//     params: { slug: project.slug },
+//   }));
 
-  return { paths, fallback: false };
-}
+//   return { paths, fallback: false };
+// }
 
-export async function getStaticProps({ params }) {
+export async function getServerSideProps({ params }) {
   const { API_URL } = process.env;
   const res = await fetch(`${API_URL}/blogs?slug=${params.slug}`);
   const blog = await res.json();
 
   const relatedBlogsRes = await fetch(
-    `${API_URL}/blogs?category_eq=${blog[0].category}&slug_ne=${params.slug}&_limit=3`
+    `${API_URL}/blogs?category_eq=${blog[0].category}&slug_ne=${params.slug}&_limit=3&_sort=created_at:desc`
   );
   const relatedBlogs = await relatedBlogsRes.json();
 
@@ -552,7 +550,6 @@ export async function getStaticProps({ params }) {
       blog: blog[0],
       relatedBlogs,
     },
-    revalidate: 84600,
   };
 }
 

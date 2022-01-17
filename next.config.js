@@ -14,6 +14,7 @@ module.exports = {
       "167.71.225.119",
       "api.kathmandulivinglabs.org",
       "kllsites.sgp1.cdn.digitaloceanspaces.com",
+      "kllsites.sgp1.digitaloceanspaces.com",
     ],
   },
   webpack: (config) => {

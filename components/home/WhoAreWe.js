@@ -256,7 +256,7 @@ const Partners = ({ data }) => {
       <div className={classes.container}>
         <div className={classes.imgFill}>
           <Image
-            src={`${IMAGE_URL}${data.image.url}`}
+            src={`${data.image.url}`}
             layout="fill"
             objectFit="cover"
             alt=""

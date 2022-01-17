@@ -16,9 +16,12 @@ import IconButton from "@material-ui/core/IconButton";
 import Hidden from "@material-ui/core/Hidden";
 import useScrollTrigger from "@material-ui/core/useScrollTrigger";
 import { desktop, primary } from "../../styles/theme";
-const RichTooltip = dynamic(() => import("./RichTooltip"));
-const PopoverContent = dynamic(() => import("./PopoverContent"));
-const CollapseNavBar = dynamic(() => import("./CollapseNavBar"));
+import RichTooltip from "./RichTooltip";
+import PopoverContent from "./PopoverContent";
+import CollapseNavBar from "./CollapseNavBar";
+// const RichTooltip = dynamic(() => import("./RichTooltip"));
+// const PopoverContent = dynamic(() => import("./PopoverContent"));
+// const CollapseNavBar = dynamic(() => import("./CollapseNavBar"));
 
 const useStyles = makeStyles((theme) => ({
   appBar: {

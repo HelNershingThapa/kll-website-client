@@ -18,6 +18,15 @@ export default function Home({
   blogs,
   impact,
 }) {
+  console.log(
+    homeData,
+    partners,
+    projects,
+    featuredIn,
+    blogs,
+    membersCount,
+    impact
+  );
   return (
     <>
       <Head>
@@ -57,7 +66,9 @@ export async function getStaticProps() {
     fetch(`${API_URL}/partners?_sort=displayOrder`).then((r) => r.json()),
     fetch(`${API_URL}/in-the-media`).then((r) => r.json()),
     fetch(`${API_URL}/members/count?isAlumnus=false`).then((r) => r.json()),
-    fetch(`${API_URL}/blogs?_limit=3`).then((r) => r.json()),
+    fetch(`${API_URL}/blogs?_limit=3&_sort=created_at:desc`).then((r) =>
+      r.json()
+    ),
     fetch(`${API_URL}/home`).then((r) => r.json()),
     fetch(`${API_URL}/impact`).then((r) => r.json()),
   ]);
