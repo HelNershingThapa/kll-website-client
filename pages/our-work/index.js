@@ -2,12 +2,11 @@ import Head from "next/head";
 import fetch from "isomorphic-unfetch";
 import clsx from "clsx";
 import ReactMarkdown from "react-markdown";
-import { makeStyles } from "@material-ui/core";
-import { Container, Typography } from "@material-ui/core";
+import { makeStyles, Container, Typography } from "@material-ui/core";
 import ProjectsGrid from "components/our-work/ProjectsGrid";
 import SdgCommitment from "components/our-work/SdgCommitment";
 import MoreProjects from "components/our-work/MoreProjects";
-import { desktop, tablet } from "styles/theme";
+import { desktop } from "styles/theme";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -19,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
   pageTitle: {
     marginTop: theme.spacing(10),
     lineHeight: "40px",
-    marginBottom: theme.spacing(6) - theme.spacing(4),
+    marginBottom: theme.spacing(8),
     [theme.breakpoints.down("xs")]: {
       marginTop: theme.spacing(4),
     },
@@ -108,8 +107,8 @@ const OurProjects = ({ projects, impact }) => {
           Our Work
         </Typography>
         <i className={clsx("ri-double-quotes-l", classes.quoteIcon)} />
-         {/* eslint-disable-next-line react/no-children-prop */}
-         <ReactMarkdown children={impact.headerText} renderers={renderers} />
+        {/* eslint-disable-next-line react/no-children-prop */}
+        <ReactMarkdown children={impact.headerText} renderers={renderers} />
         <ProjectsGrid projects={projects.slice(0, 5)} />
       </Container>
       <div className={classes.sdgMargin}>
@@ -126,7 +125,7 @@ const OurProjects = ({ projects, impact }) => {
 };
 
 export async function getStaticProps() {
-  const { API_URL } = process.env
+  const { API_URL } = process.env;
   const res = await fetch(`${API_URL}/projects?_sort=displayOrder`);
   const projects = await res.json();
 

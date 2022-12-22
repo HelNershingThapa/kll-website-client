@@ -53,8 +53,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function PopoverContent({ identifier, menu }) {
-  const { API_URL } = process.env;
-  const { IMAGE_URL } = process.env;
   const classes = useStyles();
 
   return (
@@ -72,7 +70,7 @@ function PopoverContent({ identifier, menu }) {
                 >
                   <div className={classes.imgFill}>
                     <Image
-                      src={`${IMAGE_URL}${page.image.formats.small.url}`}
+                      src={page.image.formats.small.url}
                       layout="fill"
                       objectFit="cover"
                       sizes="160px"
@@ -150,7 +148,7 @@ function PopoverContent({ identifier, menu }) {
                 <div style={{ cursor: "pointer" }}>
                   <div className={classes.getInvolvedImgFill}>
                     <Image
-                      src={`${IMAGE_URL}${page.image.formats.small.url}`}
+                      src={page.image.formats.small.url}
                       layout="fill"
                       objectFit="cover"
                       sizes="305px"

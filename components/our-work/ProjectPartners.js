@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { makeStyles } from "@material-ui/core/styles";
-import { Chip, Typography } from "@material-ui/core";
+import { Typography } from "@material-ui/core";
 import { uid } from "react-uid";
 
 const useStyles = makeStyles((theme) => ({
@@ -40,7 +40,6 @@ const useStyles = makeStyles((theme) => ({
 
 const ProjectPartners = ({ partners }) => {
   const classes = useStyles();
-  const { IMAGE_URL } = process.env;
 
   return (
     <div className={classes.partnersCtr}>
@@ -51,7 +50,7 @@ const ProjectPartners = ({ partners }) => {
         {partners.map((partner) => (
           <div className={classes.unsetImg} key={uid(partner)}>
             <Image
-              src={`${IMAGE_URL}${partner.image.url}`}
+              src={partner.image.url}
               className={classes.custom}
               layout="fill"
               alt=""

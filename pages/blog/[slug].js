@@ -375,13 +375,11 @@ function MarkdownTableHead(props) {
 
 function MarkdownImage(props) {
   const classes = useStyles();
-  const { API_URL } = process.env;
-
   return (
     <div className={classes.markdownImageFill}>
       <Image
         className={classes.markdownImage}
-        src={`${API_URL}${props.src}`}
+        src={props.src}
         layout="fill"
         objectFit="cover"
         alt={props.alt}
@@ -406,9 +404,6 @@ const renderers = {
 
 function BlogDetail({ blog, relatedBlogs }) {
   const classes = useStyles();
-  const { API_URL } = process.env;
-
-  console.log("blog", blog);
 
   const guest = {
     name: "John Doe",
@@ -436,7 +431,7 @@ function BlogDetail({ blog, relatedBlogs }) {
           <Image
             priority
             className={classes.headerImage}
-            src={`${API_URL}${blog.coverPhoto.url}`}
+            src={blog.coverPhoto.url}
             layout="fill"
             objectFit="cover"
             alt="Picture of the author"
@@ -470,11 +465,11 @@ function BlogDetail({ blog, relatedBlogs }) {
           <div className={clsx(classes.author, classes.footerMargin)}>
             <Avatar>
               <Image
-                src={`${API_URL}${
+                src={
                   blog.member.avatarImage
                     ? blog.member.avatarImage.url
                     : blog.member.image.url
-                }`}
+                }
                 layout="fill"
                 alt="DP"
                 sizes="40px"

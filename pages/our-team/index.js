@@ -115,7 +115,6 @@ const useStyles = makeStyles((theme) => ({
 
 function OurTeam({ members, headerStats }) {
   const classes = useStyles();
-  const { IMAGE_URL } = process.env;
 
   return (
     <>
@@ -130,12 +129,12 @@ function OurTeam({ members, headerStats }) {
       <div className={classes.headerImgFill}>
         <Image
           priority
-          src={`${IMAGE_URL}${headerStats.headerImage.url}`}
+          src={headerStats.headerImage.url}
           layout="fill"
           objectFit="cover"
           alt="People working at KLL"
         />
-        <div className={classes.statsOverlay}>
+        {/* <div className={classes.statsOverlay}>
           {headerStats.headerStat.map((stat) => (
             <div key={uid(stat)}>
               <Typography variant="body1" className={classes.statTitle}>
@@ -146,7 +145,7 @@ function OurTeam({ members, headerStats }) {
               </Typography>
             </div>
           ))}
-        </div>
+        </div> */}
       </div>
 
       <Container fixed>

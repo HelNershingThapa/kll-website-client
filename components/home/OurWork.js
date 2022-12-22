@@ -77,7 +77,7 @@ const Partners = ({ projects, data }) => {
               classes={{ root: classes.btnRoot, label: classes.btnLabel }}
               onClick={() => router.push("/our-work")}
             >
-              {`Check Out Our Work`}
+              {`View More`}
             </Button>
           </Hidden>
         </div>

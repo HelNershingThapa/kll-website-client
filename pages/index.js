@@ -4,7 +4,7 @@ import Hero from "components/home/Hero";
 import Partners from "components/home/Partners";
 import WhoAreWe from "components/home/WhoAreWe";
 import OurWork from "components/home/OurWork";
-import SdgCommitment from "components/our-work/SdgCommitment";
+// import SdgCommitment from "components/our-work/SdgCommitment";
 import OurInsights from "components/home/OurInsights";
 import FeaturedIn from "components/home/FeaturedIn";
 import OurTeam from "components/home/OurTeam";
@@ -18,15 +18,6 @@ export default function Home({
   blogs,
   impact,
 }) {
-  console.log(
-    homeData,
-    partners,
-    projects,
-    featuredIn,
-    blogs,
-    membersCount,
-    impact
-  );
   return (
     <>
       <Head>
@@ -41,7 +32,7 @@ export default function Home({
       <Partners partners={partners} />
       <WhoAreWe data={homeData.whoAreWe} />
       <OurWork projects={projects} data={homeData.ourWork} />
-      <SdgCommitment data={homeData.ourCommitment} impact={impact} />
+      {/* <SdgCommitment data={homeData.ourCommitment} impact={impact} /> */}
       <OurInsights blogs={blogs} />
       <FeaturedIn featuredIn={featuredIn} />
       <OurTeam membersCount={membersCount} />

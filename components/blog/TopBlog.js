@@ -87,9 +87,6 @@ const useStyles = makeStyles((theme) => ({
 const TopBlog = ({ featuredBlog }) => {
   const classes = useStyles();
   const router = useRouter();
-  const { API_URL } = process.env;
-  const { IMAGE_URL } = process.env;
-
 
   return (
     <div className={classes.headerImage}>
@@ -97,7 +94,7 @@ const TopBlog = ({ featuredBlog }) => {
         <Image
           priority
           className={classes.image}
-          src={`${IMAGE_URL}${featuredBlog.coverPhoto.url}`}
+          src={featuredBlog.coverPhoto.url}
           layout="fill"
           objectFit="cover"
           sizes="1440px"

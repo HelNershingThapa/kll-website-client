@@ -175,8 +175,6 @@ const renderers = {
 function MemberDetail({ allMembers, memberDetail }) {
   const router = useRouter();
   const classes = useStyles();
-  const { API_URL } = process.env;
-  const { IMAGE_URL } = process.env;
 
   const { slug, name, position, bio, image, twitter, openStreetMap, linkedIn } =
     memberDetail;
@@ -198,7 +196,7 @@ function MemberDetail({ allMembers, memberDetail }) {
         <div className={classes.imageContainer}>
           <Image
             priority
-            src={`${IMAGE_URL}${image.url}`}
+            src={image.url}
             layout="fill"
             objectFit="cover"
             alt={`photo of ${name}`}

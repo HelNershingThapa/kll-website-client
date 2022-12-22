@@ -232,7 +232,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function MarkdownParagraph(props) {
-  const classes = useStyles();
+  // const classes = useStyles();
 
   return (
     <Typography variant="body1" component="p">
@@ -248,19 +248,12 @@ const renderers = {
 const Partners = ({ data }) => {
   const router = useRouter();
   const classes = useStyles();
-  const { API_URL } = process.env;
-  const { IMAGE_URL } = process.env;
 
   return (
     <div className={classes.root}>
       <div className={classes.container}>
         <div className={classes.imgFill}>
-          <Image
-            src={`${data.image.url}`}
-            layout="fill"
-            objectFit="cover"
-            alt=""
-          />
+          <Image src={data.image.url} layout="fill" objectFit="cover" alt="" />
         </div>
         <div className={classes.content}>
           <div>

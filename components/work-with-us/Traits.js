@@ -1,5 +1,4 @@
 import { uid } from "react-uid";
-import { useRouter } from "next/router";
 import { makeStyles } from "@material-ui/core/styles";
 import Image from "next/image";
 import { Typography } from "@material-ui/core";
@@ -48,9 +47,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function Traits({ traits }) {
-  const router = useRouter();
   const classes = useStyles();
-  const { API_URL } = process.env;
 
   return (
     <div className={classes.traits}>
@@ -58,7 +55,7 @@ function Traits({ traits }) {
         <div key={uid(trait)} className={classes.trait}>
           <div className={classes.traitLogoFill}>
             <Image
-              src={`${API_URL}${trait.icon.url}`}
+              src={trait.icon.url}
               layout="fill"
               objectFit="cover"
               sizes="100px"

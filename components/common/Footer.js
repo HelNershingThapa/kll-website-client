@@ -1,13 +1,7 @@
 import { makeStyles } from "@material-ui/core/styles";
 import { uid } from "react-uid";
 import Link from "next/link";
-import Image from "next/image";
-import { Container, Typography, Button, FilledInput } from "@material-ui/core";
-import Input from "@material-ui/core/Input";
-import InputLabel from "@material-ui/core/InputLabel";
-import InputAdornment from "@material-ui/core/InputAdornment";
-import FormControl from "@material-ui/core/FormControl";
-import Divider from "@material-ui/core/Divider";
+import { Container, Typography } from "@material-ui/core";
 import { desktop } from "../../styles/theme";
 import NewsletterSubscribe from "./newsletter/NewsletterSubscribe";
 import { KLL_EMAIL } from "../../constants";
@@ -104,6 +98,14 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 700,
     lineHeight: 1,
     color: theme.palette.grey[50],
+    marginBottom: "2rem",
+  },
+  callUsAt: {
+    fontWeight: 700,
+    lineHeight: 1,
+    color: theme.palette.grey[50],
+    marginBottom: "1rem",
+    marginTop: "2rem",
   },
   scheduleDescription: {
     width: "459px",
@@ -297,40 +299,6 @@ function Footer() {
   return (
     <div className={classes.container}>
       <Container fixed>
-        <div className={classes.scheduleCtr}>
-          <Typography className={classes.scheduleTitle} variant="subtitle1">
-            Want to chat?
-          </Typography>
-          <Typography variant="h3" className={classes.scheduleDescription}>
-            Schedule a virtual meeting with us
-          </Typography>
-          <div className={classes.btnFlex}>
-            <Button
-              classes={{ endIcon: classes.endIcon }}
-              variant="contained"
-              color="primary"
-              onClick={() =>
-                window.open("https://calendly.com/helnershingthapa")
-              }
-              endIcon={
-                <i
-                  style={{ fontSize: "16px" }}
-                  className="ri-arrow-right-line"
-                />
-              }
-            >
-              Schedule a Meeting
-            </Button>
-            <Button
-              variant="outlined"
-              className={classes.sendEmailBtn}
-              onClick={() => window.open(`mailto:${KLL_EMAIL}`)}
-            >
-              Send Us an Email
-            </Button>
-          </div>
-        </div>
-        <Divider className={classes.divider} />
         <div className={classes.groups}>
           {groups.map((group) => (
             <div key={uid(group)}>
@@ -375,7 +343,7 @@ function Footer() {
           <span className={classes.logoLine}></span>
         </div>
         <Typography className={classes.copyright} align="center">
-          Copyright 2021. Kathmandu Living Labs. All Rights Reserved
+          Copyright 2023. Kathmandu Living Labs. All Rights Reserved
         </Typography>
       </Container>
     </div>

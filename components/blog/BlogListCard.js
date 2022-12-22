@@ -6,12 +6,9 @@ import { makeStyles } from "@material-ui/core/styles";
 import ReactMarkdown from "react-markdown";
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
-import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
-import CardMedia from "@material-ui/core/CardMedia";
 import Chip from "@material-ui/core/Chip";
 
-import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import { desktop, tablet } from "../../styles/theme";
 
@@ -130,7 +127,6 @@ const useStyles = makeStyles((theme) => ({
 function MarkdownParagraph(props) {
   const classes = useStyles();
 
-  
   return (
     <Typography variant="subtitle1" className={classes.description}>
       {props.children}
@@ -154,14 +150,11 @@ const renderers = {
 function BlogListCard({ blog }) {
   const router = useRouter();
   const classes = useStyles();
-  const { API_URL } = process.env;
-  const { IMAGE_URL } = process.env;
-
 
   const trimString = (string) => {
-    var maxLength = 150;
+    const maxLength = 150;
 
-    var trimmedString = string.substr(0, maxLength);
+    let trimmedString = string.substr(0, maxLength);
 
     trimmedString = trimmedString.substr(
       0,
@@ -186,7 +179,7 @@ function BlogListCard({ blog }) {
           {blog.coverPhoto?.url && (
             <Image
               className={classes.media}
-              src={`${IMAGE_URL}${blog.coverPhoto?.url}`}
+              src={blog.coverPhoto?.url}
               layout="fill"
               objectFit="cover"
               sizes="540px"

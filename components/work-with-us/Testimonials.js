@@ -7,7 +7,6 @@ import {
   Container,
   Typography,
   Avatar,
-  Button,
   Hidden,
   IconButton,
 } from "@material-ui/core";
@@ -174,7 +173,6 @@ const useStyles = makeStyles((theme) => ({
 function Testimonials({ testimonials }) {
   const classes = useStyles();
   const slider = useRef(null);
-  const { IMAGE_URL } = process.env;
   const { title, description, testimonies } = testimonials;
   const [currentSlide, setCurrentSlide] = useState(0);
 
@@ -263,11 +261,11 @@ function Testimonials({ testimonials }) {
                       <div className={classes.author}>
                         <Avatar className={classes.avatar}>
                           <Image
-                            src={`${IMAGE_URL}${
+                            src={
                               testimony.member.avatarImage
                                 ? testimony.member.avatarImage.url
                                 : testimony.member.image.url
-                            }`}
+                            }
                             layout="fill"
                             objectFit="cover"
                             sizes="48px"

@@ -59,8 +59,6 @@ const useStyles = makeStyles((theme) => ({
 
 function FeaturedIn({ featuredInImages }) {
   const classes = useStyles();
-  const { IMAGE_URL } = process.env;
-
 
   return (
     <div className={classes.featuredInCtr}>
@@ -75,7 +73,7 @@ function FeaturedIn({ featuredInImages }) {
         {featuredInImages.map((logo) => (
           <div key={uid(logo)} className={classes.imageFill}>
             <Image
-              src={`${IMAGE_URL}${logo.newspaperLogo.url}`}
+              src={logo.newspaperLogo.url}
               className={classes.image}
               layout="fill"
               objectFit="content"

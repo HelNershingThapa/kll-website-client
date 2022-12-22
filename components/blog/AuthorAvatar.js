@@ -49,7 +49,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const AuthorAvatar = ({ member, guestAuthor, showAuthorBio = true }) => {
-  const { API_URL } = process.env;
   const classes = useStyles();
 
   return (
@@ -64,9 +63,9 @@ const AuthorAvatar = ({ member, guestAuthor, showAuthorBio = true }) => {
           <Avatar className={classes.avatar}>
             <Image
               priority
-              src={`${API_URL}${
+              src={
                 member.avatarImage ? member.avatarImage.url : member.image.url
-              }`}
+              }
               layout="fill"
               objectFit="cover"
               sizes="40px"

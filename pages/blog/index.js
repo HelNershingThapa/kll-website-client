@@ -57,8 +57,8 @@ const useStyles = makeStyles((theme) => ({
   blogListContainer: {
     display: "grid",
     gridTemplateColumns: "1fr 1fr 1fr",
-    columnGap: "15px",
-    rowGap: theme.spacing(12),
+    columnGap: "20px",
+    rowGap: theme.spacing(15),
     marginTop: theme.spacing(8),
     [theme.breakpoints.down(tablet)]: {
       gridTemplateColumns: "1fr",
@@ -109,8 +109,8 @@ const BlogList = ({ featuredBlog }) => {
   const hasMore = blogs.length < blogCount;
 
   useEffect(() => {
-    console.log("use effect");
     loadFunc();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchQuery]);
 
   async function loadFunc() {
@@ -124,15 +124,6 @@ const BlogList = ({ featuredBlog }) => {
     } else {
       categoryQuery = `&category=${category}`;
     }
-
-    console.log(
-      category,
-      `${API_URL}/blogs?_start=${
-        blogs.length
-      }&_limit=6&_where[_or][0][isFeatured_null]=true&_where[_or][1][isFeatured]=false${
-        searchQuery === "" ? "" : `&title_contains=${searchQuery}`
-      }${categoryQuery}`
-    );
 
     const [resCount, blogRes] = await Promise.all([
       fetch(

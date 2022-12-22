@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
     "& h4": {
       lineHeight: 1.25,
       marginTop: theme.spacing(10),
-      marginBottom: theme.spacing(2),
+      marginBottom: theme.spacing(6),
       [theme.breakpoints.down(desktop)]: {
         marginTop: theme.spacing(5),
         fontSize: "1.5rem",
@@ -58,8 +58,9 @@ const useStyles = makeStyles((theme) => ({
   },
   iconFill: {
     position: "relative",
-    width: 240,
-    height: 192,
+    width: 200,
+    height: 152,
+    marginBottom: "2rem",
     [theme.breakpoints.down(desktop)]: {
       width: 160,
       height: 128,
@@ -108,12 +109,12 @@ const SdgCommitment = ({ impact }) => {
     <div className={classes.root}>
       <Container fixed>
         <div className={classes.committment}>
-          <div className={classes.iconFill}>
-            <Image src="/icons/sdg.png" layout="fill" objectFit="cover" alt="" />
-          </div>
           <Typography variant="h4" align="center">
             {impact.sdgCommitment.title}
           </Typography>
+          <div className={classes.iconFill}>
+            <Image src="/icons/sdg.png" layout="fill" objectFit="cover" alt="" />
+          </div>
           <Typography variant="h5" align="center">
             {impact.sdgCommitment.description}
           </Typography>

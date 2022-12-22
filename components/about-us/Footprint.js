@@ -1,7 +1,7 @@
 import { uid } from "react-uid";
 import Image from "next/image";
 import { makeStyles } from "@material-ui/core/styles";
-import { Container, Typography } from "@material-ui/core";
+import { Typography } from "@material-ui/core";
 
 const impacts = [
   {
@@ -33,7 +33,6 @@ const useStyles = makeStyles((theme) => ({
   ourImpactCtr: {
     position: "absolute",
     display: "inline",
-    position: "absolute",
     top: "50%",
     left: "50%",
     transform: "translate(-50%, -50%)",
@@ -75,7 +74,7 @@ const useStyles = makeStyles((theme) => ({
   impacts: {
     display: "flex",
     justifyContent: "space-between",
-    marginTop: theme.spacing(18),
+    marginTop: theme.spacing(12),
     paddingBottom: theme.spacing(10),
     borderBottom: "1px solid #E1E8F0",
     [theme.breakpoints.down("sm")]: {
@@ -120,17 +119,22 @@ const useStyles = makeStyles((theme) => ({
 
 function Footprint({ footprints }) {
   const classes = useStyles();
-  console.log(footprints);
-
   return (
     <>
       <div>
         <div className={classes.footprintCtr}>
-          <Typography variant="h1" className={classes.footprint} align="center">
+          {/* <Typography variant="h1" className={classes.footprint} align="center">
             Footprint
-          </Typography>
-          <Typography variant="h6" className={classes.ourImpact}>
-            Our Impact
+          </Typography> */}
+          <Typography
+            color="primary"
+            variant="h4"
+            align="center"
+            style={{
+              marginTop: "4rem",
+            }}
+          >
+            Our work in numbers
           </Typography>
         </div>
       </div>

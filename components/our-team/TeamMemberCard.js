@@ -76,8 +76,6 @@ const useStyles = makeStyles((theme) => ({
 
 function TeamMemberCard({ memberData }) {
   const classes = useStyles();
-  const { IMAGE_URL } = process.env;
-
   const { slug, name, bio, position, image, twitter, openStreetMap, linkedIn } =
     memberData;
 
@@ -85,7 +83,7 @@ function TeamMemberCard({ memberData }) {
     <div>
       <div className={classes.imageFill}>
         <Image
-          src={`${IMAGE_URL}${image.url}`}
+          src={image.url}
           layout="fill"
           objectFit="cover"
           sizes="460px"

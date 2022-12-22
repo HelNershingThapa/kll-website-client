@@ -78,7 +78,6 @@ const renderers = {
 
 function Programs({ fellowships, mentorships }) {
   const classes = useStyles();
-  const { IMAGE_URL } = process.env;
 
   return (
     <Container fixed>
@@ -86,7 +85,7 @@ function Programs({ fellowships, mentorships }) {
         <div>
           <div className={classes.imgFill}>
             <Image
-              src={`${IMAGE_URL}${fellowships.image.url}`}
+              src={fellowships.image.url}
               layout="fill"
               objectFit="cover"
               sizes="450px"
@@ -112,7 +111,7 @@ function Programs({ fellowships, mentorships }) {
         <div>
           <div className={classes.imgFill}>
             <Image
-              src={`${IMAGE_URL}${mentorships.image.url}`}
+              src={mentorships.image.url}
               layout="fill"
               objectFit="cover"
               sizes="450px"

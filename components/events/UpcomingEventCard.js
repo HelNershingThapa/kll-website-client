@@ -1,12 +1,9 @@
 import moment from "moment";
-import { uid } from "react-uid";
 import clsx from "clsx";
 import Image from "next/image";
 import Link from "next/link";
 import { makeStyles } from "@material-ui/styles";
-import { Button, Container, Typography, Grid, Chip } from "@material-ui/core";
-import EventTabs from "components/events/EventTabs";
-import UpcomingEventCard from "components/events/UpcomingEventCard";
+import { Button, Typography, Chip } from "@material-ui/core";
 import { desktop } from "../../styles/theme";
 
 const useStyles = makeStyles((theme) => ({
@@ -108,7 +105,6 @@ const useStyles = makeStyles((theme) => ({
 
 function Events({ event }) {
   const classes = useStyles();
-  const { IMAGE_URL } = process.env;
 
   const formattedStartDate = moment(event.startDate, "YYYY-MM-DD").format(
     "Do MMM YYYY"
@@ -117,17 +113,12 @@ function Events({ event }) {
     "Do MMM YYYY"
   );
 
-  const date =
-    event.startDate === event.endDate
-      ? event.startDate
-      : `${event.startDate} - ${event.endDate}`;
-
   return (
     <div className={classes.root}>
       <div className={classes.imgFill}>
         {event.coverPhoto && (
           <Image
-            src={`${IMAGE_URL}${event.coverPhoto.url}`}
+            src={event.coverPhoto.url}
             layout="fill"
             objectFit="cover"
             sizes="960px"

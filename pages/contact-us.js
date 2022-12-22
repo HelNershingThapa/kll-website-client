@@ -2,7 +2,7 @@ import { useState } from "react";
 import Head from "next/head";
 import { uid } from "react-uid";
 import axios from "axios";
-import Image from "next/image";
+// import Image from "next/image";
 import { makeStyles } from "@material-ui/styles";
 import { Container, Typography, TextField, Button } from "@material-ui/core";
 import Map from "../components/contact-us/Map";
@@ -135,8 +135,6 @@ export default function Home() {
     setInputValues({ ...inputValues, [name]: value });
   };
 
-  console.log("inputValues", inputValues);
-
   const validateEmail = () => {
     let isValid = true;
     var pattern = new RegExp(
@@ -159,13 +157,9 @@ export default function Home() {
       .post(`${API_URL}/messages`, { fullName, email, company, message })
       .then((response) => setResponse(response))
       .catch((error) => {
-        console.log("error", error);
         setError(error);
       });
   };
-
-  console.log("error>>>", error);
-  console.log("response>>>", response);
 
   return (
     <>
@@ -242,14 +236,14 @@ export default function Home() {
           </div>
           <div className={classes.mapInfo}>
             {/* <div className={classes.mapImgFill}> */}
-              {/* <Image
+            {/* <Image
                 src="/Rectangle7.png"
                 layout="fill"
                 objectFit="cover"
                 sizes="720px"
                 alt=""
               /> */}
-              <Map />
+            <Map />
             {/* </div> */}
             <div className={classes.contactInfo}>
               <div className={classes.location}>
@@ -272,13 +266,16 @@ export default function Home() {
                   variant="body1"
                   className={classes.contactInfoTitle}
                 >
-                  Contact Numbers
+                  Contact
                 </Typography>
                 <Typography
                   variant="subtitle1"
                   className={classes.contactInfoDesc}
                 >
                   +977-1-4720136
+                </Typography>
+                <Typography variant="subtitle1">
+                  contact@kathmandulivinglabs.org
                 </Typography>
               </div>
             </div>

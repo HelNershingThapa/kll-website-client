@@ -126,13 +126,12 @@ function MarkdownParagraph(props) {
 
 function MarkdownImage(props) {
   const classes = useStyles();
-  const { IMAGE_URL } = process.env;
 
   return (
     <div className={classes.markdownImageFill}>
       <Image
         className={classes.markdownImage}
-        src={`${IMAGE_URL}${props.src}`}
+        src={props.src}
         layout="fill"
         objectFit="cover"
         alt={props.alt}
@@ -149,8 +148,6 @@ const renderers = {
 
 function EventDetail({ eventDetail }) {
   const classes = useStyles();
-  const { IMAGE_URL } = process.env;
-
   const formattedStartDate = moment(eventDetail.startDate, "YYYY-MM-DD").format(
     "LL"
   );
@@ -188,7 +185,7 @@ function EventDetail({ eventDetail }) {
         <div className={classes.headerImgFill}>
           {eventDetail.coverPhoto && (
             <Image
-              src={`${IMAGE_URL}${eventDetail.coverPhoto.url}`}
+              src={eventDetail.coverPhoto.url}
               layout="fill"
               objectFit="cover"
               alt="People working at KLL"

@@ -65,8 +65,6 @@ function Events({ recurringEvents }) {
   const [events, setEvents] = useState([]);
   const [eventCount, setEventCount] = useState(0);
 
-  const date = "2010-12-02";
-
   const upcomingEvents = events.filter((event) =>
     moment(event.startDate).isAfter()
   );
@@ -79,6 +77,7 @@ function Events({ recurringEvents }) {
 
   useEffect(() => {
     loadFunc();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   async function loadFunc() {
@@ -93,10 +92,6 @@ function Events({ recurringEvents }) {
     setEventCount(resCount);
     setEvents(events.concat(eventRes));
   }
-
-  console.log("events", events);
-
-  console.log("hasMore", hasMore, eventCount)
 
   return (
     <>

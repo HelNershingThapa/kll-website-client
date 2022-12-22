@@ -1,9 +1,8 @@
 import { useRouter } from "next/router";
 import Image from "next/image";
-import Head from "next/head";
 import { makeStyles } from "@material-ui/core/styles";
 import { Chip, Typography } from "@material-ui/core";
-import { desktop, tablet } from "styles/theme";
+import { desktop } from "styles/theme";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -96,8 +95,6 @@ const ProjectCard = ({ name, category, src, slug, coverImagePosition }) => {
   const router = useRouter();
   const classes = useStyles();
 
-  const { IMAGE_URL } = process.env;
-
   return (
     <div
       className={classes.root}
@@ -105,7 +102,7 @@ const ProjectCard = ({ name, category, src, slug, coverImagePosition }) => {
     >
       <div className={classes.imageFill}>
         <Image
-          src={`${IMAGE_URL}${src}`}
+          src={src}
           className={classes.image}
           layout="fill"
           objectFit="cover"

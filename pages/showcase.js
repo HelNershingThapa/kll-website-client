@@ -4,7 +4,7 @@ import { uid } from "react-uid";
 import Head from "next/head";
 import Image from "next/image";
 import { makeStyles } from "@material-ui/styles";
-import { Container, Typography, Button, Icon } from "@material-ui/core";
+import { Container, Typography, Button } from "@material-ui/core";
 import ReactPlayer from "react-player";
 
 const useStyles = makeStyles((theme) => ({
@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down("xs")]: {
       marginTop: theme.spacing(4),
       marginBottom: theme.spacing(10),
-    }
+    },
   },
   title: {
     fontWeight: "600",
@@ -28,14 +28,14 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down("xs")]: {
       marginTop: theme.spacing(1),
       marginBottom: theme.spacing(4),
-    }
+    },
   },
   showcaseCtr: {
     display: "grid",
     gridTemplateColumns: "repeat(12, 1fr)",
     gridTemplateRows: "420px 120px 160px 260px 208px 492px",
     gap: theme.spacing(6),
-    "& > div":{
+    "& > div": {
       maxWidth: "100%",
     },
     [theme.breakpoints.down("sm")]: {
@@ -140,20 +140,20 @@ const useStyles = makeStyles((theme) => ({
       },
     },
     "& div:not(:nth-of-type(2)), & div:not(:nth-of-type(7)), & div:not(:nth-of-type(9)),":
-    {
-      "& h5": {
-        fontFamily: "Manrope",
-        fontSize: "1.111rem",
-        fontWeight: 700,
-        lineHeight: 1.2,
-        marginBottom: theme.spacing(3),
+      {
+        "& h5": {
+          fontFamily: "Manrope",
+          fontSize: "1.111rem",
+          fontWeight: 700,
+          lineHeight: 1.2,
+          marginBottom: theme.spacing(3),
+        },
+        "& p": {
+          fontSize: "0.8889rem",
+          lineHeight: 1.5,
+          marginBottom: theme.spacing(6),
+        },
       },
-      "& p": {
-        fontSize: "0.8889rem",
-        lineHeight: 1.5,
-        marginBottom: theme.spacing(6),
-      },
-    },
   },
   imgFill: {
     position: "relative",
@@ -202,25 +202,26 @@ function Showcase() {
   const [showcases, setShowcases] = useState([]);
   const [blogCount, setShowcaseCount] = useState(0);
   const { API_URL } = process.env;
-  const { IMAGE_URL } = process.env;
 
-
-  const hasMore = showcases.length < blogCount;
+  // const hasMore = showcases.length < blogCount;
 
   useEffect(() => {
     loadFunc();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   async function loadFunc() {
     const countRes = await fetch(
-      `${API_URL}/showcases/count?${category === "none" ? "" : `category=${category}`
+      `${API_URL}/showcases/count?${
+        category === "none" ? "" : `category=${category}`
       }`
     );
     const resCount = await countRes.json();
     setShowcaseCount(resCount);
 
     const res = await fetch(
-      `${API_URL}/showcases?${category === "none" ? "" : `category=${category}`
+      `${API_URL}/showcases?${
+        category === "none" ? "" : `category=${category}`
       }`
     );
     const blogRes = await res.json();
@@ -243,10 +244,10 @@ function Showcase() {
           <>
             {!showcase.youtubeLink && (
               <div className={classes.imgFill}>
-                {showcase.thumbnail.url && (
+                {showcase.thumbnail?.url && (
                   <Image
                     className={classes.image}
-                    src={`${IMAGE_URL}${showcase.thumbnail.url}`}
+                    src={showcase.thumbnail?.url}
                     layout="fill"
                     objectFit="cover"
                     alt=""
@@ -256,7 +257,6 @@ function Showcase() {
             )}
           </>
         );
-        break;
       case "web_app":
         return (
           <div className={classes.blueBg}>
@@ -274,7 +274,6 @@ function Showcase() {
             </Button>
           </div>
         );
-        break;
       case "mobile_app":
         return (
           <div className={classes.blueBg}>

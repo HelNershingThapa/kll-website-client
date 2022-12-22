@@ -49,8 +49,8 @@ const useStyles = makeStyles((theme) => ({
       paddingLeft: theme.spacing(9),
       [theme.breakpoints.down("xs")]: {
         paddingLeft: theme.spacing(6),
-      }
-    }
+      },
+    },
   },
   description: {
     fontFamily: "Inter",
@@ -91,11 +91,9 @@ function Mission({ missions }) {
             <ul>
               {missions.map((mission, index) => (
                 <div key={uid(mission, index)} className={classes.description}>
-                  <li>
-                    <Typography className={classes.missionDescription}>
-                      {mission.text}
-                    </Typography>
-                  </li>
+                  <Typography className={classes.missionDescription}>
+                    {mission.text}
+                  </Typography>
                 </div>
               ))}
             </ul>

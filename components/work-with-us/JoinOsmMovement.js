@@ -89,15 +89,13 @@ const renderers = {
 function JoinOsmMovement({ joinOsmMovement }) {
   const router = useRouter();
   const classes = useStyles();
-  const { IMAGE_URL } = process.env;
-
   const { label, description, image } = joinOsmMovement;
 
   return (
     <Container fixed className={classes.container}>
       <div className={classes.imgFill}>
         <Image
-          src={`${IMAGE_URL}${image.url}`}
+          src={image.url}
           layout="fill"
           objectFit="cover"
           sizes="710px"

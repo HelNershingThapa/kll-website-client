@@ -1,9 +1,6 @@
-import clsx from "clsx";
 import { uid } from "react-uid";
 import Image from "next/image";
 import { makeStyles } from "@material-ui/core/styles";
-import { Container, Chip, Typography, Button } from "@material-ui/core";
-import { useTheme } from "@material-ui/styles";
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -89,9 +86,6 @@ const useStyles = makeStyles((theme) => ({
 const Mosaic = ({ galleria }) => {
   const { API_URL } = process.env;
   const classes = useStyles();
-  const theme = useTheme();
-
-  console.log(">>>", galleria);
 
   return (
     <>

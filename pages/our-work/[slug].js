@@ -341,15 +341,12 @@ function MarkdownTableHead(props) {
 
 function MarkdownImage(props) {
   const classes = useStyles();
-  const { API_URL } = process.env;
-  const { IMAGE_URL } = process.env;
-
 
   return (
     <div className={classes.markdownImageFill}>
       <Image
         className={classes.markdownImage}
-        src={`${IMAGE_URL}${props.src}`}
+        src={props.src}
         layout="fill"
         objectFit="cover"
         alt={props.alt}
@@ -375,10 +372,6 @@ const renderers = {
 function ProjectDetails({ projectDetail }) {
   const classes = useStyles();
 
-  const { API_URL } = process.env;
-  const { IMAGE_URL } = process.env;
-
-
   const sdg = projectDetail.sdg
     .map((project) => project.goalNumber)
     .sort((a, b) => a - b);
@@ -393,7 +386,7 @@ function ProjectDetails({ projectDetail }) {
       <div className={classes.imageFill}>
         <Image
           priority
-          src={`${IMAGE_URL}${projectDetail.coverImage.image.url}`}
+          src={projectDetail.coverImage.image.url}
           layout="fill"
           objectFit="cover"
           objectPosition={`${

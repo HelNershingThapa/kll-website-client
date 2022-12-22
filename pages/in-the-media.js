@@ -10,9 +10,7 @@ import {
   Button,
   Container,
   Typography,
-  Grid,
   IconButton,
-  CircularProgress,
   Link,
 } from "@material-ui/core";
 import Slider from "react-slick";
@@ -201,7 +199,7 @@ function InTheMedia({ mediaCoverages, inTheMedia }) {
                     <div className={classes.coverImgFill}>
                       <Image
                         priority
-                        src={`${API_URL}${coverage.image.url}`}
+                        src={coverage.image.url}
                         layout="fill"
                         objectFit="cover"
                         sizes="750px"
@@ -212,7 +210,7 @@ function InTheMedia({ mediaCoverages, inTheMedia }) {
                       <div>
                         <img
                           className={classes.newspaperLogo}
-                          src={`${API_URL}${coverage.layoverNewspaperLogo.url}`}
+                          src={coverage.layoverNewspaperLogo.url}
                           alt="asdasd"
                         />
                       </div>

@@ -161,9 +161,6 @@ const renderers = {
 
 function AboutUs({ data, membersCount, sdgs }) {
   const classes = useStyles();
-  const { IMAGE_URL } = process.env;
-
-  console.log("data", data);
 
   const SEO = {
     title: "About Kathmandu Living Labs",
@@ -185,7 +182,7 @@ function AboutUs({ data, membersCount, sdgs }) {
       <div className={classes.headerImgFill}>
         <Image
           priority
-          src={`${IMAGE_URL}${data.headerImage.url}`}
+          src={data.headerImage.url}
           layout="fill"
           objectFit="cover"
           alt=""
@@ -210,7 +207,7 @@ function AboutUs({ data, membersCount, sdgs }) {
           <div className={classes.imgContainer}>
             <div className={classes.img1}>
               <Image
-                src={`${IMAGE_URL}${data.image1.url}`}
+                src={data.image1.url}
                 alt="asdasd"
                 layout="fill"
                 objectFit="cover"
@@ -220,7 +217,7 @@ function AboutUs({ data, membersCount, sdgs }) {
             <div className={classes.imgsCtr}>
               <div className={classes.img2}>
                 <Image
-                  src={`${IMAGE_URL}${data.image2.url}`}
+                  src={data.image2.url}
                   layout="fill"
                   objectFit="cover"
                   sizes="486px"
@@ -229,7 +226,7 @@ function AboutUs({ data, membersCount, sdgs }) {
               </div>
               <div className={classes.img2}>
                 <Image
-                  src={`${IMAGE_URL}${data.image3.url}`}
+                  src={data.image3.url}
                   layout="fill"
                   objectFit="cover"
                   sizes="486px"
@@ -239,7 +236,7 @@ function AboutUs({ data, membersCount, sdgs }) {
             </div>
           </div>
           <Footprint footprints={data.footprints} />
-          <Sdg sdgs={sdgs} />
+          {/* <Sdg sdgs={sdgs} /> */}
         </div>
       </Container>
       <HowWeBegan data={data.howWeBegan} />

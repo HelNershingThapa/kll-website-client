@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import { uid } from "react-uid";
 import clsx from "clsx";
 import { makeStyles } from "@material-ui/styles";
@@ -155,7 +155,7 @@ const WorkingAtKll = ({ headerStats }) => {
                   }}
                 >
                   <Image
-                    src={`${API_URL}${image.image.url}`}
+                    src={image.image.url}
                     layout="fill"
                     objectFit="cover"
                     sizes="400px"

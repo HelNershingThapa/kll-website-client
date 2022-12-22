@@ -1,4 +1,3 @@
-import { useRouter } from "next/router";
 import { uid } from "react-uid";
 import Image from "next/image";
 import { makeStyles } from "@material-ui/core/styles";
@@ -64,10 +63,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const FeaturedIn = ({ featuredIn }) => {
-  const router = useRouter();
   const classes = useStyles();
-  const { API_URL } = process.env;
-  const { IMAGE_URL } = process.env;
 
   return (
     <div className={classes.featuredInCtr}>
@@ -84,7 +80,7 @@ const FeaturedIn = ({ featuredIn }) => {
             <div key={uid(logo)} className={classes.imageFill}>
               <Image
                 className={classes.image}
-                src={`${IMAGE_URL}${logo.newspaperLogo.url}`}
+                src={logo.newspaperLogo.url}
                 layout="fill"
                 objectFit="content"
                 alt="Guardian logo"

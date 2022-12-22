@@ -124,12 +124,11 @@ const renderers = {
 
 function WorkWithUs({ data, vacancies, membersCount }) {
   const classes = useStyles();
-  const { IMAGE_URL } = process.env;
   const router = useRouter();
 
   useEffect(() => {
     if (router.asPath === "/work-with-us#joblistings") {
-      var elmnt = document.getElementById("jobListingRoot");
+      const elmnt = document.getElementById("jobListingRoot");
       elmnt.scrollIntoView({ behavior: "smooth", block: "center" });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -165,7 +164,7 @@ function WorkWithUs({ data, vacancies, membersCount }) {
       <div className={classes.headerImgFill}>
         <Image
           priority
-          src={`${IMAGE_URL}${data.headerImage.url}`}
+          src={data.headerImage.url}
           layout="fill"
           objectFit="cover"
           alt=""
