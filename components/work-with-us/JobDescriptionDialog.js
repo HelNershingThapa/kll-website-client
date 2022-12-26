@@ -46,6 +46,7 @@ const useStyles = makeStyles((theme) => ({
   content: {
     display: "flex",
     flexDirection: "column",
+    position: "fixed",
     height: "100vh",
     "& p": {
       color: theme.palette.grey[600],
@@ -63,23 +64,23 @@ const useStyles = makeStyles((theme) => ({
       marginTop: theme.spacing(10),
     },
   },
-  description: {
-    flex: 2,
-    overflow: "auto",
-    padding: theme.spacing(0, 10),
-    paddingRight: theme.spacing(4),
-    marginRight: theme.spacing(4),
-    "&::-webkit-scrollbar": {
-      width: "8px",
-    },
-    "&::-webkit-scrollbar-track": {
-      "-webkit-box-shadow": "inset 0 0 6px rgba(0,0,0,0.00)",
-      borderRadius: "23px",
-    },
-    "&::-webkit-scrollbar-thumb": {
-      backgroundColor: theme.palette.grey[300],
-      borderRadius: "23px",
-    },
+  positionContent: {
+    display: "flex",
+  },
+  closeBtn: {
+    position: "absolute",
+    zIndex: 4,
+    backgroundColor: "#FFFFFF",
+    top: "90px",
+    left: 0,
+    transform: "translate(-50%, 0)",
+    padding: "14px",
+    borderRadius: "50%",
+    boxShadow: "10px 10px 40px rgba(13, 24, 41, 0.2)",
+
+    "&:hover":{
+      backgroundColor: "#CAD5E0"
+    }
   },
   applyNowBtn: {
     padding: theme.spacing(3, 4),
@@ -124,15 +125,6 @@ const useStyles = makeStyles((theme) => ({
   applyNowBtnIcon: {
     fontSize: "16px !important",
   },
-  closeBtn: {
-    position: "absolute",
-    top: "90px",
-    left: 0,
-    transform: "translate(-50%, 0)",
-    padding: "14px",
-    borderRadius: "50%",
-    boxShadow: "10px 10px 40px rgba(13, 24, 41, 0.2)",
-  },
   btnIconArrowRight: {
     fontSize: "16px !important",
     color: theme.palette.grey[700],
@@ -158,8 +150,20 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   description: {
+    overflowY: "scroll",
     padding: "24px 40px",
     paddingTop: "0px",
+    "&::-webkit-scrollbar": {
+      width: "8px",
+    },
+    "&::-webkit-scrollbar-track": {
+      "-webkit-box-shadow": "inset 0 0 6px rgba(0,0,0,0.00)",
+      borderRadius: "23px",
+    },
+    "&::-webkit-scrollbar-thumb": {
+      backgroundColor: theme.palette.grey[300],
+      borderRadius: "23px",
+    },
   },
   listItem: {
     color: theme.palette.grey[600],
@@ -296,9 +300,25 @@ function FullScreenDialog({ vacancy }) {
         <div className={classes.content}>
           <div className={classes.fixated}>
             <div className={classes.positionContainer}>
-              <Typography variant="h5" className={classes.position}>
-                {vacancy.position}
-              </Typography>
+              <div className={classes.positionContent}>
+                <Hidden smDown>
+                  <IconButton
+                    aria-label="close"
+                    className={classes.closeBtn}
+                    onClick={() => handleClose()}
+                  >
+                    <i
+                      className={clsx(
+                        "ri-arrow-left-line",
+                        classes.closeDialogIcon
+                      )}
+                    />
+                  </IconButton>
+                </Hidden>
+                <Typography variant="h5" className={classes.position}>
+                  {vacancy.position}
+                </Typography>
+              </div>
               <Button
                 className={classes.applyNowBtn}
                 variant="contained"
@@ -315,20 +335,6 @@ function FullScreenDialog({ vacancy }) {
               >
                 Apply Now
               </Button>
-              <Hidden smDown>
-                <IconButton
-                  aria-label="close"
-                  className={classes.closeBtn}
-                  onClick={() => handleClose()}
-                >
-                  <i
-                    className={clsx(
-                      "ri-arrow-left-line",
-                      classes.closeDialogIcon
-                    )}
-                  />
-                </IconButton>
-              </Hidden>
             </div>
             <Divider className={classes.divider} />
           </div>
