@@ -36,12 +36,12 @@ const groups = [
         link: "/showcase",
       },
       {
-        title: "Gallery",
-        link: "/gallery",
+        title: "Projects",
+        link: "/our-work",
       },
       {
         title: "News & Updates",
-        link: "/news-and-updates",
+        link: "/in-the-media",
       },
       {
         title: "Events",
