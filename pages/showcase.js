@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useRouter } from "next/router";
 import clsx from "clsx";
 import { uid } from "react-uid";
 import Head from "next/head";
@@ -18,8 +18,12 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   title: {
+    marginTop: theme.spacing(),
     fontWeight: "600",
     color: "#0D1829",
+  },
+  videosTitle: {
+    marginTop: theme.spacing(20),
   },
   subTitle: {
     color: "#445668",
@@ -32,128 +36,29 @@ const useStyles = makeStyles((theme) => ({
   },
   showcaseCtr: {
     display: "grid",
-    gridTemplateColumns: "repeat(12, 1fr)",
-    gridTemplateRows: "420px 120px 160px 260px 208px 492px",
+    gridTemplateColumns: "repeat(3, minmax(0, 1fr))",
     gap: theme.spacing(6),
-    "& > div": {
-      maxWidth: "100%",
+    gridAutoRows: "280px",
+    marginTop: "2rem",
+    [theme.breakpoints.down("md")]: {
+      gridTemplateColumns: "repeat(2, minmax(0, 1fr))",
     },
     [theme.breakpoints.down("sm")]: {
-      // gridTemplateRows: "none",
-      // gridTemplateColumns: "1fr",
-      // gridAutoRows: "auto",
-      display: "flex",
-      flexDirection: "column",
+      gridTemplateColumns: "1fr",
     },
-    "& > div:nth-of-type(1)": {
-      gridColumn: "span 3",
-      gridRow: "span 2",
-      [theme.breakpoints.down("sm")]: {
-        gridColumn: "auto",
-        gridRow: "auto",
-      },
+  },
+  productsContainer: {
+    display: "grid",
+    gridTemplateColumns: "repeat(3, minmax(0, 1fr))",
+    gap: theme.spacing(6),
+    // gridAutoRows: "400px",
+    marginTop: "2rem",
+    [theme.breakpoints.down("md")]: {
+      gridTemplateColumns: "repeat(2, minmax(0, 1fr))",
     },
-    "& > div:nth-of-type(2)": {
-      gridColumn: "span 6",
-      gridRow: "span 3",
-      [theme.breakpoints.down("sm")]: {
-        gridColumn: "auto",
-        gridRow: "auto",
-      },
+    [theme.breakpoints.down("sm")]: {
+      gridTemplateColumns: "1fr",
     },
-    "& > div:nth-of-type(3)": {
-      gridColumn: "span 3",
-      gridRow: "span 1",
-      [theme.breakpoints.down("sm")]: {
-        gridColumn: "auto",
-        gridRow: "auto",
-      },
-    },
-    "& > div:nth-of-type(4)": {
-      gridColumn: "span 3",
-      gridRow: "span 2",
-      [theme.breakpoints.down("sm")]: {
-        gridColumn: "auto",
-        gridRow: "auto",
-      },
-    },
-    "& > div:nth-of-type(5)": {
-      gridColumn: "span 3",
-      gridRow: "span 2",
-      [theme.breakpoints.down("sm")]: {
-        gridColumn: "auto",
-        gridRow: "auto",
-      },
-    },
-    "& > div:nth-of-type(6)": {
-      gridColumn: "span 3",
-      gridRow: "span 2",
-      [theme.breakpoints.down("sm")]: {
-        gridColumn: "auto",
-        gridRow: "auto",
-      },
-    },
-    "& div:nth-of-type(7)": {
-      gridColumn: "span 6",
-      gridRow: "span 2",
-      [theme.breakpoints.down("sm")]: {
-        gridColumn: "auto",
-        gridRow: "auto",
-      },
-    },
-    "& > div:nth-of-type(8)": {
-      gridColumn: "span 3",
-      [theme.breakpoints.down("sm")]: {
-        gridColumn: "auto",
-        gridRow: "auto",
-      },
-    },
-    "& > div:nth-of-type(9)": {
-      gridColumn: "span 6",
-      [theme.breakpoints.down("sm")]: {
-        gridColumn: "auto",
-        gridRow: "auto",
-      },
-    },
-    "& > div:nth-of-type(10)": {
-      gridColumn: "span 3",
-      [theme.breakpoints.down("sm")]: {
-        gridColumn: "auto",
-        gridRow: "auto",
-      },
-    },
-    "& > div:nth-of-type(11)": {
-      gridColumn: "span 3",
-    },
-    "& div:nth-of-type(2), & div:nth-of-type(7), & div:nth-of-type(9)": {
-      "& h5": {
-        fontFamily: "Manrope",
-        fontSize: "1.7778rem",
-        fontWeight: 700,
-        lineHeight: 1.25,
-        marginBottom: theme.spacing(2),
-      },
-      "& p": {
-        fontSize: "0.8889rem",
-        lineHeight: 1.5,
-        marginBottom: theme.spacing(8),
-      },
-    },
-    "& div:not(:nth-of-type(2)), & div:not(:nth-of-type(7)), & div:not(:nth-of-type(9)),":
-      {
-        "& h5": {
-          fontFamily: "Manrope",
-          fontSize: "1.111rem",
-          fontWeight: 700,
-          lineHeight: 1.2,
-          marginBottom: theme.spacing(3),
-        },
-        "& p": {
-          fontSize: "0.8889rem",
-          lineHeight: 1.5,
-          marginBottom: theme.spacing(6),
-        },
-      },
   },
   imgFill: {
     position: "relative",
@@ -185,6 +90,7 @@ const useStyles = makeStyles((theme) => ({
   btnRoot: {
     background: theme.palette.blue[700],
     whiteSpace: "nowrap",
+    height: "2.69rem",
   },
   btnIcon: {
     fontSize: "0.8889rem",
@@ -193,110 +99,44 @@ const useStyles = makeStyles((theme) => ({
   btnLabel: {
     color: "#fff",
   },
+  visitBtnRoot: {
+    whiteSpace: "nowrap",
+  },
+  products: {
+    // marginTop: "5rem",
+  },
+  productImgFill: {
+    position: "relative",
+    width: "100%",
+    height: "280px",
+    [theme.breakpoints.down("xs")]: {
+      width: "100%",
+      height: 121,
+    },
+  },
+  productInfoCtr: {
+    padding: theme.spacing(6),
+    paddingTop: theme.spacing(5),
+    backgroundColor: theme.palette.grey[800],
+  },
+  productTitle: {
+    fontWeight: "bold",
+    lineHeight: 1.2,
+    marginBottom: theme.spacing(3),
+  },
+  productDescription: {
+    marginBottom: theme.spacing(6),
+  },
+  actionBtnsCtr: {
+    display: "flex",
+    gap: theme.spacing(2),
+    alignItems: "center",
+  },
 }));
 
-function Showcase() {
+function Showcase({ showcases }) {
+  const router = useRouter();
   const classes = useStyles();
-
-  const [category, setCategory] = useState("none");
-  const [showcases, setShowcases] = useState([]);
-  const [blogCount, setShowcaseCount] = useState(0);
-  const { API_URL } = process.env;
-
-  // const hasMore = showcases.length < blogCount;
-
-  useEffect(() => {
-    loadFunc();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  async function loadFunc() {
-    const countRes = await fetch(
-      `${API_URL}/showcases/count?${
-        category === "none" ? "" : `category=${category}`
-      }`
-    );
-    const resCount = await countRes.json();
-    setShowcaseCount(resCount);
-
-    const res = await fetch(
-      `${API_URL}/showcases?${
-        category === "none" ? "" : `category=${category}`
-      }`
-    );
-    const blogRes = await res.json();
-    setShowcases(showcases.concat(blogRes));
-  }
-
-  const renderShowcase = (showcase) => {
-    switch (showcase.category) {
-      case "product":
-        if (showcase.youtubeLink) {
-          return (
-            <ReactPlayer
-              url={showcase.youtubeLink}
-              width="100%"
-              height="100%"
-            />
-          );
-        }
-        return (
-          <>
-            {!showcase.youtubeLink && (
-              <div className={classes.imgFill}>
-                {showcase.thumbnail?.url && (
-                  <Image
-                    className={classes.image}
-                    src={showcase.thumbnail?.url}
-                    layout="fill"
-                    objectFit="cover"
-                    alt=""
-                  />
-                )}
-              </div>
-            )}
-          </>
-        );
-      case "web_app":
-        return (
-          <div className={classes.blueBg}>
-            <Typography component="h5">{showcase.title}</Typography>
-            <Typography component="p">{showcase.description}</Typography>
-            <Button
-              classes={{ root: classes.btnRoot, label: classes.btnLabel }}
-              className={classes.readButton}
-              variant="contained"
-              endIcon={
-                <i className={clsx("ri-arrow-right-line", classes.btnIcon)} />
-              }
-            >
-              Read Case Study
-            </Button>
-          </div>
-        );
-      case "mobile_app":
-        return (
-          <div className={classes.blueBg}>
-            <Typography component="h5">{showcase.title}</Typography>
-            <Typography component="p">{showcase.description}</Typography>
-            <div>
-              <Button
-                classes={{ root: classes.btnRoot, label: classes.btnLabel }}
-                className={classes.readButton}
-                variant="contained"
-                endIcon={
-                  <i className={clsx("ri-arrow-right-line", classes.btnIcon)} />
-                }
-              >
-                Read Case Study
-              </Button>
-            </div>
-          </div>
-        );
-      default:
-        return;
-    }
-  };
 
   return (
     <>
@@ -305,28 +145,115 @@ function Showcase() {
       </Head>
       <Container fixed>
         <div className={classes.mainContainer}>
-          <Typography className={classes.title} variant="h4">
-            Showcase
-          </Typography>{" "}
-          <Typography className={classes.subTitle} variant="body1">
-            Take a look at our best videos, products, visualizations and photos
-            all in one place.
+          <Typography
+            className={clsx(classes.title, classes.products)}
+            variant="h4"
+          >
+            Products and Visualizations
+          </Typography>
+          <div className={classes.productsContainer}>
+            {showcases
+              .filter((showcase) => showcase.category === "product")
+              .map((showcase) => (
+                <div key={uid(showcase)}>
+                  <div className={classes.productImgFill}>
+                    {showcase.thumbnail?.url && (
+                      <Image
+                        src={showcase.thumbnail?.url}
+                        layout="fill"
+                        objectFit="cover"
+                        alt=""
+                      />
+                    )}
+                  </div>
+                  <div className={classes.productInfoCtr}>
+                    <Typography component="h5" className={classes.productTitle}>
+                      {showcase.title}
+                    </Typography>
+                    <Typography
+                      variant="subtitle1"
+                      className={classes.productDescription}
+                    >
+                      {showcase.description}
+                    </Typography>
+                    <div className={classes.actionBtnsCtr}>
+                      {showcase.internalLink && (
+                        <Button
+                          classes={{
+                            root: classes.btnRoot,
+                            label: classes.btnLabel,
+                          }}
+                          size="small"
+                          variant="primary"
+                          onClick={() => router.push(showcase.internalLink)}
+                        >
+                          Read More
+                        </Button>
+                      )}
+                      {showcase.externalLink && (
+                        <a
+                          className={clsx(
+                            classes.visitBtnRoot,
+                            classes.btnLabel
+                          )}
+                          target="_blank"
+                          href={showcase.externalLink}
+                          rel="noopener noreferrer"
+                        >
+                          Visit Link&nbsp;&nbsp;
+                          <i
+                            className={clsx(
+                              "ri-arrow-right-line",
+                              classes.btnIcon
+                            )}
+                          />
+                        </a>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              ))}
+          </div>
+          <Typography
+            className={clsx(classes.title, classes.videosTitle)}
+            variant="h4"
+          >
+            Videos
           </Typography>
           <div className={classes.showcaseCtr}>
-            {showcases.map((showcase) => (
-              <div key={uid(showcase)} className={classes.showcase}>
-                {renderShowcase(showcase)}
-                {/* {!showcase.youtubeLink && <div className={classes.imgFill}>
-                <Image src={`${API_URL}${showcase.thumbnail.url}`} layout="fill" objectFit="cover" alt="" />
-              </div>}
-              {showcase.youtubeLink && <ReactPlayer url={showcase.youtubeLink} width="100%" height="100%" />} */}
-              </div>
-            ))}
+            {showcases
+              .filter((showcase) => showcase.category === "video")
+              .map((showcase) => (
+                <>
+                  {showcase.externalLink && (
+                    <div key={uid(showcase)}>
+                      <ReactPlayer
+                        url={showcase.externalLink}
+                        width="100%"
+                        height="100%"
+                      />
+                    </div>
+                  )}
+                </>
+              ))}
           </div>
         </div>
       </Container>
     </>
   );
+}
+
+export async function getStaticProps() {
+  const { API_URL } = process.env;
+  const res = await fetch(`${API_URL}/showcases`);
+  const showcases = await res.json();
+
+  return {
+    props: {
+      showcases,
+    },
+    revalidate: 86400,
+  };
 }
 
 export default Showcase;
