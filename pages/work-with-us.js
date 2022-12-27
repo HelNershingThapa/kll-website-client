@@ -170,7 +170,7 @@ function WorkWithUs({ data, vacancies, membersCount }) {
           alt=""
         />
       </div>
-      <div className={classes.statsOverlay}>
+      {/* <div className={classes.statsOverlay}>
         {data.headerStats.map((stat) => (
           <div key={uid(stat)}>
             <Typography variant="body1" className={classes.statTitle}>
@@ -181,7 +181,7 @@ function WorkWithUs({ data, vacancies, membersCount }) {
             </Typography>
           </div>
         ))}
-      </div>
+      </div> */}
 
       <Container fixed>
         <div className={classes.content}>
