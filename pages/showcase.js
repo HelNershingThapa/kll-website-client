@@ -4,7 +4,7 @@ import { uid } from "react-uid";
 import Head from "next/head";
 import Image from "next/image";
 import { makeStyles } from "@material-ui/styles";
-import { Container, Typography, Button } from "@material-ui/core";
+import { Container, Typography, Button, Card } from "@material-ui/core";
 import ReactPlayer from "react-player";
 
 const useStyles = makeStyles((theme) => ({
@@ -59,6 +59,11 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down("sm")]: {
       gridTemplateColumns: "1fr",
     },
+  },
+  product: {
+    display: "flex",
+    flexDirection: "column",
+    color: theme.palette.grey[100],
   },
   imgFill: {
     position: "relative",
@@ -118,6 +123,7 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(6),
     paddingTop: theme.spacing(5),
     backgroundColor: theme.palette.grey[800],
+    flexGrow: 1,
   },
   productTitle: {
     fontWeight: "bold",
@@ -155,7 +161,7 @@ function Showcase({ showcases }) {
             {showcases
               .filter((showcase) => showcase.category === "product")
               .map((showcase) => (
-                <div key={uid(showcase)}>
+                <Card key={uid(showcase)} className={classes.product}>
                   <div className={classes.productImgFill}>
                     {showcase.thumbnail?.url && (
                       <Image
@@ -211,7 +217,7 @@ function Showcase({ showcases }) {
                       )}
                     </div>
                   </div>
-                </div>
+                </Card>
               ))}
           </div>
           <Typography
