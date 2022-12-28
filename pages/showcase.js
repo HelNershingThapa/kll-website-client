@@ -138,6 +138,16 @@ const useStyles = makeStyles((theme) => ({
     gap: theme.spacing(2),
     alignItems: "center",
   },
+  desc: {
+    marginTop: theme.spacing(3),
+    maxWidth: 800,
+    color: theme.palette.grey[600],
+    [theme.breakpoints.down("xs")]: {
+      marginTop: theme.spacing(1),
+      fontSize: "0.7778rem",
+      lineHeight: 1.428,
+    },
+  },
 }));
 
 function Showcase({ showcases }) {
@@ -156,6 +166,11 @@ function Showcase({ showcases }) {
             variant="h4"
           >
             Products and Visualizations
+          </Typography>
+          <Typography variant="body1" className={classes.desc}>
+            Explore our range of innovative tools and interactive visualizations
+            that help communities solve real-world problems using data-driven
+            decisions.
           </Typography>
           <div className={classes.productsContainer}>
             {showcases
@@ -226,6 +241,11 @@ function Showcase({ showcases }) {
           >
             Videos
           </Typography>
+          <Typography variant="body1" className={classes.desc}>
+            Check out our collection of videos showcasing how our products are
+            being used to make a difference in communities.
+          </Typography>
+
           <div className={classes.showcaseCtr}>
             {showcases
               .filter((showcase) => showcase.category === "video")
