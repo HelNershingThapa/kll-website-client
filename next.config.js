@@ -14,6 +14,7 @@ module.exports = {
       "api.kathmandulivinglabs.org",
       "kllsites.sgp1.cdn.digitaloceanspaces.com",
       "kllsites.sgp1.digitaloceanspaces.com",
+      "www.dl.dropboxusercontent.com"
     ],
   },
   webpack: (config) => {
