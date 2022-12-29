@@ -451,7 +451,11 @@ function BlogDetail({ blog, relatedBlogs }) {
           </div>
           <Typography variant="h4">{blog.title}</Typography>
           {(blog.member || blog.guestAuthor) && (
-            <AuthorAvatar member={blog.member} guestAuthor={blog.guestAuthor} />
+            <AuthorAvatar
+              member={blog.member}
+              guestAuthor={blog.guestAuthor}
+              showAuthorBio={false}
+            />
           )}
           <div className={classes.content}>
             {/* eslint-disable react/no-children-prop */}

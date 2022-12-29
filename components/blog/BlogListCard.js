@@ -76,7 +76,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   description: {
-    marginTop: theme.spacing(4),
+    marginTop: theme.spacing(3),
     color: theme.palette.grey[600],
     [theme.breakpoints.down("xs")]: {
       marginTop: theme.spacing(2),
