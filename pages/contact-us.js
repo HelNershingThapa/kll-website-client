@@ -5,7 +5,7 @@ import axios from "axios";
 // import Image from "next/image";
 import { makeStyles } from "@material-ui/styles";
 import { Container, Typography, TextField, Button } from "@material-ui/core";
-import Map from "../components/contact-us/Map";
+import { PinnedLocation } from "../components/contact-us/Map";
 
 const textFields = [
   {
@@ -243,7 +243,7 @@ export default function Home() {
                 sizes="720px"
                 alt=""
               /> */}
-            <Map />
+            <PinnedLocation />
             {/* </div> */}
             <div className={classes.contactInfo}>
               <div className={classes.location}>
